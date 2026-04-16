@@ -38,14 +38,10 @@ function IconLogo({ id, color, size = 40 }: { id: string; color: string; size?: 
 
     linkplay: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Outer signal ring */}
         <path d="M30 8 Q38 20 30 32" stroke={`${c}35`} strokeWidth="1.2" fill="none" strokeLinecap="round"/>
         <path d="M27 11 Q33 20 27 29" stroke={`${c}55`} strokeWidth="1.4" fill="none" strokeLinecap="round"/>
-        {/* Screen / device */}
         <rect x="5" y="12" width="20" height="16" rx="3" fill={`${c}20`} stroke={`${c}60`} strokeWidth="1.3"/>
-        {/* Play button inside screen */}
         <path d="M11 16 L11 24 L20 20 Z" fill={`${c}dd`} />
-        {/* LIVE dot */}
         <circle cx="22" cy="13" r="2.5" fill={`${c}cc`} />
         <circle cx="22" cy="13" r="4" fill="none" stroke={`${c}40`} strokeWidth="0.8"/>
       </svg>
@@ -53,18 +49,13 @@ function IconLogo({ id, color, size = 40 }: { id: string; color: string; size?: 
 
     moitto: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Left person */}
         <circle cx="10" cy="15" r="5" fill={`${c}35`} />
         <path d="M4 30 Q10 22 16 30" fill={`${c}28`} />
-        {/* Right person */}
         <circle cx="30" cy="15" r="5" fill={`${c}35`} />
         <path d="M24 30 Q30 22 36 30" fill={`${c}28`} />
-        {/* Center person (front) */}
         <circle cx="20" cy="13" r="6" fill={`${c}55`} stroke={`${c}80`} strokeWidth="1"/>
         <path d="M12 32 Q20 22 28 32" fill={`${c}45`} />
-        {/* Connection arcs */}
         <path d="M15 15 Q20 10 25 15" stroke={`${c}50`} strokeWidth="1" fill="none" strokeDasharray="2 1.5"/>
-        {/* Star badge */}
         <circle cx="20" cy="5" r="4" fill={`${c}25`} stroke={`${c}55`} strokeWidth="1"/>
         <text x="20" y="8" fontSize="5" textAnchor="middle" fill={`${c}cc`} fontFamily="sans-serif">★</text>
       </svg>
@@ -72,59 +63,41 @@ function IconLogo({ id, color, size = 40 }: { id: string; color: string; size?: 
 
     tubelulu: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Book spine */}
         <path d="M20 8 L20 34" stroke={`${c}55`} strokeWidth="1.3"/>
-        {/* Left page */}
         <path d="M20 8 Q11 9 7 13 L7 34 Q11 30 20 32" fill={`${c}22`} stroke={`${c}50`} strokeWidth="1.2"/>
-        {/* Right page */}
         <path d="M20 8 Q29 9 33 13 L33 34 Q29 30 20 32" fill={`${c}18`} stroke={`${c}45`} strokeWidth="1.2"/>
-        {/* Text lines on left */}
         <line x1="10" y1="17" x2="18" y2="16.5" stroke={`${c}45`} strokeWidth="0.9"/>
         <line x1="10" y1="20.5" x2="18" y2="20" stroke={`${c}38`} strokeWidth="0.9"/>
         <line x1="10" y1="24" x2="17" y2="23.5" stroke={`${c}30`} strokeWidth="0.9"/>
-        {/* Play on right page */}
         <path d="M23 16 L23 26 L31 21 Z" fill={`${c}cc`}/>
-        {/* Crown/star top */}
         <text x="20" y="7" fontSize="7" textAnchor="middle" fill={`${c}bb`} fontFamily="sans-serif">★</text>
       </svg>
     ),
 
     shuffleup: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Trophy cup */}
         <path d="M13 7 L27 7 L25 21 Q20 25 20 25 Q20 25 15 21 Z" fill={`${c}28`} stroke={`${c}65`} strokeWidth="1.3"/>
-        {/* Handles */}
         <path d="M13 7 Q7 7 7 13 Q7 19 13 21" stroke={`${c}55`} strokeWidth="1.3" fill="none" strokeLinecap="round"/>
         <path d="M27 7 Q33 7 33 13 Q33 19 27 21" stroke={`${c}55`} strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-        {/* Stem */}
         <rect x="17" y="25" width="6" height="6" fill={`${c}28`}/>
-        {/* Base */}
         <rect x="12" y="31" width="16" height="3.5" rx="1.8" fill={`${c}50`} stroke={`${c}70`} strokeWidth="1"/>
-        {/* Star inside */}
         <text x="20" y="20" fontSize="11" textAnchor="middle" fill={`${c}ee`} fontFamily="sans-serif">★</text>
-        {/* 1st place */}
         <text x="20" y="13" fontSize="6" textAnchor="middle" fill={`${c}aa`} fontWeight="800" fontFamily="sans-serif">1st</text>
       </svg>
     ),
 
     gtolulu: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Probability curve */}
         <path d="M4 34 Q8 34 11 28 Q14 20 20 12 Q26 20 29 28 Q32 34 36 34"
           stroke={`${c}70`} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-        {/* Fill */}
         <path d="M4 34 Q8 34 11 28 Q14 20 20 12 Q26 20 29 28 Q32 34 36 34 L36 36 L4 36 Z"
           fill={`${c}12`}/>
-        {/* Baseline */}
         <line x1="4" y1="34" x2="36" y2="34" stroke={`${c}25`} strokeWidth="1"/>
-        {/* Decision nodes */}
         <circle cx="20" cy="12" r="4.5" fill={`${c}35`} stroke={`${c}70`} strokeWidth="1.2"/>
         <circle cx="11" cy="28" r="3" fill={`${c}25`} stroke={`${c}50`} strokeWidth="1"/>
         <circle cx="29" cy="28" r="3" fill={`${c}25`} stroke={`${c}50`} strokeWidth="1"/>
-        {/* Connections */}
         <line x1="14" y1="14" x2="9" y2="26" stroke={`${c}35`} strokeWidth="0.9"/>
         <line x1="26" y1="14" x2="31" y2="26" stroke={`${c}35`} strokeWidth="0.9"/>
-        {/* GTO label */}
         <text x="20" y="15.5" fontSize="5" textAnchor="middle" fill={`${c}ee`} fontWeight="800" fontFamily="sans-serif">GTO</text>
       </svg>
     ),
@@ -147,7 +120,6 @@ function IconLogo({ id, color, size = 40 }: { id: string; color: string; size?: 
 function PokerLuluIllustration({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Cards fanned */}
       <g transform="rotate(-18 110 115)">
         <rect x="50" y="45" width="72" height="98" rx="8" fill={`${color}14`} stroke={`${color}35`} strokeWidth="1.5"/>
         <text x="64" y="80" fontSize="18" fill={`${color}90`} fontFamily="serif">♣</text>
@@ -164,41 +136,46 @@ function PokerLuluIllustration({ color }: { color: string }) {
         <text x="162" y="80" fontSize="18" fill={`${color}90`} fontFamily="serif">♥</text>
         <text x="162" y="130" fontSize="18" fill={`${color}90`} fontFamily="serif" transform="rotate(180 178 125)">♥</text>
       </g>
-      {/* Poker chip */}
       <circle cx="258" cy="118" r="32" fill={`${color}10`} stroke={`${color}45`} strokeWidth="2"/>
       <circle cx="258" cy="118" r="24" fill={`${color}0a`} stroke={`${color}60`} strokeWidth="1.5" strokeDasharray="6 4"/>
       <circle cx="258" cy="118" r="14" fill={`${color}18`} stroke={`${color}55`} strokeWidth="1.5"/>
       <text x="258" y="123" fontSize="12" fill={`${color}cc`} textAnchor="middle" fontWeight="bold">LULU</text>
-      {/* Glow */}
       <ellipse cx="160" cy="165" rx="120" ry="10" fill={`${color}10`}/>
     </svg>
   );
 }
 
-function PokerBuilderIllustration({ color }: { color: string }) {
+function LinkPlayIllustration({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Browser window */}
-      <rect x="40" y="30" width="200" height="130" rx="10" fill={`${color}10`} stroke={`${color}35`} strokeWidth="1.5"/>
-      <rect x="40" y="30" width="200" height="26" rx="10" fill={`${color}20`} stroke={`${color}35`} strokeWidth="1.5"/>
-      <circle cx="62" cy="43" r="5" fill={`${color}40`}/>
-      <circle cx="80" cy="43" r="5" fill={`${color}30`}/>
-      <circle cx="98" cy="43" r="5" fill={`${color}25`}/>
-      {/* URL bar */}
-      <rect x="115" y="37" width="108" height="12" rx="5" fill={`${color}15`} stroke={`${color}25`} strokeWidth="1"/>
-      {/* Card inside browser */}
-      <rect x="68" y="68" width="52" height="70" rx="6" fill={`${color}18`} stroke={`${color}45`} strokeWidth="1.5"/>
-      <text x="94" y="112" fontSize="22" fill={`${color}bb`} textAnchor="middle" fontFamily="serif">♦</text>
-      {/* Sparkle / AI */}
-      <text x="148" y="100" fontSize="28" fill={`${color}cc`} textAnchor="middle">✦</text>
-      <text x="168" y="85" fontSize="14" fill={`${color}70`}>✦</text>
-      <text x="162" y="118" fontSize="10" fill={`${color}55`}>✦</text>
-      {/* Code lines */}
-      <rect x="148" y="125" width="60" height="4" rx="2" fill={`${color}30`}/>
-      <rect x="148" y="135" width="44" height="4" rx="2" fill={`${color}20`}/>
-      {/* Side prompt arrow */}
-      <path d="M258 75 L280 90 L258 105" stroke={`${color}60`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M258 75 L258 105" stroke={`${color}30`} strokeWidth="1.5" strokeLinecap="round"/>
+      <rect x="90" y="25" width="140" height="28" rx="8" fill={`${color}15`} stroke={`${color}40`} strokeWidth="1.5"/>
+      <circle cx="108" cy="39" r="6" fill={`${color}cc`}/>
+      <circle cx="108" cy="39" r="10" fill="none" stroke={`${color}50`} strokeWidth="1.2">
+        <animate attributeName="r" values="6;14;6" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="122" y="43" fontSize="9" fill={`${color}cc`} fontWeight="700">LIVE</text>
+      <rect x="148" y="33" width="60" height="12" rx="4" fill={`${color}20`}/>
+      <rect x="150" y="35" width="42" height="8" rx="3" fill={`${color}50`}/>
+      <rect x="40" y="65" width="110" height="72" rx="8" fill={`${color}12`} stroke={`${color}40`} strokeWidth="1.5"/>
+      <circle cx="95" cy="88" r="12" fill={`${color}35`}/>
+      <path d="M72 130 Q95 110 118 130" fill={`${color}25`}/>
+      <rect x="89" y="110" width="12" height="18" rx="6" fill={`${color}50`} stroke={`${color}70`} strokeWidth="1"/>
+      <path d="M84 122 Q84 130 95 130 Q106 130 106 122" stroke={`${color}60`} strokeWidth="1.2" fill="none"/>
+      <rect x="168" y="65" width="90" height="22" rx="8" fill={`${color}18`} stroke={`${color}35`} strokeWidth="1"/>
+      <rect x="174" y="70" width="60" height="6" rx="3" fill={`${color}40`}/>
+      <rect x="174" y="79" width="40" height="4" rx="2" fill={`${color}25`}/>
+      <rect x="178" y="95" width="80" height="22" rx="8" fill={`${color}18`} stroke={`${color}35`} strokeWidth="1"/>
+      <rect x="184" y="100" width="50" height="6" rx="3" fill={`${color}40`}/>
+      <rect x="184" y="109" width="34" height="4" rx="2" fill={`${color}25`}/>
+      <rect x="168" y="125" width="90" height="22" rx="8" fill={`${color}22`} stroke={`${color}45`} strokeWidth="1"/>
+      <rect x="174" y="130" width="55" height="6" rx="3" fill={`${color}50`}/>
+      <rect x="174" y="139" width="38" height="4" rx="2" fill={`${color}30`}/>
+      <path d="M152 90 L166 85" stroke={`${color}50`} strokeWidth="1.5" strokeDasharray="3 2"/>
+      <path d="M152 100 L166 106" stroke={`${color}40`} strokeWidth="1.5" strokeDasharray="3 2"/>
+      <path d="M152 105 L166 136" stroke={`${color}30`} strokeWidth="1.5" strokeDasharray="3 2"/>
+      <rect x="40" y="148" width="60" height="16" rx="6" fill={`${color}20`} stroke={`${color}40`} strokeWidth="1"/>
+      <text x="70" y="159" fontSize="8" textAnchor="middle" fill={`${color}cc`} fontWeight="600">👥 1,204</text>
     </svg>
   );
 }
@@ -206,29 +183,22 @@ function PokerBuilderIllustration({ color }: { color: string }) {
 function MoittoIllustration({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Connection lines */}
       <line x1="100" y1="90" x2="160" y2="60" stroke={`${color}30`} strokeWidth="1.5" strokeDasharray="4 3"/>
       <line x1="220" y1="90" x2="160" y2="60" stroke={`${color}30`} strokeWidth="1.5" strokeDasharray="4 3"/>
       <line x1="100" y1="90" x2="220" y2="90" stroke={`${color}30`} strokeWidth="1.5" strokeDasharray="4 3"/>
       <line x1="100" y1="90" x2="160" y2="135" stroke={`${color}25`} strokeWidth="1.5" strokeDasharray="4 3"/>
       <line x1="220" y1="90" x2="160" y2="135" stroke={`${color}25`} strokeWidth="1.5" strokeDasharray="4 3"/>
-      {/* Person nodes */}
-      {/* Top center */}
       <circle cx="160" cy="52" r="18" fill={`${color}18`} stroke={`${color}55`} strokeWidth="1.5"/>
       <circle cx="160" cy="47" r="7" fill={`${color}40`}/>
       <path d="M147 66 Q160 58 173 66" stroke={`${color}55`} strokeWidth="1.5" fill="none"/>
-      {/* Left */}
       <circle cx="92" cy="90" r="18" fill={`${color}18`} stroke={`${color}55`} strokeWidth="1.5"/>
       <circle cx="92" cy="85" r="7" fill={`${color}40`}/>
       <path d="M79 104 Q92 96 105 104" stroke={`${color}55`} strokeWidth="1.5" fill="none"/>
-      {/* Right */}
       <circle cx="228" cy="90" r="18" fill={`${color}18`} stroke={`${color}55`} strokeWidth="1.5"/>
       <circle cx="228" cy="85" r="7" fill={`${color}40`}/>
       <path d="M215 104 Q228 96 241 104" stroke={`${color}55`} strokeWidth="1.5" fill="none"/>
-      {/* Bottom center hub */}
       <circle cx="160" cy="135" r="14" fill={`${color}25`} stroke={`${color}65`} strokeWidth="1.5"/>
       <text x="160" y="140" fontSize="13" textAnchor="middle" fill={`${color}dd`}>★</text>
-      {/* Rank badges */}
       <rect x="66" y="115" width="26" height="12" rx="5" fill={`${color}20`} stroke={`${color}40`} strokeWidth="1"/>
       <text x="79" y="124" fontSize="7" textAnchor="middle" fill={`${color}bb`} fontWeight="600">RANK</text>
       <rect x="202" y="115" width="26" height="12" rx="5" fill={`${color}20`} stroke={`${color}40`} strokeWidth="1"/>
@@ -240,12 +210,9 @@ function MoittoIllustration({ color }: { color: string }) {
 function TubeLuluIllustration({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Main play circle */}
       <circle cx="120" cy="90" r="52" fill={`${color}12`} stroke={`${color}35`} strokeWidth="1.5"/>
       <circle cx="120" cy="90" r="38" fill={`${color}18`} stroke={`${color}45`} strokeWidth="1.5"/>
-      {/* Play triangle */}
       <path d="M110 74 L110 106 L140 90 Z" fill={`${color}cc`}/>
-      {/* Subscription list on right */}
       {[0, 1, 2, 3].map((i) => (
         <g key={i} transform={`translate(192, ${42 + i * 34})`}>
           <rect width="96" height="26" rx="5" fill={`${color}10`} stroke={`${color}22`} strokeWidth="1"/>
@@ -254,10 +221,8 @@ function TubeLuluIllustration({ color }: { color: string }) {
           <rect x="28" y="15" width="36" height="4" rx="2" fill={`${color}20`}/>
         </g>
       ))}
-      {/* Q&A bubble */}
       <rect x="58" y="150" width="52" height="20" rx="10" fill={`${color}20`} stroke={`${color}45`} strokeWidth="1"/>
       <text x="84" y="163" fontSize="9" textAnchor="middle" fill={`${color}cc`} fontWeight="600">Q&amp;A</text>
-      {/* Star badge */}
       <text x="165" y="98" fontSize="20" fill={`${color}80`}>★</text>
     </svg>
   );
@@ -266,78 +231,23 @@ function TubeLuluIllustration({ color }: { color: string }) {
 function ShuffleUpIllustration({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Trophy */}
       <path d="M148 32 L172 32 L168 58 Q160 66 160 66 Q160 66 152 58 Z" fill={`${color}25`} stroke={`${color}55`} strokeWidth="1.5"/>
       <path d="M148 32 Q138 32 138 44 Q138 56 152 58" stroke={`${color}45`} strokeWidth="1.5" fill="none"/>
       <path d="M172 32 Q182 32 182 44 Q182 56 168 58" stroke={`${color}45`} strokeWidth="1.5" fill="none"/>
       <rect x="154" y="66" width="12" height="14" fill={`${color}30`}/>
       <rect x="146" y="80" width="28" height="5" rx="2" fill={`${color}45`}/>
       <text x="160" y="55" fontSize="12" textAnchor="middle" fill={`${color}cc`}>★</text>
-      {/* Bracket lines */}
-      {/* Round 1 - left */}
       <rect x="38" y="105" width="48" height="20" rx="4" fill={`${color}15`} stroke={`${color}40`} strokeWidth="1.2"/>
       <rect x="38" y="133" width="48" height="20" rx="4" fill={`${color}15`} stroke={`${color}40`} strokeWidth="1.2"/>
-      {/* Round 1 - right */}
       <rect x="234" y="105" width="48" height="20" rx="4" fill={`${color}15`} stroke={`${color}40`} strokeWidth="1.2"/>
       <rect x="234" y="133" width="48" height="20" rx="4" fill={`${color}15`} stroke={`${color}40`} strokeWidth="1.2"/>
-      {/* Round 2 */}
       <rect x="114" y="119" width="92" height="20" rx="4" fill={`${color}22`} stroke={`${color}55`} strokeWidth="1.5"/>
       <text x="160" y="132" fontSize="8" textAnchor="middle" fill={`${color}cc`} fontWeight="600">FINAL</text>
-      {/* Connector lines */}
       <path d="M86 115 L100 115 L100 129 L114 129" stroke={`${color}35`} strokeWidth="1.2"/>
       <path d="M86 143 L100 143 L100 129" stroke={`${color}35`} strokeWidth="1.2"/>
       <path d="M234 115 L220 115 L220 129 L206 129" stroke={`${color}35`} strokeWidth="1.2"/>
       <path d="M234 143 L220 143 L220 129" stroke={`${color}35`} strokeWidth="1.2"/>
-      {/* Trophy to final */}
       <line x1="160" y1="85" x2="160" y2="119" stroke={`${color}35`} strokeWidth="1.2" strokeDasharray="3 2"/>
-    </svg>
-  );
-}
-
-function LinkPlayIllustration({ color }: { color: string }) {
-  return (
-    <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Live broadcast bar at top */}
-      <rect x="90" y="25" width="140" height="28" rx="8" fill={`${color}15`} stroke={`${color}40`} strokeWidth="1.5"/>
-      <circle cx="108" cy="39" r="6" fill={`${color}cc`}/>
-      <circle cx="108" cy="39" r="10" fill="none" stroke={`${color}50`} strokeWidth="1.2">
-        <animate attributeName="r" values="6;14;6" dur="2s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/>
-      </circle>
-      <text x="122" y="43" fontSize="9" fill={`${color}cc`} fontWeight="700">LIVE</text>
-      <rect x="148" y="33" width="60" height="12" rx="4" fill={`${color}20`}/>
-      <rect x="150" y="35" width="42" height="8" rx="3" fill={`${color}50`}/>
-
-      {/* BJ / Streamer screen */}
-      <rect x="40" y="65" width="110" height="72" rx="8" fill={`${color}12`} stroke={`${color}40`} strokeWidth="1.5"/>
-      {/* Person silhouette */}
-      <circle cx="95" cy="88" r="12" fill={`${color}35`}/>
-      <path d="M72 130 Q95 110 118 130" fill={`${color}25`}/>
-      {/* Mic icon */}
-      <rect x="89" y="110" width="12" height="18" rx="6" fill={`${color}50`} stroke={`${color}70`} strokeWidth="1"/>
-      <path d="M84 122 Q84 130 95 130 Q106 130 106 122" stroke={`${color}60`} strokeWidth="1.2" fill="none"/>
-
-      {/* Viewer chat bubbles on right */}
-      <rect x="168" y="65" width="90" height="22" rx="8" fill={`${color}18`} stroke={`${color}35`} strokeWidth="1"/>
-      <rect x="174" y="70" width="60" height="6" rx="3" fill={`${color}40`}/>
-      <rect x="174" y="79" width="40" height="4" rx="2" fill={`${color}25`}/>
-
-      <rect x="178" y="95" width="80" height="22" rx="8" fill={`${color}18`} stroke={`${color}35`} strokeWidth="1"/>
-      <rect x="184" y="100" width="50" height="6" rx="3" fill={`${color}40`}/>
-      <rect x="184" y="109" width="34" height="4" rx="2" fill={`${color}25`}/>
-
-      <rect x="168" y="125" width="90" height="22" rx="8" fill={`${color}22`} stroke={`${color}45`} strokeWidth="1"/>
-      <rect x="174" y="130" width="55" height="6" rx="3" fill={`${color}50`}/>
-      <rect x="174" y="139" width="38" height="4" rx="2" fill={`${color}30`}/>
-
-      {/* Connection arrows */}
-      <path d="M152 90 L166 85" stroke={`${color}50`} strokeWidth="1.5" strokeDasharray="3 2" markerEnd="url(#arr)"/>
-      <path d="M152 100 L166 106" stroke={`${color}40`} strokeWidth="1.5" strokeDasharray="3 2"/>
-      <path d="M152 105 L166 136" stroke={`${color}30`} strokeWidth="1.5" strokeDasharray="3 2"/>
-
-      {/* Viewer count */}
-      <rect x="40" y="148" width="60" height="16" rx="6" fill={`${color}20`} stroke={`${color}40`} strokeWidth="1"/>
-      <text x="70" y="159" fontSize="8" textAnchor="middle" fill={`${color}cc`} fontWeight="600">👥 1,204</text>
     </svg>
   );
 }
@@ -345,35 +255,26 @@ function LinkPlayIllustration({ color }: { color: string }) {
 function GTOluluIllustration({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Probability distribution curve */}
       <path
         d="M40 145 Q60 145 80 130 Q100 115 120 80 Q140 40 160 35 Q180 40 200 80 Q220 115 240 130 Q260 145 280 145"
         stroke={`${color}70`} strokeWidth="2" fill="none"
       />
-      {/* Fill under curve */}
       <path
         d="M40 145 Q60 145 80 130 Q100 115 120 80 Q140 40 160 35 Q180 40 200 80 Q220 115 240 130 Q260 145 280 145 L280 150 L40 150 Z"
         fill={`${color}10`}
       />
-      {/* Baseline */}
       <line x1="40" y1="150" x2="280" y2="150" stroke={`${color}25`} strokeWidth="1"/>
-      {/* Decision nodes (neural network) */}
       <circle cx="80" cy="80" r="10" fill={`${color}20`} stroke={`${color}55`} strokeWidth="1.5"/>
       <circle cx="160" cy="55" r="13" fill={`${color}30`} stroke={`${color}70`} strokeWidth="1.5"/>
       <circle cx="240" cy="80" r="10" fill={`${color}20`} stroke={`${color}55`} strokeWidth="1.5"/>
-      {/* Connecting lines */}
       <line x1="90" y1="80" x2="147" y2="60" stroke={`${color}35`} strokeWidth="1"/>
       <line x1="230" y1="80" x2="173" y2="60" stroke={`${color}35`} strokeWidth="1"/>
-      {/* GTO label */}
       <text x="160" y="59" fontSize="9" textAnchor="middle" fill={`${color}ee`} fontWeight="800">GTO</text>
-      {/* Range % labels */}
       <text x="80" y="84" fontSize="8" textAnchor="middle" fill={`${color}aa`}>64%</text>
       <text x="240" y="84" fontSize="8" textAnchor="middle" fill={`${color}aa`}>36%</text>
-      {/* AI chip top right */}
       <rect x="248" y="28" width="44" height="36" rx="6" fill={`${color}15`} stroke={`${color}40`} strokeWidth="1.2"/>
       <rect x="256" y="36" width="28" height="20" rx="3" fill={`${color}20`} stroke={`${color}50`} strokeWidth="1"/>
       <text x="270" y="50" fontSize="9" textAnchor="middle" fill={`${color}cc`} fontWeight="700">AI</text>
-      {/* Chip pins */}
       {[0,1,2].map(i => <line key={i} x1={257 + i * 8} y1="28" x2={257 + i * 8} y2="24" stroke={`${color}40`} strokeWidth="1.5"/>)}
       {[0,1,2].map(i => <line key={i} x1={257 + i * 8} y1="64" x2={257 + i * 8} y2="68" stroke={`${color}40`} strokeWidth="1.5"/>)}
     </svg>
@@ -391,7 +292,7 @@ function ProductIllustration({ id, color }: { id: string; color: string }) {
   };
   return (
     <div
-      className="rounded-xl overflow-hidden mb-6"
+      className="rounded-xl overflow-hidden"
       style={{
         background: `${color}08`,
         border: `1px solid ${color}20`,
@@ -427,10 +328,43 @@ export default function Projects() {
         style={{ background: `radial-gradient(ellipse 55% 55% at 72% 50%, ${active.color}0e, transparent 70%)` }}
       />
 
-      <div className="h-full flex flex-col md:flex-row pt-20">
-        {/* ─── Left: product list ─── */}
+      <div className="h-full flex flex-col md:flex-row pt-20 md:pt-20">
+
+        {/* ─── Mobile: horizontal tab bar ─── */}
         <div
-          className="w-full md:w-5/12 flex flex-col justify-center px-8 md:px-14 py-4 md:py-0 gap-1 overflow-y-auto"
+          className="flex md:hidden gap-2 px-5 py-3 overflow-x-auto flex-shrink-0"
+          style={{ scrollbarWidth: "none", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+        >
+          {items.map((item, i) => {
+            const isActive = activeIdx === i;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveIdx(i)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg flex-shrink-0 whitespace-nowrap"
+                style={{
+                  background: isActive ? `${item.color}15` : "transparent",
+                  border: isActive ? `1px solid ${item.color}30` : "1px solid rgba(255,255,255,0.06)",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                <div style={{ opacity: isActive ? 1 : 0.35 }}>
+                  <IconLogo id={item.id} color={item.color} size={18} />
+                </div>
+                <span
+                  className="text-xs font-semibold"
+                  style={{ color: isActive ? "#fff" : "rgba(255,255,255,0.35)" }}
+                >
+                  {item.name}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ─── Desktop: left sidebar tab list ─── */}
+        <div
+          className="hidden md:flex w-5/12 flex-col justify-center px-14 py-0 gap-1"
           style={{ borderRight: "1px solid rgba(255,255,255,0.05)" }}
         >
           <motion.div
@@ -487,8 +421,8 @@ export default function Projects() {
           })}
         </div>
 
-        {/* ─── Right: product detail ─── */}
-        <div className="flex-1 flex flex-col justify-center px-8 md:px-14 overflow-hidden">
+        {/* ─── Detail panel (shared mobile/desktop) ─── */}
+        <div className="flex-1 flex flex-col justify-center px-5 md:px-14 py-4 md:py-0 overflow-y-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
@@ -496,11 +430,12 @@ export default function Projects() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-4 md:gap-5"
             >
-              {/* Icon logo + tag row */}
-              <div className="flex items-center gap-4 mb-4">
+              {/* ── Header: icon + name + tag + status ── */}
+              <div className="flex items-center gap-3 md:gap-4">
                 <div
-                  className="rounded-2xl p-2.5 flex-shrink-0"
+                  className="rounded-xl md:rounded-2xl p-2 md:p-2.5 flex-shrink-0"
                   style={{
                     background: `${active.color}12`,
                     border: `1px solid ${active.color}28`,
@@ -508,42 +443,61 @@ export default function Projects() {
                     filter: `drop-shadow(0 0 8px ${active.color}40)`,
                   }}
                 >
-                  <IconLogo id={active.id} color={active.color} size={48} />
+                  <IconLogo id={active.id} color={active.color} size={36} />
                 </div>
-                <div>
-                  <div className="text-xs font-semibold tracking-widest uppercase mb-1 opacity-60" style={{ color: active.color }}>
-                    {active.tag[lang]}
-                  </div>
+                <div className="flex-1 min-w-0">
                   <h2
                     className="font-black text-white leading-tight"
-                    style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)" }}
+                    style={{ fontSize: "clamp(1.4rem, 3vw, 2.4rem)" }}
                   >
                     {active.name}
+                    {active.name_ko !== active.name && (
+                      <span className="text-white/30 font-semibold ml-2" style={{ fontSize: "clamp(0.75rem, 1.5vw, 1rem)" }}>
+                        {active.name_ko}
+                      </span>
+                    )}
                   </h2>
+                  <div className="text-xs md:text-sm font-medium mt-0.5 opacity-60" style={{ color: active.color }}>
+                    {active.tag[lang]}
+                  </div>
                 </div>
+                {/* Status pill */}
+                <span
+                  className="hidden md:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0"
+                  style={{ color: statusColor, background: `${statusColor}12`, border: `1px solid ${statusColor}28` }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: statusColor, boxShadow: `0 0 5px ${statusColor}` }} />
+                  {active.status[lang]}
+                </span>
               </div>
 
-              {/* Illustration */}
-              <ProductIllustration id={active.id} color={active.color} />
+              {/* ── Illustration (hidden on small mobile, shown md+) ── */}
+              <div className="hidden sm:block">
+                <ProductIllustration id={active.id} color={active.color} />
+              </div>
 
-              {/* Description */}
-              <p className="text-white/48 text-sm md:text-base leading-relaxed mb-6 max-w-lg">
+              {/* ── Description ── */}
+              <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-lg">
                 {active.desc[lang]}
               </p>
 
-              {/* Badges + Status */}
-              <div className="flex flex-wrap items-center gap-2">
+              {/* ── Badges ── */}
+              <div className="flex flex-wrap gap-1.5 md:gap-2">
                 {active.badges[lang].map((badge) => (
                   <span
                     key={badge}
-                    className="text-xs px-3 py-1.5 rounded-full font-medium"
+                    className="text-[11px] md:text-xs px-2.5 md:px-3 py-1 md:py-1.5 rounded-full font-medium"
                     style={{ background: `${active.color}14`, color: active.color, border: `1px solid ${active.color}28` }}
                   >
                     {badge}
                   </span>
                 ))}
+              </div>
+
+              {/* ── Mobile status pill ── */}
+              <div className="flex md:hidden">
                 <span
-                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full ml-1"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full"
                   style={{ color: statusColor, background: `${statusColor}12`, border: `1px solid ${statusColor}28` }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: statusColor, boxShadow: `0 0 5px ${statusColor}` }} />
