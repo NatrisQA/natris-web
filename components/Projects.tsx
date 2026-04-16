@@ -327,6 +327,8 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
         style={{ background: `radial-gradient(ellipse 55% 55% at 72% 50%, ${active.color}0e, transparent 70%)` }}
       />
+      {/* Grid */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
 
       <div className="h-full flex flex-col md:flex-row pt-20 md:pt-20">
 

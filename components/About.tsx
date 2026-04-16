@@ -46,8 +46,11 @@ export default function About() {
       className="relative overflow-hidden"
       style={{ height: "100dvh", scrollSnapAlign: "start" }}
     >
-      {/* Orb */}
+      {/* Orbs */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[170px] opacity-[0.08] pointer-events-none" style={{ background: "radial-gradient(circle, #10b981, transparent)" }} />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[300px] rounded-full blur-[150px] opacity-[0.05] pointer-events-none" style={{ background: "radial-gradient(circle, #6366f1, transparent)" }} />
+      {/* Grid */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
 
       <div className="h-full flex flex-col px-8 md:px-16 pt-28 pb-12 max-w-7xl mx-auto w-full">
         {/* Label */}

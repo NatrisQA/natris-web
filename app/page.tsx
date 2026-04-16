@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
+import News from "@/components/News";
 import Partnership from "@/components/Partnership";
 import VisionFooter from "@/components/VisionFooter";
 import ScrollDots from "@/components/ScrollDots";
@@ -22,6 +23,7 @@ function PageContent() {
         <Hero />
         <About />
         <Projects />
+        <News />
         <Partnership />
         <VisionFooter />
       </div>

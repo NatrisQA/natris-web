@@ -7,6 +7,7 @@ const SECTIONS = [
   { id: "hero",        label: { ko: "홈",      en: "Home" } },
   { id: "about",       label: { ko: "소개",    en: "About" } },
   { id: "products",    label: { ko: "서비스",  en: "Services" } },
+  { id: "news",        label: { ko: "소식",    en: "News" } },
   { id: "partnership", label: { ko: "제휴",    en: "Partnership" } },
   { id: "vision",      label: { ko: "비전",    en: "Vision" } },
 ];

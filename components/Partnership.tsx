@@ -17,6 +17,8 @@ export default function Partnership() {
       {/* Orbs */}
       <div className="absolute bottom-0 left-1/3 w-[600px] h-[400px] blur-[170px] opacity-[0.08] pointer-events-none" style={{ background: "radial-gradient(ellipse, #ec4899, transparent)" }} />
       <div className="absolute top-0 right-1/3 w-[400px] h-[300px] blur-[150px] opacity-[0.06] pointer-events-none" style={{ background: "radial-gradient(ellipse, #8b5cf6, transparent)" }} />
+      {/* Grid */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "70px 70px" }} />
 
       <div className="h-full flex flex-col px-8 md:px-16 pt-28 pb-12 max-w-6xl mx-auto w-full">
         {/* Header */}

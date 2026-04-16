@@ -154,6 +154,52 @@ export const content = {
     ],
   },
 
+  news: {
+    label: { ko: "NEWS & UPDATES", en: "NEWS & UPDATES" },
+    headline: {
+      ko: "최근 소식",
+      en: "Latest Updates",
+    },
+    sub: {
+      ko: "lulu.ai의 최신 활동과 소식을 전합니다.",
+      en: "Stay up to date with the latest from lulu.ai.",
+    },
+    items: [
+      {
+        category: { ko: "대회", en: "Tournament" },
+        title: { ko: "ShuffleUp 파일럿 대회 성료", en: "ShuffleUp Pilot Tournament Complete" },
+        desc: { ko: "첫 오프라인 파일럿 대회를 성공적으로 마쳤습니다.\n대회 운영 솔루션의 실전 검증을 완료했습니다.", en: "Successfully completed our first offline pilot tournament.\nField-tested our tournament operations solution." },
+        date: "2026.04",
+        image: null,
+        color: "#3b82f6",
+      },
+      {
+        category: { ko: "서비스", en: "Service" },
+        title: { ko: "포커룰루 등급분류 완료", en: "PokerLulu Official Rating Complete" },
+        desc: { ko: "게임물관리위원회 정식 등급분류를 받았습니다.\n합법적인 소셜 포커 서비스로 출시를 준비합니다.", en: "Officially rated by GRAC.\nPreparing to launch as a legal social poker service." },
+        date: "2026.03",
+        image: null,
+        color: "#f59e0b",
+      },
+      {
+        category: { ko: "회사", en: "Company" },
+        title: { ko: "lulu.ai 법인 설립", en: "lulu.ai Incorporated" },
+        desc: { ko: "룰루닷에이아이 법인이 공식 설립되었습니다.\n게임과 커뮤니티를 잇는 여정이 시작됩니다.", en: "lulu.ai has been officially incorporated.\nOur journey connecting games and community begins." },
+        date: "2026.02",
+        image: null,
+        color: "#6366f1",
+      },
+      {
+        category: { ko: "개발", en: "Development" },
+        title: { ko: "LinkPlay 프로토타입 공개", en: "LinkPlay Prototype Revealed" },
+        desc: { ko: "크리에이터-시청자 인터랙티브 게임 플랫폼의\n첫 프로토타입을 내부 공개했습니다.", en: "Internally revealed the first prototype of our\ncreator-viewer interactive game platform." },
+        date: "2026.03",
+        image: null,
+        color: "#06b6d4",
+      },
+    ],
+  },
+
   partnership: {
     ko: {
       label: "PARTNERSHIP",
