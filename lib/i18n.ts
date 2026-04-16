@@ -88,10 +88,10 @@ export const content = {
         name: "LinkPlay",
         name_ko: "링플",
         desc: {
-          ko: "BJ·크리에이터와 시청자가 함께 즐기는 참여형 라이브 미니게임 플랫폼. 게임산업법 기반의 합법적 구조로 운영.",
-          en: "Participatory live mini-game platform for creators and viewers. Built on a legally compliant structure under the Game Industry Act.",
+          ko: "BJ·크리에이터와 시청자가 실시간으로 매칭되어 함께 즐기는 인터랙티브 미니게임 플랫폼.",
+          en: "Interactive mini-game platform where creators and viewers match in real-time to play together.",
         },
-        badges: { ko: ["라이브 참여", "크리에이터 연동", "게임산업법 준수"], en: ["Live Participation", "Creator Integration", "Game Act Compliant"] },
+        badges: { ko: ["실시간 매칭", "크리에이터 연동", "시청자 참여형", "라이브 인터랙션", "미니게임"], en: ["Real-time Matching", "Creator Integration", "Viewer Participation", "Live Interaction", "Mini-games"] },
         status: { ko: "개발 중", en: "In Development" },
         highlight: false,
       },
