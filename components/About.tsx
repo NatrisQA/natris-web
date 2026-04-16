@@ -2,39 +2,7 @@
 
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
-import { motion, useInView, useMotionValue, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
-
-function Counter({ value }: { value: string }) {
-  const spanRef = useRef<HTMLSpanElement>(null);
-  const triggerRef = useRef<HTMLSpanElement>(null);
-  const inView = useInView(triggerRef, { once: true });
-  const match = value.match(/^([\d,.]+)(.*)$/);
-  const raw = match ? parseFloat(match[1].replace(/,/g, "")) : null;
-  const suffix = match ? match[2] : "";
-  const count = useMotionValue(0);
-
-  useEffect(() => {
-    if (!inView || raw === null) return;
-    const ctrl = animate(count, raw, {
-      duration: 1.8,
-      ease: "easeOut",
-      onUpdate: (v) => {
-        if (!spanRef.current) return;
-        spanRef.current.textContent =
-          raw >= 1000 ? Math.round(v).toLocaleString() : Math.round(v).toString();
-      },
-    });
-    return () => ctrl.stop();
-  }, [inView, raw]);
-
-  if (raw === null) return <span>{value}</span>;
-  return (
-    <span ref={triggerRef} className="tabular">
-      <span ref={spanRef}>0</span>{suffix}
-    </span>
-  );
-}
+import { motion } from "framer-motion";
 
 export default function About() {
   const { lang } = useLang();
@@ -121,32 +89,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* ─── Section 2: Numbers ─── */}
-      <div className="relative py-24 md:py-32">
-        <div className="px-6 md:px-16 max-w-6xl mx-auto">
-          <div className="grid grid-cols-3 gap-3 md:gap-5">
-            {t.stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.12 }}
-                className="rounded-2xl py-8 md:py-12 text-center relative overflow-hidden group"
-                style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)" }}
-              >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(circle at 50% 50%, rgba(16,185,129,0.05), transparent 70%)" }} />
-                <div className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-3 tracking-tight relative z-10">
-                  <Counter value={stat.value} />
-                </div>
-                <div className="text-[11px] md:text-xs text-white/25 tracking-wider uppercase relative z-10">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ─── Section 3: Values ─── */}
+      {/* ─── Section 2: Values ─── */}
       <div className="relative py-24 md:py-32">
         <div className="px-6 md:px-16 max-w-6xl mx-auto">
           <motion.div
