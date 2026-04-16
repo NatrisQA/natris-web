@@ -488,7 +488,7 @@ export const content = {
       rights: "© 2026 lulu.ai. All rights reserved.",
       links: [
         { label: "서비스", href: "#products" },
-        { label: "제휴 문의", href: "#partnership" },
+        { label: "제휴 문의", href: "/partnership" },
         { label: "회사 소개", href: "#about" },
       ],
     },
@@ -501,7 +501,7 @@ export const content = {
       rights: "© 2026 lulu.ai. All rights reserved.",
       links: [
         { label: "Services", href: "#products" },
-        { label: "Partnership", href: "#partnership" },
+        { label: "Partnership", href: "/partnership" },
         { label: "About", href: "#about" },
       ],
     },

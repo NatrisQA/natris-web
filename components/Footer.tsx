@@ -2,6 +2,7 @@
 
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
+import Link from "next/link";
 
 export default function Footer() {
   const { lang } = useLang();
@@ -25,9 +26,13 @@ export default function Footer() {
               <span className="text-white/70 text-sm font-semibold">{tf.company}</span>
             </div>
             <div className="hidden md:flex items-center gap-4">
-              {tf.links.map((l) => (
-                <a key={l.label} href={l.href} className="text-xs text-white/40 hover:text-white/60 transition-colors duration-200">{l.label}</a>
-              ))}
+              {tf.links.map((l) =>
+                l.href.startsWith("/") ? (
+                  <Link key={l.label} href={l.href} className="text-xs text-white/40 hover:text-white/60 transition-colors duration-200">{l.label}</Link>
+                ) : (
+                  <a key={l.label} href={l.href} className="text-xs text-white/40 hover:text-white/60 transition-colors duration-200">{l.label}</a>
+                )
+              )}
             </div>
           </div>
 

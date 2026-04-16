@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import News from "@/components/News";
-import Partnership from "@/components/Partnership";
+
 import Footer from "@/components/Footer";
 import ScrollDots from "@/components/ScrollDots";
 import CursorEffect from "@/components/CursorEffect";
@@ -25,7 +25,6 @@ function PageContent() {
         <Projects />
         <News />
         <About />
-        <Partnership />
         <Footer />
       </div>
       <ScrollDots lang={lang} />

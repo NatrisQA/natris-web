@@ -12,9 +12,8 @@ export default function Nav() {
 
   const links = [
     { href: "#products", label: t.products },
-    { href: "#partnership", label: t.partnership },
+    { href: "/partnership", label: t.partnership },
     { href: "#about", label: t.about },
-    { href: "mailto:contact@lulu.ai", label: t.contact },
   ];
 
   return (

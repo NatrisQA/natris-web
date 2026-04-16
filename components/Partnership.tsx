@@ -4,6 +4,7 @@ import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
 import ContactModal from "./ContactModal";
 
 export default function Partnership() {
@@ -15,7 +16,7 @@ export default function Partnership() {
     <section
       id="partnership"
       className="relative overflow-hidden"
-      style={{ height: "100dvh", scrollSnapAlign: "start" }}
+      style={{ minHeight: "100dvh" }}
     >
       {/* Orbs */}
       <div className="absolute bottom-0 left-1/3 w-[600px] h-[400px] blur-[170px] opacity-[0.08] pointer-events-none" style={{ background: "radial-gradient(ellipse, #ec4899, transparent)" }} />
@@ -23,7 +24,22 @@ export default function Partnership() {
       {/* Grid */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "70px 70px" }} />
 
-      <div className="h-full flex flex-col px-8 md:px-16 pt-28 pb-12 max-w-6xl mx-auto w-full">
+      {/* Top nav bar */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="relative z-10 flex items-center justify-between px-6 md:px-16 py-5"
+        style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+      >
+        <Link href="/" className="flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          {lang === "ko" ? "홈으로" : "Home"}
+        </Link>
+        <span className="text-xs font-semibold tracking-[0.15em] text-white/30 uppercase">{t.label}</span>
+      </motion.div>
+
+      <div className="relative flex flex-col px-8 md:px-16 pt-16 md:pt-24 pb-16 max-w-6xl mx-auto w-full">
         {/* Header */}
         <div className="mb-10">
           <motion.div
@@ -46,7 +62,7 @@ export default function Partnership() {
           </motion.h2>
         </div>
 
-        {/* Partner types — editorial list */}
+        {/* Sub */}
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +73,8 @@ export default function Partnership() {
           {t.sub}
         </motion.p>
 
-        <div className="flex-1">
+        {/* Partner types — editorial list */}
+        <div className="mb-12">
           {t.items.map((item, i) => (
             <motion.div
               key={i}
@@ -87,7 +104,7 @@ export default function Partnership() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="pt-8 flex items-center gap-6"
+          className="flex items-center gap-6"
         >
           <motion.button
             onClick={() => setContactOpen(true)}
