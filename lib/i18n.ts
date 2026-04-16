@@ -70,7 +70,7 @@ export const content = {
       {
         id: "pokerlulu",
         color: "#f59e0b",
-        tag: { ko: "온라인 포커", en: "Online Poker" },
+        tag: { ko: "온라인 소셜 포커 플랫폼", en: "Online Social Poker Platform" },
         name: "PokerLulu",
         name_ko: "포커룰루",
         desc: {
@@ -84,7 +84,7 @@ export const content = {
       {
         id: "linkplay",
         color: "#06b6d4",
-        tag: { ko: "라이브 미니게임", en: "Live Mini-Game" },
+        tag: { ko: "방송·게임 인터랙티브 플랫폼", en: "Broadcast & Game Interactive Platform" },
         name: "LinkPlay",
         name_ko: "링플",
         desc: {
@@ -98,7 +98,7 @@ export const content = {
       {
         id: "moitto",
         color: "#10b981",
-        tag: { ko: "클럽·소모임", en: "Club & Community" },
+        tag: { ko: "클럽·소모임 플랫폼", en: "Club & Community Platform" },
         name: "모이또",
         name_ko: "모이또",
         desc: {
@@ -112,7 +112,7 @@ export const content = {
       {
         id: "tubelulu",
         color: "#ec4899",
-        tag: { ko: "지식·팬덤", en: "Knowledge & Fandom" },
+        tag: { ko: "지식기반 팬덤교류 플랫폼", en: "Knowledge-based Fandom Exchange Platform" },
         name: "TubeLuLu",
         name_ko: "투베루루",
         desc: {
@@ -126,7 +126,7 @@ export const content = {
       {
         id: "shuffleup",
         color: "#3b82f6",
-        tag: { ko: "대회 운영", en: "Tournament Ops" },
+        tag: { ko: "대회 운영 솔루션 플랫폼", en: "Tournament Operations Platform" },
         name: "ShuffleUp",
         name_ko: "셔플업",
         desc: {
@@ -140,7 +140,7 @@ export const content = {
       {
         id: "gtolulu",
         color: "#8b5cf6",
-        tag: { ko: "AI 솔버", en: "AI Solver" },
+        tag: { ko: "AI기반 GTO솔버", en: "AI-powered GTO Solver" },
         name: "GTOlulu",
         name_ko: "GTO루루",
         desc: {
