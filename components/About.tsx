@@ -70,7 +70,7 @@ export default function About() {
           </motion.div>
 
           {/* Large statement */}
-          <div className="mb-16 md:mb-20">
+          <div className="mb-10 md:mb-12">
             {t.headline.split("\n").map((line, i) => (
               <motion.div
                 key={i}
@@ -95,15 +95,26 @@ export default function About() {
             ))}
           </div>
 
+          {/* Mission — directly under headline */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="text-lg md:text-2xl text-white/35 leading-relaxed max-w-3xl mb-14 md:mb-16 whitespace-pre-line"
+          >
+            {t.mission.text}
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
             className="max-w-2xl"
           >
             <div className="w-12 h-px mb-8" style={{ background: "linear-gradient(90deg, rgba(16,185,129,0.4), transparent)" }} />
-            <p className="text-base md:text-xl text-white/40 leading-relaxed">
+            <p className="text-sm md:text-base text-white/30 leading-relaxed">
               {t.body}
             </p>
           </motion.div>
@@ -218,29 +229,6 @@ export default function About() {
         </div>
       </div>
 
-      {/* ─── Section 5: Mission ─── */}
-      <div className="relative py-24 md:py-32">
-        <div className="px-6 md:px-16 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-2xl p-8 md:p-12 relative overflow-hidden text-center"
-            style={{ background: "rgba(99,102,241,0.05)", border: "1px solid rgba(99,102,241,0.12)" }}
-          >
-            <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(99,102,241,0.4), transparent)" }} />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] rounded-full blur-[100px] opacity-[0.06] pointer-events-none" style={{ background: "radial-gradient(circle, #6366f1, transparent)" }} />
-
-            <div className="relative z-10">
-              <div className="text-xs font-bold tracking-[0.25em] text-indigo-400/70 mb-6 uppercase">{t.mission.label}</div>
-              <p className="text-lg md:text-xl lg:text-2xl font-medium text-white/45 leading-relaxed">
-                {t.mission.text}
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
     </section>
   );
 }

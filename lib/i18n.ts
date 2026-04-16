@@ -37,7 +37,7 @@ export const content = {
       ],
       mission: {
         label: "MISSION",
-        text: "누구나 자신만의 게임 경험을 만들고, 커뮤니티를 운영하고, 함께 성장할 수 있는 인프라를 제공한다.",
+        text: "플레이어가 모이고, 커뮤니티가 만들어지고, 새로운 경험이 시작되는 곳.\n우리는 그 연결의 기반을 설계합니다.",
       },
       values: [
         {
@@ -79,7 +79,7 @@ export const content = {
       ],
       mission: {
         label: "MISSION",
-        text: "Provide the infrastructure for anyone to build their own gaming experience, operate a community, and grow together.",
+        text: "Where players gather, communities form, and new experiences begin.\nWe design the foundation that connects it all.",
       },
       values: [
         {
