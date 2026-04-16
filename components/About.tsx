@@ -111,7 +111,7 @@ export default function About() {
           ))}
         </div>
 
-        {/* ── Core Values — Diagram ── */}
+        {/* ── Core Values — Flow ── */}
         <div className="mb-20 md:mb-28">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -131,83 +131,47 @@ export default function About() {
             {lang === "ko" ? "우리가 일하는 방식" : "How We Work"}
           </motion.h3>
 
-          {/* Diagram */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="relative max-w-3xl mx-auto"
-            style={{ aspectRatio: "4/3" }}
-          >
-            {/* SVG connections */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 300" fill="none" preserveAspectRatio="xMidYMid meet">
-              {/* Center → each node */}
-              <line x1="200" y1="150" x2="200" y2="38" stroke="rgba(16,185,129,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1="200" y1="150" x2="200" y2="262" stroke="rgba(16,185,129,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1="200" y1="150" x2="55" y2="150" stroke="rgba(16,185,129,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1="200" y1="150" x2="345" y2="150" stroke="rgba(16,185,129,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-              {/* Outer ring */}
-              <circle cx="200" cy="150" r="120" stroke="rgba(16,185,129,0.06)" strokeWidth="1" fill="none" />
-              <circle cx="200" cy="150" r="80" stroke="rgba(16,185,129,0.04)" strokeWidth="1" fill="none" strokeDasharray="6 6" />
-            </svg>
+          <div className="grid grid-cols-2 md:grid-cols-4 relative">
+            {/* Horizontal connecting line (desktop) */}
+            <div className="hidden md:block absolute top-[28px] left-[12.5%] right-[12.5%] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(16,185,129,0.2) 15%, rgba(16,185,129,0.2) 85%, transparent)" }} />
 
-            {/* Center hub */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <div
-                className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center"
-                style={{
-                  background: "radial-gradient(circle, rgba(16,185,129,0.15), rgba(16,185,129,0.04))",
-                  border: "1.5px solid rgba(16,185,129,0.3)",
-                  boxShadow: "0 0 30px rgba(16,185,129,0.12)",
-                }}
+            {t.values.map((val, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 + 0.15 }}
+                className="relative flex flex-col items-center text-center px-3 py-6 md:py-0"
               >
-                <span className="text-xs md:text-sm font-black tracking-wider text-emerald-400">lulu.ai</span>
-              </div>
-            </div>
-
-            {/* Value nodes — positioned at top, right, bottom, left */}
-            {(() => {
-              const positions = [
-                { top: "0%", left: "50%", tx: "-50%", ty: "0" },
-                { top: "50%", left: "100%", tx: "-100%", ty: "-50%" },
-                { top: "100%", left: "50%", tx: "-50%", ty: "-100%" },
-                { top: "50%", left: "0%", tx: "0", ty: "-50%" },
-              ];
-              const colors = ["#10b981", "#06b6d4", "#8b5cf6", "#f59e0b"];
-              return t.values.map((val, i) => {
-                const pos = positions[i];
-                const c = colors[i];
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 + 0.3 }}
-                    className="absolute group"
-                    style={{ top: pos.top, left: pos.left, transform: `translate(${pos.tx}, ${pos.ty})` }}
+                {/* Number node */}
+                <div className="relative mb-5">
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center relative z-10"
+                    style={{
+                      background: "rgba(16,185,129,0.06)",
+                      border: "1px solid rgba(16,185,129,0.2)",
+                    }}
                   >
-                    <div className="flex flex-col items-center text-center" style={{ width: "min(40vw, 160px)" }}>
-                      {/* Node circle */}
-                      <div
-                        className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform duration-300"
-                        style={{
-                          background: `radial-gradient(circle, ${c}20, ${c}08)`,
-                          border: `1.5px solid ${c}40`,
-                          boxShadow: `0 0 16px ${c}15`,
-                        }}
-                      >
-                        <span className="text-lg md:text-xl">{val.icon}</span>
-                      </div>
-                      <h4 className="text-xs md:text-sm font-bold text-white mb-1">{val.title}</h4>
-                      <p className="text-[10px] md:text-[11px] text-white/30 leading-snug whitespace-pre-line hidden md:block">{val.desc}</p>
-                    </div>
-                  </motion.div>
-                );
-              });
-            })()}
-          </motion.div>
+                    <span className="text-lg font-black text-emerald-400/80">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h4 className="text-sm md:text-base font-bold text-white mb-2 tracking-tight">
+                  {val.title}
+                </h4>
+
+                {/* Thin separator */}
+                <div className="w-6 h-px mb-3" style={{ background: "rgba(16,185,129,0.3)" }} />
+
+                {/* Desc */}
+                <p className="text-[11px] md:text-xs text-white/30 leading-relaxed whitespace-pre-line max-w-[140px]">
+                  {val.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* ── Timeline ── */}
