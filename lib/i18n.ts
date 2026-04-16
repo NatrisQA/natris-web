@@ -74,10 +74,10 @@ export const content = {
         name: "PokerLulu",
         name_ko: "포커룰루",
         desc: {
-          ko: "게임물관리위원회 등급 승인 완료. 인스턴트 포커, 길드 시스템, 중계 모드를 갖춘 국내 웹보드 포커 서비스.",
-          en: "GRAC-approved Korean web board poker service with instant poker, guild system, and live broadcast mode.",
+          ko: "정식 등급분류 완료. 소셜 포커, 대회 시스템, 실시간 중계, 토너먼트를 갖춘 온라인 소셜 포커 플랫폼.",
+          en: "Officially rated online social poker platform featuring social poker, tournament system, live broadcast, and tournament modes.",
         },
-        badges: { ko: ["게관위 승인", "인스턴트 포커", "길드 시스템", "중계 모드"], en: ["GRAC Approved", "Instant Poker", "Guild System", "Broadcast Mode"] },
+        badges: { ko: ["정식 등급분류", "소셜 포커", "대회 시스템", "실시간 중계", "토너먼트"], en: ["Official Rating", "Social Poker", "Tournament System", "Live Broadcast", "Tournament"] },
         status: { ko: "출시 예정", en: "Launching Soon" },
         highlight: true,
       },
