@@ -21,9 +21,9 @@ function PageContent() {
       >
         <Nav />
         <Hero />
-        <About />
         <Projects />
         <News />
+        <About />
         <Partnership />
         <VisionFooter />
       </div>
