@@ -9,53 +9,8 @@ interface Ripple {
 }
 
 export default function CursorEffect() {
-  const glowRef = useRef<HTMLDivElement>(null);
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const idRef = useRef(0);
-
-  // Mouse glow follow
-  useEffect(() => {
-    const glow = glowRef.current;
-    if (!glow) return;
-
-    let rafId: number;
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let visible = false;
-
-    const onMove = (e: MouseEvent) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-      if (!visible) {
-        visible = true;
-        glow.style.opacity = "1";
-      }
-    };
-
-    const onLeave = () => {
-      visible = false;
-      glow.style.opacity = "0";
-    };
-
-    const lerp = () => {
-      currentX += (targetX - currentX) * 0.15;
-      currentY += (targetY - currentY) * 0.15;
-      glow.style.transform = `translate(${currentX - 80}px, ${currentY - 80}px)`;
-      rafId = requestAnimationFrame(lerp);
-    };
-
-    document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseleave", onLeave);
-    rafId = requestAnimationFrame(lerp);
-
-    return () => {
-      document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseleave", onLeave);
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
 
   // Click ripple
   const onClick = useCallback((e: MouseEvent) => {
@@ -75,22 +30,6 @@ export default function CursorEffect() {
 
   return (
     <>
-      {/* Mouse glow */}
-      <div
-        ref={glowRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
-        style={{
-          width: 160,
-          height: 160,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.06) 50%, transparent 75%)",
-          opacity: 0,
-          transition: "opacity 0.4s ease",
-          willChange: "transform",
-          mixBlendMode: "screen",
-        }}
-      />
-
       {/* Click ripples */}
       {ripples.map((r) => (
         <div
