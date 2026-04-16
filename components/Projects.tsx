@@ -3,7 +3,7 @@
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import Link from "next/link";
 
 const statusColors: Record<string, string> = {
@@ -311,6 +311,16 @@ export default function Projects() {
   const items = t.items;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    });
+  }, []);
 
   const scroll = (dir: "prev" | "next") => {
     const container = scrollRef.current;
@@ -405,7 +415,10 @@ export default function Projects() {
           >
           {items.map((item, i) => {
             const sc = statusColors[item.status[lang]] || "#888";
-            const isActive = currentIdx === i;
+            // PC: hover 기반, 모바일: scroll 기반
+            const isHovered = hoveredIdx === i;
+            const isActive = isHovered || (hoveredIdx === null && currentIdx === i);
+            const mp = isHovered && mousePos ? mousePos : null;
             return (
               <motion.div
                 key={item.id}
@@ -415,6 +428,9 @@ export default function Projects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.06 }}
                 className="group relative rounded-2xl flex flex-col overflow-hidden flex-shrink-0"
+                onMouseEnter={() => setHoveredIdx(i)}
+                onMouseLeave={() => { setHoveredIdx(null); setMousePos(null); }}
+                onMouseMove={handleMouseMove}
                 style={{
                   width: "calc(100vw - 40px)",
                   maxWidth: "420px",
@@ -437,12 +453,15 @@ export default function Projects() {
                   }}
                 />
 
-                {/* Hover / active glow */}
+                {/* Mouse-tracking glow */}
                 <div
-                  className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-400"
+                  className="absolute inset-0 rounded-2xl pointer-events-none z-[1]"
                   style={{
-                    background: `linear-gradient(135deg, ${item.color}0c, transparent 60%)`,
+                    background: mp
+                      ? `radial-gradient(circle 220px at ${mp.x}% ${mp.y}%, ${item.color}18, transparent 70%)`
+                      : `linear-gradient(135deg, ${item.color}0c, transparent 60%)`,
                     opacity: isActive ? 1 : 0,
+                    transition: "opacity 0.3s ease",
                   }}
                 />
 
@@ -481,7 +500,7 @@ export default function Projects() {
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-col gap-3 p-4 md:p-5 flex-1">
+                <div className="flex flex-col gap-3 p-4 md:p-5 flex-1 relative">
 
                 {/* Icon + name + tag */}
                 <div className="relative z-10 flex items-center gap-3">
@@ -526,8 +545,8 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Bottom: status + arrow CTA */}
-                <div className="relative z-10 flex items-center justify-between pt-2" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
+                {/* Bottom: status */}
+                <div className="relative z-10 flex items-center pt-2" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
                   <span
                     className="inline-flex items-center gap-1.5 text-xs font-medium"
                     style={{ color: sc }}
@@ -535,33 +554,30 @@ export default function Projects() {
                     <span className="w-1.5 h-1.5 rounded-full" style={{ background: sc, boxShadow: `0 0 4px ${sc}` }} />
                     {item.status[lang]}
                   </span>
-
                 </div>
 
-                {/* Expanding line + arrow */}
-                <div className="relative z-10 flex items-center gap-0 mt-1 px-4 md:px-5 pb-4 md:pb-5">
-                  <div
-                    className="h-px flex-1"
-                    style={{
-                      background: isActive ? `linear-gradient(90deg, ${item.color}50, ${item.color})` : "rgba(255,255,255,0.06)",
-                      transform: isActive ? "scaleX(1)" : "scaleX(0.3)",
-                      transformOrigin: "left",
-                      transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
-                    }}
-                  />
-                  <svg
-                    width="20" height="20" viewBox="0 0 20 20" fill="none"
-                    style={{
-                      color: isActive ? item.color : "rgba(255,255,255,0.1)",
-                      opacity: isActive ? 1 : 0,
-                      transform: isActive ? "translateX(0)" : "translateX(-12px)",
-                      transition: "all 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s",
-                      flexShrink: 0,
-                    }}
+                {/* Circle arrow button — bottom right */}
+                <div
+                  className="absolute bottom-4 right-4 md:bottom-5 md:right-5 z-20 flex items-center justify-center rounded-full"
+                  style={{
+                    width: isActive ? 40 : 0,
+                    height: isActive ? 40 : 0,
+                    background: isActive ? `${item.color}` : "transparent",
+                    boxShadow: isActive ? `0 0 20px ${item.color}50, 0 0 40px ${item.color}20` : "none",
+                    opacity: isActive ? 1 : 0,
+                    transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+                    overflow: "hidden",
+                  }}
+                >
+                  <motion.svg
+                    width="18" height="18" viewBox="0 0 20 20" fill="none"
+                    animate={isActive ? { x: [0, 3, 0] } : { x: 0 }}
+                    transition={isActive ? { duration: 1.2, repeat: Infinity, ease: "easeInOut" } : {}}
                   >
-                    <path d="M8 4L14 10L8 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                    <path d="M8 4L14 10L8 16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </motion.svg>
                 </div>
+
                 </div>
 
                 </Link>
