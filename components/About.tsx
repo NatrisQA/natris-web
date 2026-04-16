@@ -44,210 +44,188 @@ export default function About() {
     <section
       id="about"
       className="relative overflow-hidden"
-      style={{ minHeight: "100dvh", scrollSnapAlign: "start" }}
+      style={{ scrollSnapAlign: "start" }}
     >
-      {/* Orbs */}
-      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full blur-[170px] opacity-[0.08] pointer-events-none" style={{ background: "radial-gradient(circle, #10b981, transparent)" }} />
-      <div className="absolute bottom-1/4 left-0 w-[400px] h-[300px] rounded-full blur-[150px] opacity-[0.05] pointer-events-none" style={{ background: "radial-gradient(circle, #6366f1, transparent)" }} />
-      <div className="absolute top-2/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full blur-[200px] opacity-[0.04] pointer-events-none" style={{ background: "radial-gradient(circle, #ec4899, transparent)" }} />
-      {/* Grid */}
-      <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
+      {/* ─── Section 1: Statement (fullscreen) ─── */}
+      <div
+        className="relative flex items-center justify-center"
+        style={{ minHeight: "100dvh" }}
+      >
+        {/* Subtle bg */}
+        <div className="absolute inset-0 opacity-[0.012] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "100px 100px" }} />
 
-      <div className="flex flex-col px-6 md:px-12 lg:px-16 pt-28 pb-20 max-w-7xl mx-auto w-full">
-
-        {/* ── Hero area ── */}
-        <div className="mb-20 md:mb-28">
+        <div className="px-6 md:px-16 max-w-6xl mx-auto w-full py-32">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-emerald-400 mb-6 uppercase"
+            className="text-xs font-semibold tracking-[0.3em] text-white/25 mb-10 md:mb-14 uppercase"
           >
             {t.label}
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-start">
-            <motion.h2
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.08 }}
-              className="font-black text-white leading-tight whitespace-pre-line"
-              style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}
-            >
-              {t.headline}
-            </motion.h2>
+          {/* Large statement — each line fades in */}
+          <div className="mb-16 md:mb-20">
+            {t.headline.split("\n").map((line, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span
+                  className="font-black text-white block leading-[1.1] mb-2"
+                  style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}
+                >
+                  {line}
+                </span>
+              </motion.div>
+            ))}
+          </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.18 }}
-              className="text-white/45 text-base md:text-lg leading-relaxed md:pt-3"
-            >
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="max-w-2xl"
+          >
+            <div className="w-12 h-px bg-white/10 mb-8" />
+            <p className="text-base md:text-xl text-white/35 leading-relaxed">
               {t.body}
-            </motion.p>
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ─── Section 2: Numbers ─── */}
+      <div className="relative py-28 md:py-40">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent, rgba(16,185,129,0.02) 50%, transparent)" }} />
+
+        <div className="px-6 md:px-16 max-w-6xl mx-auto">
+          <div className="grid grid-cols-3 gap-0">
+            {t.stats.map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.12 }}
+                className="text-center py-8 md:py-12 relative"
+              >
+                {/* Vertical dividers */}
+                {i > 0 && (
+                  <div className="absolute left-0 top-[20%] bottom-[20%] w-px" style={{ background: "rgba(255,255,255,0.06)" }} />
+                )}
+                <div className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-3 tracking-tight">
+                  <Counter value={stat.value} />
+                </div>
+                <div className="text-[11px] md:text-xs text-white/25 tracking-wider uppercase">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* ── Stats ── */}
-        <div className="grid grid-cols-3 gap-3 md:gap-5 mb-20 md:mb-28">
-          {t.stats.map((stat, i) => (
+      {/* ─── Section 3: Values ─── */}
+      <div className="relative py-28 md:py-40">
+        <div className="px-6 md:px-16 max-w-6xl mx-auto">
+          {t.values.map((val, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.08 * i + 0.1 }}
-              className="rounded-2xl p-6 md:p-8 text-center relative overflow-hidden group"
-              style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)" }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="grid md:grid-cols-[120px_1fr] gap-4 md:gap-12 items-baseline py-10 md:py-14"
+              style={{ borderBottom: i < t.values.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(circle at 50% 50%, rgba(16,185,129,0.06), transparent 70%)" }} />
-              <div className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2 relative z-10">
-                <Counter value={stat.value} />
+              <span className="text-[56px] md:text-[72px] font-black leading-none text-white/[0.04]">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h4 className="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">{val.title}</h4>
+                <p className="text-sm md:text-base text-white/30 leading-relaxed max-w-lg whitespace-pre-line">{val.desc}</p>
               </div>
-              <div className="text-[11px] md:text-xs text-white/30 leading-snug relative z-10">{stat.label}</div>
             </motion.div>
           ))}
         </div>
+      </div>
 
-        {/* ── Core Values — Flow ── */}
-        <div className="mb-20 md:mb-28">
+      {/* ─── Section 4: Timeline ─── */}
+      <div className="relative py-28 md:py-40">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent, rgba(99,102,241,0.015) 50%, transparent)" }} />
+
+        <div className="px-6 md:px-16 max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-emerald-400/60 mb-4 uppercase"
+            className="text-xs font-semibold tracking-[0.3em] text-white/25 mb-16 md:mb-20 uppercase"
           >
-            CORE VALUES
+            MILESTONES
           </motion.div>
-          <motion.h3
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.06 }}
-            className="text-2xl md:text-3xl font-black text-white mb-12 md:mb-16"
-          >
-            {lang === "ko" ? "우리가 일하는 방식" : "How We Work"}
-          </motion.h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 relative">
-            {/* Horizontal connecting line (desktop) */}
-            <div className="hidden md:block absolute top-[28px] left-[12.5%] right-[12.5%] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(16,185,129,0.2) 15%, rgba(16,185,129,0.2) 85%, transparent)" }} />
-
-            {t.values.map((val, i) => (
+          <div className="grid md:grid-cols-4 gap-0">
+            {t.milestones.map((ms, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 + 0.15 }}
-                className="relative flex flex-col items-center text-center px-3 py-6 md:py-0"
+                transition={{ duration: 0.5, delay: i * 0.1 + 0.1 }}
+                className="relative py-6 md:py-0 md:pr-8"
               >
-                {/* Number node */}
-                <div className="relative mb-5">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center relative z-10"
-                    style={{
-                      background: "rgba(16,185,129,0.06)",
-                      border: "1px solid rgba(16,185,129,0.2)",
-                    }}
-                  >
-                    <span className="text-lg font-black text-emerald-400/80">{String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                </div>
+                {/* Top line */}
+                <div className="w-full h-px mb-6" style={{ background: `linear-gradient(90deg, rgba(255,255,255,${i === t.milestones.length - 1 ? "0.15" : "0.06"}), rgba(255,255,255,0.06))` }} />
 
-                {/* Title */}
-                <h4 className="text-sm md:text-base font-bold text-white mb-2 tracking-tight">
-                  {val.title}
-                </h4>
+                {/* Dot */}
+                <div
+                  className="w-2 h-2 rounded-full mb-5"
+                  style={{
+                    background: i === t.milestones.length - 1 ? "#6366f1" : "rgba(255,255,255,0.12)",
+                    boxShadow: i === t.milestones.length - 1 ? "0 0 10px rgba(99,102,241,0.5)" : "none",
+                  }}
+                />
 
-                {/* Thin separator */}
-                <div className="w-6 h-px mb-3" style={{ background: "rgba(16,185,129,0.3)" }} />
-
-                {/* Desc */}
-                <p className="text-[11px] md:text-xs text-white/30 leading-relaxed whitespace-pre-line max-w-[140px]">
-                  {val.desc}
-                </p>
+                <div className="text-xs text-white/20 tracking-wider mb-2">{ms.date}</div>
+                <div className="text-sm md:text-base font-medium text-white/60">{ms.text}</div>
               </motion.div>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* ── Timeline ── */}
-        <div className="mb-16 md:mb-20">
+      {/* ─── Section 5: Mission (fullscreen statement) ─── */}
+      <div
+        className="relative flex items-center justify-center"
+        style={{ minHeight: "60vh" }}
+      >
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[200px] opacity-[0.04]" style={{ background: "radial-gradient(circle, #6366f1, transparent)" }} />
+        </div>
+
+        <div className="px-6 md:px-16 max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-emerald-400/60 mb-4 uppercase"
+            className="text-xs font-semibold tracking-[0.3em] text-white/20 mb-10 uppercase"
           >
-            MILESTONES
+            {t.mission.label}
           </motion.div>
-          <motion.h3
+
+          <motion.p
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.06 }}
-            className="text-2xl md:text-3xl font-black text-white mb-10 md:mb-14"
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-xl md:text-2xl lg:text-3xl font-medium text-white/50 leading-relaxed"
           >
-            {lang === "ko" ? "여정" : "Our Journey"}
-          </motion.h3>
-
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-[7px] md:left-[9px] top-2 bottom-2 w-px" style={{ background: "linear-gradient(to bottom, rgba(16,185,129,0.4), rgba(16,185,129,0.08))" }} />
-
-            <div className="flex flex-col gap-8 md:gap-10">
-              {t.milestones.map((ms, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 + 0.1 }}
-                  className="flex items-start gap-5 md:gap-8"
-                >
-                  {/* Dot */}
-                  <div className="relative flex-shrink-0 mt-1.5">
-                    <div
-                      className="w-[15px] h-[15px] md:w-[19px] md:h-[19px] rounded-full"
-                      style={{
-                        background: i === 0 ? "#10b981" : "rgba(16,185,129,0.2)",
-                        border: `2px solid ${i === 0 ? "#10b981" : "rgba(16,185,129,0.35)"}`,
-                        boxShadow: i === 0 ? "0 0 12px rgba(16,185,129,0.5)" : "none",
-                      }}
-                    />
-                  </div>
-
-                  <div>
-                    <div className="text-xs font-semibold text-emerald-400/70 mb-1 tracking-wide">{ms.date}</div>
-                    <div className="text-sm md:text-base font-medium text-white/70">{ms.text}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+            {t.mission.text}
+          </motion.p>
         </div>
-
-        {/* ── Mission ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="rounded-2xl p-8 md:p-10 relative overflow-hidden"
-          style={{ background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.15)" }}
-        >
-          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(99,102,241,0.5), transparent)" }} />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] rounded-full blur-[100px] opacity-[0.08] pointer-events-none" style={{ background: "radial-gradient(circle, #6366f1, transparent)" }} />
-
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <div className="text-xs font-bold tracking-[0.25em] text-indigo-400 mb-4 uppercase">{t.mission.label}</div>
-            <p className="text-base md:text-lg text-white/55 leading-relaxed">{t.mission.text}</p>
-          </div>
-        </motion.div>
-
       </div>
     </section>
   );
