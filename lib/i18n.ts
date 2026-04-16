@@ -74,8 +74,8 @@ export const content = {
         name: "PokerLulu",
         name_ko: "포커룰루",
         desc: {
-          ko: "게임물관리위원회 정식 등급분류를 받은\n합법 온라인 포커 서비스.\n친구와 함께, 대회에서 경쟁하며, 나만의 포커를 즐기세요.",
-          en: "Officially rated by GRAC,\na fully legal online poker service.\nPlay with friends, compete in tournaments, enjoy your poker.",
+          ko: "포커를 좋아하는 사람들이 모이는 곳.\n캐주얼 한 판부터 진지한 토너먼트까지,\n당신만의 포커 라이프가 시작됩니다.",
+          en: "Where poker lovers gather.\nFrom a casual hand to serious tournaments,\nyour poker life starts here.",
         },
         badges: { ko: ["정식 등급분류", "소셜 포커", "대회 시스템", "실시간 중계", "토너먼트"], en: ["Official Rating", "Social Poker", "Tournament System", "Live Broadcast", "Tournament"] },
         status: { ko: "출시 예정", en: "Launching Soon" },
