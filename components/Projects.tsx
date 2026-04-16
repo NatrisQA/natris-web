@@ -405,6 +405,7 @@ export default function Projects() {
           >
           {items.map((item, i) => {
             const sc = statusColors[item.status[lang]] || "#888";
+            const isActive = currentIdx === i;
             return (
               <motion.div
                 key={item.id}
@@ -418,15 +419,35 @@ export default function Projects() {
                   width: "calc(100vw - 40px)",
                   maxWidth: "420px",
                   scrollSnapAlign: "start",
-                  background: "rgba(255,255,255,0.025)",
-                  border: "1px solid rgba(255,255,255,0.07)",
+                  background: isActive ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.025)",
+                  border: `1px solid ${isActive ? `${item.color}30` : "rgba(255,255,255,0.07)"}`,
+                  boxShadow: isActive ? `0 0 40px ${item.color}12, 0 8px 32px rgba(0,0,0,0.3)` : "none",
+                  transform: isActive ? "scale(1)" : "scale(0.97)",
+                  opacity: isActive ? 1 : 0.65,
+                  transition: "all 0.35s cubic-bezier(0.22, 1, 0.36, 1)",
                 }}
               >
-                {/* Hover glow */}
+                {/* Active top accent line */}
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none"
-                  style={{ background: `linear-gradient(135deg, ${item.color}0c, transparent 60%)` }}
+                  className="absolute top-0 left-0 right-0 h-[2px] z-10"
+                  style={{
+                    background: isActive ? `linear-gradient(90deg, transparent, ${item.color}, transparent)` : "transparent",
+                    opacity: isActive ? 1 : 0,
+                    transition: "opacity 0.4s ease",
+                  }}
                 />
+
+                {/* Hover / active glow */}
+                <div
+                  className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-400"
+                  style={{
+                    background: `linear-gradient(135deg, ${item.color}0c, transparent 60%)`,
+                    opacity: isActive ? 1 : 0,
+                  }}
+                />
+
+                {/* Card as link */}
+                <Link href={`/services/${item.id}`} className="flex flex-col flex-1 no-underline">
 
                 {/* Image placeholder */}
                 <div
@@ -438,17 +459,19 @@ export default function Projects() {
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover transition-transform duration-500"
+                      style={{ transform: isActive ? "scale(1.05)" : "scale(1)" }}
                     />
                   ) : (
                     <>
                       <div
-                        className="absolute inset-0"
+                        className="absolute inset-0 transition-opacity duration-500"
                         style={{
                           background: `radial-gradient(ellipse at 30% 40%, ${item.color}15, transparent 60%), radial-gradient(ellipse at 80% 70%, ${item.color}0c, transparent 50%)`,
+                          opacity: isActive ? 1 : 0.5,
                         }}
                       />
-                      <svg viewBox="0 0 160 90" fill="none" className="w-1/2 h-1/2 opacity-15">
+                      <svg viewBox="0 0 160 90" fill="none" className="w-1/2 h-1/2 transition-opacity duration-500" style={{ opacity: isActive ? 0.2 : 0.1 }}>
                         <rect x="30" y="15" width="100" height="60" rx="8" stroke={item.color} strokeWidth="1" strokeDasharray="4 3" />
                         <path d="M55 55 L70 35 L85 50 L95 40 L115 55" stroke={item.color} strokeWidth="1.2" fill="none" strokeLinejoin="round" />
                         <circle cx="60" cy="32" r="6" stroke={item.color} strokeWidth="1" fill={`${item.color}20`} />
@@ -463,23 +486,23 @@ export default function Projects() {
                 {/* Icon + name + tag */}
                 <div className="relative z-10 flex items-center gap-3">
                   <div
-                    className="rounded-xl p-2.5 flex-shrink-0"
+                    className="rounded-xl p-2.5 flex-shrink-0 transition-all duration-300"
                     style={{
-                      background: `${item.color}12`,
-                      border: `1px solid ${item.color}28`,
-                      boxShadow: `0 0 16px ${item.color}15`,
+                      background: `${item.color}${isActive ? "1a" : "12"}`,
+                      border: `1px solid ${item.color}${isActive ? "40" : "28"}`,
+                      boxShadow: isActive ? `0 0 20px ${item.color}25` : `0 0 16px ${item.color}15`,
                     }}
                   >
                     <IconLogo id={item.id} color={item.color} size={32} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-base md:text-lg font-bold text-white truncate group-hover:text-indigo-200 transition-colors duration-300">
+                    <h3 className="text-base md:text-lg font-bold text-white truncate transition-colors duration-300">
                       {item.name}
                       {item.name_ko !== item.name && (
                         <span className="text-white/25 font-medium ml-1.5 text-sm">{item.name_ko}</span>
                       )}
                     </h3>
-                    <div className="text-[11px] md:text-xs mt-0.5 opacity-55" style={{ color: item.color }}>
+                    <div className="text-[11px] md:text-xs mt-0.5 transition-opacity duration-300" style={{ color: item.color, opacity: isActive ? 0.7 : 0.55 }}>
                       {item.tag[lang]}
                     </div>
                   </div>
@@ -503,7 +526,7 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Bottom: status + link */}
+                {/* Bottom: status + arrow CTA */}
                 <div className="relative z-10 flex items-center justify-between pt-2" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
                   <span
                     className="inline-flex items-center gap-1.5 text-xs font-medium"
@@ -512,15 +535,25 @@ export default function Projects() {
                     <span className="w-1.5 h-1.5 rounded-full" style={{ background: sc, boxShadow: `0 0 4px ${sc}` }} />
                     {item.status[lang]}
                   </span>
-                  <Link
-                    href={`/services/${item.id}`}
-                    className="text-xs font-semibold px-4 py-1.5 rounded-full text-white transition-all duration-200 hover:brightness-125"
-                    style={{ background: `${item.color}25`, border: `1px solid ${item.color}40` }}
+
+                  {/* Arrow indicator — visible on active/hover */}
+                  <span
+                    className="inline-flex items-center gap-1 text-xs font-medium transition-all duration-300"
+                    style={{
+                      color: isActive ? item.color : "rgba(255,255,255,0.2)",
+                      opacity: isActive ? 1 : 0,
+                      transform: isActive ? "translateX(0)" : "translateX(-8px)",
+                    }}
                   >
-                    {lang === "ko" ? "자세히 보기" : "Learn More"}
-                  </Link>
+                    <span className="hidden group-hover:inline">{lang === "ko" ? "자세히" : "More"}</span>
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ transition: "transform 0.3s ease", transform: isActive ? "translateX(0)" : "translateX(-4px)" }}>
+                      <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
                 </div>
                 </div>
+
+                </Link>
               </motion.div>
             );
           })}
