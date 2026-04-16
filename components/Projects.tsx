@@ -477,7 +477,7 @@ export default function Projects() {
               </div>
 
               {/* ── Description ── */}
-              <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-lg">
+              <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-lg whitespace-pre-line">
                 {active.desc[lang]}
               </p>
 
