@@ -20,7 +20,7 @@ export default function CursorEffect() {
     setRipples((prev) => [...prev, { id, x: e.clientX, y: e.clientY + scrollTop }]);
     setTimeout(() => {
       setRipples((prev) => prev.filter((r) => r.id !== id));
-    }, 700);
+    }, 400);
   }, []);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function CursorEffect() {
               width: 0,
               height: 0,
               border: "1px solid rgba(99,102,241,0.4)",
-              animation: "cursorRipple 0.7s ease-out forwards",
+              animation: "cursorRipple 0.4s ease-out forwards",
             }}
           />
           <div
@@ -56,7 +56,7 @@ export default function CursorEffect() {
               width: 4,
               height: 4,
               background: "rgba(99,102,241,0.6)",
-              animation: "cursorDot 0.4s ease-out forwards",
+              animation: "cursorDot 0.3s ease-out forwards",
             }}
           />
         </div>
@@ -65,11 +65,11 @@ export default function CursorEffect() {
       <style jsx global>{`
         @keyframes cursorRipple {
           0% { width: 0; height: 0; opacity: 1; }
-          100% { width: 80px; height: 80px; opacity: 0; margin: -40px 0 0 -40px; }
+          100% { width: 36px; height: 36px; opacity: 0; margin: -18px 0 0 -18px; }
         }
         @keyframes cursorDot {
           0% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
-          100% { transform: translate(-50%,-50%) scale(3); opacity: 0; }
+          100% { transform: translate(-50%,-50%) scale(2); opacity: 0; }
         }
       `}</style>
     </>
