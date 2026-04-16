@@ -46,30 +46,36 @@ export default function Partnership() {
           </motion.h2>
         </div>
 
-        {/* Cards grid — takes remaining space */}
-        <div className="flex-1 grid grid-cols-2 gap-4 content-start">
+        {/* Partner types — editorial list */}
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.12 }}
+          className="text-white/30 text-sm md:text-base mb-10 max-w-2xl"
+        >
+          {t.sub}
+        </motion.p>
+
+        <div className="flex-1">
           {t.items.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="card-trace group relative rounded-2xl p-6 md:p-8 flex flex-col gap-3 overflow-hidden cursor-pointer"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="group grid md:grid-cols-[80px_1fr] gap-3 md:gap-8 items-baseline py-6 md:py-8"
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl" style={{ background: "linear-gradient(135deg, rgba(236,72,153,0.07), rgba(139,92,246,0.05))" }} />
-              <div className="relative z-10">
-                <div
-                  className="text-2xl mb-3 w-11 h-11 rounded-xl flex items-center justify-center"
-                  style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
-                >
-                  {item.icon}
-                </div>
-                <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-pink-200 transition-colors duration-300">
+              <span className="text-[40px] md:text-[52px] font-black leading-none text-white/[0.04] group-hover:text-white/[0.08] transition-colors duration-500">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h4 className="text-base md:text-lg font-bold text-white mb-1.5 tracking-tight group-hover:text-pink-200 transition-colors duration-300">
                   {item.title}
-                </h3>
-                <p className="text-sm text-white/42 leading-relaxed">{item.desc}</p>
+                </h4>
+                <p className="text-sm text-white/35 leading-relaxed max-w-lg">{item.desc}</p>
               </div>
             </motion.div>
           ))}
