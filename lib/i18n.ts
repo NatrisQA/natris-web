@@ -79,6 +79,7 @@ export const content = {
         },
         badges: { ko: ["정식 등급분류", "소셜 포커", "대회 시스템", "실시간 중계", "토너먼트"], en: ["Official Rating", "Social Poker", "Tournament System", "Live Broadcast", "Tournament"] },
         status: { ko: "출시 예정", en: "Launching Soon" },
+        url: null as string | null,
         highlight: true,
       },
       {
@@ -93,6 +94,7 @@ export const content = {
         },
         badges: { ko: ["실시간 매칭", "크리에이터 연동", "시청자 참여형", "라이브 인터랙션", "미니게임"], en: ["Real-time Matching", "Creator Integration", "Viewer Participation", "Live Interaction", "Mini-games"] },
         status: { ko: "개발 중", en: "In Development" },
+        url: null as string | null,
         highlight: false,
       },
       {
@@ -107,6 +109,7 @@ export const content = {
         },
         badges: { ko: ["소모임 운영", "멤버 관리", "포인트·랭킹", "자동 정산", "멤버십"], en: ["Club Management", "Member Mgmt", "Points & Ranking", "Auto Settlement", "Membership"] },
         status: { ko: "개발 중", en: "In Development" },
+        url: null as string | null,
         highlight: false,
       },
       {
@@ -121,6 +124,7 @@ export const content = {
         },
         badges: { ko: ["전문가 구독", "인사이트 큐레이션", "유료 Q&A", "팬덤 커뮤니티", "지식 교류"], en: ["Expert Subscription", "Insight Curation", "Paid Q&A", "Fandom Community", "Knowledge Exchange"] },
         status: { ko: "베타 준비", en: "Beta Soon" },
+        url: null as string | null,
         highlight: false,
       },
       {
@@ -135,6 +139,7 @@ export const content = {
         },
         badges: { ko: ["토너먼트 관리", "블라인드 관리", "시딩 시스템", "실시간 중계", "자동 정산"], en: ["Tournament Mgmt", "Blind Management", "Seeding System", "Live Broadcast", "Auto Settlement"] },
         status: { ko: "기획 중", en: "Planned" },
+        url: null as string | null,
         highlight: false,
       },
       {
@@ -149,6 +154,7 @@ export const content = {
         },
         badges: { ko: ["GTO 분석", "핸드 분석", "레인지 시뮬레이션", "AI 코칭", "전략 리포트"], en: ["GTO Analysis", "Hand Analysis", "Range Simulation", "AI Coaching", "Strategy Report"] },
         status: { ko: "기획 중", en: "Planned" },
+        url: null as string | null,
         highlight: false,
       },
     ],

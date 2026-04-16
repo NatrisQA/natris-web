@@ -496,6 +496,38 @@ export default function Projects() {
                 ))}
               </div>
 
+              {/* ── Link button ── */}
+              <div className="flex items-center gap-3 pt-1">
+                {active.url ? (
+                  <motion.a
+                    href={active.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold text-white"
+                    style={{
+                      background: `linear-gradient(135deg, ${active.color}cc, ${active.color})`,
+                      boxShadow: `0 0 20px ${active.color}30`,
+                    }}
+                    whileHover={{ scale: 1.04, boxShadow: `0 0 30px ${active.color}50` }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    {lang === "ko" ? "바로가기" : "Visit"}
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </motion.a>
+                ) : (
+                  <span
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs md:text-sm font-medium cursor-not-allowed"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      color: "rgba(255,255,255,0.25)",
+                    }}
+                  >
+                    {lang === "ko" ? "준비 중" : "Coming Soon"}
+                  </span>
+                )}
+              </div>
+
               {/* ── Mobile status pill ── */}
               <div className="flex md:hidden">
                 <span
