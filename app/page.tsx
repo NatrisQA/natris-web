@@ -7,7 +7,7 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import News from "@/components/News";
 import Partnership from "@/components/Partnership";
-import VisionFooter from "@/components/VisionFooter";
+import Footer from "@/components/Footer";
 import ScrollDots from "@/components/ScrollDots";
 
 function PageContent() {
@@ -25,7 +25,7 @@ function PageContent() {
         <News />
         <About />
         <Partnership />
-        <VisionFooter />
+        <Footer />
       </div>
       <ScrollDots lang={lang} />
     </>
