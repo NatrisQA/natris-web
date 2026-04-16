@@ -2,8 +2,7 @@
 
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 const statusColors: Record<string, string> = {
   "서비스 중": "#10b981", Live: "#10b981",
@@ -308,9 +307,6 @@ export default function Projects() {
   const { lang } = useLang();
   const t = content.products;
   const items = t.items;
-  const [activeIdx, setActiveIdx] = useState(0);
-  const active = items[activeIdx];
-  const statusColor = statusColors[active.status[lang]] || "#888";
 
   return (
     <section
@@ -318,228 +314,133 @@ export default function Projects() {
       className="relative overflow-hidden"
       style={{ height: "100dvh", scrollSnapAlign: "start" }}
     >
-      {/* Dynamic bg glow */}
-      <motion.div
-        key={active.id}
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        style={{ background: `radial-gradient(ellipse 55% 55% at 72% 50%, ${active.color}0e, transparent 70%)` }}
-      />
-      {/* Grid */}
+      {/* Background */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-[200px] opacity-[0.05] pointer-events-none" style={{ background: "radial-gradient(circle, #6366f1, transparent)" }} />
 
-      <div className="h-full flex flex-col md:flex-row pt-20 md:pt-20">
-
-        {/* ─── Mobile: horizontal tab bar ─── */}
-        <div
-          className="flex md:hidden gap-2 px-5 py-3 overflow-x-auto flex-shrink-0"
-          style={{ scrollbarWidth: "none", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
-        >
-          {items.map((item, i) => {
-            const isActive = activeIdx === i;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveIdx(i)}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg flex-shrink-0 whitespace-nowrap"
-                style={{
-                  background: isActive ? `${item.color}15` : "transparent",
-                  border: isActive ? `1px solid ${item.color}30` : "1px solid rgba(255,255,255,0.06)",
-                  transition: "all 0.2s ease",
-                }}
-              >
-                <div style={{ opacity: isActive ? 1 : 0.35 }}>
-                  <IconLogo id={item.id} color={item.color} size={18} />
-                </div>
-                <span
-                  className="text-xs font-semibold"
-                  style={{ color: isActive ? "#fff" : "rgba(255,255,255,0.35)" }}
-                >
-                  {item.name}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ─── Desktop: left sidebar tab list ─── */}
-        <div
-          className="hidden md:flex w-5/12 flex-col justify-center px-14 py-0 gap-1"
-          style={{ borderRight: "1px solid rgba(255,255,255,0.05)" }}
-        >
+      <div className="h-full flex flex-col px-5 md:px-12 lg:px-16 pt-24 md:pt-28 pb-6 md:pb-10 max-w-7xl mx-auto w-full">
+        {/* Header */}
+        <div className="mb-6 md:mb-8 flex-shrink-0">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.24em] text-indigo-400 mb-5 uppercase"
+            className="text-xs font-semibold tracking-[0.24em] text-indigo-400 mb-3 uppercase"
           >
             {t.label[lang]}
           </motion.div>
-
-          {items.map((item, i) => {
-            const isActive = activeIdx === i;
-            return (
-              <motion.button
-                key={item.id}
-                onClick={() => setActiveIdx(i)}
-                initial={{ opacity: 0, x: -24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="flex items-center gap-4 px-4 py-3.5 rounded-xl text-left w-full"
-                style={{
-                  background: isActive ? `${item.color}12` : "transparent",
-                  border: isActive ? `1px solid ${item.color}28` : "1px solid transparent",
-                  transition: "all 0.2s ease",
-                }}
-                whileHover={{ x: isActive ? 0 : 4 }}
-              >
-                <div
-                  className="flex-shrink-0 transition-all duration-300"
-                  style={{ opacity: isActive ? 1 : 0.3, filter: isActive ? `drop-shadow(0 0 4px ${item.color}80)` : "none" }}
-                >
-                  <IconLogo id={item.id} color={item.color} size={22} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold truncate" style={{ color: isActive ? "#fff" : "rgba(255,255,255,0.38)", transition: "color 0.2s" }}>
-                    {item.name}
-                  </div>
-                  <div className="text-xs text-white/22 truncate">{item.tag[lang]}</div>
-                </div>
-                <span
-                  className="text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0"
-                  style={{
-                    color: isActive ? (statusColors[item.status[lang]] || "#888") : "rgba(255,255,255,0.18)",
-                    background: isActive ? `${statusColors[item.status[lang]] || "#888"}14` : "transparent",
-                    transition: "all 0.2s",
-                  }}
-                >
-                  {item.status[lang]}
-                </span>
-              </motion.button>
-            );
-          })}
+          <motion.h2
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="font-black text-white leading-tight"
+            style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+          >
+            {t.headline[lang]}
+          </motion.h2>
         </div>
 
-        {/* ─── Detail panel (shared mobile/desktop) ─── */}
-        <div className="flex-1 flex flex-col justify-center px-5 md:px-14 py-4 md:py-0 overflow-y-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.id}
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col gap-4 md:gap-5"
-            >
-              {/* ── Header: icon + name + tag + status ── */}
-              <div className="flex items-center gap-3 md:gap-4">
+        {/* Card grid */}
+        <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 content-start overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+          {items.map((item, i) => {
+            const sc = statusColors[item.status[lang]] || "#888";
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.06 }}
+                className="group relative rounded-2xl p-4 md:p-5 flex flex-col gap-2.5 md:gap-3 overflow-hidden"
+                style={{
+                  background: "rgba(255,255,255,0.025)",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                }}
+              >
+                {/* Hover glow */}
                 <div
-                  className="rounded-xl md:rounded-2xl p-2 md:p-2.5 flex-shrink-0"
-                  style={{
-                    background: `${active.color}12`,
-                    border: `1px solid ${active.color}28`,
-                    boxShadow: `0 0 20px ${active.color}20`,
-                    filter: `drop-shadow(0 0 8px ${active.color}40)`,
-                  }}
-                >
-                  <IconLogo id={active.id} color={active.color} size={36} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h2
-                    className="font-black text-white leading-tight"
-                    style={{ fontSize: "clamp(1.4rem, 3vw, 2.4rem)" }}
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none"
+                  style={{ background: `linear-gradient(135deg, ${item.color}0a, transparent)` }}
+                />
+
+                {/* Top row: icon + name + status */}
+                <div className="relative z-10 flex items-start gap-2.5 md:gap-3">
+                  <div
+                    className="rounded-lg md:rounded-xl p-1.5 md:p-2 flex-shrink-0"
+                    style={{
+                      background: `${item.color}12`,
+                      border: `1px solid ${item.color}25`,
+                    }}
                   >
-                    {active.name}
-                    {active.name_ko !== active.name && (
-                      <span className="text-white/30 font-semibold ml-2" style={{ fontSize: "clamp(0.75rem, 1.5vw, 1rem)" }}>
-                        {active.name_ko}
-                      </span>
-                    )}
-                  </h2>
-                  <div className="text-xs md:text-sm font-medium mt-0.5 opacity-60" style={{ color: active.color }}>
-                    {active.tag[lang]}
+                    <IconLogo id={item.id} color={item.color} size={24} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-sm md:text-base font-bold text-white truncate group-hover:text-indigo-200 transition-colors duration-300">
+                        {item.name}
+                      </h3>
+                    </div>
+                    <div className="text-[10px] md:text-xs mt-0.5 opacity-50 truncate" style={{ color: item.color }}>
+                      {item.tag[lang]}
+                    </div>
                   </div>
                 </div>
-                {/* Status pill */}
-                <span
-                  className="hidden md:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0"
-                  style={{ color: statusColor, background: `${statusColor}12`, border: `1px solid ${statusColor}28` }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: statusColor, boxShadow: `0 0 5px ${statusColor}` }} />
-                  {active.status[lang]}
-                </span>
-              </div>
 
-              {/* ── Illustration (hidden on small mobile, shown md+) ── */}
-              <div className="hidden sm:block">
-                <ProductIllustration id={active.id} color={active.color} />
-              </div>
+                {/* Description */}
+                <p className="relative z-10 text-[11px] md:text-xs text-white/40 leading-relaxed whitespace-pre-line line-clamp-3">
+                  {item.desc[lang]}
+                </p>
 
-              {/* ── Description ── */}
-              <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-lg whitespace-pre-line">
-                {active.desc[lang]}
-              </p>
+                {/* Badges */}
+                <div className="relative z-10 flex flex-wrap gap-1 md:gap-1.5">
+                  {item.badges[lang].slice(0, 3).map((badge) => (
+                    <span
+                      key={badge}
+                      className="text-[9px] md:text-[10px] px-2 py-0.5 md:py-1 rounded-full font-medium"
+                      style={{ background: `${item.color}12`, color: item.color, border: `1px solid ${item.color}22` }}
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                  {item.badges[lang].length > 3 && (
+                    <span className="text-[9px] md:text-[10px] px-2 py-0.5 md:py-1 rounded-full text-white/20">
+                      +{item.badges[lang].length - 3}
+                    </span>
+                  )}
+                </div>
 
-              {/* ── Badges ── */}
-              <div className="flex flex-wrap gap-1.5 md:gap-2">
-                {active.badges[lang].map((badge) => (
+                {/* Bottom: status + link */}
+                <div className="relative z-10 flex items-center justify-between mt-auto pt-1">
                   <span
-                    key={badge}
-                    className="text-[11px] md:text-xs px-2.5 md:px-3 py-1 md:py-1.5 rounded-full font-medium"
-                    style={{ background: `${active.color}14`, color: active.color, border: `1px solid ${active.color}28` }}
+                    className="inline-flex items-center gap-1 text-[10px] md:text-xs font-medium"
+                    style={{ color: sc }}
                   >
-                    {badge}
+                    <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full" style={{ background: sc, boxShadow: `0 0 4px ${sc}` }} />
+                    {item.status[lang]}
                   </span>
-                ))}
-              </div>
-
-              {/* ── Link button ── */}
-              <div className="flex items-center gap-3 pt-1">
-                {active.url ? (
-                  <motion.a
-                    href={active.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold text-white"
-                    style={{
-                      background: `linear-gradient(135deg, ${active.color}cc, ${active.color})`,
-                      boxShadow: `0 0 20px ${active.color}30`,
-                    }}
-                    whileHover={{ scale: 1.04, boxShadow: `0 0 30px ${active.color}50` }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    {lang === "ko" ? "바로가기" : "Visit"}
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </motion.a>
-                ) : (
-                  <span
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs md:text-sm font-medium cursor-not-allowed"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      color: "rgba(255,255,255,0.25)",
-                    }}
-                  >
-                    {lang === "ko" ? "준비 중" : "Coming Soon"}
-                  </span>
-                )}
-              </div>
-
-              {/* ── Mobile status pill ── */}
-              <div className="flex md:hidden">
-                <span
-                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full"
-                  style={{ color: statusColor, background: `${statusColor}12`, border: `1px solid ${statusColor}28` }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: statusColor, boxShadow: `0 0 5px ${statusColor}` }} />
-                  {active.status[lang]}
-                </span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                  {item.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full text-white"
+                      style={{ background: `${item.color}30`, border: `1px solid ${item.color}40` }}
+                    >
+                      {lang === "ko" ? "바로가기" : "Visit"}
+                    </a>
+                  ) : (
+                    <span
+                      className="text-[10px] md:text-xs font-medium px-3 py-1 rounded-full cursor-not-allowed"
+                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.2)" }}
+                    >
+                      {lang === "ko" ? "준비 중" : "Coming Soon"}
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
