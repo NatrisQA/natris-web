@@ -3,6 +3,7 @@
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 
 const statusColors: Record<string, string> = {
   "서비스 중": "#10b981", Live: "#10b981",
@@ -307,6 +308,29 @@ export default function Projects() {
   const { lang } = useLang();
   const t = content.products;
   const items = t.items;
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  const scroll = (dir: "prev" | "next") => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const card = container.querySelector("[data-card]") as HTMLElement | null;
+    if (!card) return;
+    const w = card.offsetWidth + 16; // card width + gap
+    const newIdx = dir === "next" ? Math.min(currentIdx + 1, items.length - 1) : Math.max(currentIdx - 1, 0);
+    container.scrollTo({ left: w * newIdx, behavior: "smooth" });
+    setCurrentIdx(newIdx);
+  };
+
+  const handleScroll = () => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const card = container.querySelector("[data-card]") as HTMLElement | null;
+    if (!card) return;
+    const w = card.offsetWidth + 16;
+    const idx = Math.round(container.scrollLeft / w);
+    setCurrentIdx(idx);
+  };
 
   return (
     <section
@@ -318,42 +342,78 @@ export default function Projects() {
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-[200px] opacity-[0.05] pointer-events-none" style={{ background: "radial-gradient(circle, #6366f1, transparent)" }} />
 
-      <div className="h-full flex flex-col px-5 md:px-12 lg:px-16 pt-24 md:pt-28 pb-6 md:pb-10 max-w-7xl mx-auto w-full">
-        {/* Header */}
-        <div className="mb-6 md:mb-8 flex-shrink-0">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.24em] text-indigo-400 mb-3 uppercase"
-          >
-            {t.label[lang]}
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.08 }}
-            className="font-black text-white leading-tight"
-            style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
-          >
-            {t.headline[lang]}
-          </motion.h2>
+      <div className="h-full flex flex-col pt-24 md:pt-28 pb-6 md:pb-10">
+        {/* Header + nav arrows */}
+        <div className="flex items-end justify-between px-5 md:px-12 lg:px-16 mb-6 md:mb-8 flex-shrink-0 max-w-7xl mx-auto w-full">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-xs font-semibold tracking-[0.24em] text-indigo-400 mb-3 uppercase"
+            >
+              {t.label[lang]}
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="font-black text-white leading-tight"
+              style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+            >
+              {t.headline[lang]}
+            </motion.h2>
+          </div>
+
+          {/* Arrow buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scroll("prev")}
+              className="w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-200"
+              style={{
+                background: currentIdx > 0 ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                opacity: currentIdx > 0 ? 1 : 0.3,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+            <button
+              onClick={() => scroll("next")}
+              className="w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-200"
+              style={{
+                background: currentIdx < items.length - 1 ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                opacity: currentIdx < items.length - 1 ? 1 : 0.3,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+          </div>
         </div>
 
-        {/* Card grid */}
-        <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 content-start overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+        {/* Horizontal slide cards */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex-1 flex gap-4 overflow-x-auto px-5 md:px-12 lg:px-16"
+          style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", scrollPaddingLeft: "20px" }}
+        >
           {items.map((item, i) => {
             const sc = statusColors[item.status[lang]] || "#888";
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                data-card
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.06 }}
-                className="group relative rounded-2xl p-4 md:p-5 flex flex-col gap-2.5 md:gap-3 overflow-hidden"
+                className="group relative rounded-2xl p-5 md:p-7 flex flex-col gap-3 md:gap-4 overflow-hidden flex-shrink-0"
                 style={{
+                  width: "min(85vw, 360px)",
+                  scrollSnapAlign: "start",
                   background: "rgba(255,255,255,0.025)",
                   border: "1px solid rgba(255,255,255,0.07)",
                 }}
@@ -361,62 +421,59 @@ export default function Projects() {
                 {/* Hover glow */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none"
-                  style={{ background: `linear-gradient(135deg, ${item.color}0a, transparent)` }}
+                  style={{ background: `linear-gradient(135deg, ${item.color}0c, transparent 60%)` }}
                 />
 
-                {/* Top row: icon + name + status */}
-                <div className="relative z-10 flex items-start gap-2.5 md:gap-3">
+                {/* Icon + name + tag */}
+                <div className="relative z-10 flex items-center gap-3">
                   <div
-                    className="rounded-lg md:rounded-xl p-1.5 md:p-2 flex-shrink-0"
+                    className="rounded-xl p-2.5 flex-shrink-0"
                     style={{
                       background: `${item.color}12`,
-                      border: `1px solid ${item.color}25`,
+                      border: `1px solid ${item.color}28`,
+                      boxShadow: `0 0 16px ${item.color}15`,
                     }}
                   >
-                    <IconLogo id={item.id} color={item.color} size={24} />
+                    <IconLogo id={item.id} color={item.color} size={32} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-sm md:text-base font-bold text-white truncate group-hover:text-indigo-200 transition-colors duration-300">
-                        {item.name}
-                      </h3>
-                    </div>
-                    <div className="text-[10px] md:text-xs mt-0.5 opacity-50 truncate" style={{ color: item.color }}>
+                    <h3 className="text-base md:text-lg font-bold text-white truncate group-hover:text-indigo-200 transition-colors duration-300">
+                      {item.name}
+                      {item.name_ko !== item.name && (
+                        <span className="text-white/25 font-medium ml-1.5 text-sm">{item.name_ko}</span>
+                      )}
+                    </h3>
+                    <div className="text-[11px] md:text-xs mt-0.5 opacity-55" style={{ color: item.color }}>
                       {item.tag[lang]}
                     </div>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="relative z-10 text-[11px] md:text-xs text-white/40 leading-relaxed whitespace-pre-line line-clamp-3">
+                <p className="relative z-10 text-xs md:text-sm text-white/45 leading-relaxed whitespace-pre-line flex-1">
                   {item.desc[lang]}
                 </p>
 
                 {/* Badges */}
-                <div className="relative z-10 flex flex-wrap gap-1 md:gap-1.5">
-                  {item.badges[lang].slice(0, 3).map((badge) => (
+                <div className="relative z-10 flex flex-wrap gap-1.5">
+                  {item.badges[lang].map((badge) => (
                     <span
                       key={badge}
-                      className="text-[9px] md:text-[10px] px-2 py-0.5 md:py-1 rounded-full font-medium"
+                      className="text-[10px] md:text-[11px] px-2.5 py-1 rounded-full font-medium"
                       style={{ background: `${item.color}12`, color: item.color, border: `1px solid ${item.color}22` }}
                     >
                       {badge}
                     </span>
                   ))}
-                  {item.badges[lang].length > 3 && (
-                    <span className="text-[9px] md:text-[10px] px-2 py-0.5 md:py-1 rounded-full text-white/20">
-                      +{item.badges[lang].length - 3}
-                    </span>
-                  )}
                 </div>
 
                 {/* Bottom: status + link */}
-                <div className="relative z-10 flex items-center justify-between mt-auto pt-1">
+                <div className="relative z-10 flex items-center justify-between pt-2" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
                   <span
-                    className="inline-flex items-center gap-1 text-[10px] md:text-xs font-medium"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium"
                     style={{ color: sc }}
                   >
-                    <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full" style={{ background: sc, boxShadow: `0 0 4px ${sc}` }} />
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: sc, boxShadow: `0 0 4px ${sc}` }} />
                     {item.status[lang]}
                   </span>
                   {item.url ? (
@@ -424,14 +481,14 @@ export default function Projects() {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full text-white"
-                      style={{ background: `${item.color}30`, border: `1px solid ${item.color}40` }}
+                      className="text-xs font-semibold px-4 py-1.5 rounded-full text-white transition-all duration-200"
+                      style={{ background: `${item.color}35`, border: `1px solid ${item.color}50` }}
                     >
                       {lang === "ko" ? "바로가기" : "Visit"}
                     </a>
                   ) : (
                     <span
-                      className="text-[10px] md:text-xs font-medium px-3 py-1 rounded-full cursor-not-allowed"
+                      className="text-xs font-medium px-4 py-1.5 rounded-full cursor-not-allowed"
                       style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.2)" }}
                     >
                       {lang === "ko" ? "준비 중" : "Coming Soon"}
@@ -441,6 +498,35 @@ export default function Projects() {
               </motion.div>
             );
           })}
+          {/* End spacer */}
+          <div className="flex-shrink-0 w-1" />
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex items-center justify-center gap-2 pt-4 md:pt-6 flex-shrink-0">
+          {items.map((item, i) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                const container = scrollRef.current;
+                if (!container) return;
+                const card = container.querySelector("[data-card]") as HTMLElement | null;
+                if (!card) return;
+                const w = card.offsetWidth + 16;
+                container.scrollTo({ left: w * i, behavior: "smooth" });
+                setCurrentIdx(i);
+              }}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: currentIdx === i ? 24 : 6,
+                height: 6,
+                background: currentIdx === i
+                  ? `linear-gradient(90deg, ${item.color}, ${item.color}88)`
+                  : "rgba(255,255,255,0.15)",
+                boxShadow: currentIdx === i ? `0 0 8px ${item.color}60` : "none",
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>
