@@ -327,32 +327,6 @@ export default function Hero() {
           {t.sub}
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.78 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <motion.a
-            href="#products"
-            className="btn-shimmer inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-white"
-            style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", boxShadow: "0 0 28px rgba(99,102,241,0.45), inset 0 1px 0 rgba(255,255,255,0.14)" }}
-            whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(99,102,241,0.65), inset 0 1px 0 rgba(255,255,255,0.14)" }}
-            whileTap={{ scale: 0.97 }}
-          >
-            {t.cta}
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3L13 8L8 13M3 8H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </motion.a>
-          <motion.a
-            href="#partnership"
-            className="btn-shimmer inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold"
-            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.13)", color: "rgba(255,255,255,0.7)" }}
-            whileHover={{ scale: 1.04, background: "rgba(255,255,255,0.09)" }}
-            whileTap={{ scale: 0.97 }}
-          >
-            {t.cta2}
-          </motion.a>
-        </motion.div>
       </div>
 
       {/* Scroll hint */}
