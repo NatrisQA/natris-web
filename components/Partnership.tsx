@@ -3,10 +3,13 @@
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import ContactModal from "./ContactModal";
 
 export default function Partnership() {
   const { lang } = useLang();
   const t = content.partnership[lang];
+  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <section
@@ -80,8 +83,8 @@ export default function Partnership() {
           transition={{ delay: 0.4 }}
           className="pt-8 flex items-center gap-6"
         >
-          <motion.a
-            href="mailto:contact@lulu.ai"
+          <motion.button
+            onClick={() => setContactOpen(true)}
             className="btn-shimmer inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm font-semibold text-white"
             style={{ background: "linear-gradient(135deg, #ec4899, #8b5cf6)", boxShadow: "0 0 30px rgba(236,72,153,0.35), inset 0 1px 0 rgba(255,255,255,0.12)" }}
             whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(236,72,153,0.55), inset 0 1px 0 rgba(255,255,255,0.12)" }}
@@ -89,10 +92,11 @@ export default function Partnership() {
           >
             {t.cta}
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3L13 8L8 13M3 8H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </motion.a>
-          <span className="text-sm text-white/30">{lang === "ko" ? "contact@lulu.ai" : "contact@lulu.ai"}</span>
+          </motion.button>
+          <span className="text-sm text-white/30">help@pokerlulu.com</span>
         </motion.div>
       </div>
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </section>
   );
 }
