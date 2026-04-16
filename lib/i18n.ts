@@ -82,6 +82,29 @@ export const content = {
         url: null as string | null,
         image: null as string | null,
         highlight: true,
+        features: [
+          {
+            icon: "♠",
+            title: { ko: "소셜 포커", en: "Social Poker" },
+            desc: { ko: "친구와 프라이빗 룸을 만들고, 자유롭게 게임을 즐기세요. 칩 걱정 없이 순수한 실력 대결.", en: "Create private rooms with friends and play freely. Pure skill competition without chip worries." },
+          },
+          {
+            icon: "🏆",
+            title: { ko: "토너먼트 시스템", en: "Tournament System" },
+            desc: { ko: "일일 토너먼트부터 시즌 챔피언십까지. 실력을 증명하고 전국 랭킹에 도전하세요.", en: "From daily tournaments to season championships. Prove your skills and challenge the national rankings." },
+          },
+          {
+            icon: "📺",
+            title: { ko: "실시간 중계", en: "Live Broadcast" },
+            desc: { ko: "대회 현장을 실시간으로 중계. 관전 모드로 고수들의 플레이를 분석하세요.", en: "Live broadcast tournament action. Analyze top players' moves in spectator mode." },
+          },
+          {
+            icon: "✅",
+            title: { ko: "정식 등급분류", en: "Official Rating" },
+            desc: { ko: "게임물관리위원회 정식 등급분류를 받은 합법적인 소셜 포커 서비스입니다.", en: "A legal social poker service officially rated by GRAC (Game Rating and Administration Committee)." },
+          },
+        ],
+        gallery: [null, null, null] as (string | null)[],
       },
       {
         id: "linkplay",
@@ -98,6 +121,29 @@ export const content = {
         url: null as string | null,
         image: null as string | null,
         highlight: false,
+        features: [
+          {
+            icon: "⚡",
+            title: { ko: "실시간 매칭", en: "Real-time Matching" },
+            desc: { ko: "방송 중 시청자와 즉시 게임 매칭. 대기 시간 없이 바로 플레이.", en: "Instant game matching with viewers during broadcast. Play right away with no waiting." },
+          },
+          {
+            icon: "🎙",
+            title: { ko: "크리에이터 연동", en: "Creator Integration" },
+            desc: { ko: "스트리머 대시보드에서 게임 설정, 참가자 관리, 결과 공유까지 한 번에.", en: "Game setup, participant management, and result sharing — all from the streamer dashboard." },
+          },
+          {
+            icon: "👥",
+            title: { ko: "시청자 참여형 게임", en: "Viewer Participation" },
+            desc: { ko: "시청자가 직접 참여하는 미니게임. 채팅 연동으로 누구나 쉽게 참가.", en: "Mini-games where viewers participate directly. Easy entry through chat integration." },
+          },
+          {
+            icon: "🎮",
+            title: { ko: "다양한 미니게임", en: "Various Mini-games" },
+            desc: { ko: "포커, 퀴즈, 배틀 등 방송에 최적화된 인터랙티브 게임 라이브러리.", en: "Interactive game library optimized for broadcasts — poker, quiz, battles, and more." },
+          },
+        ],
+        gallery: [null, null, null] as (string | null)[],
       },
       {
         id: "moitto",
@@ -114,6 +160,29 @@ export const content = {
         url: null as string | null,
         image: null as string | null,
         highlight: false,
+        features: [
+          {
+            icon: "🏠",
+            title: { ko: "소모임 운영", en: "Club Management" },
+            desc: { ko: "홀덤펍, 동호회, 스터디 모임을 온라인에서 손쉽게 개설하고 관리하세요.", en: "Easily create and manage holdem pubs, clubs, and study groups online." },
+          },
+          {
+            icon: "👤",
+            title: { ko: "멤버 관리", en: "Member Management" },
+            desc: { ko: "가입 승인, 역할 설정, 활동 이력까지. 멤버 관리의 모든 것.", en: "Approval, role assignment, activity history — everything for member management." },
+          },
+          {
+            icon: "📊",
+            title: { ko: "포인트·랭킹", en: "Points & Ranking" },
+            desc: { ko: "참여 기반 포인트 적립과 랭킹 시스템으로 활발한 커뮤니티를 유지하세요.", en: "Maintain an active community with participation-based points and ranking systems." },
+          },
+          {
+            icon: "💰",
+            title: { ko: "자동 정산", en: "Auto Settlement" },
+            desc: { ko: "회비 수납부터 정산까지 자동화. 호스트의 운영 부담을 줄여드립니다.", en: "Automated from fee collection to settlement. Reducing the operational burden on hosts." },
+          },
+        ],
+        gallery: [null, null, null] as (string | null)[],
       },
       {
         id: "tubelulu",
@@ -130,6 +199,29 @@ export const content = {
         url: null as string | null,
         image: null as string | null,
         highlight: false,
+        features: [
+          {
+            icon: "⭐",
+            title: { ko: "전문가 구독", en: "Expert Subscription" },
+            desc: { ko: "포커 프로, 전략가, 코치 등 분야별 전문가를 구독하고 인사이트를 받으세요.", en: "Subscribe to field experts — poker pros, strategists, coaches — and receive their insights." },
+          },
+          {
+            icon: "📖",
+            title: { ko: "인사이트 큐레이션", en: "Insight Curation" },
+            desc: { ko: "검증된 전문가의 심층 분석과 전략 콘텐츠를 큐레이션하여 제공합니다.", en: "Curated in-depth analysis and strategy content from verified experts." },
+          },
+          {
+            icon: "❓",
+            title: { ko: "유료 Q&A", en: "Paid Q&A" },
+            desc: { ko: "전문가에게 직접 질문하고 프리미엄 답변을 받으세요. 지식의 가치를 실현합니다.", en: "Ask experts directly and get premium answers. Realizing the value of knowledge." },
+          },
+          {
+            icon: "💬",
+            title: { ko: "팬덤 커뮤니티", en: "Fandom Community" },
+            desc: { ko: "같은 관심사를 가진 팬들이 모여 토론하고 정보를 교환하는 공간.", en: "A space where fans with shared interests gather to discuss and exchange information." },
+          },
+        ],
+        gallery: [null, null, null] as (string | null)[],
       },
       {
         id: "shuffleup",
@@ -146,6 +238,29 @@ export const content = {
         url: null as string | null,
         image: null as string | null,
         highlight: false,
+        features: [
+          {
+            icon: "📋",
+            title: { ko: "토너먼트 관리", en: "Tournament Management" },
+            desc: { ko: "참가 등록, 테이블 배정, 진행 현황까지 대회 운영 전 과정을 시스템화.", en: "Systematize the entire tournament process — registration, table assignment, and progress tracking." },
+          },
+          {
+            icon: "⏱",
+            title: { ko: "블라인드 타이머", en: "Blind Timer" },
+            desc: { ko: "레벨별 블라인드 구조 설정과 자동 타이머. 대회 진행을 매끄럽게.", en: "Level-based blind structure settings and auto timer. Smooth tournament progression." },
+          },
+          {
+            icon: "🎯",
+            title: { ko: "시딩 시스템", en: "Seeding System" },
+            desc: { ko: "랜덤 배정부터 시드 기반 매칭까지. 공정한 대진표를 자동 생성합니다.", en: "From random assignment to seed-based matching. Auto-generate fair brackets." },
+          },
+          {
+            icon: "💳",
+            title: { ko: "자동 정산", en: "Auto Settlement" },
+            desc: { ko: "상금 분배, 참가비 정산, 수익 리포트까지 한 번에 처리.", en: "Handle prize distribution, entry fee settlement, and revenue reports all at once." },
+          },
+        ],
+        gallery: [null, null, null] as (string | null)[],
       },
       {
         id: "gtolulu",
@@ -162,6 +277,29 @@ export const content = {
         url: null as string | null,
         image: null as string | null,
         highlight: false,
+        features: [
+          {
+            icon: "🧠",
+            title: { ko: "GTO 분석", en: "GTO Analysis" },
+            desc: { ko: "게임이론 최적 전략을 기반으로 한 플레이 분석. AI가 최선의 액션을 제안합니다.", en: "Play analysis based on Game Theory Optimal strategy. AI suggests the best actions." },
+          },
+          {
+            icon: "🃏",
+            title: { ko: "핸드 리뷰", en: "Hand Review" },
+            desc: { ko: "플레이한 핸드를 복기하고, 각 상황에서의 최적 판단을 AI가 분석합니다.", en: "Review played hands and let AI analyze optimal decisions in each situation." },
+          },
+          {
+            icon: "📈",
+            title: { ko: "레인지 시뮬레이션", en: "Range Simulation" },
+            desc: { ko: "상대방의 핸드 레인지를 시뮬레이션하고 확률 기반 전략을 수립하세요.", en: "Simulate opponent hand ranges and build probability-based strategies." },
+          },
+          {
+            icon: "🤖",
+            title: { ko: "AI 코칭", en: "AI Coaching" },
+            desc: { ko: "개인 플레이 패턴을 학습하는 AI 코치. 약점 분석과 맞춤 훈련 제안.", en: "An AI coach that learns your play patterns. Weakness analysis and personalized training suggestions." },
+          },
+        ],
+        gallery: [null, null, null] as (string | null)[],
       },
     ],
   },

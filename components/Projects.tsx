@@ -4,6 +4,7 @@ import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 const statusColors: Record<string, string> = {
   "서비스 중": "#10b981", Live: "#10b981",
@@ -508,24 +509,13 @@ export default function Projects() {
                     <span className="w-1.5 h-1.5 rounded-full" style={{ background: sc, boxShadow: `0 0 4px ${sc}` }} />
                     {item.status[lang]}
                   </span>
-                  {item.url ? (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-semibold px-4 py-1.5 rounded-full text-white transition-all duration-200"
-                      style={{ background: `${item.color}35`, border: `1px solid ${item.color}50` }}
-                    >
-                      {lang === "ko" ? "바로가기" : "Visit"}
-                    </a>
-                  ) : (
-                    <span
-                      className="text-xs font-medium px-4 py-1.5 rounded-full cursor-not-allowed"
-                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.2)" }}
-                    >
-                      {lang === "ko" ? "준비 중" : "Coming Soon"}
-                    </span>
-                  )}
+                  <Link
+                    href={`/services/${item.id}`}
+                    className="text-xs font-semibold px-4 py-1.5 rounded-full text-white transition-all duration-200 hover:brightness-125"
+                    style={{ background: `${item.color}25`, border: `1px solid ${item.color}40` }}
+                  >
+                    {lang === "ko" ? "자세히 보기" : "Learn More"}
+                  </Link>
                 </div>
                 </div>
               </motion.div>
