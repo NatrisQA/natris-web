@@ -39,6 +39,34 @@ export const content = {
         label: "MISSION",
         text: "누구나 자신만의 게임 경험을 만들고, 커뮤니티를 운영하고, 함께 성장할 수 있는 인프라를 제공한다.",
       },
+      values: [
+        {
+          icon: "🔗",
+          title: "연결",
+          desc: "플레이어, 크리에이터, 커뮤니티를\n하나의 생태계로 연결합니다.",
+        },
+        {
+          icon: "⚡",
+          title: "실행",
+          desc: "기획에 머무르지 않고\n빠르게 만들고 검증합니다.",
+        },
+        {
+          icon: "🎯",
+          title: "몰입",
+          desc: "사용자가 진짜 원하는 경험에\n집중하고 불필요한 건 빼냅니다.",
+        },
+        {
+          icon: "🌱",
+          title: "성장",
+          desc: "개인의 실력도, 커뮤니티의 규모도\n함께 자라는 구조를 설계합니다.",
+        },
+      ],
+      milestones: [
+        { date: "2026.02", text: "법인 설립" },
+        { date: "2026.03", text: "포커룰루 등급분류 완료" },
+        { date: "2026.Q2", text: "포커룰루 출시 예정" },
+        { date: "2026.Q3", text: "LinkPlay 베타 오픈" },
+      ],
     },
     en: {
       label: "ABOUT",
@@ -53,6 +81,34 @@ export const content = {
         label: "MISSION",
         text: "Provide the infrastructure for anyone to build their own gaming experience, operate a community, and grow together.",
       },
+      values: [
+        {
+          icon: "🔗",
+          title: "Connect",
+          desc: "Linking players, creators, and communities\ninto one ecosystem.",
+        },
+        {
+          icon: "⚡",
+          title: "Execute",
+          desc: "We don't just plan —\nwe build fast and validate.",
+        },
+        {
+          icon: "🎯",
+          title: "Focus",
+          desc: "We focus on experiences users truly want\nand cut everything else.",
+        },
+        {
+          icon: "🌱",
+          title: "Grow",
+          desc: "We design structures where individuals\nand communities grow together.",
+        },
+      ],
+      milestones: [
+        { date: "2026.02", text: "Incorporated" },
+        { date: "2026.03", text: "PokerLulu GRAC Rating" },
+        { date: "2026.Q2", text: "PokerLulu Launch" },
+        { date: "2026.Q3", text: "LinkPlay Beta" },
+      ],
     },
   },
 
