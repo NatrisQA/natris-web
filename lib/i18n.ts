@@ -74,8 +74,8 @@ export const content = {
         name: "PokerLulu",
         name_ko: "포커룰루",
         desc: {
-          ko: "포커를 좋아하는 사람들이 모이는 곳.\n캐주얼 한 판부터 진지한 토너먼트까지,\n당신만의 포커 라이프가 시작됩니다.",
-          en: "Where poker lovers gather.\nFrom a casual hand to serious tournaments,\nyour poker life starts here.",
+          ko: "친구랑 가볍게 한 판,\n실력이 쌓이면 전국 고수와 겨루는\n소셜 포커 플랫폼.",
+          en: "A casual hand with friends,\nthen challenge top players nationwide\n— a social poker platform.",
         },
         badges: { ko: ["정식 등급분류", "소셜 포커", "대회 시스템", "실시간 중계", "토너먼트"], en: ["Official Rating", "Social Poker", "Tournament System", "Live Broadcast", "Tournament"] },
         status: { ko: "출시 예정", en: "Launching Soon" },
