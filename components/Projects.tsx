@@ -415,7 +415,8 @@ export default function Projects() {
                 transition={{ duration: 0.45, delay: i * 0.06 }}
                 className="group relative rounded-2xl flex flex-col overflow-hidden flex-shrink-0"
                 style={{
-                  width: "min(85vw, 420px)",
+                  width: "calc(100vw - 40px)",
+                  maxWidth: "420px",
                   scrollSnapAlign: "start",
                   background: "rgba(255,255,255,0.025)",
                   border: "1px solid rgba(255,255,255,0.07)",
