@@ -344,63 +344,65 @@ export default function Projects() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-[200px] opacity-[0.05] pointer-events-none" style={{ background: "radial-gradient(circle, #6366f1, transparent)" }} />
 
       <div className="h-full flex flex-col pt-24 md:pt-28 pb-6 md:pb-10">
-        {/* Header + nav arrows */}
-        <div className="flex items-end justify-between px-5 md:px-12 lg:px-16 mb-6 md:mb-8 flex-shrink-0 max-w-7xl mx-auto w-full">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-xs font-semibold tracking-[0.24em] text-indigo-400 mb-3 uppercase"
-            >
-              {t.label[lang]}
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.08 }}
-              className="font-black text-white leading-tight"
-              style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
-            >
-              {t.headline[lang]}
-            </motion.h2>
-          </div>
-
-          {/* Arrow buttons */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => scroll("prev")}
-              className="w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-200"
-              style={{
-                background: currentIdx > 0 ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                opacity: currentIdx > 0 ? 1 : 0.3,
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-            <button
-              onClick={() => scroll("next")}
-              className="w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-200"
-              style={{
-                background: currentIdx < items.length - 1 ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                opacity: currentIdx < items.length - 1 ? 1 : 0.3,
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-          </div>
+        {/* Header */}
+        <div className="px-5 md:px-12 lg:px-16 mb-6 md:mb-8 flex-shrink-0 max-w-7xl mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-xs font-semibold tracking-[0.24em] text-indigo-400 mb-3 uppercase"
+          >
+            {t.label[lang]}
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="font-black text-white leading-tight"
+            style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+          >
+            {t.headline[lang]}
+          </motion.h2>
         </div>
 
-        {/* Horizontal slide cards */}
-        <div
-          ref={scrollRef}
-          onScroll={handleScroll}
-          className="flex-1 flex gap-4 overflow-x-auto px-5 md:px-12 lg:px-16"
-          style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", scrollPaddingLeft: "20px" }}
-        >
+        {/* Carousel wrapper with overlay arrows */}
+        <div className="relative flex-1 min-h-0">
+          {/* Prev arrow */}
+          <button
+            onClick={() => scroll("prev")}
+            className="absolute left-1 md:left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md"
+            style={{
+              background: currentIdx > 0 ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.2)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              opacity: currentIdx > 0 ? 1 : 0,
+              pointerEvents: currentIdx > 0 ? "auto" : "none",
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </button>
+
+          {/* Next arrow */}
+          <button
+            onClick={() => scroll("next")}
+            className="absolute right-1 md:right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md"
+            style={{
+              background: currentIdx < items.length - 1 ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.2)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              opacity: currentIdx < items.length - 1 ? 1 : 0,
+              pointerEvents: currentIdx < items.length - 1 ? "auto" : "none",
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </button>
+
+          {/* Horizontal slide cards */}
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="h-full flex gap-4 overflow-x-auto px-5 md:px-12 lg:px-16"
+            style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", scrollPaddingLeft: "20px" }}
+          >
           {items.map((item, i) => {
             const sc = statusColors[item.status[lang]] || "#888";
             return (
@@ -523,6 +525,7 @@ export default function Projects() {
           })}
           {/* End spacer */}
           <div className="flex-shrink-0 w-1" />
+        </div>
         </div>
 
         {/* Dot indicators */}
