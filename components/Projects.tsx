@@ -536,20 +536,31 @@ export default function Projects() {
                     {item.status[lang]}
                   </span>
 
-                  {/* Arrow indicator — visible on active/hover */}
-                  <span
-                    className="inline-flex items-center gap-1 text-xs font-medium transition-all duration-300"
+                </div>
+
+                {/* Expanding line + arrow */}
+                <div className="relative z-10 flex items-center gap-0 mt-1 px-4 md:px-5 pb-4 md:pb-5">
+                  <div
+                    className="h-px flex-1"
                     style={{
-                      color: isActive ? item.color : "rgba(255,255,255,0.2)",
+                      background: isActive ? `linear-gradient(90deg, ${item.color}50, ${item.color})` : "rgba(255,255,255,0.06)",
+                      transform: isActive ? "scaleX(1)" : "scaleX(0.3)",
+                      transformOrigin: "left",
+                      transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                  />
+                  <svg
+                    width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    style={{
+                      color: isActive ? item.color : "rgba(255,255,255,0.1)",
                       opacity: isActive ? 1 : 0,
-                      transform: isActive ? "translateX(0)" : "translateX(-8px)",
+                      transform: isActive ? "translateX(0)" : "translateX(-12px)",
+                      transition: "all 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s",
+                      flexShrink: 0,
                     }}
                   >
-                    <span className="hidden group-hover:inline">{lang === "ko" ? "자세히" : "More"}</span>
-                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ transition: "transform 0.3s ease", transform: isActive ? "translateX(0)" : "translateX(-4px)" }}>
-                      <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
+                    <path d="M8 4L14 10L8 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
                 </div>
 
