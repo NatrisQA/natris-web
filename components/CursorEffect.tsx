@@ -42,7 +42,7 @@ export default function CursorEffect() {
     const lerp = () => {
       currentX += (targetX - currentX) * 0.15;
       currentY += (targetY - currentY) * 0.15;
-      glow.style.transform = `translate(${currentX - 200}px, ${currentY - 200}px)`;
+      glow.style.transform = `translate(${currentX - 80}px, ${currentY - 80}px)`;
       rafId = requestAnimationFrame(lerp);
     };
 
@@ -80,10 +80,10 @@ export default function CursorEffect() {
         ref={glowRef}
         className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
-          width: 400,
-          height: 400,
+          width: 160,
+          height: 160,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(99,102,241,0.07) 0%, rgba(139,92,246,0.03) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.06) 50%, transparent 75%)",
           opacity: 0,
           transition: "opacity 0.4s ease",
           willChange: "transform",
