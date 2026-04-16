@@ -26,7 +26,7 @@ export default function Footer() {
             </div>
             <div className="hidden md:flex items-center gap-4">
               {tf.links.map((l) => (
-                <a key={l.label} href={l.href} className="text-xs text-white/28 hover:text-white/60 transition-colors duration-200">{l.label}</a>
+                <a key={l.label} href={l.href} className="text-xs text-white/40 hover:text-white/60 transition-colors duration-200">{l.label}</a>
               ))}
             </div>
           </div>
@@ -34,7 +34,7 @@ export default function Footer() {
           {/* Contact + rights */}
           <div className="flex items-center gap-6">
             <a href={`mailto:${tf.contact}`} className="text-xs text-white/35 hover:text-white/65 transition-colors duration-200">{tf.contact}</a>
-            <span className="text-xs text-white/18">{tf.rights}</span>
+            <span className="text-xs text-white/35">{tf.rights.replace("2026", String(new Date().getFullYear()))}</span>
           </div>
         </div>
       </div>

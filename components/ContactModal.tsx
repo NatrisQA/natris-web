@@ -16,6 +16,7 @@ const labels = {
     submit: "문의 보내기",
     sending: "전송 중...",
     success: "문의가 전송되었습니다. 빠르게 회신드리겠습니다.",
+    successMailto: "메일 앱으로 연결되었습니다. 전송을 완료해주세요.",
     error: "전송에 실패했습니다. 이메일로 직접 문의해주세요.",
     required: "필수",
     close: "닫기",
@@ -31,6 +32,7 @@ const labels = {
     submit: "Send Inquiry",
     sending: "Sending...",
     success: "Your inquiry has been sent. We'll get back to you shortly.",
+    successMailto: "Redirected to your mail app. Please complete sending.",
     error: "Failed to send. Please contact us directly via email.",
     required: "Required",
     close: "Close",
@@ -55,7 +57,7 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
     type: t.types[0],
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "successMailto" | "error">("idle");
 
   const update = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -89,12 +91,12 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
         `이름: ${form.name}\n회사/소속: ${form.company}\n이메일: ${form.email}\n문의 유형: ${form.type}\n\n${form.message}`
       );
       window.open(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`, "_blank");
-      setStatus("success");
+      setStatus("successMailto");
       setTimeout(() => {
         onClose();
         setStatus("idle");
         setForm({ name: "", company: "", email: "", type: t.types[0], message: "" });
-      }, 2000);
+      }, 3000);
     }
   };
 
@@ -222,6 +224,9 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
               {status === "success" && (
                 <div className="text-sm text-emerald-400 text-center py-1">{t.success}</div>
               )}
+              {status === "successMailto" && (
+                <div className="text-sm text-amber-400 text-center py-1">{t.successMailto}</div>
+              )}
               {status === "error" && (
                 <div className="text-sm text-red-400 text-center py-1">{t.error}</div>
               )}
@@ -229,7 +234,7 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
               {/* Submit */}
               <button
                 type="submit"
-                disabled={status === "sending" || status === "success"}
+                disabled={status === "sending" || status === "success" || status === "successMailto"}
                 className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 disabled:opacity-50"
                 style={{
                   background: "linear-gradient(135deg, #6366f1, #8b5cf6)",

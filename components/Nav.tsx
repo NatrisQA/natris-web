@@ -38,6 +38,16 @@ export default function Nav() {
             <a
               key={item.href}
               href={item.href}
+              onClick={(e) => {
+                if (item.href.startsWith("#")) {
+                  e.preventDefault();
+                  const container = document.getElementById("scroll-container");
+                  const target = document.getElementById(item.href.slice(1));
+                  if (container && target) {
+                    container.scrollTo({ top: target.offsetTop, behavior: "smooth" });
+                  }
+                }
+              }}
               className="text-sm text-white/60 hover:text-white transition-colors duration-200"
             >
               {item.label}
@@ -93,7 +103,17 @@ export default function Nav() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: 0.06 * i }}
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  setOpen(false);
+                  if (item.href.startsWith("#")) {
+                    e.preventDefault();
+                    const container = document.getElementById("scroll-container");
+                    const target = document.getElementById(item.href.slice(1));
+                    if (container && target) {
+                      container.scrollTo({ top: target.offsetTop, behavior: "smooth" });
+                    }
+                  }
+                }}
                 className="text-xl font-semibold text-white/80 hover:text-white transition-colors"
               >
                 {item.label}

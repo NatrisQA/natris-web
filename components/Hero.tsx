@@ -3,7 +3,7 @@
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* ─────────────────────────────────────────────
    Ecosystem Canvas
@@ -26,7 +26,12 @@ function EcosystemCanvas() {
       ctx.scale(devicePixelRatio, devicePixelRatio);
     };
     resize();
-    window.addEventListener("resize", resize);
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const debouncedResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
+    };
+    window.addEventListener("resize", debouncedResize);
 
     const W = () => canvas.offsetWidth;
     const H = () => canvas.offsetHeight;
@@ -233,7 +238,8 @@ function EcosystemCanvas() {
     draw();
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
+      clearTimeout(resizeTimer);
+      window.removeEventListener("resize", debouncedResize);
     };
   }, []);
 
@@ -271,6 +277,17 @@ function WordReveal({ text, style, delay = 0 }: { text: string; style?: React.CS
 export default function Hero() {
   const { lang } = useLang();
   const t = content.hero[lang];
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const container = document.getElementById("scroll-container");
+    if (!container) return;
+    const onScroll = () => {
+      if (container.scrollTop > 80) setScrolled(true);
+    };
+    container.addEventListener("scroll", onScroll, { passive: true });
+    return () => container.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <section
@@ -329,12 +346,13 @@ export default function Hero() {
 
       </div>
 
-      {/* Scroll hint */}
+      {/* Scroll hint — auto-hide after scroll */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        animate={{ opacity: scrolled ? 0 : 1 }}
+        transition={{ delay: scrolled ? 0 : 1.5, duration: scrolled ? 0.4 : 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        style={{ pointerEvents: scrolled ? "none" : "auto" }}
       >
         <motion.div
           animate={{ y: [0, 7, 0] }}

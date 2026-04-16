@@ -3,6 +3,7 @@
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function News() {
   const { lang } = useLang();
@@ -85,14 +86,15 @@ export default function News() {
               {/* Image area / placeholder */}
               <div
                 className="relative w-full overflow-hidden"
-                style={{ aspectRatio: "16/10" }}
+                style={{ aspectRatio: "16 / 10" }}
               >
                 {item.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.title[lang]}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                 ) : (
                   /* Placeholder with abstract pattern */
@@ -127,7 +129,7 @@ export default function News() {
               {/* Content */}
               <div className="flex flex-col gap-2 p-4 md:p-5 flex-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] text-white/25">{item.date}</span>
+                  <span className="text-[11px] text-white/40">{item.date}</span>
                 </div>
                 <h3 className="text-sm md:text-base font-bold text-white leading-snug group-hover:text-cyan-200 transition-colors duration-300">
                   {item.title[lang]}
