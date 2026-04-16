@@ -3,7 +3,7 @@
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 const statusColors: Record<string, string> = {
@@ -312,15 +312,6 @@ export default function Projects() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
-    });
-  }, []);
 
   const scroll = (dir: "prev" | "next") => {
     const container = scrollRef.current;
@@ -418,7 +409,6 @@ export default function Projects() {
             // PC: hover 기반, 모바일: scroll 기반
             const isHovered = hoveredIdx === i;
             const isActive = isHovered || (hoveredIdx === null && currentIdx === i);
-            const mp = isHovered && mousePos ? mousePos : null;
             return (
               <motion.div
                 key={item.id}
@@ -429,8 +419,7 @@ export default function Projects() {
                 transition={{ duration: 0.45, delay: i * 0.06 }}
                 className="group relative rounded-2xl flex flex-col overflow-hidden flex-shrink-0"
                 onMouseEnter={() => setHoveredIdx(i)}
-                onMouseLeave={() => { setHoveredIdx(null); setMousePos(null); }}
-                onMouseMove={handleMouseMove}
+                onMouseLeave={() => setHoveredIdx(null)}
                 style={{
                   width: "calc(100vw - 40px)",
                   maxWidth: "420px",
@@ -453,13 +442,11 @@ export default function Projects() {
                   }}
                 />
 
-                {/* Mouse-tracking glow */}
+                {/* Active glow */}
                 <div
                   className="absolute inset-0 rounded-2xl pointer-events-none z-[1]"
                   style={{
-                    background: mp
-                      ? `radial-gradient(circle 220px at ${mp.x}% ${mp.y}%, ${item.color}18, transparent 70%)`
-                      : `linear-gradient(135deg, ${item.color}0c, transparent 60%)`,
+                    background: `linear-gradient(135deg, ${item.color}0c, transparent 60%)`,
                     opacity: isActive ? 1 : 0,
                     transition: "opacity 0.3s ease",
                   }}
