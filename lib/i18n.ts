@@ -281,7 +281,7 @@ export const content = {
       contact: "contact@lulu.ai",
       rights: "© 2026 lulu.ai. All rights reserved.",
       links: [
-        { label: "포커룰루", href: "#" },
+        { label: "서비스", href: "#products" },
         { label: "제휴 문의", href: "#partnership" },
         { label: "회사 소개", href: "#about" },
       ],
@@ -294,7 +294,7 @@ export const content = {
       contact: "contact@lulu.ai",
       rights: "© 2026 lulu.ai. All rights reserved.",
       links: [
-        { label: "PokerLulu", href: "#" },
+        { label: "Services", href: "#products" },
         { label: "Partnership", href: "#partnership" },
         { label: "About", href: "#about" },
       ],
