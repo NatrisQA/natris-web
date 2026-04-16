@@ -410,9 +410,9 @@ export default function Projects() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.06 }}
-                className="group relative rounded-2xl p-5 md:p-7 flex flex-col gap-3 md:gap-4 overflow-hidden flex-shrink-0"
+                className="group relative rounded-2xl flex flex-col overflow-hidden flex-shrink-0"
                 style={{
-                  width: "min(85vw, 360px)",
+                  width: "min(85vw, 420px)",
                   scrollSnapAlign: "start",
                   background: "rgba(255,255,255,0.025)",
                   border: "1px solid rgba(255,255,255,0.07)",
@@ -423,6 +423,38 @@ export default function Projects() {
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none"
                   style={{ background: `linear-gradient(135deg, ${item.color}0c, transparent 60%)` }}
                 />
+
+                {/* Image placeholder */}
+                <div
+                  className="relative w-full flex items-center justify-center overflow-hidden"
+                  style={{ aspectRatio: "16/9", background: `${item.color}08` }}
+                >
+                  {item.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <>
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background: `radial-gradient(ellipse at 30% 40%, ${item.color}15, transparent 60%), radial-gradient(ellipse at 80% 70%, ${item.color}0c, transparent 50%)`,
+                        }}
+                      />
+                      <svg viewBox="0 0 160 90" fill="none" className="w-1/2 h-1/2 opacity-15">
+                        <rect x="30" y="15" width="100" height="60" rx="8" stroke={item.color} strokeWidth="1" strokeDasharray="4 3" />
+                        <path d="M55 55 L70 35 L85 50 L95 40 L115 55" stroke={item.color} strokeWidth="1.2" fill="none" strokeLinejoin="round" />
+                        <circle cx="60" cy="32" r="6" stroke={item.color} strokeWidth="1" fill={`${item.color}20`} />
+                      </svg>
+                    </>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col gap-3 p-4 md:p-5 flex-1">
 
                 {/* Icon + name + tag */}
                 <div className="relative z-10 flex items-center gap-3">
@@ -494,6 +526,7 @@ export default function Projects() {
                       {lang === "ko" ? "준비 중" : "Coming Soon"}
                     </span>
                   )}
+                </div>
                 </div>
               </motion.div>
             );
