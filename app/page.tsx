@@ -30,13 +30,13 @@ function PageContent() {
       >
         <Nav />
         <Hero />
-        <motion.div {...sectionReveal} className="section-divider">
+        <motion.div id="products" {...sectionReveal} className="section-divider" style={{ scrollSnapAlign: "start" }}>
           <Projects />
         </motion.div>
-        <motion.div {...sectionReveal} className="section-divider">
+        <motion.div id="news" {...sectionReveal} className="section-divider" style={{ scrollSnapAlign: "start" }}>
           <News />
         </motion.div>
-        <motion.div {...sectionReveal} className="section-divider">
+        <motion.div id="about" {...sectionReveal} className="section-divider" style={{ scrollSnapAlign: "start" }}>
           <About />
         </motion.div>
         <Footer />

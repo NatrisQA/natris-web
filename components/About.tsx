@@ -10,9 +10,7 @@ export default function About() {
 
   return (
     <section
-      id="about"
       className="relative overflow-hidden"
-      style={{ scrollSnapAlign: "start" }}
     >
       {/* Global background — matches other sections */}
       <div className="absolute inset-0 pointer-events-none">

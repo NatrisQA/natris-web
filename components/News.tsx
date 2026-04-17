@@ -12,9 +12,8 @@ export default function News() {
 
   return (
     <section
-      id="news"
       className="relative overflow-hidden"
-      style={{ height: "100dvh", scrollSnapAlign: "start" }}
+      style={{ height: "100dvh" }}
     >
       {/* Background */}
       <div

@@ -336,9 +336,8 @@ export default function Projects() {
 
   return (
     <section
-      id="products"
       className="relative overflow-hidden"
-      style={{ height: "100dvh", scrollSnapAlign: "start" }}
+      style={{ height: "100dvh" }}
     >
       {/* Background */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
