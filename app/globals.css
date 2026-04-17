@@ -136,6 +136,22 @@ body::after {
 /* Number counter tabular figures */
 .tabular { font-variant-numeric: tabular-nums; }
 
+/* Section divider — gradient line between sections */
+.section-divider {
+  position: relative;
+}
+.section-divider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 500px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  pointer-events: none;
+}
+
 /* Focus-visible outline for keyboard navigation */
 :focus-visible {
   outline: 2px solid rgba(99, 102, 241, 0.6);

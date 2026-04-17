@@ -144,7 +144,13 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
       </section>
 
       {/* ── FEATURES ── */}
-      <section className="relative py-24 md:py-36 px-6 md:px-12">
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative py-24 md:py-36 px-6 md:px-12 section-divider"
+      >
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -190,10 +196,16 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── GALLERY / SCREENSHOTS ── */}
-      <section className="relative py-24 md:py-36 px-6 md:px-12 overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative py-24 md:py-36 px-6 md:px-12 overflow-hidden section-divider"
+      >
         {/* Background orb */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full" style={{ background: `radial-gradient(circle, ${item.color}08, transparent 60%)`, filter: "blur(100px)" }} />
 
@@ -237,10 +249,16 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── CTA SECTION ── */}
-      <section className="relative py-24 md:py-32 px-6 md:px-12">
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative py-24 md:py-32 px-6 md:px-12 section-divider"
+      >
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -284,7 +302,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── Footer strip ── */}
       <div className="py-8 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>

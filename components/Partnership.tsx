@@ -104,7 +104,13 @@ export default function Partnership() {
       </div>
 
       {/* ─── Section 2: Partner Types ─── */}
-      <div className="relative py-24 md:py-32">
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative py-24 md:py-32 section-divider"
+      >
         <div className="px-8 md:px-16 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -137,10 +143,16 @@ export default function Partnership() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* ─── Section 3: Our Ecosystem (서비스 요약) ─── */}
-      <div className="relative py-24 md:py-32">
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative py-24 md:py-32 section-divider"
+      >
         <div className="px-8 md:px-16 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -203,10 +215,16 @@ export default function Partnership() {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ─── Section 4: Vision ─── */}
-      <div className="relative py-24 md:py-32">
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative py-24 md:py-32 section-divider"
+      >
         <div className="px-8 md:px-16 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -245,10 +263,16 @@ export default function Partnership() {
             </motion.p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ─── Section 5: CTA ─── */}
-      <div className="relative py-24 md:py-32">
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative py-24 md:py-32 section-divider"
+      >
         <div className="px-8 md:px-16 max-w-6xl mx-auto text-center">
           <motion.h3
             initial={{ opacity: 0, y: 24 }}
@@ -291,7 +315,7 @@ export default function Partnership() {
             <span className="text-xs text-white/25">help@pokerlulu.com</span>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Footer strip */}
       <div className="relative px-8 md:px-16 py-6" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
