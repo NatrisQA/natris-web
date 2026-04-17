@@ -9,7 +9,7 @@ export default function PartnershipPage() {
     <LangProvider>
       <div
         className="relative"
-        style={{ minHeight: "100dvh", background: "#050508" }}
+        style={{ height: "100dvh", overflowY: "auto", background: "#050508" }}
       >
         <Partnership />
       </div>
