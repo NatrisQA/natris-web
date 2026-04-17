@@ -114,7 +114,7 @@ export default function About() {
               </span>
               <div>
                 <h4 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-emerald-200 transition-colors duration-300">{val.title}</h4>
-                <p className="text-sm md:text-base text-white/30 leading-relaxed max-w-lg whitespace-pre-line">{val.desc}</p>
+                <p className="text-sm md:text-base text-white/30 leading-relaxed max-w-lg">{val.desc}</p>
               </div>
             </motion.div>
           ))}

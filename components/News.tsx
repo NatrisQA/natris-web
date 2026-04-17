@@ -133,7 +133,7 @@ export default function News() {
                 <h3 className="text-sm md:text-base font-bold text-white leading-snug group-hover:text-cyan-200 transition-colors duration-300">
                   {item.title[lang]}
                 </h3>
-                <p className="text-xs text-white/35 leading-relaxed whitespace-pre-line line-clamp-3">
+                <p className="text-xs text-white/35 leading-relaxed line-clamp-3">
                   {item.desc[lang]}
                 </p>
               </div>

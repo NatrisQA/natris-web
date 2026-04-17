@@ -514,7 +514,7 @@ export default function Projects() {
                 </div>
 
                 {/* Description */}
-                <p className="relative z-10 text-xs md:text-sm text-white/45 leading-relaxed whitespace-pre-line flex-1">
+                <p className="relative z-10 text-xs md:text-sm text-white/45 leading-relaxed flex-1">
                   {item.desc[lang]}
                 </p>
 

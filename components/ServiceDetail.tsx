@@ -101,7 +101,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-base md:text-lg text-white/45 leading-relaxed whitespace-pre-line max-w-xl mx-auto mb-10"
+            className="text-base md:text-lg text-white/45 leading-relaxed max-w-xl mx-auto mb-10"
           >
             {item.desc[lang]}
           </motion.p>

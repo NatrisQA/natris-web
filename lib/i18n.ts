@@ -43,22 +43,22 @@ export const content = {
         {
           icon: "🔗",
           title: "연결",
-          desc: "플레이어, 크리에이터, 커뮤니티를\n하나의 생태계로 연결합니다.",
+          desc: "플레이어, 크리에이터, 커뮤니티를 하나의 생태계로 연결합니다.",
         },
         {
           icon: "⚡",
           title: "실행",
-          desc: "기획에 머무르지 않고\n빠르게 만들고 검증합니다.",
+          desc: "기획에 머무르지 않고 빠르게 만들고 검증합니다.",
         },
         {
           icon: "🎯",
           title: "몰입",
-          desc: "사용자가 진짜 원하는 경험에\n집중하고 불필요한 건 빼냅니다.",
+          desc: "사용자가 진짜 원하는 경험에 집중하고 불필요한 건 빼냅니다.",
         },
         {
           icon: "🌱",
           title: "성장",
-          desc: "개인의 실력도, 커뮤니티의 규모도\n함께 자라는 구조를 설계합니다.",
+          desc: "개인의 실력도, 커뮤니티의 규모도 함께 자라는 구조를 설계합니다.",
         },
       ],
       milestones: [
@@ -85,22 +85,22 @@ export const content = {
         {
           icon: "🔗",
           title: "Connect",
-          desc: "Linking players, creators, and communities\ninto one ecosystem.",
+          desc: "Linking players, creators, and communities into one ecosystem.",
         },
         {
           icon: "⚡",
           title: "Execute",
-          desc: "We don't just plan —\nwe build fast and validate.",
+          desc: "We don't just plan — we build fast and validate.",
         },
         {
           icon: "🎯",
           title: "Focus",
-          desc: "We focus on experiences users truly want\nand cut everything else.",
+          desc: "We focus on experiences users truly want and cut everything else.",
         },
         {
           icon: "🌱",
           title: "Grow",
-          desc: "We design structures where individuals\nand communities grow together.",
+          desc: "We design structures where individuals and communities grow together.",
         },
       ],
       milestones: [
@@ -130,8 +130,8 @@ export const content = {
         name: "PokerLulu",
         name_ko: "포커룰루",
         desc: {
-          ko: "친구랑 가볍게 한 판,\n실력이 쌓이면 전국 고수와 겨루는\n소셜 포커 플랫폼.",
-          en: "A casual hand with friends,\nthen challenge top players nationwide\n— a social poker platform.",
+          ko: "친구랑 가볍게 한 판, 실력이 쌓이면 전국 고수와 겨루는 소셜 포커 플랫폼.",
+          en: "A casual hand with friends, then challenge top players nationwide — a social poker platform.",
         },
         badges: { ko: ["정식 등급분류", "소셜 포커", "대회 시스템", "실시간 중계", "토너먼트"], en: ["Official Rating", "Social Poker", "Tournament System", "Live Broadcast", "Tournament"] },
         status: { ko: "출시 예정", en: "Launching Soon" },
@@ -169,8 +169,8 @@ export const content = {
         name: "LinkPlay",
         name_ko: "링플",
         desc: {
-          ko: "방송 중 시청자와 함께 게임을 즐기는\n새로운 라이브 콘텐츠 경험.\n크리에이터와 시청자의 경계를 허뭅니다.",
-          en: "A new live content experience\nwhere viewers play games during broadcasts.\nBlurring the line between creator and audience.",
+          ko: "방송 중 시청자와 함께 게임을 즐기는 새로운 라이브 콘텐츠 경험. 크리에이터와 시청자의 경계를 허뭅니다.",
+          en: "A new live content experience where viewers play games during broadcasts. Blurring the line between creator and audience.",
         },
         badges: { ko: ["실시간 매칭", "크리에이터 연동", "시청자 참여형", "라이브 인터랙션", "미니게임"], en: ["Real-time Matching", "Creator Integration", "Viewer Participation", "Live Interaction", "Mini-games"] },
         status: { ko: "개발 중", en: "In Development" },
@@ -208,8 +208,8 @@ export const content = {
         name: "모이또",
         name_ko: "모이또",
         desc: {
-          ko: "홀덤펍, 동호회, 스터디 등\n오프라인 모임을 온라인에서 쉽게 운영하세요.\n모집부터 정산까지, 호스트에게 필요한 모든 것.",
-          en: "Holdem pubs, clubs, study groups —\nmanage offline communities easily online.\nEverything a host needs, from recruitment to settlement.",
+          ko: "홀덤펍, 동호회, 스터디 등 오프라인 모임을 온라인에서 쉽게 운영하세요. 모집부터 정산까지, 호스트에게 필요한 모든 것.",
+          en: "Holdem pubs, clubs, study groups — manage offline communities easily online. Everything a host needs, from recruitment to settlement.",
         },
         badges: { ko: ["소모임 운영", "멤버 관리", "포인트·랭킹", "자동 정산", "멤버십"], en: ["Club Management", "Member Mgmt", "Points & Ranking", "Auto Settlement", "Membership"] },
         status: { ko: "개발 중", en: "In Development" },
@@ -247,8 +247,8 @@ export const content = {
         name: "TubeLuLu",
         name_ko: "투베루루",
         desc: {
-          ko: "좋아하는 전문가를 구독하고,\n깊이 있는 인사이트를 읽고, 직접 질문하세요.\n지식과 팬덤이 만나는 새로운 교류 공간.",
-          en: "Subscribe to your favorite experts,\nread deep insights, and ask questions directly.\nWhere knowledge meets fandom.",
+          ko: "좋아하는 전문가를 구독하고, 깊이 있는 인사이트를 읽고, 직접 질문하세요. 지식과 팬덤이 만나는 새로운 교류 공간.",
+          en: "Subscribe to your favorite experts, read deep insights, and ask questions directly. Where knowledge meets fandom.",
         },
         badges: { ko: ["전문가 구독", "인사이트 큐레이션", "유료 Q&A", "팬덤 커뮤니티", "지식 교류"], en: ["Expert Subscription", "Insight Curation", "Paid Q&A", "Fandom Community", "Knowledge Exchange"] },
         status: { ko: "베타 준비", en: "Beta Soon" },
@@ -286,8 +286,8 @@ export const content = {
         name: "ShuffleUp",
         name_ko: "셔플업",
         desc: {
-          ko: "오프라인 포커 대회,\n이제 시스템으로 운영하세요.\n참가 등록부터 중계, 정산까지 하나의 솔루션으로 해결합니다.",
-          en: "Run offline poker tournaments\nwith a proper system.\nFrom registration to broadcast and settlement — one solution.",
+          ko: "오프라인 포커 대회, 이제 시스템으로 운영하세요. 참가 등록부터 중계, 정산까지 하나의 솔루션으로 해결합니다.",
+          en: "Run offline poker tournaments with a proper system. From registration to broadcast and settlement — one solution.",
         },
         badges: { ko: ["토너먼트 관리", "블라인드 관리", "시딩 시스템", "실시간 중계", "자동 정산"], en: ["Tournament Mgmt", "Blind Management", "Seeding System", "Live Broadcast", "Auto Settlement"] },
         status: { ko: "기획 중", en: "Planned" },
@@ -325,8 +325,8 @@ export const content = {
         name: "GTOlulu",
         name_ko: "GTO루루",
         desc: {
-          ko: "포커 실력을 한 단계 끌어올리는 AI 코치.\nGTO 전략 분석부터 핸드 리뷰, 레인지 시뮬레이션까지\n데이터 기반으로 성장하세요.",
-          en: "An AI coach to level up your poker game.\nFrom GTO strategy analysis to hand review and range simulation\n— grow with data.",
+          ko: "포커 실력을 한 단계 끌어올리는 AI 코치. GTO 전략 분석부터 핸드 리뷰, 레인지 시뮬레이션까지 데이터 기반으로 성장하세요.",
+          en: "An AI coach to level up your poker game. From GTO strategy analysis to hand review and range simulation — grow with data.",
         },
         badges: { ko: ["GTO 분석", "핸드 분석", "레인지 시뮬레이션", "AI 코칭", "전략 리포트"], en: ["GTO Analysis", "Hand Analysis", "Range Simulation", "AI Coaching", "Strategy Report"] },
         status: { ko: "기획 중", en: "Planned" },
@@ -374,7 +374,7 @@ export const content = {
       {
         category: { ko: "대회", en: "Tournament" },
         title: { ko: "ShuffleUp 파일럿 대회 성료", en: "ShuffleUp Pilot Tournament Complete" },
-        desc: { ko: "첫 오프라인 파일럿 대회를 성공적으로 마쳤습니다.\n대회 운영 솔루션의 실전 검증을 완료했습니다.", en: "Successfully completed our first offline pilot tournament.\nField-tested our tournament operations solution." },
+        desc: { ko: "첫 오프라인 파일럿 대회를 성공적으로 마쳤습니다. 대회 운영 솔루션의 실전 검증을 완료했습니다.", en: "Successfully completed our first offline pilot tournament. Field-tested our tournament operations solution." },
         date: "2026.04",
         image: null,
         color: "#3b82f6",
@@ -382,7 +382,7 @@ export const content = {
       {
         category: { ko: "서비스", en: "Service" },
         title: { ko: "포커룰루 등급분류 완료", en: "PokerLulu Official Rating Complete" },
-        desc: { ko: "게임물관리위원회 정식 등급분류를 받았습니다.\n합법적인 소셜 포커 서비스로 출시를 준비합니다.", en: "Officially rated by GRAC.\nPreparing to launch as a legal social poker service." },
+        desc: { ko: "게임물관리위원회 정식 등급분류를 받았습니다. 합법적인 소셜 포커 서비스로 출시를 준비합니다.", en: "Officially rated by GRAC. Preparing to launch as a legal social poker service." },
         date: "2026.03",
         image: null,
         color: "#f59e0b",
@@ -390,7 +390,7 @@ export const content = {
       {
         category: { ko: "회사", en: "Company" },
         title: { ko: "lulu.ai 법인 설립", en: "lulu.ai Incorporated" },
-        desc: { ko: "룰루닷에이아이 법인이 공식 설립되었습니다.\n게임과 커뮤니티를 잇는 여정이 시작됩니다.", en: "lulu.ai has been officially incorporated.\nOur journey connecting games and community begins." },
+        desc: { ko: "룰루닷에이아이 법인이 공식 설립되었습니다. 게임과 커뮤니티를 잇는 여정이 시작됩니다.", en: "lulu.ai has been officially incorporated. Our journey connecting games and community begins." },
         date: "2026.02",
         image: null,
         color: "#6366f1",
@@ -398,7 +398,7 @@ export const content = {
       {
         category: { ko: "개발", en: "Development" },
         title: { ko: "LinkPlay 프로토타입 공개", en: "LinkPlay Prototype Revealed" },
-        desc: { ko: "크리에이터-시청자 인터랙티브 게임 플랫폼의\n첫 프로토타입을 내부 공개했습니다.", en: "Internally revealed the first prototype of our\ncreator-viewer interactive game platform." },
+        desc: { ko: "크리에이터-시청자 인터랙티브 게임 플랫폼의 첫 프로토타입을 내부 공개했습니다.", en: "Internally revealed the first prototype of our creator-viewer interactive game platform." },
         date: "2026.03",
         image: null,
         color: "#06b6d4",
