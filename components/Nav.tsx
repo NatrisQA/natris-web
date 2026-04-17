@@ -12,8 +12,9 @@ export default function Nav() {
 
   const links = [
     { href: "#products", label: t.products },
-    { href: "/partnership", label: t.partnership },
+    { href: "#news", label: lang === "ko" ? "소식" : "News" },
     { href: "#about", label: t.about },
+    { href: "/partnership", label: t.partnership },
   ];
 
   return (
