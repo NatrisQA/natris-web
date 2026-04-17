@@ -76,26 +76,31 @@ export default function Partnership() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
-            className="text-lg md:text-xl text-white/35 leading-relaxed max-w-2xl mb-12"
+            className="text-lg md:text-xl text-white/35 leading-relaxed max-w-2xl"
           >
             {t.sub}
           </motion.p>
-
-          <motion.button
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            onClick={() => setContactOpen(true)}
-            className="btn-shimmer inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm font-semibold text-white"
-            style={{ background: "linear-gradient(135deg, #ec4899, #8b5cf6)", boxShadow: "0 0 30px rgba(236,72,153,0.35), inset 0 1px 0 rgba(255,255,255,0.12)" }}
-            whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(236,72,153,0.55), inset 0 1px 0 rgba(255,255,255,0.12)" }}
-            whileTap={{ scale: 0.97 }}
-          >
-            {t.cta}
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3L13 8L8 13M3 8H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </motion.button>
         </div>
+
+        {/* Scroll hint */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        >
+          <span className="text-[11px] text-white/25 tracking-widest uppercase">
+            {lang === "ko" ? "더 알아보기" : "Learn More"}
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="none" className="text-white/20">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* ─── Section 2: Partner Types ─── */}
