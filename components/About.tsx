@@ -87,83 +87,63 @@ export default function About() {
         </div>
       </div>
 
-      {/* ─── Section 2: Values ─── */}
-      <div className="relative py-24 md:py-32">
+      {/* ─── Section 2: Values + Milestones (compact) ─── */}
+      <div className="relative py-16 md:py-24">
         <div className="px-6 md:px-16 max-w-6xl mx-auto">
+          {/* Values — inline row */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-emerald-400/60 mb-12 md:mb-16 uppercase"
+            className="text-xs font-semibold tracking-[0.25em] text-emerald-400/60 mb-8 uppercase"
           >
             CORE VALUES
           </motion.div>
 
-          {t.values.map((val, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="group grid md:grid-cols-[100px_1fr] gap-4 md:gap-10 items-baseline py-8 md:py-12"
-              style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
-            >
-              <span className="text-[48px] md:text-[64px] font-black leading-none text-white/[0.04] group-hover:text-white/[0.08] transition-colors duration-500">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h4 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-emerald-200 transition-colors duration-300">{val.title}</h4>
-                <p className="text-sm md:text-base text-white/30 leading-relaxed max-w-lg">{val.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 mb-16 md:mb-20">
+            {t.values.map((val, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                <h4 className="text-sm md:text-base font-bold text-white mb-1 tracking-tight">{val.title}</h4>
+                <p className="text-xs md:text-sm text-white/30 leading-relaxed">{val.desc}</p>
+              </motion.div>
+            ))}
+          </div>
 
-      {/* ─── Section 4: Timeline ─── */}
-      <div className="relative py-24 md:py-32">
-        <div className="px-6 md:px-16 max-w-6xl mx-auto">
+          {/* Milestones — compact inline */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-emerald-400/60 mb-12 md:mb-16 uppercase"
+            className="text-xs font-semibold tracking-[0.25em] text-emerald-400/60 mb-8 uppercase"
           >
             MILESTONES
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+          <div className="flex flex-wrap gap-x-8 gap-y-4">
             {t.milestones.map((ms, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 + 0.1 }}
-                className="rounded-2xl p-5 md:p-6 relative overflow-hidden group"
-                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="flex items-center gap-3"
               >
-                {/* Top accent */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-px"
+                  className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                   style={{
-                    background: i === t.milestones.length - 1
-                      ? "linear-gradient(90deg, transparent, rgba(99,102,241,0.5), transparent)"
-                      : "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)",
+                    background: i === t.milestones.length - 1 ? "#6366f1" : "rgba(255,255,255,0.15)",
+                    boxShadow: i === t.milestones.length - 1 ? "0 0 8px rgba(99,102,241,0.5)" : "none",
                   }}
                 />
-
-                <div
-                  className="w-2 h-2 rounded-full mb-4"
-                  style={{
-                    background: i === t.milestones.length - 1 ? "#6366f1" : "rgba(255,255,255,0.12)",
-                    boxShadow: i === t.milestones.length - 1 ? "0 0 10px rgba(99,102,241,0.5)" : "none",
-                  }}
-                />
-
-                <div className="text-xs text-white/20 tracking-wider mb-1.5">{ms.date}</div>
-                <div className="text-sm md:text-base font-medium text-white/55">{ms.text}</div>
+                <span className="text-xs text-white/25 tracking-wider">{ms.date}</span>
+                <span className="text-sm text-white/50">{ms.text}</span>
               </motion.div>
             ))}
           </div>
