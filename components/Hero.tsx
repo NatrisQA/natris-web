@@ -178,7 +178,13 @@ export default function Hero() {
           <h1
             key={lang}
             className="font-black leading-[1.08] tracking-tight mb-6"
-            style={{ fontSize: "clamp(1.9rem, 4.4vw, 3.6rem)", color: "#111" }}
+            style={{
+              fontSize:
+                lang === "ko"
+                  ? "clamp(1.9rem, 4.4vw, 3.6rem)"
+                  : "clamp(1.6rem, 3.4vw, 2.8rem)",
+              color: "#111",
+            }}
           >
             <span className="block mb-2" style={{ whiteSpace: "nowrap" }}>
               {renderHeadline1()}
