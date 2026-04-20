@@ -94,8 +94,8 @@ export default function Axes() {
 
         <p className="text-center text-[13px] mt-10" style={{ color: "#999" }}>
           {lang === "ko"
-            ? "각 서비스는 하나의 축에만 속하지 않고, 세 축의 교차점에 존재합니다."
-            : "Each service sits not on a single axis, but at the intersection of all three."}
+            ? "세 축은 독립된 영역이 아니라, 커뮤니티 안에서 하나로 맞물려 움직입니다."
+            : "The three axes aren't separate silos. They move together inside one community."}
         </p>
       </div>
     </section>
