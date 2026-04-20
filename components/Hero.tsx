@@ -195,11 +195,13 @@ export default function Hero() {
           </motion.div>
 
           <h1
-            className="font-black leading-[1.02] tracking-tight mb-6"
-            style={{ fontSize: "clamp(2.2rem, 5.4vw, 4.4rem)", color: "#111" }}
+            className="font-black leading-[1.08] tracking-tight mb-6"
+            style={{ fontSize: "clamp(1.9rem, 4.4vw, 3.6rem)", color: "#111" }}
           >
-            <span className="block mb-2">{renderHeadline1()}</span>
-            <WordReveal delay={0.55} style={{ display: "block" }}>
+            <span className="block mb-2" style={{ whiteSpace: "nowrap" }}>
+              {renderHeadline1()}
+            </span>
+            <WordReveal delay={0.55} style={{ display: "block", whiteSpace: "nowrap" }}>
               <span style={{ color: "#111" }}>{t.headline2}</span>
             </WordReveal>
           </h1>
