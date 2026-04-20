@@ -1,28 +1,21 @@
 "use client";
 
-import HeroVisualA from "@/components/hero-previews/HeroVisualA";
-import HeroVisualB from "@/components/hero-previews/HeroVisualB";
-import HeroVisualC from "@/components/hero-previews/HeroVisualC";
+import HeroVisualE from "@/components/hero-previews/HeroVisualE";
+import HeroVisualF from "@/components/hero-previews/HeroVisualF";
 
 export default function HeroPreviewPage() {
   const variants = [
     {
-      key: "A",
-      title: "A. Brand Hub Constellation",
-      desc: "중앙 LULU.AI 허브 + 6개 서비스가 궤도에 배치. 브랜드 허브라는 메시지가 가장 직관적. (AxesConnection과 구조가 비슷해질 위험)",
-      Comp: HeroVisualA,
+      key: "E",
+      title: "E. Kinetic Typography",
+      desc: "거대한 LULU.AI 워드마크 + 6개 서비스 색상 그라데이션 플로우 + 서비스명 티커. 레퍼런스: Stripe · Linear · Framer.",
+      Comp: HeroVisualE,
     },
     {
-      key: "B",
-      title: "B. Brand Wall",
-      desc: "거대한 LULU.AI 워드마크 + 6개 서비스 색상이 번지는 그라데이션 + 타이포 태그. 브랜드 아이덴티티 무드보드 느낌.",
-      Comp: HeroVisualB,
-    },
-    {
-      key: "C",
-      title: "C. Venn + Service Tags",
-      desc: "기존 GAME/TECH/COMMUNITY Venn 유지 + 각 원 안에 서비스 이름 태그 삽입. 변경 폭 최소.",
-      Comp: HeroVisualC,
+      key: "F",
+      title: "F. Logo Mark + Service Aura",
+      desc: "커스텀 LULU 로고 마크 + 6개 서비스 색상이 halo로 회전. 레퍼런스: Airbnb Bélo · Figma · Spotify.",
+      Comp: HeroVisualF,
     },
   ];
 
@@ -30,10 +23,10 @@ export default function HeroPreviewPage() {
     <div style={{ background: "#fff", minHeight: "100dvh", padding: "60px 24px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <h1 style={{ fontSize: 28, fontWeight: 900, marginBottom: 8 }}>
-          Hero 시각 시안 비교
+          Hero 시각 시안 비교 — E · F
         </h1>
         <p style={{ color: "#666", marginBottom: 48 }}>
-          타이틀 우측 도형 3가지 안 — 어느 방향이 좋을지 선택하세요.
+          어느 방향이 lulu.ai 브랜드 페이지 느낌에 맞는지 선택하세요.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 80 }}>
@@ -75,6 +68,8 @@ export default function HeroPreviewPage() {
                   padding: 40,
                   display: "flex",
                   justifyContent: "center",
+                  minHeight: 520,
+                  alignItems: "center",
                 }}
               >
                 <Comp />
