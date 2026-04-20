@@ -17,11 +17,16 @@ export default function Axes() {
           </div>
           <h2
             className="font-black tracking-tight mb-4"
-            style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#111" }}
+            style={{
+              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+              color: "#111",
+              whiteSpace: "pre-line",
+              lineHeight: 1.2,
+            }}
           >
             {t.headline}
           </h2>
-          <p className="text-[15px]" style={{ color: "#666" }}>
+          <p className="text-[15px] max-w-2xl mx-auto leading-relaxed" style={{ color: "#666" }}>
             {t.sub}
           </p>
         </div>
@@ -92,10 +97,10 @@ export default function Axes() {
           })}
         </div>
 
-        <p className="text-center text-[13px] mt-10" style={{ color: "#999" }}>
+        <p className="text-center text-[13px] mt-10 max-w-2xl mx-auto leading-relaxed" style={{ color: "#999" }}>
           {lang === "ko"
-            ? "세 축은 독립된 영역이 아니라, 커뮤니티 안에서 하나로 맞물려 움직입니다."
-            : "The three axes aren't separate silos. They move together inside one community."}
+            ? "여섯 서비스는 각자 움직이지 않습니다. 커뮤니티를 통해 서로를 이어, 하나의 흐름을 만듭니다."
+            : "These services don't move alone. They weave through the community, flowing as one experience."}
         </p>
       </div>
     </section>
