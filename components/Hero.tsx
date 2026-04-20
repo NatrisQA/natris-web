@@ -157,9 +157,14 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1200px] w-full mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-center pt-24 pb-20">
-        {/* Left: Copy */}
-        <div className="text-center lg:text-left">
+      <div className="relative z-10 max-w-[1200px] w-full mx-auto flex flex-col items-center gap-10 lg:gap-14 pt-20 pb-20">
+        {/* Top: Kinetic brand typography */}
+        <div className="w-full flex items-center justify-center">
+          <HeroVisualE />
+        </div>
+
+        {/* Bottom: Copy */}
+        <div className="text-center max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -198,16 +203,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.75 }}
-            className="whitespace-pre-line leading-relaxed max-w-xl mx-auto lg:mx-0"
+            className="whitespace-pre-line leading-relaxed max-w-xl mx-auto"
             style={{ color: "#666", fontSize: "clamp(15px, 1.4vw, 17px)" }}
           >
             {t.sub}
           </motion.p>
-        </div>
-
-        {/* Right: Kinetic brand typography */}
-        <div className="flex items-center justify-center">
-          <HeroVisualE />
         </div>
       </div>
 
