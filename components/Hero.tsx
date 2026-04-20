@@ -24,27 +24,25 @@ function HighlightedVerb({
   children,
   color,
   delay,
-  noSlide = false,
 }: {
   children: React.ReactNode;
   color: string;
   delay: number;
-  noSlide?: boolean;
 }) {
   return (
     <span
       style={{
         display: "inline-block",
-        overflow: noSlide ? "visible" : "hidden",
+        overflow: "hidden",
         verticalAlign: "top",
         position: "relative",
       }}
     >
       <motion.span
         style={{ display: "inline-block", position: "relative", color }}
-        initial={noSlide ? { opacity: 0 } : { y: "110%", opacity: 0 }}
-        animate={noSlide ? { opacity: 1 } : { y: "0%", opacity: 1 }}
-        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay }}
+        initial={{ y: "110%", opacity: 0 }}
+        animate={{ y: "0%", opacity: 1 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay }}
       >
         {/* Soft highlight blob behind the word */}
         <motion.span
@@ -63,24 +61,7 @@ function HighlightedVerb({
           }}
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: delay + 0.35 }}
-        />
-        {/* Accent dot above the word */}
-        <motion.span
-          aria-hidden
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "-0.3em",
-            width: "0.22em",
-            height: "0.22em",
-            borderRadius: 999,
-            background: color,
-            transform: "translateX(-50%)",
-          }}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.4, delay: delay + 0.55 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1], delay: delay + 0.2 }}
         />
         <span style={{ position: "relative" }}>{children}</span>
         {/* Animated underline stroke */}
@@ -98,7 +79,7 @@ function HighlightedVerb({
           }}
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: delay + 0.4 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: delay + 0.22 }}
         />
       </motion.span>
     </span>
@@ -226,22 +207,22 @@ export default function Hero() {
     if (lang === "ko") {
       return (
         <>
-          <HighlightedVerb delay={0.18} color={AXIS_GAME}>모이고</HighlightedVerb>
-          <WordReveal delay={0.22}>, </WordReveal>
-          <HighlightedVerb delay={0.3} color={AXIS_COMM}>머물고</HighlightedVerb>
-          <WordReveal delay={0.34}>, </WordReveal>
-          <HighlightedVerb delay={0.42} color={AXIS_TECH} noSlide>성장하는</HighlightedVerb>
+          <HighlightedVerb delay={0.1} color={AXIS_GAME}>모이고</HighlightedVerb>
+          <WordReveal delay={0.14}>, </WordReveal>
+          <HighlightedVerb delay={0.2} color={AXIS_COMM}>머물고</HighlightedVerb>
+          <WordReveal delay={0.24}>, </WordReveal>
+          <HighlightedVerb delay={0.3} color={AXIS_TECH}>성장하는</HighlightedVerb>
         </>
       );
     }
     return (
       <>
-        <HighlightedVerb delay={0.18} color={AXIS_GAME}>Gather</HighlightedVerb>
-        <WordReveal delay={0.22}>, </WordReveal>
-        <HighlightedVerb delay={0.3} color={AXIS_COMM}>Stay</HighlightedVerb>
-        <WordReveal delay={0.34}>, </WordReveal>
-        <WordReveal delay={0.38}>and </WordReveal>
-        <HighlightedVerb delay={0.46} color={AXIS_TECH} noSlide>Grow</HighlightedVerb>
+        <HighlightedVerb delay={0.1} color={AXIS_GAME}>Gather</HighlightedVerb>
+        <WordReveal delay={0.14}>, </WordReveal>
+        <HighlightedVerb delay={0.2} color={AXIS_COMM}>Stay</HighlightedVerb>
+        <WordReveal delay={0.24}>, </WordReveal>
+        <WordReveal delay={0.28}>and </WordReveal>
+        <HighlightedVerb delay={0.34} color={AXIS_TECH}>Grow</HighlightedVerb>
       </>
     );
   };
