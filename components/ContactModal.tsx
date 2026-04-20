@@ -86,7 +86,7 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
       }
     } catch {
       // Fallback: open mailto
-      const subject = encodeURIComponent(`[제휴 문의] ${form.type} — ${form.company || form.name}`);
+      const subject = encodeURIComponent(`[제휴 문의] ${form.type} | ${form.company || form.name}`);
       const body = encodeURIComponent(
         `이름: ${form.name}\n회사/소속: ${form.company}\n이메일: ${form.email}\n문의 유형: ${form.type}\n\n${form.message}`
       );

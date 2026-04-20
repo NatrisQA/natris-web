@@ -529,8 +529,8 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             style={{ fontSize: "clamp(14px, 1.1vw, 16px)", color: "rgba(255,255,255,0.6)" }}
           >
             {lang === "ko"
-              ? "홀덤펍·브랜드·크리에이터 — 어떤 형태의 제휴도 환영합니다."
-              : "Holdem pubs, brands, creators — every form of partnership is welcome."}
+              ? "홀덤펍·브랜드·크리에이터, 어떤 형태의 제휴도 환영합니다."
+              : "Holdem pubs, brands, creators. Every form of partnership is welcome."}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 12 }}

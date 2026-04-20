@@ -135,7 +135,7 @@ export const content = {
     ko: {
       label: "ABOUT",
       headline: "게임과 커뮤니티로\n세상을 연결합니다",
-      body: "룰루닷에이아이는 게임과 커뮤니티, 기술을 연결하는 플랫폼 기업입니다. 온라인 포커부터 라이브 미니게임, 소모임 운영, AI 솔루션까지 — 플레이어 생태계 전반에 걸친 서비스를 설계하고 운영합니다.",
+      body: "룰루닷에이아이는 게임과 커뮤니티, 기술을 연결하는 플랫폼 기업입니다. 온라인 포커부터 라이브 미니게임, 소모임 운영, AI 솔루션까지, 플레이어 생태계 전반에 걸친 서비스를 설계하고 운영합니다.",
       stats: [
         { value: "6+", label: "개발 중 서비스" },
         { value: "2,000+", label: "국내 홀덤펍" },
@@ -177,7 +177,7 @@ export const content = {
     en: {
       label: "ABOUT",
       headline: "Connecting the world\nthrough games & community",
-      body: "lulu.ai is a platform company that connects people through games, community, and technology. From online poker to live mini-games, club management, and AI solutions — we design and operate services across the entire player ecosystem.",
+      body: "lulu.ai is a platform company that connects people through games, community, and technology. From online poker to live mini-games, club management, and AI solutions, we design and operate services across the entire player ecosystem.",
       stats: [
         { value: "6+", label: "Services in Pipeline" },
         { value: "2,000+", label: "Holdem Pubs in Korea" },
@@ -196,7 +196,7 @@ export const content = {
         {
           icon: "⚡",
           title: "Execute",
-          desc: "We don't just plan — we build fast and validate.",
+          desc: "We don't just plan. We build fast and validate.",
         },
         {
           icon: "🎯",
@@ -225,8 +225,8 @@ export const content = {
       en: "Services We Build",
     },
     sub: {
-      ko: "온라인 게임부터 라이브 플랫폼, 커뮤니티 솔루션, AI 툴까지 — 플레이어에게 필요한 모든 것을 만듭니다.",
-      en: "From online games to live platforms, community solutions, and AI tools — we build everything players need.",
+      ko: "온라인 게임부터 라이브 플랫폼, 커뮤니티 솔루션, AI 툴까지, 플레이어에게 필요한 모든 것을 만듭니다.",
+      en: "From online games to live platforms, community solutions, and AI tools, we build everything players need.",
     },
     items: [
       {
@@ -238,7 +238,7 @@ export const content = {
         name_ko: "포커룰루",
         desc: {
           ko: "친구랑 가볍게 한 판, 실력이 쌓이면 전국 고수와 겨루는 소셜 포커 플랫폼.",
-          en: "A casual hand with friends, then challenge top players nationwide — a social poker platform.",
+          en: "A casual hand with friends, then challenge top players nationwide. A social poker platform.",
         },
         badges: { ko: ["정식 등급분류", "소셜 포커", "대회 시스템", "실시간 중계", "토너먼트"], en: ["Official Rating", "Social Poker", "Tournament System", "Live Broadcast", "Tournament"] },
         status: { ko: "출시 예정", en: "Launching Soon" },
@@ -294,7 +294,7 @@ export const content = {
           {
             icon: "🎙",
             title: { ko: "크리에이터 연동", en: "Creator Integration" },
-            desc: { ko: "스트리머 대시보드에서 게임 설정, 참가자 관리, 결과 공유까지 한 번에.", en: "Game setup, participant management, and result sharing — all from the streamer dashboard." },
+            desc: { ko: "스트리머 대시보드에서 게임 설정, 참가자 관리, 결과 공유까지 한 번에.", en: "Game setup, participant management, and result sharing, all from the streamer dashboard." },
           },
           {
             icon: "👥",
@@ -304,7 +304,7 @@ export const content = {
           {
             icon: "🎮",
             title: { ko: "다양한 미니게임", en: "Various Mini-games" },
-            desc: { ko: "포커, 퀴즈, 배틀 등 방송에 최적화된 인터랙티브 게임 라이브러리.", en: "Interactive game library optimized for broadcasts — poker, quiz, battles, and more." },
+            desc: { ko: "포커, 퀴즈, 배틀 등 방송에 최적화된 인터랙티브 게임 라이브러리.", en: "Interactive game library optimized for broadcasts: poker, quiz, battles, and more." },
           },
         ],
         gallery: [null, null, null] as (string | null)[],
@@ -318,7 +318,7 @@ export const content = {
         name_ko: "모이또",
         desc: {
           ko: "홀덤펍, 동호회, 스터디 등 오프라인 모임을 온라인에서 쉽게 운영하세요. 모집부터 정산까지, 호스트에게 필요한 모든 것.",
-          en: "Holdem pubs, clubs, study groups — manage offline communities easily online. Everything a host needs, from recruitment to settlement.",
+          en: "Holdem pubs, clubs, study groups. Manage offline communities easily online. Everything a host needs, from recruitment to settlement.",
         },
         badges: { ko: ["소모임 운영", "멤버 관리", "포인트·랭킹", "자동 정산", "멤버십"], en: ["Club Management", "Member Mgmt", "Points & Ranking", "Auto Settlement", "Membership"] },
         status: { ko: "개발 중", en: "In Development" },
@@ -334,7 +334,7 @@ export const content = {
           {
             icon: "👤",
             title: { ko: "멤버 관리", en: "Member Management" },
-            desc: { ko: "가입 승인, 역할 설정, 활동 이력까지. 멤버 관리의 모든 것.", en: "Approval, role assignment, activity history — everything for member management." },
+            desc: { ko: "가입 승인, 역할 설정, 활동 이력까지. 멤버 관리의 모든 것.", en: "Approval, role assignment, activity history. Everything for member management." },
           },
           {
             icon: "📊",
@@ -369,7 +369,7 @@ export const content = {
           {
             icon: "⭐",
             title: { ko: "전문가 구독", en: "Expert Subscription" },
-            desc: { ko: "포커 프로, 전략가, 코치 등 분야별 전문가를 구독하고 인사이트를 받으세요.", en: "Subscribe to field experts — poker pros, strategists, coaches — and receive their insights." },
+            desc: { ko: "포커 프로, 전략가, 코치 등 분야별 전문가를 구독하고 인사이트를 받으세요.", en: "Subscribe to field experts like poker pros, strategists, and coaches, and receive their insights." },
           },
           {
             icon: "📖",
@@ -398,7 +398,7 @@ export const content = {
         name_ko: "셔플업",
         desc: {
           ko: "오프라인 포커 대회, 이제 시스템으로 운영하세요. 참가 등록부터 중계, 정산까지 하나의 솔루션으로 해결합니다.",
-          en: "Run offline poker tournaments with a proper system. From registration to broadcast and settlement — one solution.",
+          en: "Run offline poker tournaments with a proper system. From registration to broadcast and settlement, one solution.",
         },
         badges: { ko: ["토너먼트 관리", "블라인드 관리", "시딩 시스템", "실시간 중계", "자동 정산"], en: ["Tournament Mgmt", "Blind Management", "Seeding System", "Live Broadcast", "Auto Settlement"] },
         status: { ko: "기획 중", en: "Planned" },
@@ -409,7 +409,7 @@ export const content = {
           {
             icon: "📋",
             title: { ko: "토너먼트 관리", en: "Tournament Management" },
-            desc: { ko: "참가 등록, 테이블 배정, 진행 현황까지 대회 운영 전 과정을 시스템화.", en: "Systematize the entire tournament process — registration, table assignment, and progress tracking." },
+            desc: { ko: "참가 등록, 테이블 배정, 진행 현황까지 대회 운영 전 과정을 시스템화.", en: "Systematize the entire tournament process: registration, table assignment, and progress tracking." },
           },
           {
             icon: "⏱",
@@ -438,7 +438,7 @@ export const content = {
         name_ko: "GTO루루",
         desc: {
           ko: "포커 실력을 한 단계 끌어올리는 AI 코치. GTO 전략 분석부터 핸드 리뷰, 레인지 시뮬레이션까지 데이터 기반으로 성장하세요.",
-          en: "An AI coach to level up your poker game. From GTO strategy analysis to hand review and range simulation — grow with data.",
+          en: "An AI coach to level up your poker game. From GTO strategy analysis to hand review and range simulation, grow with data.",
         },
         badges: { ko: ["GTO 분석", "핸드 분석", "레인지 시뮬레이션", "AI 코칭", "전략 리포트"], en: ["GTO Analysis", "Hand Analysis", "Range Simulation", "AI Coaching", "Strategy Report"] },
         status: { ko: "기획 중", en: "Planned" },
@@ -555,17 +555,17 @@ export const content = {
         {
           icon: "🏢",
           title: "Holdem Pubs & Venues",
-          desc: "We build digital infrastructure for offline venues — tournament systems, member management, and more.",
+          desc: "We build digital infrastructure for offline venues: tournament systems, member management, and more.",
         },
         {
           icon: "🎙",
           title: "Influencers & Creators",
-          desc: "Connect your influence with our platforms — live broadcasts, game content, and community tools.",
+          desc: "Connect your influence with our platforms: live broadcasts, game content, and community tools.",
         },
         {
           icon: "🤝",
           title: "Corporate & Brand",
-          desc: "Corporate partnerships through gaming and community — events, team building, and brand collaborations.",
+          desc: "Corporate partnerships through gaming and community: events, team building, and brand collaborations.",
         },
         {
           icon: "🌏",
@@ -586,7 +586,7 @@ export const content = {
     en: {
       label: "VISION",
       headline: "Beyond Asia,\na Global Player Network",
-      body: "lulu.ai starts in Korea, expands across Asia — Japan, Taiwan, and beyond — and grows into a global player network. Our goal is not a single service, but to become the platform that encompasses the entire gaming and community ecosystem.",
+      body: "lulu.ai starts in Korea, expands across Asia including Japan, Taiwan and beyond, and grows into a global player network. Our goal is not a single service, but to become the platform that encompasses the entire gaming and community ecosystem.",
     },
   },
 
