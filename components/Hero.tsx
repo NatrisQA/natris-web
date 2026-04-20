@@ -261,13 +261,14 @@ export default function Hero() {
           </motion.div>
 
           <h1
+            key={lang}
             className="font-black leading-[1.08] tracking-tight mb-6"
             style={{ fontSize: "clamp(1.9rem, 4.4vw, 3.6rem)", color: "#111" }}
           >
             <span className="block mb-2" style={{ whiteSpace: "nowrap" }}>
               {renderHeadline1()}
             </span>
-            <WordReveal delay={0.55} style={{ display: "block", whiteSpace: "nowrap" }}>
+            <WordReveal delay={0.5} style={{ display: "block", whiteSpace: "nowrap" }}>
               <span style={{ color: "#111" }}>{t.headline2}</span>
             </WordReveal>
           </h1>
