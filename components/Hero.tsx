@@ -4,6 +4,7 @@ import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import HeroVisualE from "./hero-previews/HeroVisualE";
 
 function WordReveal({ children, delay = 0, style }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
   return (
@@ -94,121 +95,6 @@ function HighlightedVerb({
         />
       </motion.span>
     </span>
-  );
-}
-
-function VennDiagram() {
-  const AXIS_GAME = "#e63946";
-  const AXIS_COMM = "#ff8c42";
-  const AXIS_TECH = "#00a3cc";
-  return (
-    <div className="relative w-full max-w-[560px] mx-auto aspect-[1/0.85] pointer-events-none">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
-        className="absolute inset-0"
-        style={{ mixBlendMode: "multiply" }}
-      >
-        <div
-          className="absolute rounded-full"
-          style={{
-            left: "8%", top: "8%",
-            width: "52%", height: "64%",
-            background: AXIS_GAME,
-            opacity: 0.78,
-            filter: "blur(0.3px)",
-          }}
-        />
-        <div
-          className="absolute rounded-full"
-          style={{
-            right: "8%", top: "8%",
-            width: "52%", height: "64%",
-            background: AXIS_TECH,
-            opacity: 0.78,
-            filter: "blur(0.3px)",
-          }}
-        />
-        <div
-          className="absolute rounded-full"
-          style={{
-            left: "24%", bottom: "0%",
-            width: "52%", height: "64%",
-            background: AXIS_COMM,
-            opacity: 0.88,
-            filter: "blur(0.3px)",
-          }}
-        />
-      </motion.div>
-
-      {/* Labels — centered within each circle's unique (non-overlapping) zone */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 1.0 }}
-        className="absolute font-black tracking-[0.12em] text-white/95"
-        style={{
-          left: "22%",
-          top: "30%",
-          transform: "translate(-50%, -50%)",
-          fontSize: "clamp(11px, 2vw, 13px)",
-          textShadow: "0 1px 6px rgba(0,0,0,0.25)",
-        }}
-      >
-        GAME
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 1.1 }}
-        className="absolute font-black tracking-[0.12em] text-white/95"
-        style={{
-          left: "78%",
-          top: "30%",
-          transform: "translate(-50%, -50%)",
-          fontSize: "clamp(11px, 2vw, 13px)",
-          textShadow: "0 1px 6px rgba(0,0,0,0.25)",
-        }}
-      >
-        TECH
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-        className="absolute font-black tracking-[0.12em] text-white/95"
-        style={{
-          left: "50%",
-          top: "82%",
-          transform: "translate(-50%, -50%)",
-          fontSize: "clamp(11px, 2.2vw, 14px)",
-          textShadow: "0 1px 6px rgba(0,0,0,0.25)",
-        }}
-      >
-        COMMUNITY
-      </motion.div>
-
-      {/* Center LULU.AI badge */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, delay: 1.35, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
-      >
-        <div
-          className="px-4 py-2 rounded-full text-[13px] font-black tracking-[0.12em]"
-          style={{
-            background: "#fff",
-            color: "#111",
-            border: "1px solid rgba(0,0,0,0.08)",
-            boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
-          }}
-        >
-          LULU.AI
-        </div>
-      </motion.div>
-    </div>
   );
 }
 
@@ -313,9 +199,9 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        {/* Right: Venn diagram */}
+        {/* Right: Kinetic brand typography */}
         <div className="flex items-center justify-center">
-          <VennDiagram />
+          <HeroVisualE />
         </div>
       </div>
 
