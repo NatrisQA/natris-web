@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLang } from "../LangContext";
 
 /* Option E — Kinetic Typography
  * 레퍼런스: Stripe, Linear, Framer
  * 거대한 LULU.AI 워드마크 + 6개 서비스 색상 그라데이션 플로우 + 서비스명 티커
+ * 하단 캡션: 메인 헤드라인 (lang-aware)
  */
 const SERVICES = [
   { name: "PokerLulu", color: "#f59e0b" },
@@ -15,14 +17,50 @@ const SERVICES = [
   { name: "GTOlulu",   color: "#8b5cf6" },
 ];
 
+const VERB_COLORS = {
+  gather: "#e63946",
+  stay: "#ff8c42",
+  grow: "#00a3cc",
+};
+
 export default function HeroVisualE() {
+  const { lang } = useLang();
   const gradientStops = SERVICES.map((s) => s.color).join(", ");
   const gradient = `linear-gradient(90deg, ${gradientStops}, ${SERVICES[0].color})`;
 
+  const renderHeadlineCaption = () => {
+    if (lang === "ko") {
+      return (
+        <>
+          <span style={{ display: "block" }}>
+            <span style={{ color: VERB_COLORS.gather }}>모이고</span>
+            <span style={{ color: "#111" }}>, </span>
+            <span style={{ color: VERB_COLORS.stay }}>머물고</span>
+            <span style={{ color: "#111" }}>, </span>
+            <span style={{ color: VERB_COLORS.grow }}>성장하는</span>
+          </span>
+          <span style={{ display: "block", color: "#111" }}>커뮤니티를 만듭니다</span>
+        </>
+      );
+    }
+    return (
+      <>
+        <span style={{ display: "block" }}>
+          <span style={{ color: VERB_COLORS.gather }}>Gather</span>
+          <span style={{ color: "#111" }}>, </span>
+          <span style={{ color: VERB_COLORS.stay }}>Stay</span>
+          <span style={{ color: "#111" }}>, and </span>
+          <span style={{ color: VERB_COLORS.grow }}>Grow</span>
+        </span>
+        <span style={{ display: "block", color: "#111" }}>We build the community</span>
+      </>
+    );
+  };
+
   return (
     <div
-      className="relative w-full max-w-[640px] mx-auto flex flex-col items-center justify-center"
-      style={{ minHeight: 420, padding: "48px 24px" }}
+      className="relative w-full max-w-[720px] mx-auto flex flex-col items-center justify-center"
+      style={{ padding: "32px 24px" }}
     >
       <style>{`
         @keyframes lulu-flow {
@@ -79,8 +117,8 @@ export default function HeroVisualE() {
           height: 2,
           background: gradient,
           borderRadius: 999,
-          marginTop: 32,
-          marginBottom: 28,
+          marginTop: 28,
+          marginBottom: 24,
         }}
       />
 
@@ -88,7 +126,7 @@ export default function HeroVisualE() {
       <div
         style={{
           width: "100%",
-          maxWidth: 520,
+          maxWidth: 560,
           overflow: "hidden",
           maskImage: "linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent)",
           WebkitMaskImage: "linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent)",
@@ -123,15 +161,19 @@ export default function HeroVisualE() {
         </div>
       </div>
 
-      {/* bottom micro-caption */}
+      {/* headline caption — replaces "SIX PLATFORMS · ONE COMMUNITY" */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.4 }}
-        className="text-[10px] font-bold tracking-[0.3em] mt-8"
-        style={{ color: "#bbb" }}
+        key={lang}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 1.3 }}
+        className="font-black tracking-tight text-center mt-10"
+        style={{
+          fontSize: "clamp(18px, 2.4vw, 26px)",
+          lineHeight: 1.25,
+        }}
       >
-        SIX PLATFORMS · ONE COMMUNITY
+        {renderHeadlineCaption()}
       </motion.div>
     </div>
   );
