@@ -34,16 +34,6 @@ export default function AxesConnection() {
   return (
     <section className="py-28 px-6" style={{ background: "#fff" }}>
       <div className="max-w-[1200px] mx-auto">
-        {/* Variant label */}
-        <div className="text-center mb-8">
-          <span
-            className="inline-block text-[10px] font-black tracking-[0.24em] px-3 py-1.5 rounded-full"
-            style={{ background: "#111", color: "#fff" }}
-          >
-            방향 A · 유기적 연결 다이어그램
-          </span>
-        </div>
-
         {/* Header */}
         <div className="text-center mb-12">
           <div
