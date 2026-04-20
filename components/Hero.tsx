@@ -221,7 +221,7 @@ export default function Hero() {
     const container = document.getElementById("scroll-container");
     if (!container) return;
     const onScroll = () => {
-      if (container.scrollTop > 80) setScrolled(true);
+      setScrolled(container.scrollTop > 80);
     };
     container.addEventListener("scroll", onScroll, { passive: true });
     return () => container.removeEventListener("scroll", onScroll);
