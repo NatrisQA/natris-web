@@ -306,45 +306,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.75 }}
-            className="whitespace-pre-line leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
+            className="whitespace-pre-line leading-relaxed max-w-xl mx-auto lg:mx-0"
             style={{ color: "#666", fontSize: "clamp(15px, 1.4vw, 17px)" }}
           >
             {t.sub}
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="flex items-center gap-3 justify-center lg:justify-start"
-          >
-            <a
-              href="#products"
-              onClick={(e) => {
-                e.preventDefault();
-                const c = document.getElementById("scroll-container");
-                const el = document.getElementById("products");
-                if (c && el) c.scrollTo({ top: el.offsetTop - 72, behavior: "smooth" });
-              }}
-              className="px-6 py-3 rounded-full text-sm font-bold"
-              style={{ background: "#111", color: "#fff" }}
-            >
-              {t.cta} →
-            </a>
-            <a
-              href="#partners"
-              onClick={(e) => {
-                e.preventDefault();
-                const c = document.getElementById("scroll-container");
-                const el = document.getElementById("partners");
-                if (c && el) c.scrollTo({ top: el.offsetTop - 72, behavior: "smooth" });
-              }}
-              className="px-6 py-3 rounded-full text-sm font-bold"
-              style={{ background: "#fff", color: "#111", border: "1px solid #dcdcdc" }}
-            >
-              {t.cta2}
-            </a>
-          </motion.div>
         </div>
 
         {/* Right: Venn diagram */}
