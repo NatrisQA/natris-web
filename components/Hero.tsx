@@ -136,29 +136,27 @@ export default function Hero() {
   const AXIS_COMM = "var(--axis-community)";
   const AXIS_TECH = "var(--axis-tech)";
 
-  // Split headline1 "게임, 커뮤니티, 기술이 만나는" into colored keywords
+  // Split headline1 "모이고, 머물고, 성장하는" into colored verbs
   const renderHeadline1 = () => {
     if (lang === "ko") {
       return (
         <>
-          <WordReveal delay={0.18}><span style={{ color: AXIS_GAME }}>게임</span></WordReveal>
+          <WordReveal delay={0.18}><span style={{ color: AXIS_GAME }}>모이고</span></WordReveal>
           <WordReveal delay={0.22}>, </WordReveal>
-          <WordReveal delay={0.26}><span style={{ color: AXIS_COMM }}>커뮤니티</span></WordReveal>
+          <WordReveal delay={0.26}><span style={{ color: AXIS_COMM }}>머물고</span></WordReveal>
           <WordReveal delay={0.3}>, </WordReveal>
-          <WordReveal delay={0.34}><span style={{ color: AXIS_TECH }}>기술</span></WordReveal>
-          <WordReveal delay={0.38}>이 만나는</WordReveal>
+          <WordReveal delay={0.34}><span style={{ color: AXIS_TECH }}>성장하는</span></WordReveal>
         </>
       );
     }
     return (
       <>
-        <WordReveal delay={0.18}>Where </WordReveal>
-        <WordReveal delay={0.22}><span style={{ color: AXIS_GAME }}>Game</span></WordReveal>
-        <WordReveal delay={0.26}>, </WordReveal>
-        <WordReveal delay={0.3}><span style={{ color: AXIS_COMM }}>Community</span></WordReveal>
-        <WordReveal delay={0.34}>, </WordReveal>
-        <WordReveal delay={0.38}><span style={{ color: AXIS_TECH }}>Tech</span></WordReveal>
-        <WordReveal delay={0.42}> meet</WordReveal>
+        <WordReveal delay={0.18}><span style={{ color: AXIS_GAME }}>Gather</span></WordReveal>
+        <WordReveal delay={0.22}>, </WordReveal>
+        <WordReveal delay={0.26}><span style={{ color: AXIS_COMM }}>Stay</span></WordReveal>
+        <WordReveal delay={0.3}>, </WordReveal>
+        <WordReveal delay={0.34}>and </WordReveal>
+        <WordReveal delay={0.38}><span style={{ color: AXIS_TECH }}>Grow</span></WordReveal>
       </>
     );
   };

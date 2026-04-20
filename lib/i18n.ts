@@ -9,8 +9,8 @@ export const content = {
   hero: {
     ko: {
       tag: "lulu.ai",
-      headline1: "게임, 커뮤니티, 기술이 만나는",
-      headline2: "새로운 즐거움의 중심",
+      headline1: "모이고, 머물고, 성장하는",
+      headline2: "커뮤니티를 만듭니다",
       sub: "게임과 커뮤니티, 기술을 연결하는 플랫폼 기업.",
       cta: "서비스 보기",
       cta2: "제휴 문의",
@@ -18,8 +18,8 @@ export const content = {
     },
     en: {
       tag: "lulu.ai",
-      headline1: "Where Game, Community, Tech meet",
-      headline2: "A New Center of Fun",
+      headline1: "Gather, Stay, and Grow",
+      headline2: "We build the community",
       sub: "A platform company connecting game, community, and technology.",
       cta: "Explore Services",
       cta2: "Partner With Us",
