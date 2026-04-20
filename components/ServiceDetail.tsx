@@ -389,7 +389,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
               className="font-black tracking-tight"
               style={{ fontSize: "clamp(1.8rem, 4.2vw, 3rem)", color: "#111" }}
             >
-              {lang === "ko" ? "무엇이 다른가" : "What Makes It Different"}
+              {lang === "ko" ? "플레이어의 경험을 만드는 기능들" : "Features That Shape the Experience"}
             </h2>
           </div>
 
