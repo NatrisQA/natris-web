@@ -4,6 +4,18 @@ import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
 
+/* Drop logos at /public/logos/{serviceId}.svg (or .png) and
+   uncomment the matching line. If undefined, the service initial
+   letter renders inside the colored dot. */
+const SERVICE_LOGOS: Record<string, string | undefined> = {
+  // pokerlulu: "/logos/pokerlulu.svg",
+  // linkplay: "/logos/linkplay.svg",
+  // moitto: "/logos/moitto.svg",
+  // shuffleup: "/logos/shuffleup.svg",
+  // tubelulu: "/logos/tubelulu.svg",
+  // gtolulu: "/logos/gtolulu.svg",
+};
+
 /* Option A — 유기적 연결 다이어그램
  * 중앙 'COMMUNITY' 허브 + 6개 서비스가 원형 궤도에 배치
  * 각 서비스 → 커뮤니티로 연결선이 흐르는 구조
@@ -133,14 +145,14 @@ export default function AxesConnection() {
             <text
               x={cx}
               y={cy + 16}
-              fontSize="11"
+              fontSize="10"
               textAnchor="middle"
               fill="#ff8c42"
-              fontWeight="700"
+              fontWeight="800"
               fontFamily="sans-serif"
-              letterSpacing="0.1em"
+              letterSpacing="0.28em"
             >
-              {lang === "ko" ? "하나의 커뮤니티" : "one community"}
+              WOVEN TOGETHER
             </text>
 
             {/* Service nodes */}
@@ -149,6 +161,7 @@ export default function AxesConnection() {
               const x = cx + r * Math.cos(a);
               const y = cy + r * Math.sin(a);
               const labelYOffset = Math.sin(a) > 0 ? 68 : -48;
+              const logo = SERVICE_LOGOS[s.id];
               return (
                 <motion.g
                   key={`node-${s.id}`}
@@ -159,21 +172,44 @@ export default function AxesConnection() {
                 >
                   {/* Outer ring */}
                   <circle cx={x} cy={y} r="42" fill="#fff" stroke={s.color} strokeWidth="1.4" opacity="0.3" />
-                  {/* Inner filled */}
-                  <circle cx={x} cy={y} r="32" fill={`${s.color}15`} stroke={s.color} strokeWidth="1.6" />
-                  {/* Core dot */}
-                  <circle cx={x} cy={y} r="16" fill={s.color} />
-                  <text
-                    x={x}
-                    y={y + 4}
-                    fontSize="11"
-                    textAnchor="middle"
-                    fill="#fff"
-                    fontWeight="900"
-                    fontFamily="sans-serif"
-                  >
-                    {s.name[0].toUpperCase()}
-                  </text>
+
+                  {logo ? (
+                    <>
+                      {/* Logo plate (white bg + colored ring) */}
+                      <circle cx={x} cy={y} r="32" fill="#fff" stroke={s.color} strokeWidth="1.8" />
+                      <defs>
+                        <clipPath id={`logo-clip-${s.id}`}>
+                          <circle cx={x} cy={y} r="28" />
+                        </clipPath>
+                      </defs>
+                      <image
+                        href={logo}
+                        x={x - 28}
+                        y={y - 28}
+                        width="56"
+                        height="56"
+                        clipPath={`url(#logo-clip-${s.id})`}
+                        preserveAspectRatio="xMidYMid meet"
+                      />
+                    </>
+                  ) : (
+                    <>
+                      {/* Fallback: initial letter on colored dot */}
+                      <circle cx={x} cy={y} r="32" fill={`${s.color}15`} stroke={s.color} strokeWidth="1.6" />
+                      <circle cx={x} cy={y} r="16" fill={s.color} />
+                      <text
+                        x={x}
+                        y={y + 4}
+                        fontSize="11"
+                        textAnchor="middle"
+                        fill="#fff"
+                        fontWeight="900"
+                        fontFamily="sans-serif"
+                      >
+                        {s.name[0].toUpperCase()}
+                      </text>
+                    </>
+                  )}
 
                   {/* Labels */}
                   <text
