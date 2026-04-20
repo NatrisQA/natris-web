@@ -54,9 +54,9 @@ function ServiceVisual({ id, color, imageSrc }: { id: string; color: string; ima
     ),
     linkplay: (
       <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        <circle cx="72" cy="85" r="34" fill={`${c}20`} />
-        <circle cx="72" cy="85" r="22" fill={`${c}48`} />
-        <path d="M64 74 L64 96 L86 85 Z" fill={c} />
+        <circle cx="72" cy="85" r="40" fill={`${c}18`} />
+        <circle cx="72" cy="85" r="28" fill={`${c}28`} />
+        <image href="/logos/linkplay.svg" x="48" y="61" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
         <path d="M120 85 Q145 60, 170 85 T220 85" stroke={`${c}aa`} strokeWidth="2" fill="none" strokeLinecap="round" />
         <path d="M120 85 Q150 45, 180 85 T240 85" stroke={`${c}66`} strokeWidth="2" fill="none" strokeLinecap="round" />
         <path d="M120 85 Q155 30, 190 85 T260 85" stroke={`${c}35`} strokeWidth="2" fill="none" strokeLinecap="round" />
@@ -154,12 +154,14 @@ function IconLogo({ id, color, size = 48 }: { id: string; color: string; size?: 
       </div>
     ),
     linkplay: (
-      <svg viewBox="0 0 40 40" fill="none">
-        <rect x="5" y="12" width="20" height="16" rx="3" fill={`${c}22`} stroke={`${c}70`} strokeWidth="1.4" />
-        <path d="M11 16 L11 24 L20 20 Z" fill={c} />
-        <circle cx="28" cy="14" r="3" fill={c} />
-        <path d="M30 8 Q38 20 30 32" stroke={`${c}55`} strokeWidth="1.4" fill="none" strokeLinecap="round" />
-      </svg>
+      <div style={{ width: "100%", height: "100%", borderRadius: 8, overflow: "hidden" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/linkplay.svg"
+          alt="LinkPlay"
+          style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
+        />
+      </div>
     ),
     moitto: (
       <svg viewBox="0 0 40 40" fill="none">

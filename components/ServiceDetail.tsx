@@ -642,13 +642,32 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
             boxShadow: `0 30px 80px ${color}25`,
           }}
         />
+        {/* Brand logo badge */}
+        <div
+          className="absolute left-[10%] -top-4 flex items-center gap-2 px-3 py-2 rounded-full"
+          style={{
+            background: "#fff",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+            border: "1px solid #eee",
+            zIndex: 2,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logos/linkplay.svg" alt="LinkPlay" style={{ width: 22, height: 22, display: "block" }} />
+          <span className="text-[12px] font-black tracking-wide" style={{ color: "#111" }}>LinkPlay</span>
+        </div>
         {/* Video window */}
         <div
           className="absolute left-[10%] top-[12%] right-[10%] rounded-2xl aspect-video"
           style={{ background: "#111", overflow: "hidden" }}
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-0 h-0" style={{ borderLeft: `18px solid ${color}`, borderTop: "12px solid transparent", borderBottom: "12px solid transparent", marginLeft: 4 }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/linkplay.svg"
+              alt=""
+              style={{ width: "38%", height: "auto", filter: "drop-shadow(0 6px 18px rgba(47,128,237,0.55))" }}
+            />
           </div>
           <div
             className="absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] font-black"

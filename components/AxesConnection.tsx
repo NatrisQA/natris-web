@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
    letter renders inside the colored dot. */
 const SERVICE_LOGOS: Record<string, string | undefined> = {
   // pokerlulu: "/logos/pokerlulu.svg",
-  // linkplay: "/logos/linkplay.svg",
+  linkplay: "/logos/linkplay.svg",
   // moitto: "/logos/moitto.svg",
   // shuffleup: "/logos/shuffleup.svg",
   // tubelulu: "/logos/tubelulu.svg",
