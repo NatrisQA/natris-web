@@ -55,37 +55,6 @@ export default function About() {
           </p>
         </motion.div>
 
-        {/* Values */}
-        <div className="mb-24">
-          <div
-            className="text-[11px] font-black tracking-[0.28em] mb-8 text-center"
-            style={{ color: "#999" }}
-          >
-            CORE VALUES
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {t.values.map((val, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="rounded-xl p-5 text-center"
-                style={{ background: "#fff", border: "1px solid #ececec" }}
-              >
-                <div className="text-2xl mb-3">{val.icon}</div>
-                <h4 className="text-base font-black mb-2" style={{ color: "#111" }}>
-                  {val.title}
-                </h4>
-                <p className="text-[13px] leading-relaxed" style={{ color: "#666" }}>
-                  {val.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
         {/* History Timeline (vertical) */}
         <div className="max-w-2xl mx-auto">
           <div

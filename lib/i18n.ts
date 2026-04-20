@@ -145,28 +145,6 @@ export const content = {
         label: "MISSION",
         text: "플레이어가 모이고, 커뮤니티가 만들어지고, 새로운 경험이 시작되는 곳.\n우리는 그 연결의 기반을 설계합니다.",
       },
-      values: [
-        {
-          icon: "🔗",
-          title: "연결",
-          desc: "플레이어, 크리에이터, 커뮤니티를 하나의 생태계로 연결합니다.",
-        },
-        {
-          icon: "⚡",
-          title: "실행",
-          desc: "기획에 머무르지 않고 빠르게 만들고 검증합니다.",
-        },
-        {
-          icon: "🎯",
-          title: "몰입",
-          desc: "사용자가 진짜 원하는 경험에 집중하고 불필요한 건 빼냅니다.",
-        },
-        {
-          icon: "🌱",
-          title: "성장",
-          desc: "개인의 실력도, 커뮤니티의 규모도 함께 자라는 구조를 설계합니다.",
-        },
-      ],
       milestones: [
         { date: "2026.02", text: "법인 설립" },
         { date: "2026.03", text: "포커룰루 등급분류 완료" },
@@ -187,28 +165,6 @@ export const content = {
         label: "MISSION",
         text: "Where players gather, communities form, and new experiences begin.\nWe design the foundation that connects it all.",
       },
-      values: [
-        {
-          icon: "🔗",
-          title: "Connect",
-          desc: "Linking players, creators, and communities into one ecosystem.",
-        },
-        {
-          icon: "⚡",
-          title: "Execute",
-          desc: "We don't just plan. We build fast and validate.",
-        },
-        {
-          icon: "🎯",
-          title: "Focus",
-          desc: "We focus on experiences users truly want and cut everything else.",
-        },
-        {
-          icon: "🌱",
-          title: "Grow",
-          desc: "We design structures where individuals and communities grow together.",
-        },
-      ],
       milestones: [
         { date: "2026.02", text: "Incorporated" },
         { date: "2026.03", text: "PokerLulu GRAC Rating" },
