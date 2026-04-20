@@ -24,24 +24,26 @@ function HighlightedVerb({
   children,
   color,
   delay,
+  noSlide = false,
 }: {
   children: React.ReactNode;
   color: string;
   delay: number;
+  noSlide?: boolean;
 }) {
   return (
     <span
       style={{
         display: "inline-block",
-        overflow: "hidden",
+        overflow: noSlide ? "visible" : "hidden",
         verticalAlign: "top",
         position: "relative",
       }}
     >
       <motion.span
         style={{ display: "inline-block", position: "relative", color }}
-        initial={{ y: "110%", opacity: 0 }}
-        animate={{ y: "0%", opacity: 1 }}
+        initial={noSlide ? { opacity: 0 } : { y: "110%", opacity: 0 }}
+        animate={noSlide ? { opacity: 1 } : { y: "0%", opacity: 1 }}
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay }}
       >
         {/* Soft highlight blob behind the word */}
@@ -228,7 +230,7 @@ export default function Hero() {
           <WordReveal delay={0.22}>, </WordReveal>
           <HighlightedVerb delay={0.3} color={AXIS_COMM}>머물고</HighlightedVerb>
           <WordReveal delay={0.34}>, </WordReveal>
-          <HighlightedVerb delay={0.42} color={AXIS_TECH}>성장하는</HighlightedVerb>
+          <HighlightedVerb delay={0.42} color={AXIS_TECH} noSlide>성장하는</HighlightedVerb>
         </>
       );
     }
@@ -239,7 +241,7 @@ export default function Hero() {
         <HighlightedVerb delay={0.3} color={AXIS_COMM}>Stay</HighlightedVerb>
         <WordReveal delay={0.34}>, </WordReveal>
         <WordReveal delay={0.38}>and </WordReveal>
-        <HighlightedVerb delay={0.46} color={AXIS_TECH}>Grow</HighlightedVerb>
+        <HighlightedVerb delay={0.46} color={AXIS_TECH} noSlide>Grow</HighlightedVerb>
       </>
     );
   };
