@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SECTIONS = [
-  { id: "hero",        label: { ko: "홈",      en: "Home" } },
-  { id: "products",    label: { ko: "서비스",  en: "Services" } },
-  { id: "news",        label: { ko: "소식",    en: "News" } },
-  { id: "about",       label: { ko: "소개",    en: "About" } },
+  { id: "hero",     label: { ko: "홈",      en: "Home" } },
+  { id: "axes",     label: { ko: "3축",     en: "Axes" } },
+  { id: "products", label: { ko: "서비스",  en: "Services" } },
+  { id: "about",    label: { ko: "소개",    en: "About" } },
+  { id: "news",     label: { ko: "소식",    en: "News" } },
+  { id: "partners", label: { ko: "파트너",  en: "Partners" } },
 ];
 
 export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
@@ -27,7 +29,7 @@ export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
           }
         });
       },
-      { root: container, threshold: 0.5 }
+      { root: container, threshold: 0.4 }
     );
 
     SECTIONS.forEach((s) => {
@@ -42,15 +44,15 @@ export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
     const container = document.getElementById("scroll-container");
     const target = document.getElementById(id);
     if (!container || !target) return;
-    container.scrollTo({ top: target.offsetTop, behavior: "smooth" });
+    const offset = id === "hero" ? 0 : 72;
+    container.scrollTo({ top: target.offsetTop - offset, behavior: "smooth" });
   };
 
   return (
-    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3">
-      {/* Connecting line */}
+    <div className="fixed right-5 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end gap-3">
       <div
         className="absolute right-[7px] top-3 bottom-3 w-px pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)" }}
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.12), transparent)" }}
       />
 
       {SECTIONS.map((s, i) => {
@@ -66,7 +68,6 @@ export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
             className="relative flex items-center gap-2.5 justify-end"
             aria-label={s.label[lang]}
           >
-            {/* Label */}
             <AnimatePresence>
               {isHovered && (
                 <motion.span
@@ -74,29 +75,26 @@ export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 6 }}
                   transition={{ duration: 0.18 }}
-                  className="text-xs font-medium whitespace-nowrap"
-                  style={{ color: isActive ? "#a5b4fc" : "rgba(255,255,255,0.45)" }}
+                  className="text-[11px] font-bold whitespace-nowrap"
+                  style={{ color: isActive ? "#e60012" : "#666" }}
                 >
                   {s.label[lang]}
                 </motion.span>
               )}
             </AnimatePresence>
 
-            {/* Dot */}
             <motion.div
               animate={{
                 scale: isActive ? 1 : isHovered ? 0.85 : 0.6,
-                opacity: isActive ? 1 : isHovered ? 0.7 : 0.3,
+                opacity: isActive ? 1 : isHovered ? 0.8 : 0.35,
               }}
               transition={{ duration: 0.2 }}
-              className="relative rounded-full flex-shrink-0"
+              className="rounded-full flex-shrink-0"
               style={{
                 width: 8,
                 height: 8,
-                background: isActive
-                  ? "linear-gradient(135deg, #a5b4fc, #8b5cf6)"
-                  : "rgba(255,255,255,0.6)",
-                boxShadow: isActive ? "0 0 10px rgba(165,180,252,0.8), 0 0 20px rgba(139,92,246,0.4)" : "none",
+                background: isActive ? "var(--brand-red)" : "#666",
+                boxShadow: isActive ? "0 0 0 4px rgba(230,0,18,0.12)" : "none",
               }}
             />
           </button>

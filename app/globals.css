@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050508;
-  --foreground: #ffffff;
+  --background: #ffffff;
+  --foreground: #111111;
+  --secondary-bg: #f7f7f7;
+  --muted-bg: #fafafa;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-soft: #ececec;
+  --border-hard: #dcdcdc;
+  --brand-red: #e60012;
+  --axis-game: #e63946;
+  --axis-community: #ff8c42;
+  --axis-tech: #00a3cc;
 }
 
 @theme inline {
@@ -16,127 +27,29 @@
 
 html, body {
   height: 100%;
-  overflow: hidden;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Noise grain — globally on top of everything */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.045;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
-}
-
 ::selection {
-  background: rgba(99, 102, 241, 0.4);
+  background: rgba(230, 0, 18, 0.18);
+  color: #111;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  width: 0;
+  height: 0;
 }
 
-/* Shimmer sweep on hover */
-@keyframes shimmer {
-  0% { transform: translateX(-100%) skewX(-15deg); }
-  100% { transform: translateX(250%) skewX(-15deg); }
-}
-
-.btn-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-.btn-shimmer::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 40%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);
-  transform: translateX(-100%) skewX(-15deg);
-}
-.btn-shimmer:hover::after {
-  animation: shimmer 0.55s ease forwards;
-}
-
-/* Orb float animations */
-@keyframes floatA {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(28px, -38px) scale(1.05); }
-  66%       { transform: translate(-18px, 18px) scale(0.97); }
-}
-@keyframes floatB {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(-38px, 28px) scale(1.08); }
-  66%       { transform: translate(22px, -14px) scale(0.95); }
-}
-@keyframes floatC {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%       { transform: translate(14px, 22px) scale(1.03); }
-}
-
-.orb-a { animation: floatA 13s ease-in-out infinite; }
-.orb-b { animation: floatB 16s ease-in-out infinite; }
-.orb-c { animation: floatC 10s ease-in-out infinite; }
-
-/* Hero tag flicker */
-@keyframes flicker {
-  0%, 94%, 100% { opacity: 1; }
-  95%  { opacity: 0.35; }
-  96%  { opacity: 1; }
-  97%  { opacity: 0.55; }
-  98%  { opacity: 1; }
-}
-.tag-flicker { animation: flicker 7s infinite; }
-
-/* Animated border trace on cards */
-@keyframes borderTrace {
-  0%   { background-position: 0% 0%; }
-  100% { background-position: 200% 0%; }
-}
-
-.card-trace {
-  position: relative;
-}
-.card-trace::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(99, 102, 241, 0.75) 30%,
-    rgba(236, 72, 153, 0.75) 65%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  animation: borderTrace 2.2s linear infinite paused;
-}
-.card-trace:hover::before {
-  opacity: 1;
-  animation-play-state: running;
-}
-
-/* Number counter tabular figures */
+/* Utility: tabular figures */
 .tabular { font-variant-numeric: tabular-nums; }
 
-/* Section divider — gradient line between sections */
+/* Section divider — subtle gray line */
 .section-divider {
   position: relative;
 }
@@ -146,25 +59,57 @@ body::after {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(80%, 500px);
+  width: min(80%, 720px);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
   pointer-events: none;
 }
 
-/* Focus-visible outline for keyboard navigation */
+/* Partners marquee */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+/* Scroll indicator */
+@keyframes scrollHint {
+  0%   { transform: translateY(0); opacity: 0.9; }
+  60%  { transform: translateY(8px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 0.9; }
+}
+.scroll-hint {
+  animation: scrollHint 1.8s ease-in-out infinite;
+}
+
+/* Focus-visible outline */
 :focus-visible {
-  outline: 2px solid rgba(99, 102, 241, 0.6);
+  outline: 2px solid var(--brand-red);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* Disable hover effects on touch devices */
-@media (hover: none) {
-  .card-trace::before {
-    display: none;
-  }
-  .btn-shimmer::after {
-    display: none;
-  }
+/* Card hover (light) */
+.light-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.light-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+  border-color: var(--border-hard);
+}
+
+/* Hide snap on main container — natural scroll */
+#scroll-container {
+  scroll-behavior: smooth;
 }

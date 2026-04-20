@@ -9,19 +9,125 @@ export const content = {
   hero: {
     ko: {
       tag: "lulu.ai",
-      headline1: "커뮤니티로 잇는",
-      headline2: "새로운 세상",
-      sub: "게임, 커뮤니티, 기술이 만나는\n플레이어 생태계를 설계합니다.",
+      headline1: "게임, 커뮤니티, 기술이 만나는",
+      headline2: "새로운 즐거움의 중심",
+      sub: "6개의 서비스, 3개의 축이 하나로 연결된\n커뮤니티 중심 엔터테인먼트 그룹.",
       cta: "서비스 보기",
       cta2: "제휴 문의",
+      axisHighlights: { game: "게임", community: "커뮤니티", tech: "기술" },
     },
     en: {
       tag: "lulu.ai",
-      headline1: "A New World",
-      headline2: "Connected by Community.",
-      sub: "We design the player ecosystem where\ngame, community, and technology converge.",
+      headline1: "Where Game, Community, Tech meet",
+      headline2: "A New Center of Fun",
+      sub: "Six services, three axes, one ecosystem —\na community-driven entertainment group.",
       cta: "Explore Services",
       cta2: "Partner With Us",
+      axisHighlights: { game: "Game", community: "Community", tech: "Tech" },
+    },
+  },
+
+  axes: {
+    ko: {
+      label: "THREE AXES",
+      headline: "세 개의 축이 교차하는 곳",
+      sub: "커뮤니티가 중심에서 모든 축을 잇습니다.",
+      items: [
+        {
+          key: "game",
+          color: "#e63946",
+          name: "GAME",
+          title: "즐거움의 시작점",
+          desc: "몰입할 수 있는 게임 경험",
+          services: ["PokerLulu", "LinkPlay"],
+        },
+        {
+          key: "community",
+          color: "#ff8c42",
+          name: "COMMUNITY",
+          title: "연결의 중심",
+          desc: "모임·대회·크리에이터 커뮤니티",
+          services: ["Moitto", "ShuffleUp"],
+        },
+        {
+          key: "tech",
+          color: "#00a3cc",
+          name: "TECH",
+          title: "경험의 확장",
+          desc: "AI와 데이터가 만드는 새로운 가치",
+          services: ["GTOLulu", "TubeLuLu"],
+        },
+      ],
+    },
+    en: {
+      label: "THREE AXES",
+      headline: "Where three axes intersect",
+      sub: "Community sits at the center, connecting every axis.",
+      items: [
+        {
+          key: "game",
+          color: "#e63946",
+          name: "GAME",
+          title: "Where fun begins",
+          desc: "Immersive game experiences",
+          services: ["PokerLulu", "LinkPlay"],
+        },
+        {
+          key: "community",
+          color: "#ff8c42",
+          name: "COMMUNITY",
+          title: "The center of connection",
+          desc: "Meetups, tournaments, creator community",
+          services: ["Moitto", "ShuffleUp"],
+        },
+        {
+          key: "tech",
+          color: "#00a3cc",
+          name: "TECH",
+          title: "Experience, extended",
+          desc: "New value through AI and data",
+          services: ["GTOLulu", "TubeLuLu"],
+        },
+      ],
+    },
+  },
+
+  partners: {
+    ko: {
+      label: "PARTNERS",
+      headline: "함께 만드는 파트너들",
+      sub: "전국 2,000+ 홀덤펍, 토너먼트 운영사, 방송 플랫폼과 협력합니다.",
+      categories: [
+        { name: "HOLDEM PUBS", desc: "전국 홀덤펍 네트워크" },
+        { name: "TOURNAMENT", desc: "오프라인 대회 운영사" },
+        { name: "BROADCAST", desc: "방송·스트리밍 플랫폼" },
+        { name: "PAYMENTS", desc: "결제·정산 인프라" },
+        { name: "CONTENT", desc: "크리에이터·IP 제휴" },
+      ],
+      marquee: [
+        "HOLDEM PUB A", "TOURNAMENT ORG", "BROADCAST X",
+        "PAYMENT CO", "CONTENT STUDIO", "KOREA POKER",
+        "LIVE PLATFORM", "EVENT PARTNER",
+      ],
+      cta: "제휴 문의하기",
+    },
+    en: {
+      label: "PARTNERS",
+      headline: "Partners we build with",
+      sub: "2,000+ holdem pubs, tournament operators, and broadcast platforms across Korea.",
+      categories: [
+        { name: "HOLDEM PUBS", desc: "Nationwide pub network" },
+        { name: "TOURNAMENT", desc: "Offline tournament operators" },
+        { name: "BROADCAST", desc: "Broadcast & streaming" },
+        { name: "PAYMENTS", desc: "Payments & settlement" },
+        { name: "CONTENT", desc: "Creator & IP partners" },
+      ],
+      marquee: [
+        "HOLDEM PUB A", "TOURNAMENT ORG", "BROADCAST X",
+        "PAYMENT CO", "CONTENT STUDIO", "KOREA POKER",
+        "LIVE PLATFORM", "EVENT PARTNER",
+      ],
+      cta: "Partner with us",
     },
   },
 
@@ -125,6 +231,7 @@ export const content = {
     items: [
       {
         id: "pokerlulu",
+        axis: "game" as const,
         color: "#f59e0b",
         tag: { ko: "온라인 소셜 포커 플랫폼", en: "Online Social Poker Platform" },
         name: "PokerLulu",
@@ -164,6 +271,7 @@ export const content = {
       },
       {
         id: "linkplay",
+        axis: "game" as const,
         color: "#06b6d4",
         tag: { ko: "방송·게임 인터랙티브 플랫폼", en: "Broadcast & Game Interactive Platform" },
         name: "LinkPlay",
@@ -203,6 +311,7 @@ export const content = {
       },
       {
         id: "moitto",
+        axis: "community" as const,
         color: "#10b981",
         tag: { ko: "클럽·소모임 플랫폼", en: "Club & Community Platform" },
         name: "모이또",
@@ -242,6 +351,7 @@ export const content = {
       },
       {
         id: "tubelulu",
+        axis: "tech" as const,
         color: "#ec4899",
         tag: { ko: "지식기반 팬덤교류 플랫폼", en: "Knowledge-based Fandom Exchange Platform" },
         name: "TubeLuLu",
@@ -281,6 +391,7 @@ export const content = {
       },
       {
         id: "shuffleup",
+        axis: "community" as const,
         color: "#3b82f6",
         tag: { ko: "대회 운영 솔루션 플랫폼", en: "Tournament Operations Platform" },
         name: "ShuffleUp",
@@ -320,6 +431,7 @@ export const content = {
       },
       {
         id: "gtolulu",
+        axis: "tech" as const,
         color: "#8b5cf6",
         tag: { ko: "AI기반 GTO솔버", en: "AI-powered GTO Solver" },
         name: "GTOlulu",
