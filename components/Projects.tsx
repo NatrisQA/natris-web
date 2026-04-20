@@ -17,6 +17,121 @@ const AXIS_LABEL: Record<string, string> = {
   tech: "TECH",
 };
 
+/* When real hero images arrive, drop them under /public/images/{id}/hero.{ext}
+   and set the path here. Abstract SVG fallback is rendered otherwise. */
+const HERO_IMAGES: Record<string, string | undefined> = {
+  // pokerlulu: "/images/pokerlulu/hero.png",
+  // linkplay: "/images/linkplay/hero.png",
+  // moitto: "/images/moitto/hero.png",
+  // shuffleup: "/images/shuffleup/hero.png",
+  // tubelulu: "/images/tubelulu/hero.png",
+  // gtolulu: "/images/gtolulu/hero.png",
+};
+
+/* ── Service visual (card top area) ── */
+function ServiceVisual({ id, color, imageSrc }: { id: string; color: string; imageSrc?: string }) {
+  if (imageSrc) {
+    return (
+      <div className="relative w-full" style={{ aspectRatio: "16 / 9", overflow: "hidden", background: "#f5f5f5" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={imageSrc} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      </div>
+    );
+  }
+
+  const c = color;
+  const patterns: Record<string, React.ReactNode> = {
+    pokerlulu: (
+      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+        <circle cx="220" cy="115" r="46" fill={`${c}22`} />
+        <circle cx="220" cy="115" r="32" fill={`${c}3a`} />
+        <circle cx="220" cy="115" r="18" fill={c} opacity="0.85" />
+        <circle cx="262" cy="62" r="20" fill={`${c}32`} />
+        <circle cx="176" cy="58" r="16" fill={`${c}50`} />
+        <text x="48" y="90" fontSize="38" fill={`${c}aa`} fontWeight="900" fontFamily="serif">♠</text>
+        <text x="92" y="128" fontSize="26" fill={`${c}66`} fontWeight="900" fontFamily="serif">♥</text>
+      </svg>
+    ),
+    linkplay: (
+      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+        <circle cx="72" cy="85" r="34" fill={`${c}20`} />
+        <circle cx="72" cy="85" r="22" fill={`${c}48`} />
+        <path d="M64 74 L64 96 L86 85 Z" fill={c} />
+        <path d="M120 85 Q145 60, 170 85 T220 85" stroke={`${c}aa`} strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M120 85 Q150 45, 180 85 T240 85" stroke={`${c}66`} strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M120 85 Q155 30, 190 85 T260 85" stroke={`${c}35`} strokeWidth="2" fill="none" strokeLinecap="round" />
+        <circle cx="258" cy="85" r="5" fill={c} />
+      </svg>
+    ),
+    moitto: (
+      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+        <circle cx="80" cy="65" r="18" fill={`${c}55`} />
+        <circle cx="60" cy="100" r="16" fill={`${c}40`} />
+        <circle cx="100" cy="100" r="16" fill={`${c}45`} />
+        <path d="M38 148 Q80 110, 122 148 Z" fill={`${c}32`} />
+        <circle cx="180" cy="55" r="14" fill={`${c}45`} />
+        <circle cx="220" cy="75" r="20" fill={`${c}38`} />
+        <circle cx="250" cy="50" r="12" fill={`${c}55`} />
+        <path d="M160 148 Q220 105, 280 148 Z" fill={`${c}28`} />
+      </svg>
+    ),
+    shuffleup: (
+      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+        <path d="M30 40 L70 40 L70 70 L120 70" stroke={`${c}cc`} strokeWidth="2" fill="none" />
+        <path d="M30 100 L70 100 L70 70" stroke={`${c}cc`} strokeWidth="2" fill="none" />
+        <path d="M30 130 L60 130" stroke={`${c}70`} strokeWidth="2" fill="none" />
+        <path d="M120 70 L180 70" stroke={c} strokeWidth="2.5" fill="none" />
+        <path d="M228 58 L272 58 L266 92 Q250 104, 250 104 Q250 104, 234 92 Z" fill={`${c}30`} stroke={c} strokeWidth="1.6" />
+        <text x="250" y="85" fontSize="16" textAnchor="middle" fill={c} fontWeight="900" fontFamily="sans-serif">★</text>
+        <rect x="244" y="110" width="12" height="16" rx="1" fill={`${c}80`} />
+        <rect x="236" y="128" width="28" height="4" rx="1" fill={c} />
+      </svg>
+    ),
+    tubelulu: (
+      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+        <rect x="34" y="38" width="140" height="88" rx="10" fill={`${c}18`} stroke={`${c}80`} strokeWidth="1.5" />
+        <path d="M92 68 L92 96 L124 82 Z" fill={c} />
+        <rect x="48" y="138" width="60" height="4" rx="2" fill={`${c}50`} />
+        <rect x="48" y="148" width="40" height="3" rx="1.5" fill={`${c}35`} />
+        <path d="M198 80 L204 60 L210 100 L216 50 L222 95 L228 65 L234 90 L240 58 L246 88 L252 70"
+          stroke={`${c}bb`} strokeWidth="1.6" fill="none" strokeLinejoin="round" />
+        <circle cx="224" cy="124" r="14" fill={`${c}25`} stroke={c} strokeWidth="1.5" />
+        <path d="M220 118 L220 130 L232 124 Z" fill={c} />
+      </svg>
+    ),
+    gtolulu: (
+      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+        <line x1="40" y1="140" x2="280" y2="140" stroke={`${c}25`} strokeWidth="1" />
+        <line x1="40" y1="30" x2="40" y2="140" stroke={`${c}25`} strokeWidth="1" />
+        <line x1="40" y1="100" x2="280" y2="100" stroke={`${c}18`} strokeWidth="1" strokeDasharray="2 3" />
+        <line x1="40" y1="65" x2="280" y2="65" stroke={`${c}18`} strokeWidth="1" strokeDasharray="2 3" />
+        <path d="M40 120 L78 85 L118 98 L156 52 L196 68 L234 34 L272 50"
+          stroke={c} strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="78" cy="85" r="4" fill={c} />
+        <circle cx="118" cy="98" r="4" fill={c} />
+        <circle cx="156" cy="52" r="5" fill={c} />
+        <circle cx="196" cy="68" r="4" fill={c} />
+        <circle cx="234" cy="34" r="5" fill={c} />
+        <rect x="226" y="108" width="46" height="22" rx="5" fill={`${c}18`} stroke={c} strokeWidth="1" />
+        <text x="249" y="124" fontSize="11" textAnchor="middle" fill={c} fontWeight="900" fontFamily="sans-serif">AI</text>
+      </svg>
+    ),
+  };
+
+  return (
+    <div
+      className="relative w-full"
+      style={{
+        aspectRatio: "16 / 9",
+        background: `linear-gradient(135deg, ${c}1c 0%, ${c}06 55%, #fafafa 100%)`,
+        overflow: "hidden",
+      }}
+    >
+      {patterns[id]}
+    </div>
+  );
+}
+
 /* ── Service icon ── */
 function IconLogo({ id, color, size = 48 }: { id: string; color: string; size?: number }) {
   const c = color;
@@ -247,7 +362,7 @@ export default function Projects() {
                   background: "#fff",
                   border: `1px solid ${isActive ? `${p.color}80` : "#ececec"}`,
                   width: "min(88vw, 340px)",
-                  minHeight: 420,
+                  minHeight: 540,
                   boxShadow: isActive
                     ? `0 24px 60px ${p.color}30, 0 10px 28px rgba(0,0,0,0.08)`
                     : "0 2px 8px rgba(0,0,0,0.03)",
@@ -266,6 +381,24 @@ export default function Projects() {
                     background: `radial-gradient(600px circle at 0% 0%, ${p.color}14, transparent 40%), radial-gradient(600px circle at 100% 100%, ${axisColor}10, transparent 40%)`,
                   }}
                 />
+
+                {/* Hero visual (abstract graphic or image) */}
+                <div
+                  className="-mx-7 -mt-7 mb-6 relative"
+                  style={{
+                    transform: isActive ? "scale(1.02)" : "scale(1)",
+                    transition: "transform 0.5s cubic-bezier(0.22,1,0.36,1)",
+                    transformOrigin: "center top",
+                  }}
+                >
+                  <ServiceVisual id={p.id} color={p.color} imageSrc={HERO_IMAGES[p.id]} />
+                  {/* Bottom fade for smoother handoff to white card body */}
+                  <div
+                    aria-hidden
+                    className="absolute left-0 right-0 bottom-0 pointer-events-none"
+                    style={{ height: 28, background: "linear-gradient(to bottom, transparent, #fff)" }}
+                  />
+                </div>
 
                 {/* Axis badge + status */}
                 <div className="flex items-center justify-between mb-6 relative">
