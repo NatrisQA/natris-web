@@ -4,6 +4,8 @@ import { LangProvider, useLang } from "@/components/LangContext";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Axes from "@/components/Axes";
+import AxesConnection from "@/components/AxesConnection";
+import AxesVision from "@/components/AxesVision";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import News from "@/components/News";
@@ -30,6 +32,21 @@ function PageContent() {
         <Nav />
         <Hero />
         <motion.section id="axes" {...sectionReveal}>
+          <AxesConnection />
+        </motion.section>
+        <motion.section id="axes-vision" {...sectionReveal}>
+          <AxesVision />
+        </motion.section>
+        {/* Keep original 3-card version below variants for reference — remove after choosing */}
+        <motion.section id="axes-cards" {...sectionReveal}>
+          <div className="text-center pt-16" style={{ background: "#fff" }}>
+            <span
+              className="inline-block text-[10px] font-black tracking-[0.24em] px-3 py-1.5 rounded-full"
+              style={{ background: "#666", color: "#fff" }}
+            >
+              현재 버전 · 3카드 구조
+            </span>
+          </div>
           <Axes />
         </motion.section>
         <motion.section id="products" {...sectionReveal} className="section-divider">
