@@ -1,21 +1,21 @@
 "use client";
 
-import HeroVisualE from "@/components/hero-previews/HeroVisualE";
-import HeroVisualF from "@/components/hero-previews/HeroVisualF";
+import HeroLayout1 from "@/components/hero-previews/HeroLayout1";
+import HeroLayout2 from "@/components/hero-previews/HeroLayout2";
 
 export default function HeroPreviewPage() {
   const variants = [
     {
-      key: "E",
-      title: "E. Kinetic Typography",
-      desc: "거대한 LULU.AI 워드마크 + 6개 서비스 색상 그라데이션 플로우 + 서비스명 티커. 레퍼런스: Stripe · Linear · Framer.",
-      Comp: HeroVisualE,
+      key: "1",
+      title: "1. 통합안 (Hybrid)",
+      desc: "상단: 단순화한 LULU.AI 워드마크 (브랜드 시그니처). 하단: 태그 + h1 + sub 카피가 메시지 주인공. 브랜드 각인 + 메시지 전달 둘 다 살리는 안.",
+      Comp: HeroLayout1,
     },
     {
-      key: "F",
-      title: "F. Logo Mark + Service Aura",
-      desc: "커스텀 LULU 로고 마크 + 6개 서비스 색상이 halo로 회전. 레퍼런스: Airbnb Bélo · Figma · Spotify.",
-      Comp: HeroVisualF,
+      key: "2",
+      title: "2. 단일 헤로안 (Signature-Only)",
+      desc: "HeroVisualE 완전체가 주인공 + 태그 + 한 줄 짧은 설명만. Stripe/Linear 스타일의 미니멀 브랜드 랜딩. 시각 표현이 메시지 대부분을 전달.",
+      Comp: HeroLayout2,
     },
   ];
 
@@ -23,10 +23,10 @@ export default function HeroPreviewPage() {
     <div style={{ background: "#fff", minHeight: "100dvh", padding: "60px 24px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <h1 style={{ fontSize: 28, fontWeight: 900, marginBottom: 8 }}>
-          Hero 시각 시안 비교 — E · F
+          Hero 레이아웃 시안 — 1 · 2
         </h1>
         <p style={{ color: "#666", marginBottom: 48 }}>
-          어느 방향이 lulu.ai 브랜드 페이지 느낌에 맞는지 선택하세요.
+          현재 Hero의 중복 구조를 정리하는 두 방향입니다.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 80 }}>
@@ -60,20 +60,7 @@ export default function HeroPreviewPage() {
                 </p>
               </div>
 
-              <div
-                style={{
-                  background: "#fff",
-                  border: "1px solid #eee",
-                  borderRadius: 12,
-                  padding: 40,
-                  display: "flex",
-                  justifyContent: "center",
-                  minHeight: 520,
-                  alignItems: "center",
-                }}
-              >
-                <Comp />
-              </div>
+              <Comp />
             </section>
           ))}
         </div>
