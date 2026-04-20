@@ -135,12 +135,12 @@ export default function AxesConnection() {
             <text
               x={cx}
               y={cy + 16}
-              fontSize="10"
+              fontSize="9"
               textAnchor="middle"
               fill="#ff8c42"
               fontWeight="800"
               fontFamily="sans-serif"
-              letterSpacing="0.28em"
+              letterSpacing="0.2em"
             >
               WOVEN TOGETHER
             </text>
@@ -150,7 +150,6 @@ export default function AxesConnection() {
               const a = (angles[i] * Math.PI) / 180;
               const x = cx + r * Math.cos(a);
               const y = cy + r * Math.sin(a);
-              const labelYOffset = Math.sin(a) > 0 ? 68 : -48;
               const logo = SERVICE_LOGOS[s.id];
               return (
                 <motion.g
@@ -184,46 +183,22 @@ export default function AxesConnection() {
                     </>
                   ) : (
                     <>
-                      {/* Fallback: initial letter on colored dot */}
+                      {/* Fallback: service name fits inside outer ring */}
                       <circle cx={x} cy={y} r="32" fill={`${s.color}15`} stroke={s.color} strokeWidth="1.6" />
-                      <circle cx={x} cy={y} r="16" fill={s.color} />
                       <text
                         x={x}
                         y={y + 4}
-                        fontSize="11"
+                        fontSize="9.5"
                         textAnchor="middle"
-                        fill="#fff"
+                        fill={s.color}
                         fontWeight="900"
                         fontFamily="sans-serif"
+                        letterSpacing="0.02em"
                       >
-                        {s.name[0].toUpperCase()}
+                        {s.name.toUpperCase()}
                       </text>
                     </>
                   )}
-
-                  {/* Labels */}
-                  <text
-                    x={x}
-                    y={y + labelYOffset}
-                    fontSize="13"
-                    textAnchor="middle"
-                    fill="#111"
-                    fontWeight="900"
-                    fontFamily="sans-serif"
-                  >
-                    {s.name}
-                  </text>
-                  <text
-                    x={x}
-                    y={y + labelYOffset + 16}
-                    fontSize="10.5"
-                    textAnchor="middle"
-                    fill="#888"
-                    fontWeight="600"
-                    fontFamily="sans-serif"
-                  >
-                    {s.tag[lang]}
-                  </text>
                 </motion.g>
               );
             })}
