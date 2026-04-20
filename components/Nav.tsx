@@ -4,9 +4,11 @@ import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Nav() {
   const { lang, toggle } = useLang();
+  const router = useRouter();
   const t = content.nav[lang];
   const [open, setOpen] = useState(false);
   const [elevated, setElevated] = useState(false);
@@ -23,14 +25,18 @@ export default function Nav() {
     { href: "#products", label: t.products },
     { href: "#about", label: t.about },
     { href: "#news", label: lang === "ko" ? "소식" : "News" },
-    { href: "#partners", label: lang === "ko" ? "파트너" : "Partners" },
+    { href: "/partnership", label: lang === "ko" ? "제휴" : "Partnership" },
   ];
 
-  const scrollTo = (id: string) => {
-    const container = document.getElementById("scroll-container");
-    const target = document.getElementById(id);
-    if (container && target) {
-      container.scrollTo({ top: target.offsetTop - 72, behavior: "smooth" });
+  const handleNav = (href: string) => {
+    if (href.startsWith("#")) {
+      const container = document.getElementById("scroll-container");
+      const target = document.getElementById(href.slice(1));
+      if (container && target) {
+        container.scrollTo({ top: target.offsetTop - 72, behavior: "smooth" });
+      }
+    } else {
+      router.push(href);
     }
   };
 
@@ -78,7 +84,7 @@ export default function Nav() {
               href={item.href}
               onClick={(e) => {
                 e.preventDefault();
-                scrollTo(item.href.slice(1));
+                handleNav(item.href);
               }}
               className="text-sm font-semibold transition-colors duration-200 hover:opacity-100"
               style={{ color: "#444" }}
@@ -140,7 +146,7 @@ export default function Nav() {
                 onClick={(e) => {
                   e.preventDefault();
                   setOpen(false);
-                  scrollTo(item.href.slice(1));
+                  handleNav(item.href);
                 }}
                 className="text-2xl font-black"
                 style={{ color: "#111" }}

@@ -7,7 +7,6 @@ import Axes from "@/components/Axes";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import News from "@/components/News";
-import Partners from "@/components/Partners";
 import Footer from "@/components/Footer";
 import ScrollDots from "@/components/ScrollDots";
 import { motion } from "framer-motion";
@@ -41,9 +40,6 @@ function PageContent() {
         </motion.section>
         <motion.section id="news" {...sectionReveal} className="section-divider">
           <News />
-        </motion.section>
-        <motion.section id="partners" {...sectionReveal} className="section-divider">
-          <Partners />
         </motion.section>
         <Footer />
       </div>

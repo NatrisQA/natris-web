@@ -9,7 +9,6 @@ const SECTIONS = [
   { id: "products", label: { ko: "서비스",  en: "Services" } },
   { id: "about",    label: { ko: "소개",    en: "About" } },
   { id: "news",     label: { ko: "소식",    en: "News" } },
-  { id: "partners", label: { ko: "파트너",  en: "Partners" } },
 ];
 
 export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
