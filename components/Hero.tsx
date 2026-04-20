@@ -142,31 +142,49 @@ function VennDiagram() {
         />
       </motion.div>
 
-      {/* Labels */}
+      {/* Labels — centered within each circle's unique (non-overlapping) zone */}
       <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 1.0 }}
-        className="absolute left-[8%] top-[22%] font-black tracking-[0.1em] text-white/95"
-        style={{ fontSize: "14px", textShadow: "0 1px 6px rgba(0,0,0,0.18)" }}
+        className="absolute font-black tracking-[0.12em] text-white/95"
+        style={{
+          left: "22%",
+          top: "30%",
+          transform: "translate(-50%, -50%)",
+          fontSize: "clamp(11px, 2vw, 13px)",
+          textShadow: "0 1px 6px rgba(0,0,0,0.25)",
+        }}
       >
         GAME
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 1.1 }}
-        className="absolute right-[10%] top-[22%] font-black tracking-[0.1em] text-white/95"
-        style={{ fontSize: "14px", textShadow: "0 1px 6px rgba(0,0,0,0.18)" }}
+        className="absolute font-black tracking-[0.12em] text-white/95"
+        style={{
+          left: "78%",
+          top: "30%",
+          transform: "translate(-50%, -50%)",
+          fontSize: "clamp(11px, 2vw, 13px)",
+          textShadow: "0 1px 6px rgba(0,0,0,0.25)",
+        }}
       >
         TECH
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
-        className="absolute left-1/2 -translate-x-1/2 bottom-[9%] font-black tracking-[0.1em] text-white/95"
-        style={{ fontSize: "16px", textShadow: "0 1px 6px rgba(0,0,0,0.2)" }}
+        className="absolute font-black tracking-[0.12em] text-white/95"
+        style={{
+          left: "50%",
+          top: "82%",
+          transform: "translate(-50%, -50%)",
+          fontSize: "clamp(11px, 2.2vw, 14px)",
+          textShadow: "0 1px 6px rgba(0,0,0,0.25)",
+        }}
       >
         COMMUNITY
       </motion.div>
