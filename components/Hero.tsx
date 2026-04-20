@@ -7,7 +7,16 @@ import { useEffect, useState } from "react";
 
 function WordReveal({ children, delay = 0, style }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
   return (
-    <span style={{ display: "inline-block", overflow: "hidden", verticalAlign: "top", ...style }}>
+    <span
+      style={{
+        display: "inline-block",
+        overflow: "hidden",
+        verticalAlign: "top",
+        paddingBottom: "0.18em",
+        marginBottom: "-0.18em",
+        ...style,
+      }}
+    >
       <motion.span
         style={{ display: "inline-block" }}
         initial={{ y: "110%", opacity: 0 }}
@@ -36,6 +45,8 @@ function HighlightedVerb({
         overflow: "hidden",
         verticalAlign: "top",
         position: "relative",
+        paddingBottom: "0.18em",
+        marginBottom: "-0.18em",
       }}
     >
       <motion.span
