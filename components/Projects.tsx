@@ -3,6 +3,7 @@
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const AXIS_COLOR: Record<string, string> = {
@@ -341,6 +342,37 @@ export default function Projects() {
                     transition: "height 0.35s ease, box-shadow 0.35s ease",
                   }}
                 />
+
+                {/* "자세히 보기" button */}
+                <Link
+                  href={`/services/${p.id}`}
+                  className="mt-5 inline-flex items-center justify-between w-full rounded-full py-2.5 px-4 text-[12.5px] font-black tracking-wide relative"
+                  style={{
+                    background: isActive ? p.color : "#fafafa",
+                    color: isActive ? "#fff" : "#111",
+                    border: `1px solid ${isActive ? p.color : "#e5e5e5"}`,
+                    transition: "background 0.3s ease, color 0.3s ease, border-color 0.3s ease",
+                  }}
+                >
+                  <span>{lang === "ko" ? "자세히 보기" : "View Details"}</span>
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: 22,
+                      height: 22,
+                      borderRadius: 999,
+                      background: isActive ? "rgba(255,255,255,0.22)" : p.color,
+                      color: "#fff",
+                      fontSize: 12,
+                      transform: isActive ? "translateX(3px)" : "translateX(0)",
+                      transition: "transform 0.3s ease, background 0.3s ease",
+                    }}
+                  >
+                    →
+                  </span>
+                </Link>
               </motion.article>
             );
           })}
