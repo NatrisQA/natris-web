@@ -104,6 +104,8 @@ export default function Projects() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [centerId, setCenterId] = useState<string | null>(null);
 
   const updateEdges = useCallback(() => {
     const el = scrollerRef.current;
@@ -123,6 +125,39 @@ export default function Projects() {
       window.removeEventListener("resize", updateEdges);
     };
   }, [updateEdges]);
+
+  /* Track which card is closest to the scroller center — used for mobile active state */
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const pickCenter = () => {
+      const cards = Array.from(scroller.querySelectorAll<HTMLElement>("[data-card]"));
+      if (cards.length === 0) return;
+      const scRect = scroller.getBoundingClientRect();
+      const scCenter = scRect.left + scRect.width / 2;
+      let bestId = "";
+      let bestDist = Infinity;
+      for (const c of cards) {
+        const r = c.getBoundingClientRect();
+        const cCenter = r.left + r.width / 2;
+        const dist = Math.abs(cCenter - scCenter);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestId = c.dataset.id || "";
+        }
+      }
+      if (bestId) setCenterId(bestId);
+    };
+
+    pickCenter();
+    scroller.addEventListener("scroll", pickCenter, { passive: true });
+    window.addEventListener("resize", pickCenter);
+    return () => {
+      scroller.removeEventListener("scroll", pickCenter);
+      window.removeEventListener("resize", pickCenter);
+    };
+  }, []);
 
   const scrollBy = (dir: 1 | -1) => {
     const el = scrollerRef.current;
@@ -193,45 +228,80 @@ export default function Projects() {
             const axis = (p as typeof p & { axis: "game" | "community" | "tech" }).axis;
             const axisColor = AXIS_COLOR[axis];
             const axisLabel = AXIS_LABEL[axis];
+            const isActive = (hoveredId ?? centerId) === p.id;
             return (
               <motion.article
                 key={p.id}
                 data-card
+                data-id={p.id}
+                data-active={isActive || undefined}
+                onMouseEnter={() => setHoveredId(p.id)}
+                onMouseLeave={() => setHoveredId((h) => (h === p.id ? null : h))}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.06 }}
-                className="light-card rounded-2xl flex-shrink-0 snap-start p-7 flex flex-col"
+                className="rounded-2xl flex-shrink-0 snap-start p-7 flex flex-col relative overflow-hidden"
                 style={{
                   background: "#fff",
-                  border: "1px solid #ececec",
+                  border: `1px solid ${isActive ? `${p.color}80` : "#ececec"}`,
                   width: "min(88vw, 340px)",
                   minHeight: 420,
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+                  boxShadow: isActive
+                    ? `0 24px 60px ${p.color}30, 0 10px 28px rgba(0,0,0,0.08)`
+                    : "0 2px 8px rgba(0,0,0,0.03)",
+                  transform: isActive ? "translateY(-6px)" : "translateY(0)",
+                  transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, border-color 0.3s ease",
+                  cursor: "pointer",
                 }}
               >
+                {/* Corner glow (active only) */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 pointer-events-none rounded-2xl"
+                  style={{
+                    opacity: isActive ? 1 : 0,
+                    transition: "opacity 0.4s ease",
+                    background: `radial-gradient(600px circle at 0% 0%, ${p.color}14, transparent 40%), radial-gradient(600px circle at 100% 100%, ${axisColor}10, transparent 40%)`,
+                  }}
+                />
+
                 {/* Axis badge + status */}
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-6 relative">
                   <span
                     className="text-[10px] font-black tracking-[0.16em] px-2.5 py-1 rounded-full"
                     style={{
-                      background: `${axisColor}15`,
-                      color: axisColor,
-                      border: `1px solid ${axisColor}40`,
+                      background: isActive ? axisColor : `${axisColor}15`,
+                      color: isActive ? "#fff" : axisColor,
+                      border: `1px solid ${isActive ? axisColor : `${axisColor}40`}`,
+                      transition: "background 0.3s ease, color 0.3s ease, border-color 0.3s ease",
                     }}
                   >
                     {axisLabel}
                   </span>
-                  <span className="text-[11px] font-bold" style={{ color: "#999" }}>
+                  <span className="text-[11px] font-bold" style={{ color: isActive ? "#111" : "#999", transition: "color 0.3s ease" }}>
                     {p.status[lang]}
                   </span>
                 </div>
 
                 {/* Icon + name */}
-                <div className="flex items-center gap-3 mb-4">
-                  <IconLogo id={p.id} color={p.color} size={44} />
+                <div className="flex items-center gap-3 mb-4 relative">
+                  <div
+                    style={{
+                      transform: isActive ? "scale(1.08) rotate(-2deg)" : "scale(1) rotate(0)",
+                      transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)",
+                    }}
+                  >
+                    <IconLogo id={p.id} color={p.color} size={44} />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-black leading-none mb-1" style={{ color: "#111" }}>
+                    <h3
+                      className="text-lg font-black leading-none mb-1"
+                      style={{
+                        color: isActive ? p.color : "#111",
+                        transition: "color 0.3s ease",
+                      }}
+                    >
                       {p.name}
                     </h3>
                     <div className="text-[11px] font-semibold" style={{ color: "#888" }}>
@@ -240,27 +310,36 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <p className="text-[14px] leading-relaxed flex-1 mb-5" style={{ color: "#555" }}>
+                <p className="text-[14px] leading-relaxed flex-1 mb-5 relative" style={{ color: isActive ? "#333" : "#555", transition: "color 0.3s ease" }}>
                   {p.desc[lang]}
                 </p>
 
                 {/* Badges */}
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 relative">
                   {p.badges[lang].slice(0, 3).map((b) => (
                     <span
                       key={b}
                       className="text-[10.5px] font-semibold px-2 py-1 rounded"
-                      style={{ background: "#f5f5f5", color: "#555" }}
+                      style={{
+                        background: isActive ? `${p.color}12` : "#f5f5f5",
+                        color: isActive ? p.color : "#555",
+                        transition: "background 0.3s ease, color 0.3s ease",
+                      }}
                     >
                       #{b}
                     </span>
                   ))}
                 </div>
 
-                {/* Service color accent bar */}
+                {/* Service color accent bar — grows on active */}
                 <div
-                  className="h-1 rounded-full mt-5"
-                  style={{ background: `linear-gradient(90deg, ${p.color}, ${p.color}55)` }}
+                  className="rounded-full mt-5 relative"
+                  style={{
+                    height: isActive ? 3 : 1.5,
+                    background: `linear-gradient(90deg, ${p.color}, ${p.color}55)`,
+                    boxShadow: isActive ? `0 0 14px ${p.color}70` : "none",
+                    transition: "height 0.35s ease, box-shadow 0.35s ease",
+                  }}
                 />
               </motion.article>
             );
