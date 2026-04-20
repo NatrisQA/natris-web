@@ -463,14 +463,6 @@ export const content = {
         image: null,
         color: "#06b6d4",
       },
-      {
-        category: { ko: "대회", en: "Tournament" },
-        title: { ko: "LULU 전국 홀덤 동아리 대항전 개최", en: "LULU National Holdem Club Championship" },
-        desc: { ko: "전국 홀덤 동아리가 참가한 대항전을 성공적으로 개최했습니다.", en: "Successfully hosted a nationwide Hold'em club championship." },
-        date: "2025.03",
-        image: null,
-        color: "#f59e0b",
-      },
     ],
   },
 
