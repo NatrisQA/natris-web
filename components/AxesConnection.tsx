@@ -13,7 +13,6 @@ import { useMemo } from "react";
  *   - Data-flow particles traveling each spoke toward the hub
  *   - Axis label text on arcs (GAME · COMMUNITY · TECH)
  *   - Background twinkling stars + soft radial glow
- *   - Stats strip (6 · 3 · 1)
  */
 
 const AXIS_META: Record<
@@ -124,34 +123,6 @@ export default function AxesConnection() {
               ? "여섯 개의 플랫폼은 각자의 역할을 하면서도, 커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다."
               : "Six platforms each play their role, tied together by the thread of community."}
           </p>
-        </div>
-
-        {/* Stats strip */}
-        <div className="flex justify-center items-end gap-10 md:gap-16 mb-10">
-          {[
-            { val: "6", label: lang === "ko" ? "플랫폼" : "PLATFORMS" },
-            { val: "3", label: lang === "ko" ? "축" : "AXES" },
-            { val: "1", label: lang === "ko" ? "커뮤니티" : "COMMUNITY" },
-          ].map((s, i) => (
-            <div key={s.label} className="flex flex-col items-center gap-1">
-              <div
-                className="font-black tabular"
-                style={{
-                  fontSize: "clamp(40px, 5vw, 72px)",
-                  color: i === 0 ? "#ff5a6a" : "#f5f5f7",
-                  lineHeight: 1,
-                }}
-              >
-                {s.val}
-              </div>
-              <div
-                className="text-[10px] font-black tracking-[0.28em]"
-                style={{ color: "rgba(255,255,255,0.4)" }}
-              >
-                {s.label}
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Diagram */}
