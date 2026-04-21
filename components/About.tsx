@@ -38,7 +38,7 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl p-8 md:p-10 mb-20"
+          className="rounded-2xl p-8 md:p-10 mb-20 max-w-3xl mx-auto"
           style={{ background: "#fff", border: "1px solid #ececec", boxShadow: "0 2px 12px rgba(0,0,0,0.03)" }}
         >
           <div
