@@ -88,7 +88,7 @@ export default function News() {
                 <h3 className="text-base font-black leading-snug" style={{ color: "#111" }}>
                   {item.title[lang]}
                 </h3>
-                <p className="text-[13px] leading-relaxed line-clamp-3" style={{ color: "#666" }}>
+                <p className="text-[13px] leading-relaxed line-clamp-3 whitespace-pre-line" style={{ color: "#666" }}>
                   {item.desc[lang]}
                 </p>
               </div>
