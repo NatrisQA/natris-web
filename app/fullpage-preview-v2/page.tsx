@@ -398,6 +398,15 @@ function PageContent() {
         }
         [data-fp-compact] #products .fp-projects .mb-14 { margin-bottom: clamp(0.5rem, 2vh, 1.5rem); }
         [data-fp-compact] #products .fp-projects [data-card] { min-height: clamp(360px, 55vh, 480px); }
+        /* 카드 내 영상 세로 축소 (aspect 16/9 → 뷰포트 기반 고정 높이)로 하단 설명 노출 */
+        [data-fp-compact] #products .fp-projects .rounded-2xl > div:first-child {
+          aspect-ratio: auto !important;
+          height: clamp(180px, 26vh, 300px) !important;
+        }
+        /* info section padding 축소 */
+        [data-fp-compact] #products .fp-projects .rounded-2xl > div.p-8 {
+          padding: clamp(1rem, 2.5vh, 2rem);
+        }
         [data-fp-compact] #products .fp-projects h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
         [data-fp-compact] #products .fp-projects .mb-10 { margin-bottom: clamp(0.75rem, 2vh, 1.5rem); }
         [data-fp-compact] #products .fp-projects h2 + p { max-width: min(1160px, 92vw); }
