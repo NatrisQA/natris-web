@@ -381,38 +381,57 @@ function PageContent() {
   return (
     <ScrollContainerCtx.Provider value={scrollRef}>
     <div data-fp-compact>
-      {/* ① compact-scoped overrides (data-fp-compact 스코프로만 적용) */}
+      {/* ① WeMade 스타일 — clamp padding으로 viewport 축소 시 여백이 먼저 수축, 콘텐츠는 끝까지 중앙에 남음 */}
       <style>{`
-        /* Hero — 콘텐츠 살짝 위로 밀어서 SCROLL 인디케이터 공간 확보 */
-        [data-fp-compact] #hero section { padding-bottom: 9vh; }
+        /* Hero — pt-20/pb-20을 clamp로 전환 (뷰포트 세로 축소 시 padding 먼저 수축) */
+        [data-fp-compact] #hero section .pt-20 { padding-top: clamp(1rem, 4vh, 5rem); }
+        [data-fp-compact] #hero section .pb-20 { padding-bottom: clamp(1rem, 4vh, 5rem); }
 
-        /* Projects — 내부 py-28 md:py-36 축소 (상단 공백 제거) */
+        /* Projects — center 유지 + 내부 py-28 md:py-36 → clamp */
         [data-fp-compact] #products .fp-projects > section > div.relative.z-10 {
-          padding-top: 2rem;
-          padding-bottom: 2rem;
+          padding-top: clamp(1rem, 4vh, 3rem);
+          padding-bottom: clamp(1rem, 4vh, 3rem);
         }
-        [data-fp-compact] #products .fp-projects .mb-14 { margin-bottom: 1.25rem; }
-        [data-fp-compact] #products .fp-projects [data-card] { min-height: 440px; }
+        [data-fp-compact] #products .fp-projects .mb-14 { margin-bottom: clamp(0.5rem, 2vh, 1.5rem); }
+        [data-fp-compact] #products .fp-projects [data-card] { min-height: clamp(360px, 55vh, 480px); }
         [data-fp-compact] #products .fp-projects h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
-        [data-fp-compact] #products .fp-projects .mb-10 { margin-bottom: 1.5rem; }
+        [data-fp-compact] #products .fp-projects .mb-10 { margin-bottom: clamp(0.75rem, 2vh, 1.5rem); }
         [data-fp-compact] #products .fp-projects h2 + p { max-width: min(1160px, 92vw); }
 
-        [data-fp-compact] #about .fp-about > section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+        /* About — padding clamp */
+        [data-fp-compact] #about .fp-about > section {
+          padding-top: clamp(1rem, 4vh, 3rem);
+          padding-bottom: clamp(1rem, 4vh, 3rem);
+        }
         [data-fp-compact] #about .fp-about h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
-        [data-fp-compact] #about .fp-about .mb-20 { margin-bottom: 2rem; }
-        [data-fp-compact] #about .fp-about .pb-8 { padding-bottom: 1.1rem; }
+        [data-fp-compact] #about .fp-about .mb-20 { margin-bottom: clamp(1rem, 2.5vh, 2rem); }
+        [data-fp-compact] #about .fp-about .pb-8 { padding-bottom: clamp(0.5rem, 1.5vh, 1.25rem); }
 
-        [data-fp-compact] #news-fused .fp-news > section { padding-top: 2.5rem; padding-bottom: 1rem; }
+        /* News+Footer 융합 — News padding clamp */
+        [data-fp-compact] #news-fused .fp-news > section {
+          padding-top: clamp(1rem, 4vh, 3rem);
+          padding-bottom: clamp(0.5rem, 2vh, 1.5rem);
+        }
         [data-fp-compact] #news-fused .fp-news h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
-        [data-fp-compact] #news-fused .fp-news .mb-10 { margin-bottom: 1.5rem; }
+        [data-fp-compact] #news-fused .fp-news .mb-10 { margin-bottom: clamp(0.75rem, 2vh, 1.5rem); }
 
-        /* ⑥ Axes — 컴팩트 스택: 헤더 최소화 + 다이어그램 최대화 (100dvh 내 수용) */
-        [data-fp-compact] #axes .fp-axes > section { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+        /* Axes — padding clamp + 다이어그램 max-height로 viewport 축소 시 자동 수축 */
+        [data-fp-compact] #axes .fp-axes > section {
+          padding-top: clamp(0.75rem, 2.5vh, 2rem);
+          padding-bottom: clamp(0.75rem, 2.5vh, 2rem);
+        }
         [data-fp-compact] #axes .fp-axes h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.2; }
-        [data-fp-compact] #axes .fp-axes .mb-10 { margin-bottom: 0.5rem; }
-        [data-fp-compact] #axes .fp-axes .mb-4 { margin-bottom: 0.35rem; }
+        [data-fp-compact] #axes .fp-axes .mb-10 { margin-bottom: clamp(0.4rem, 1vh, 0.75rem); }
+        [data-fp-compact] #axes .fp-axes .mb-4 { margin-bottom: clamp(0.25rem, 0.8vh, 0.5rem); }
         [data-fp-compact] #axes .fp-axes h2 + p { font-size: 13px; max-width: 640px; }
         [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1440"] { max-width: 920px; }
+        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1440"] svg {
+          max-height: calc(100dvh - 220px);
+          width: auto !important;
+          max-width: 100%;
+          margin: 0 auto;
+          display: block;
+        }
       `}</style>
 
       <PreviewBanner activeIndex={activeIndex} />
@@ -436,8 +455,8 @@ function PageContent() {
           <Hero />
         </ParallaxSlide>
 
-        {/* Projects — 상단 고정(center 비활성) + 내부 padding 축소 */}
-        <ParallaxSlide id="products" center={false}>
+        {/* Projects — center + clamp padding (WeMade 방식) */}
+        <ParallaxSlide id="products">
           <div className="fp-projects w-full">
             <Projects />
           </div>
