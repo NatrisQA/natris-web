@@ -25,11 +25,21 @@ function PageContent() {
       <div
         id="scroll-container"
         className="relative"
-        style={{ height: "100dvh", overflowY: "auto", background: "#0a0a12" }}
+        style={{
+          height: "100dvh",
+          overflowY: "auto",
+          background: "#0a0a12",
+          scrollSnapType: "y proximity",
+          scrollBehavior: "smooth",
+        }}
       >
         <Nav />
         <Hero />
-        <motion.section id="products" {...sectionReveal}>
+        <motion.section
+          id="products"
+          {...sectionReveal}
+          style={{ scrollSnapAlign: "start", scrollSnapStop: "always", scrollMarginTop: 72 }}
+        >
           <Projects />
         </motion.section>
         <motion.section id="axes" {...sectionReveal}>
