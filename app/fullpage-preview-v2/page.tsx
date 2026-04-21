@@ -386,11 +386,15 @@ function PageContent() {
         /* Hero — 콘텐츠 살짝 위로 밀어서 SCROLL 인디케이터 공간 확보 */
         [data-fp-compact] #hero section { padding-bottom: 9vh; }
 
-        [data-fp-compact] #products .fp-projects > section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+        /* Projects — 내부 py-28 md:py-36 축소 (상단 공백 제거) */
+        [data-fp-compact] #products .fp-projects > section > div.relative.z-10 {
+          padding-top: 2rem;
+          padding-bottom: 2rem;
+        }
+        [data-fp-compact] #products .fp-projects .mb-14 { margin-bottom: 1.25rem; }
         [data-fp-compact] #products .fp-projects [data-card] { min-height: 440px; }
         [data-fp-compact] #products .fp-projects h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
         [data-fp-compact] #products .fp-projects .mb-10 { margin-bottom: 1.5rem; }
-        /* Projects subtitle — 줄바꿈 최대한 억제 (자연 반응형 wrap만 허용) */
         [data-fp-compact] #products .fp-projects h2 + p { max-width: min(1160px, 92vw); }
 
         [data-fp-compact] #about .fp-about > section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
@@ -432,8 +436,8 @@ function PageContent() {
           <Hero />
         </ParallaxSlide>
 
-        {/* Projects */}
-        <ParallaxSlide id="products">
+        {/* Projects — 상단 고정(center 비활성) + 내부 padding 축소 */}
+        <ParallaxSlide id="products" center={false}>
           <div className="fp-projects w-full">
             <Projects />
           </div>
