@@ -46,7 +46,7 @@ export default function Nav() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32 py-4"
         style={{
           background: elevated ? "rgba(10,10,18,0.82)" : "rgba(10,10,18,0.4)",
           backdropFilter: "blur(14px)",

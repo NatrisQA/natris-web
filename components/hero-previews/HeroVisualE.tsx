@@ -61,7 +61,7 @@ export default function HeroVisualE() {
 
   return (
     <div
-      className="relative w-full max-w-[720px] mx-auto flex flex-col items-center justify-center"
+      className="relative w-full max-w-[1280px] mx-auto flex flex-col items-center justify-center"
       style={{ padding: "32px 24px" }}
     >
       <style>{`
@@ -91,7 +91,7 @@ export default function HeroVisualE() {
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         className="lulu-kinetic font-black leading-none"
         style={{
-          fontSize: "clamp(72px, 15vw, 152px)",
+          fontSize: "clamp(72px, 18vw, 260px)",
           letterSpacing: "-0.035em",
           textAlign: "center",
         }}
@@ -117,7 +117,7 @@ export default function HeroVisualE() {
       <div
         style={{
           width: "100%",
-          maxWidth: 560,
+          maxWidth: 960,
           overflow: "hidden",
           maskImage: "linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent)",
           WebkitMaskImage: "linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent)",
@@ -160,7 +160,7 @@ export default function HeroVisualE() {
         transition={{ duration: 0.7, delay: 1.2 }}
         className="font-black tracking-tight text-center mt-10"
         style={{
-          fontSize: "clamp(18px, 2.4vw, 26px)",
+          fontSize: "clamp(18px, 2.8vw, 34px)",
           lineHeight: 1.25,
         }}
       >

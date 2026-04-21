@@ -11,8 +11,8 @@ export default function News() {
   const items = t.items.slice(0, 3);
 
   return (
-    <section className="py-28 px-6" style={{ background: "#08080f" }}>
-      <div className="max-w-[1200px] mx-auto">
+    <section className="py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32" style={{ background: "#08080f" }}>
+      <div className="max-w-[1680px] mx-auto">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
             <div className="text-[11px] font-black tracking-[0.32em] mb-3" style={{ color: "#ff5a6a" }}>

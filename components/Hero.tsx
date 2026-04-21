@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-center overflow-hidden px-6"
+      className="relative flex flex-col items-center justify-center overflow-hidden px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32"
       style={{ minHeight: "100dvh", background: "#0a0a12" }}
     >
       {/* Subtle background glow */}
@@ -37,7 +37,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1200px] w-full mx-auto flex flex-col items-center gap-10 pt-20 pb-20">
+      <div className="relative z-10 max-w-[1680px] w-full mx-auto flex flex-col items-center gap-10 pt-20 pb-20">
         {/* tag badge */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -65,8 +65,8 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.6 }}
-          className="whitespace-pre-line leading-relaxed max-w-2xl mx-auto text-center"
-          style={{ color: "rgba(255,255,255,0.62)", fontSize: "clamp(15px, 1.4vw, 17px)" }}
+          className="whitespace-pre-line leading-relaxed max-w-3xl mx-auto text-center"
+          style={{ color: "rgba(255,255,255,0.62)", fontSize: "clamp(15px, 1.4vw, 18px)" }}
         >
           {t.sub}
         </motion.p>

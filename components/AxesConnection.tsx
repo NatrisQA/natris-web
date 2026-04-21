@@ -32,8 +32,8 @@ export default function AxesConnection() {
   const angles = [-70, -20, 45, 135, 200, -110];
 
   return (
-    <section className="py-28 px-6" style={{ background: "#0a0a12" }}>
-      <div className="max-w-[1200px] mx-auto">
+    <section className="py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32" style={{ background: "#0a0a12" }}>
+      <div className="max-w-[1680px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <div
@@ -68,7 +68,7 @@ export default function AxesConnection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          style={{ maxWidth: 920, margin: "0 auto" }}
+          style={{ maxWidth: 1200, margin: "0 auto" }}
         >
           <svg viewBox="0 0 800 600" style={{ width: "100%", height: "auto", display: "block" }}>
             {/* Subtle background circles */}

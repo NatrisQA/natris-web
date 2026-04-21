@@ -286,8 +286,8 @@ export default function Projects() {
   };
 
   return (
-    <section className="py-28 px-6" style={{ background: "#08080f" }}>
-      <div className="max-w-[1280px] mx-auto">
+    <section className="py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32" style={{ background: "#08080f" }}>
+      <div className="max-w-[1680px] mx-auto">
         {/* Header */}
         <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
           <div>
@@ -363,8 +363,8 @@ export default function Projects() {
                 style={{
                   background: "#14141f",
                   border: `1px solid ${isActive ? `${p.color}90` : "rgba(255,255,255,0.08)"}`,
-                  width: "min(88vw, 340px)",
-                  minHeight: 620,
+                  width: "min(88vw, 400px)",
+                  minHeight: 640,
                   boxShadow: isActive
                     ? `0 40px 90px ${p.color}45, 0 20px 40px rgba(0,0,0,0.5)`
                     : "0 2px 10px rgba(0,0,0,0.3)",

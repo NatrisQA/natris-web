@@ -57,7 +57,7 @@ function ChapterNav({
   onJump: (idx: number) => void;
 }) {
   return (
-    <div className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-4">
+    <div className="fixed left-6 lg:left-10 xl:left-14 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-4">
       {items.map((it, i) => {
         const active = i === activeIndex;
         return (
@@ -175,7 +175,7 @@ function Chapter({
       {/* Content */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 max-w-[1200px] mx-auto px-8 md:px-16 py-24 flex flex-col justify-center"
+        className="relative z-10 max-w-[1680px] mx-auto px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32 py-24 flex flex-col justify-center"
       >
         <div
           className="min-h-[calc(100dvh-48px)] flex flex-col justify-center gap-10"
@@ -205,7 +205,7 @@ function Chapter({
             <div
               className="font-black leading-[0.9] tracking-tight"
               style={{
-                fontSize: "clamp(68px, 13vw, 180px)",
+                fontSize: "clamp(68px, 14vw, 260px)",
                 color: "#f5f5f7",
                 textShadow: `0 0 40px ${item.color}55`,
               }}
@@ -225,9 +225,9 @@ function Chapter({
 
           {/* Desc (description) */}
           <p
-            className="whitespace-pre-line leading-relaxed max-w-2xl"
+            className="whitespace-pre-line leading-relaxed max-w-3xl"
             style={{
-              fontSize: "clamp(16px, 1.4vw, 19px)",
+              fontSize: "clamp(16px, 1.5vw, 22px)",
               color: "rgba(255,255,255,0.78)",
             }}
           >
@@ -235,7 +235,7 @@ function Chapter({
           </p>
 
           {/* Feature strip */}
-          <div className="flex flex-wrap gap-3 max-w-3xl">
+          <div className="flex flex-wrap gap-3 max-w-5xl">
             {item.badges[lang].map((b) => (
               <span
                 key={b}
@@ -372,7 +372,7 @@ function PageContent() {
 
         {/* Intro header */}
         <section
-          className="relative flex flex-col items-center justify-center px-6"
+          className="relative flex flex-col items-center justify-center px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32"
           style={{ minHeight: "100dvh", background: "#0a0a12" }}
         >
           <div
@@ -383,7 +383,7 @@ function PageContent() {
                 "radial-gradient(ellipse 70% 50% at 50% 30%, rgba(255,90,106,0.14), transparent 60%), radial-gradient(ellipse 70% 50% at 50% 80%, rgba(139,92,246,0.12), transparent 60%)",
             }}
           />
-          <div className="relative z-10 max-w-[980px] mx-auto text-center flex flex-col gap-6">
+          <div className="relative z-10 max-w-[1400px] mx-auto text-center flex flex-col gap-6">
             <span
               className="text-[11px] font-black tracking-[0.32em]"
               style={{ color: "#ff5a6a" }}
@@ -393,7 +393,7 @@ function PageContent() {
             <h1
               className="font-black tracking-tight whitespace-pre-line"
               style={{
-                fontSize: "clamp(40px, 7vw, 88px)",
+                fontSize: "clamp(40px, 8vw, 132px)",
                 color: "#f5f5f7",
                 lineHeight: 1.05,
               }}
@@ -403,9 +403,9 @@ function PageContent() {
                 : "Six platforms,\none community"}
             </h1>
             <p
-              className="leading-relaxed max-w-2xl mx-auto"
+              className="leading-relaxed max-w-3xl mx-auto"
               style={{
-                fontSize: "clamp(15px, 1.3vw, 17px)",
+                fontSize: "clamp(15px, 1.4vw, 19px)",
                 color: "rgba(255,255,255,0.62)",
               }}
             >
@@ -440,7 +440,7 @@ function PageContent() {
 
         {/* Outro CTA */}
         <section
-          className="relative flex items-center justify-center px-6 py-28"
+          className="relative flex items-center justify-center px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32 py-28"
           style={{ minHeight: "60dvh", background: "#06060c" }}
         >
           <div className="relative z-10 max-w-2xl mx-auto text-center flex flex-col gap-6">

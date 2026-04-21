@@ -9,8 +9,8 @@ export default function About() {
   const t = content.about[lang];
 
   return (
-    <section className="py-28 px-6" style={{ background: "#0a0a12" }}>
-      <div className="max-w-[1200px] mx-auto">
+    <section className="py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32" style={{ background: "#0a0a12" }}>
+      <div className="max-w-[1680px] mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <div
