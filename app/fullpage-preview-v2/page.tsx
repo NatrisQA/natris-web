@@ -15,7 +15,9 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type RefObject } from "react";
+
+const ScrollContainerCtx = createContext<RefObject<HTMLDivElement | null> | null>(null);
 
 /* Fullpage slide preview v2 — 7-gap patches applied
  *  ① compact-style scoped overrides via data-fp-compact
@@ -268,8 +270,10 @@ function ParallaxSlide({
 }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
+  const containerRef = useContext(ScrollContainerCtx);
   const { scrollYProgress } = useScroll({
     target: ref,
+    container: containerRef ?? undefined,
     offset: ["start end", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 0.5, 1], [40, 0, -40]);
@@ -371,9 +375,11 @@ function PreviewBanner({ activeIndex }: { activeIndex: number }) {
 
 function PageContent() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
   useFullpageFlipV2(setActiveIndex);
 
   return (
+    <ScrollContainerCtx.Provider value={scrollRef}>
     <div data-fp-compact>
       {/* ① compact-scoped overrides (data-fp-compact 스코프로만 적용) */}
       <style>{`
@@ -402,6 +408,7 @@ function PageContent() {
 
       <div
         id="scroll-container"
+        ref={scrollRef}
         className="relative"
         style={{
           height: "100dvh",
@@ -460,6 +467,7 @@ function PageContent() {
 
       <SideDots activeIndex={activeIndex} />
     </div>
+    </ScrollContainerCtx.Provider>
   );
 }
 
