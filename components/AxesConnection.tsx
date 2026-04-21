@@ -592,32 +592,6 @@ export default function AxesConnection() {
             })}
           </svg>
         </motion.div>
-
-        {/* Axis legend */}
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10 mt-8">
-          {(["game", "community", "tech"] as const).map((a) => {
-            const meta = AXIS_META[a];
-            return (
-              <div key={a} className="flex items-center gap-2.5">
-                <span
-                  className="inline-block rounded-full"
-                  style={{
-                    width: 10,
-                    height: 10,
-                    background: meta.color,
-                    boxShadow: `0 0 10px ${meta.color}aa`,
-                  }}
-                />
-                <span
-                  className="text-[11px] font-black tracking-[0.28em]"
-                  style={{ color: "rgba(255,255,255,0.7)" }}
-                >
-                  {meta.en} · {meta.ko}
-                </span>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );

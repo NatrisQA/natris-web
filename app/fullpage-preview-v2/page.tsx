@@ -402,34 +402,13 @@ function PageContent() {
         [data-fp-compact] #news-fused .fp-news h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
         [data-fp-compact] #news-fused .fp-news .mb-10 { margin-bottom: 1.5rem; }
 
-        /* ⑥ Axes — 2단 레이아웃(lg↑): 좌측 헤더 + 우측 다이어그램 */
-        [data-fp-compact] #axes .fp-axes > section { padding-top: 2rem; padding-bottom: 2rem; }
-        [data-fp-compact] #axes .fp-axes h2 { font-size: clamp(1.5rem, 3vw, 2.4rem); }
-        [data-fp-compact] #axes .fp-axes .mb-10 { margin-bottom: 1rem; }
-        @media (min-width: 1024px) {
-          [data-fp-compact] #axes .fp-axes > section > div {
-            display: grid;
-            grid-template-columns: minmax(280px, 360px) 1fr;
-            gap: 2.5rem;
-            align-items: center;
-            max-width: 1280px;
-          }
-          [data-fp-compact] #axes .fp-axes > section > div > div:first-child {
-            text-align: left;
-            margin-bottom: 0;
-          }
-          [data-fp-compact] #axes .fp-axes > section > div > div:first-child p {
-            margin-left: 0;
-            margin-right: 0;
-          }
-          [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1440"] {
-            max-width: 720px;
-            margin: 0;
-          }
-        }
-        @media (max-width: 1023px) {
-          [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1440"] { max-width: 880px; }
-        }
+        /* ⑥ Axes — 컴팩트 스택: 헤더 최소화 + 다이어그램 최대화 (100dvh 내 수용) */
+        [data-fp-compact] #axes .fp-axes > section { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+        [data-fp-compact] #axes .fp-axes h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.2; }
+        [data-fp-compact] #axes .fp-axes .mb-10 { margin-bottom: 0.5rem; }
+        [data-fp-compact] #axes .fp-axes .mb-4 { margin-bottom: 0.35rem; }
+        [data-fp-compact] #axes .fp-axes h2 + p { font-size: 13px; max-width: 640px; }
+        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1440"] { max-width: 920px; }
       `}</style>
 
       <PreviewBanner activeIndex={activeIndex} />
