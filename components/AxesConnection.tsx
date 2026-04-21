@@ -446,12 +446,12 @@ export default function AxesConnection() {
             {/* Hub text */}
             <text
               x={cx}
-              y={cy - 4}
-              fontSize="24"
+              y={cy - 2}
+              fontSize="19"
               fontWeight="900"
               textAnchor="middle"
               fill="#f5f5f7"
-              letterSpacing="0.24em"
+              letterSpacing="0.18em"
               fontFamily="Pretendard, sans-serif"
             >
               COMMUNITY
@@ -459,11 +459,11 @@ export default function AxesConnection() {
             <text
               x={cx}
               y={cy + 20}
-              fontSize="10"
+              fontSize="9"
               fontWeight="800"
               textAnchor="middle"
               fill="#ff8c42"
-              letterSpacing="0.36em"
+              letterSpacing="0.3em"
               fontFamily="Pretendard, sans-serif"
             >
               WOVEN TOGETHER
@@ -545,8 +545,8 @@ export default function AxesConnection() {
                   {/* Service name (primary) */}
                   <text
                     x={p.x}
-                    y={p.y - 4}
-                    fontSize="13"
+                    y={p.y + 2}
+                    fontSize="14"
                     fontWeight="900"
                     fill={s.color}
                     textAnchor="middle"
@@ -555,32 +555,39 @@ export default function AxesConnection() {
                   >
                     {s.name.toUpperCase()}
                   </text>
-                  {/* Service name (Korean) */}
-                  <text
-                    x={p.x}
-                    y={p.y + 12}
-                    fontSize="11"
-                    fontWeight="800"
-                    fill="#f5f5f7"
-                    textAnchor="middle"
-                    fontFamily="Pretendard, sans-serif"
-                  >
-                    {s.name_ko}
-                  </text>
                   {/* Axis tag */}
                   <text
                     x={p.x}
-                    y={p.y + 28}
-                    fontSize="8"
+                    y={p.y + 20}
+                    fontSize="8.5"
                     fontWeight="800"
-                    fill="rgba(255,255,255,0.48)"
+                    fill="rgba(255,255,255,0.5)"
                     textAnchor="middle"
-                    letterSpacing="0.26em"
+                    letterSpacing="0.28em"
                     fontFamily="Pretendard, sans-serif"
                   >
                     {AXIS_META[axis].en}
                   </text>
                 </motion.g>
+              );
+            })}
+
+            {/* External one-line intro (per service, outside node) */}
+            {ordered.map((s, i) => {
+              const lp = polar(angles[i], R + 96);
+              return (
+                <text
+                  key={`tag-${s.id}`}
+                  x={lp.x}
+                  y={lp.y}
+                  fontSize="13"
+                  fontWeight="700"
+                  fill="rgba(245,245,247,0.78)"
+                  textAnchor="middle"
+                  fontFamily="Pretendard, sans-serif"
+                >
+                  {s.tag[lang]}
+                </text>
               );
             })}
           </svg>
