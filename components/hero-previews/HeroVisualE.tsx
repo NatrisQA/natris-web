@@ -125,7 +125,7 @@ export default function HeroVisualE() {
         }}
       >
         <div
-          className="flex gap-8"
+          className="flex gap-12"
           style={{
             whiteSpace: "nowrap",
             animation: "lulu-ticker 22s linear infinite",
@@ -135,16 +135,17 @@ export default function HeroVisualE() {
           {[...SERVICES, ...SERVICES].map((s, i) => (
             <span
               key={i}
-              className="text-[12px] font-black tracking-[0.22em] flex items-center gap-3"
-              style={{ color: TEXT_MUTED }}
+              className="font-black tracking-[0.22em] flex items-center gap-4"
+              style={{ color: TEXT_MUTED, fontSize: "clamp(14px, 1.3vw, 20px)" }}
             >
               <span
                 style={{
                   display: "inline-block",
-                  width: 6,
-                  height: 6,
+                  width: 10,
+                  height: 10,
                   borderRadius: 999,
                   background: s.color,
+                  boxShadow: `0 0 12px ${s.color}88`,
                 }}
               />
               {s.name.toUpperCase()}
