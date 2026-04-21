@@ -383,10 +383,15 @@ function PageContent() {
     <div data-fp-compact>
       {/* ① compact-scoped overrides (data-fp-compact 스코프로만 적용) */}
       <style>{`
+        /* Hero — 콘텐츠 살짝 위로 밀어서 SCROLL 인디케이터 공간 확보 */
+        [data-fp-compact] #hero section { padding-bottom: 9vh; }
+
         [data-fp-compact] #products .fp-projects > section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
         [data-fp-compact] #products .fp-projects [data-card] { min-height: 440px; }
         [data-fp-compact] #products .fp-projects h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
         [data-fp-compact] #products .fp-projects .mb-10 { margin-bottom: 1.5rem; }
+        /* Projects subtitle — 줄바꿈 최대한 억제 (자연 반응형 wrap만 허용) */
+        [data-fp-compact] #products .fp-projects h2 + p { max-width: min(1160px, 92vw); }
 
         [data-fp-compact] #about .fp-about > section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
         [data-fp-compact] #about .fp-about h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
@@ -397,11 +402,34 @@ function PageContent() {
         [data-fp-compact] #news-fused .fp-news h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
         [data-fp-compact] #news-fused .fp-news .mb-10 { margin-bottom: 1.5rem; }
 
-        /* ⑥ Axes 다이어그램 축소 */
-        [data-fp-compact] #axes .fp-axes > section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-        [data-fp-compact] #axes .fp-axes h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); }
-        [data-fp-compact] #axes .fp-axes .mb-10 { margin-bottom: 1.25rem; }
-        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1440"] { max-width: 980px; }
+        /* ⑥ Axes — 2단 레이아웃(lg↑): 좌측 헤더 + 우측 다이어그램 */
+        [data-fp-compact] #axes .fp-axes > section { padding-top: 2rem; padding-bottom: 2rem; }
+        [data-fp-compact] #axes .fp-axes h2 { font-size: clamp(1.5rem, 3vw, 2.4rem); }
+        [data-fp-compact] #axes .fp-axes .mb-10 { margin-bottom: 1rem; }
+        @media (min-width: 1024px) {
+          [data-fp-compact] #axes .fp-axes > section > div {
+            display: grid;
+            grid-template-columns: minmax(280px, 360px) 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            max-width: 1280px;
+          }
+          [data-fp-compact] #axes .fp-axes > section > div > div:first-child {
+            text-align: left;
+            margin-bottom: 0;
+          }
+          [data-fp-compact] #axes .fp-axes > section > div > div:first-child p {
+            margin-left: 0;
+            margin-right: 0;
+          }
+          [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1440"] {
+            max-width: 720px;
+            margin: 0;
+          }
+        }
+        @media (max-width: 1023px) {
+          [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1440"] { max-width: 880px; }
+        }
       `}</style>
 
       <PreviewBanner activeIndex={activeIndex} />
