@@ -455,7 +455,7 @@ export const content = {
       {
         category: { ko: "대회", en: "Tournament" },
         title: { ko: "LULU INVITATIONAL 개최", en: "LULU INVITATIONAL" },
-        desc: { ko: "초청 기반 프리미엄 포커 대회 LULU INVITATIONAL을 성공적으로 개최했습니다.", en: "Successfully hosted LULU INVITATIONAL, our invitation-only premium tournament." },
+        desc: { ko: "초청받은 선수만 설 수 있는 프리미엄 무대. 선수·관객·브랜드가 한 자리에서 만난 2025 포커룰루 시즌 클로저.", en: "A premium stage reserved for invited players — where athletes, fans, and the brand shared one night. PokerLulu's 2025 season finale." },
         date: "2025.12",
         image: "/images/news/lulu-invitational.png",
         color: "#8b5cf6",
