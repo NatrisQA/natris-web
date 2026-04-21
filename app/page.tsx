@@ -18,6 +18,12 @@ const sectionReveal = {
   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
 };
 
+const snapStyle: React.CSSProperties = {
+  scrollSnapAlign: "start",
+  scrollSnapStop: "always",
+  scrollMarginTop: 72,
+};
+
 function PageContent() {
   const { lang } = useLang();
   return (
@@ -34,21 +40,19 @@ function PageContent() {
         }}
       >
         <Nav />
-        <Hero />
-        <motion.section
-          id="products"
-          {...sectionReveal}
-          style={{ scrollSnapAlign: "start", scrollSnapStop: "always", scrollMarginTop: 72 }}
-        >
+        <section id="hero" style={snapStyle}>
+          <Hero />
+        </section>
+        <motion.section id="products" {...sectionReveal} style={snapStyle}>
           <Projects />
         </motion.section>
-        <motion.section id="axes" {...sectionReveal}>
+        <motion.section id="axes" {...sectionReveal} style={snapStyle}>
           <AxesConnection />
         </motion.section>
-        <motion.section id="about" {...sectionReveal}>
+        <motion.section id="about" {...sectionReveal} style={snapStyle}>
           <About />
         </motion.section>
-        <motion.section id="news" {...sectionReveal}>
+        <motion.section id="news" {...sectionReveal} style={snapStyle}>
           <News />
         </motion.section>
         <Footer />
