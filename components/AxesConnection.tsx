@@ -204,15 +204,6 @@ export default function AxesConnection() {
             })}
           </svg>
         </motion.div>
-
-        <p
-          className="text-center text-[13px] mt-10 max-w-2xl mx-auto leading-relaxed"
-          style={{ color: "#999" }}
-        >
-          {lang === "ko"
-            ? "여섯 서비스는 각자 움직이지 않습니다. 커뮤니티를 통해 서로를 이어, 하나의 흐름을 만듭니다."
-            : "These services don't move alone. They weave through the community, flowing as one experience."}
-        </p>
       </div>
     </section>
   );
