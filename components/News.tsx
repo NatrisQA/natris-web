@@ -20,11 +20,11 @@ export default function News() {
             </div>
             <h2
               className="font-black tracking-tight mb-3"
-              style={{ fontSize: "clamp(1.9rem, 4.2vw, 3rem)", color: "#f5f5f7" }}
+              style={{ fontSize: "clamp(2rem, 5.2vw, 4.2rem)", color: "#f5f5f7", lineHeight: 1.15 }}
             >
               {t.headline[lang]}
             </h2>
-            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.62)" }}>{t.sub[lang]}</p>
+            <p style={{ fontSize: "clamp(15px, 1.35vw, 19px)", color: "rgba(255,255,255,0.62)" }}>{t.sub[lang]}</p>
           </div>
           <a
             href="#news"
@@ -35,7 +35,7 @@ export default function News() {
           </a>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {items.map((item, i) => (
             <motion.article
               key={i}

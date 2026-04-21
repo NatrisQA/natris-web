@@ -45,17 +45,17 @@ export default function AxesConnection() {
           <h2
             className="font-black tracking-tight mb-4"
             style={{
-              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+              fontSize: "clamp(2rem, 5.2vw, 4.2rem)",
               color: "#f5f5f7",
               whiteSpace: "pre-line",
-              lineHeight: 1.2,
+              lineHeight: 1.15,
             }}
           >
             {lang === "ko"
               ? "서로 다른 서비스가\n하나의 커뮤니티로 이어집니다"
               : "Different services,\nwoven into one community"}
           </h2>
-          <p className="text-[15px] max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.62)" }}>
+          <p className="max-w-3xl mx-auto leading-relaxed" style={{ fontSize: "clamp(15px, 1.35vw, 19px)", color: "rgba(255,255,255,0.62)" }}>
             {lang === "ko"
               ? "여섯 개의 플랫폼은 각자의 역할을 하면서도, 커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다."
               : "Six platforms each play their role, tied together by the thread of community."}
@@ -68,7 +68,7 @@ export default function AxesConnection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          style={{ maxWidth: 1200, margin: "0 auto" }}
+          style={{ maxWidth: 1440, margin: "0 auto" }}
         >
           <svg viewBox="0 0 800 600" style={{ width: "100%", height: "auto", display: "block" }}>
             {/* Subtle background circles */}

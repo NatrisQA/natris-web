@@ -294,10 +294,10 @@ export default function Projects() {
             <div className="text-[11px] font-black tracking-[0.32em] mb-3" style={{ color: "#ff5a6a" }}>
               {label}
             </div>
-            <h2 className="font-black tracking-tight mb-3" style={{ fontSize: "clamp(1.9rem, 4.2vw, 3rem)", color: "#f5f5f7" }}>
+            <h2 className="font-black tracking-tight mb-3" style={{ fontSize: "clamp(2rem, 5.2vw, 4.2rem)", color: "#f5f5f7", lineHeight: 1.15 }}>
               {headline}
             </h2>
-            <p className="max-w-2xl leading-relaxed" style={{ fontSize: "15px", color: "rgba(255,255,255,0.62)" }}>
+            <p className="max-w-3xl leading-relaxed" style={{ fontSize: "clamp(15px, 1.35vw, 19px)", color: "rgba(255,255,255,0.62)" }}>
               {sub}
             </p>
           </div>
