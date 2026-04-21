@@ -578,54 +578,28 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
 function KeyVisual({ id, color }: { id: string; color: string }) {
   if (id === "pokerlulu") {
     return (
-      <div className="relative w-full aspect-[5/6] max-w-[480px] mx-auto">
+      <div className="relative w-full aspect-[16/9] max-w-[560px] mx-auto">
         <div
-          className="absolute inset-0 rounded-[28px]"
+          className="relative w-full h-full rounded-[24px] overflow-hidden"
           style={{
-            background: `linear-gradient(160deg, ${color}20, ${color}05 60%, #fff)`,
             border: `1px solid ${color}30`,
-            boxShadow: `0 30px 80px ${color}28`,
-          }}
-        />
-        {/* Stacked cards */}
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="absolute rounded-2xl"
-            style={{
-              left: `${14 + i * 6}%`,
-              top: `${12 + i * 4}%`,
-              width: "44%",
-              aspectRatio: "5/7",
-              background: "#fff",
-              border: `1px solid ${color}50`,
-              boxShadow: `0 10px 30px ${color}20`,
-              transform: `rotate(${-10 + i * 6}deg)`,
-            }}
-          >
-            <div className="p-3 h-full flex flex-col justify-between">
-              <span className="text-2xl font-black" style={{ color }}>
-                {["♠", "♥", "♦"][i]}
-              </span>
-              <span className="text-2xl font-black self-end" style={{ color, transform: "rotate(180deg)" }}>
-                {["♠", "♥", "♦"][i]}
-              </span>
-            </div>
-          </div>
-        ))}
-        {/* Chip */}
-        <div
-          className="absolute right-[8%] bottom-[12%] w-24 h-24 rounded-full flex items-center justify-center"
-          style={{
-            background: `radial-gradient(circle, ${color}, ${color}88)`,
-            border: `3px dashed #fff`,
-            boxShadow: `0 14px 40px ${color}55`,
-            color: "#fff",
-            fontWeight: 900,
-            fontSize: 14,
+            boxShadow: `0 30px 80px ${color}35`,
           }}
         >
-          LULU
+          <img
+            src="/images/pokerlulu/keyvisual.png"
+            alt="PokerLulu key visual"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: "center top" }}
+          />
+          {/* Subtle corner gradient to mask any watermark */}
+          <div
+            className="absolute bottom-0 right-0 w-24 h-12 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at bottom right, rgba(20,5,10,0.85) 0%, rgba(20,5,10,0) 70%)",
+            }}
+          />
         </div>
       </div>
     );
