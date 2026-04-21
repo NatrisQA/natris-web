@@ -3,7 +3,7 @@
 import { LangProvider, useLang } from "@/components/LangContext";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
+import Projects, { FeatureIconContext, type FeatureIconRenderer } from "@/components/Projects";
 import AxesConnection from "@/components/AxesConnection";
 import About from "@/components/About";
 import News from "@/components/News";
@@ -15,6 +15,43 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import {
+  Spade, Trophy, Radio, Shuffle,
+  Zap, Mic, Users, Gamepad2,
+  Home, UserCog, BarChart3, Wallet,
+  Star, BookOpen, HelpCircle, MessageSquare,
+  ClipboardList, Timer, Target, CreditCard,
+  Brain, Library, LayoutGrid, TrendingUp,
+  type LucideIcon,
+} from "lucide-react";
+
+const LUCIDE_FEATURES: Record<string, LucideIcon[]> = {
+  pokerlulu: [Spade, Trophy, Radio, Shuffle],
+  linkplay: [Zap, Mic, Users, Gamepad2],
+  moitto: [Home, UserCog, BarChart3, Wallet],
+  tubelulu: [Star, BookOpen, HelpCircle, MessageSquare],
+  shuffleup: [ClipboardList, Timer, Target, CreditCard],
+  gtolulu: [Brain, Library, LayoutGrid, TrendingUp],
+};
+
+const renderLucideFeature: FeatureIconRenderer = ({ serviceId, featureIndex, color }) => {
+  const icons = LUCIDE_FEATURES[serviceId];
+  const Icon = icons?.[featureIndex];
+  if (!Icon) return null;
+  return (
+    <span
+      className="inline-flex items-center justify-center rounded-md"
+      style={{
+        width: 26,
+        height: 26,
+        background: `${color}18`,
+        border: `1px solid ${color}35`,
+      }}
+    >
+      <Icon size={15} strokeWidth={2} style={{ color }} />
+    </span>
+  );
+};
 import { createContext, useContext, useEffect, useRef, useState, type RefObject } from "react";
 
 const ScrollContainerCtx = createContext<RefObject<HTMLDivElement | null> | null>(null);
@@ -468,10 +505,12 @@ function PageContent() {
           <Hero />
         </ParallaxSlide>
 
-        {/* Projects — center + clamp padding (WeMade 방식) */}
+        {/* Projects — center + clamp padding (WeMade 방식) + Lucide 아이콘 */}
         <ParallaxSlide id="products">
           <div className="fp-projects w-full">
-            <Projects />
+            <FeatureIconContext.Provider value={renderLucideFeature}>
+              <Projects />
+            </FeatureIconContext.Provider>
           </div>
         </ParallaxSlide>
 

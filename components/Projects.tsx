@@ -2,9 +2,17 @@
 
 import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+
+export type FeatureIconRenderer = (args: {
+  serviceId: string;
+  featureIndex: number;
+  color: string;
+}) => ReactNode;
+
+export const FeatureIconContext = createContext<FeatureIconRenderer | null>(null);
 
 const AXIS_COLOR: Record<string, string> = {
   game: "#e63946",
@@ -17,123 +25,8 @@ const AXIS_LABEL: Record<string, string> = {
   tech: "TECH",
 };
 
-/* When real hero images arrive, drop them under /public/images/{id}/hero.{ext}
-   and set the path here. Abstract SVG fallback is rendered otherwise. */
-const HERO_IMAGES: Record<string, string | undefined> = {
-  // pokerlulu: "/images/pokerlulu/hero.png",
-  // linkplay: "/images/linkplay/hero.png",
-  // moitto: "/images/moitto/hero.png",
-  // shuffleup: "/images/shuffleup/hero.png",
-  // tubelulu: "/images/tubelulu/hero.png",
-  // gtolulu: "/images/gtolulu/hero.png",
-};
-
-/* ── Service visual (card top area) ── */
-function ServiceVisual({ id, color, imageSrc }: { id: string; color: string; imageSrc?: string }) {
-  if (imageSrc) {
-    return (
-      <div className="relative w-full" style={{ aspectRatio: "16 / 9", overflow: "hidden", background: "#14141f" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={imageSrc} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-      </div>
-    );
-  }
-
-  const c = color;
-  const patterns: Record<string, React.ReactNode> = {
-    pokerlulu: (
-      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        <circle cx="220" cy="115" r="46" fill={`${c}22`} />
-        <circle cx="220" cy="115" r="32" fill={`${c}3a`} />
-        <circle cx="220" cy="115" r="18" fill={c} opacity="0.85" />
-        <circle cx="262" cy="62" r="20" fill={`${c}32`} />
-        <circle cx="176" cy="58" r="16" fill={`${c}50`} />
-        <text x="48" y="90" fontSize="38" fill={`${c}aa`} fontWeight="900" fontFamily="serif">♠</text>
-        <text x="92" y="128" fontSize="26" fill={`${c}66`} fontWeight="900" fontFamily="serif">♥</text>
-      </svg>
-    ),
-    linkplay: (
-      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        <circle cx="72" cy="85" r="40" fill={`${c}18`} />
-        <circle cx="72" cy="85" r="28" fill={`${c}28`} />
-        <image href="/logos/linkplay.svg" x="48" y="61" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
-        <path d="M120 85 Q145 60, 170 85 T220 85" stroke={`${c}aa`} strokeWidth="2" fill="none" strokeLinecap="round" />
-        <path d="M120 85 Q150 45, 180 85 T240 85" stroke={`${c}66`} strokeWidth="2" fill="none" strokeLinecap="round" />
-        <path d="M120 85 Q155 30, 190 85 T260 85" stroke={`${c}35`} strokeWidth="2" fill="none" strokeLinecap="round" />
-        <circle cx="258" cy="85" r="5" fill={c} />
-      </svg>
-    ),
-    moitto: (
-      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        <circle cx="80" cy="65" r="18" fill={`${c}55`} />
-        <circle cx="60" cy="100" r="16" fill={`${c}40`} />
-        <circle cx="100" cy="100" r="16" fill={`${c}45`} />
-        <path d="M38 148 Q80 110, 122 148 Z" fill={`${c}32`} />
-        <circle cx="180" cy="55" r="14" fill={`${c}45`} />
-        <circle cx="220" cy="75" r="20" fill={`${c}38`} />
-        <circle cx="250" cy="50" r="12" fill={`${c}55`} />
-        <path d="M160 148 Q220 105, 280 148 Z" fill={`${c}28`} />
-      </svg>
-    ),
-    shuffleup: (
-      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        <path d="M30 40 L70 40 L70 70 L120 70" stroke={`${c}cc`} strokeWidth="2" fill="none" />
-        <path d="M30 100 L70 100 L70 70" stroke={`${c}cc`} strokeWidth="2" fill="none" />
-        <path d="M30 130 L60 130" stroke={`${c}70`} strokeWidth="2" fill="none" />
-        <path d="M120 70 L180 70" stroke={c} strokeWidth="2.5" fill="none" />
-        <path d="M228 58 L272 58 L266 92 Q250 104, 250 104 Q250 104, 234 92 Z" fill={`${c}30`} stroke={c} strokeWidth="1.6" />
-        <text x="250" y="85" fontSize="16" textAnchor="middle" fill={c} fontWeight="900" fontFamily="sans-serif">★</text>
-        <rect x="244" y="110" width="12" height="16" rx="1" fill={`${c}80`} />
-        <rect x="236" y="128" width="28" height="4" rx="1" fill={c} />
-      </svg>
-    ),
-    tubelulu: (
-      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        <rect x="34" y="38" width="140" height="88" rx="10" fill={`${c}18`} stroke={`${c}80`} strokeWidth="1.5" />
-        <path d="M92 68 L92 96 L124 82 Z" fill={c} />
-        <rect x="48" y="138" width="60" height="4" rx="2" fill={`${c}50`} />
-        <rect x="48" y="148" width="40" height="3" rx="1.5" fill={`${c}35`} />
-        <path d="M198 80 L204 60 L210 100 L216 50 L222 95 L228 65 L234 90 L240 58 L246 88 L252 70"
-          stroke={`${c}bb`} strokeWidth="1.6" fill="none" strokeLinejoin="round" />
-        <circle cx="224" cy="124" r="14" fill={`${c}25`} stroke={c} strokeWidth="1.5" />
-        <path d="M220 118 L220 130 L232 124 Z" fill={c} />
-      </svg>
-    ),
-    gtolulu: (
-      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        <line x1="40" y1="140" x2="280" y2="140" stroke={`${c}25`} strokeWidth="1" />
-        <line x1="40" y1="30" x2="40" y2="140" stroke={`${c}25`} strokeWidth="1" />
-        <line x1="40" y1="100" x2="280" y2="100" stroke={`${c}18`} strokeWidth="1" strokeDasharray="2 3" />
-        <line x1="40" y1="65" x2="280" y2="65" stroke={`${c}18`} strokeWidth="1" strokeDasharray="2 3" />
-        <path d="M40 120 L78 85 L118 98 L156 52 L196 68 L234 34 L272 50"
-          stroke={c} strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="78" cy="85" r="4" fill={c} />
-        <circle cx="118" cy="98" r="4" fill={c} />
-        <circle cx="156" cy="52" r="5" fill={c} />
-        <circle cx="196" cy="68" r="4" fill={c} />
-        <circle cx="234" cy="34" r="5" fill={c} />
-        <rect x="226" y="108" width="46" height="22" rx="5" fill={`${c}18`} stroke={c} strokeWidth="1" />
-        <text x="249" y="124" fontSize="11" textAnchor="middle" fill={c} fontWeight="900" fontFamily="sans-serif">AI</text>
-      </svg>
-    ),
-  };
-
-  return (
-    <div
-      className="relative w-full"
-      style={{
-        aspectRatio: "16 / 9",
-        background: `linear-gradient(135deg, ${c}35 0%, ${c}10 55%, #14141f 100%)`,
-        overflow: "hidden",
-      }}
-    >
-      {patterns[id]}
-    </div>
-  );
-}
-
-/* ── Service icon ── */
-function IconLogo({ id, color, size = 48 }: { id: string; color: string; size?: number }) {
+/* ── Service icon (small) ── */
+function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: number }) {
   const c = color;
   const icons: Record<string, React.ReactNode> = {
     pokerlulu: (
@@ -169,16 +62,12 @@ function IconLogo({ id, color, size = 48 }: { id: string; color: string; size?: 
         <circle cx="10" cy="16" r="5" fill={`${c}35`} />
         <circle cx="30" cy="16" r="5" fill={`${c}35`} />
         <path d="M12 32 Q20 22 28 32" fill={`${c}55`} />
-        <path d="M4 32 Q10 26 16 32" fill={`${c}30`} />
-        <path d="M24 32 Q30 26 36 32" fill={`${c}30`} />
       </svg>
     ),
     tubelulu: (
       <svg viewBox="0 0 40 40" fill="none">
         <rect x="6" y="10" width="28" height="20" rx="4" fill={`${c}22`} stroke={c} strokeWidth="1.4" />
         <path d="M18 16 L18 24 L26 20 Z" fill={c} />
-        <circle cx="10" cy="32" r="2" fill={`${c}99`} />
-        <circle cx="16" cy="32" r="2" fill={`${c}66`} />
       </svg>
     ),
     shuffleup: (
@@ -192,7 +81,6 @@ function IconLogo({ id, color, size = 48 }: { id: string; color: string; size?: 
       <svg viewBox="0 0 40 40" fill="none">
         <path d="M6 32 L14 18 L20 24 L28 10 L34 32" stroke={c} strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="14" cy="18" r="2.5" fill={c} />
-        <circle cx="20" cy="24" r="2.5" fill={c} />
         <circle cx="28" cy="10" r="2.5" fill={c} />
         <text x="20" y="37" fontSize="6" textAnchor="middle" fill={`${c}dd`} fontWeight="800" fontFamily="sans-serif">GTO</text>
       </svg>
@@ -218,300 +106,283 @@ export default function Projects() {
   const headline = content.products.headline[lang];
   const sub = content.products.sub[lang];
   const label = content.products.label[lang];
+  const renderFeatureIcon = useContext(FeatureIconContext);
 
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [centerId, setCenterId] = useState<string | null>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const active = items[activeIdx];
+  const axis = (active as typeof active & { axis: "game" | "community" | "tech" }).axis;
+  const axisColor = AXIS_COLOR[axis];
+  const axisLabel = AXIS_LABEL[axis];
 
-  const updateEdges = useCallback(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    setAtStart(el.scrollLeft <= 2);
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 2);
-  }, []);
-
+  /* Auto-rotate every 6s, pause on hover */
+  const hoveringRef = useRef(false);
   useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    updateEdges();
-    el.addEventListener("scroll", updateEdges, { passive: true });
-    window.addEventListener("resize", updateEdges);
-    return () => {
-      el.removeEventListener("scroll", updateEdges);
-      window.removeEventListener("resize", updateEdges);
-    };
-  }, [updateEdges]);
-
-  /* Track which card is closest to the scroller center — used for mobile active state */
-  useEffect(() => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-
-    const pickCenter = () => {
-      const cards = Array.from(scroller.querySelectorAll<HTMLElement>("[data-card]"));
-      if (cards.length === 0) return;
-      const scRect = scroller.getBoundingClientRect();
-      const scCenter = scRect.left + scRect.width / 2;
-      let bestId = "";
-      let bestDist = Infinity;
-      for (const c of cards) {
-        const r = c.getBoundingClientRect();
-        const cCenter = r.left + r.width / 2;
-        const dist = Math.abs(cCenter - scCenter);
-        if (dist < bestDist) {
-          bestDist = dist;
-          bestId = c.dataset.id || "";
-        }
+    const timer = setInterval(() => {
+      if (!hoveringRef.current) {
+        setActiveIdx((prev) => (prev + 1) % items.length);
       }
-      if (bestId) setCenterId(bestId);
-    };
-
-    pickCenter();
-    scroller.addEventListener("scroll", pickCenter, { passive: true });
-    window.addEventListener("resize", pickCenter);
-    return () => {
-      scroller.removeEventListener("scroll", pickCenter);
-      window.removeEventListener("resize", pickCenter);
-    };
-  }, []);
-
-  const scrollBy = (dir: 1 | -1) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-card]");
-    const step = card ? card.offsetWidth + 20 : el.clientWidth * 0.8;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
-  };
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [items.length]);
 
   return (
-    <section className="py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32" style={{ background: "#08080f" }}>
-      <div className="max-w-[1680px] mx-auto">
-        {/* Header */}
-        <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
-          <div>
-            <div className="text-[11px] font-black tracking-[0.32em] mb-3" style={{ color: "#ff5a6a" }}>
-              {label}
-            </div>
-            <h2 className="font-black tracking-tight mb-3" style={{ fontSize: "clamp(2rem, 5.2vw, 4.2rem)", color: "#f5f5f7", lineHeight: 1.15 }}>
-              {headline}
-            </h2>
-            <p className="max-w-3xl leading-relaxed" style={{ fontSize: "clamp(15px, 1.35vw, 19px)", color: "rgba(255,255,255,0.62)" }}>
-              {sub}
-            </p>
-          </div>
-
-          {/* Prev/Next */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => scrollBy(-1)}
-              disabled={atStart}
-              aria-label="Previous"
-              className="w-11 h-11 rounded-full flex items-center justify-center transition-all"
-              style={{
-                background: "transparent",
-                border: "1px solid rgba(255,255,255,0.18)",
-                color: "#f5f5f7",
-                opacity: atStart ? 0.3 : 1,
-                cursor: atStart ? "default" : "pointer",
-              }}
-            >
-              ←
-            </button>
-            <button
-              onClick={() => scrollBy(1)}
-              disabled={atEnd}
-              aria-label="Next"
-              className="w-11 h-11 rounded-full flex items-center justify-center transition-all"
-              style={{
-                background: "#fff",
-                color: "#111",
-                opacity: atEnd ? 0.3 : 1,
-                cursor: atEnd ? "default" : "pointer",
-              }}
-            >
-              →
-            </button>
-          </div>
-        </div>
-
-        {/* Carousel */}
+    <section className="relative py-0 overflow-hidden" style={{ background: "#08080f" }}>
+      {/* ── Background video (full-bleed, loops for all projects) ── */}
+      <div className="absolute inset-0 z-0">
+        <video
+          key="service-bg"
+          src="/videos/service-bg.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full"
+          style={{ objectFit: "cover", opacity: 0.18 }}
+        />
+        {/* Color overlay tinted to active service */}
         <div
-          ref={scrollerRef}
-          className="flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory"
-          style={{ scrollPaddingLeft: 0 }}
+          className="absolute inset-0 transition-colors duration-700"
+          style={{ background: `linear-gradient(135deg, ${active.color}18 0%, transparent 50%, #08080f 100%)` }}
+        />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-40" style={{ background: "linear-gradient(to bottom, transparent, #08080f)" }} />
+        {/* Top fade */}
+        <div className="absolute top-0 left-0 right-0 h-24" style={{ background: "linear-gradient(to top, transparent, #08080f)" }} />
+      </div>
+
+      <div
+        className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-28 md:py-36"
+        onMouseEnter={() => { hoveringRef.current = true; }}
+        onMouseLeave={() => { hoveringRef.current = false; }}
+      >
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-14"
         >
-          {items.map((p, i) => {
-            const axis = (p as typeof p & { axis: "game" | "community" | "tech" }).axis;
-            const axisColor = AXIS_COLOR[axis];
-            const axisLabel = AXIS_LABEL[axis];
-            const isActive = (hoveredId ?? centerId) === p.id;
-            return (
-              <motion.article
-                key={p.id}
-                data-card
-                data-id={p.id}
-                data-active={isActive || undefined}
-                onMouseEnter={() => setHoveredId(p.id)}
-                onMouseLeave={() => setHoveredId((h) => (h === p.id ? null : h))}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.55, delay: i * 0.06 }}
-                className="rounded-2xl flex-shrink-0 snap-start p-7 flex flex-col relative overflow-hidden"
+          <div className="text-[11px] font-black tracking-[0.32em]" style={{ color: "#ff5a6a" }}>
+            {label}
+          </div>
+        </motion.div>
+
+        {/* Main content: Tab list (left) + Active detail (right) */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-14 items-start">
+
+          {/* ── Left: Service tab list ── */}
+          <div className="w-full lg:w-[340px] flex-shrink-0">
+            <div className="flex flex-col gap-1">
+              {items.map((p, i) => {
+                const isActive = i === activeIdx;
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => setActiveIdx(i)}
+                    className="relative w-full text-left rounded-xl px-5 py-4 transition-all duration-300 group"
+                    style={{
+                      background: isActive ? `${p.color}15` : "transparent",
+                      border: `1px solid ${isActive ? `${p.color}40` : "transparent"}`,
+                    }}
+                  >
+                    {/* Active indicator bar */}
+                    <div
+                      className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full transition-all duration-300"
+                      style={{
+                        background: isActive ? p.color : "transparent",
+                        boxShadow: isActive ? `0 0 12px ${p.color}88` : "none",
+                      }}
+                    />
+                    <div className="flex items-center gap-3">
+                      <IconLogo id={p.id} color={p.color} size={32} />
+                      <div className="flex-1 min-w-0">
+                        <div
+                          className="text-[15px] font-black truncate transition-colors duration-300"
+                          style={{ color: isActive ? "#f5f5f7" : "rgba(255,255,255,0.45)" }}
+                        >
+                          {p.name}
+                        </div>
+                        <div
+                          className="text-[11px] truncate transition-colors duration-300"
+                          style={{ color: isActive ? `${p.color}cc` : "rgba(255,255,255,0.25)" }}
+                        >
+                          {p.tag[lang]}
+                        </div>
+                      </div>
+                      {/* Status */}
+                      <span
+                        className="text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 transition-all duration-300"
+                        style={{
+                          background: isActive ? `${p.color}22` : "rgba(255,255,255,0.05)",
+                          color: isActive ? p.color : "rgba(255,255,255,0.3)",
+                        }}
+                      >
+                        {p.status[lang]}
+                      </span>
+                    </div>
+
+                    {/* Progress bar (auto-rotate indicator) */}
+                    {isActive && (
+                      <div className="absolute bottom-0 left-5 right-5 h-[2px] rounded-full overflow-hidden" style={{ background: `${p.color}20` }}>
+                        <motion.div
+                          key={`progress-${i}`}
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 6, ease: "linear" }}
+                          style={{ height: "100%", background: p.color, borderRadius: 999 }}
+                        />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ── Right: Active project detail ── */}
+          <div className="flex-1 min-w-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.id}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-2xl overflow-hidden relative"
                 style={{
                   background: "#14141f",
-                  border: `1px solid ${isActive ? `${p.color}90` : "rgba(255,255,255,0.08)"}`,
-                  width: "min(88vw, 400px)",
-                  minHeight: 640,
-                  boxShadow: isActive
-                    ? `0 40px 90px ${p.color}45, 0 20px 40px rgba(0,0,0,0.5)`
-                    : "0 2px 10px rgba(0,0,0,0.3)",
-                  transform: isActive ? "translateY(-10px) scale(1.04)" : "translateY(0) scale(1)",
-                  transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease, border-color 0.3s ease",
-                  cursor: "pointer",
-                  zIndex: isActive ? 10 : 1,
+                  border: `1px solid ${active.color}30`,
+                  boxShadow: `0 40px 80px ${active.color}15, 0 0 120px ${active.color}08`,
                 }}
               >
-                {/* Corner glow (active only) */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 pointer-events-none rounded-2xl"
-                  style={{
-                    opacity: isActive ? 1 : 0,
-                    transition: "opacity 0.4s ease",
-                    background: `radial-gradient(600px circle at 0% 0%, ${p.color}22, transparent 40%), radial-gradient(600px circle at 100% 100%, ${axisColor}18, transparent 40%)`,
-                  }}
-                />
-
-                {/* Hero visual (abstract graphic or image) */}
-                <div
-                  className="-mx-7 -mt-7 mb-6 relative"
-                  style={{
-                    transform: isActive ? "scale(1.02)" : "scale(1)",
-                    transition: "transform 0.5s cubic-bezier(0.22,1,0.36,1)",
-                    transformOrigin: "center top",
-                  }}
-                >
-                  <ServiceVisual id={p.id} color={p.color} imageSrc={HERO_IMAGES[p.id]} />
-                  {/* Bottom fade to card body */}
-                  <div
-                    aria-hidden
-                    className="absolute left-0 right-0 bottom-0 pointer-events-none"
-                    style={{ height: 32, background: "linear-gradient(to bottom, transparent, #14141f)" }}
+                {/* Video section inside card */}
+                <div className="relative" style={{ aspectRatio: "16 / 9", overflow: "hidden" }}>
+                  <video
+                    src="/videos/service-bg.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full"
+                    style={{ objectFit: "cover" }}
                   />
-                </div>
-
-                {/* Axis badge + status */}
-                <div className="flex items-center justify-between mb-6 relative">
-                  <span
-                    className="text-[10px] font-black tracking-[0.16em] px-2.5 py-1 rounded-full"
-                    style={{
-                      background: isActive ? axisColor : `${axisColor}22`,
-                      color: isActive ? "#fff" : axisColor,
-                      border: `1px solid ${isActive ? axisColor : `${axisColor}55`}`,
-                      transition: "background 0.3s ease, color 0.3s ease, border-color 0.3s ease",
-                    }}
-                  >
-                    {axisLabel}
-                  </span>
-                  <span className="text-[11px] font-bold" style={{ color: isActive ? "#f5f5f7" : "rgba(255,255,255,0.4)", transition: "color 0.3s ease" }}>
-                    {p.status[lang]}
-                  </span>
-                </div>
-
-                {/* Icon + name */}
-                <div className="flex items-center gap-3 mb-4 relative">
+                  {/* Service color gradient overlay */}
                   <div
+                    className="absolute inset-0"
                     style={{
-                      transform: isActive ? "scale(1.12) rotate(-3deg)" : "scale(1) rotate(0)",
-                      transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)",
+                      background: `linear-gradient(to top, #14141f 0%, ${active.color}18 30%, transparent 60%)`,
                     }}
-                  >
-                    <IconLogo id={p.id} color={p.color} size={44} />
-                  </div>
-                  <div>
-                    <h3
-                      className="text-lg font-black leading-none mb-1"
-                      style={{
-                        color: isActive ? p.color : "#f5f5f7",
-                        transition: "color 0.3s ease",
-                      }}
-                    >
-                      {p.name}
-                    </h3>
-                    <div className="text-[11px] font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>
-                      {p.tag[lang]}
+                  />
+                  {/* Service logo overlay on video */}
+                  <div className="absolute bottom-6 left-8 right-8 flex items-end justify-between">
+                    <div>
+                      <span
+                        className="text-[10px] font-black tracking-[0.16em] px-2.5 py-1 rounded-full inline-block mb-3"
+                        style={{
+                          background: axisColor,
+                          color: "#fff",
+                        }}
+                      >
+                        {axisLabel}
+                      </span>
+                      <h3
+                        className="font-black"
+                        style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#fff", lineHeight: 1.1, textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
+                      >
+                        {active.name}
+                      </h3>
+                      <div className="text-[13px] font-semibold mt-1" style={{ color: `${active.color}dd` }}>
+                        {active.tag[lang]}
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-[14px] leading-relaxed flex-1 mb-5 relative whitespace-pre-line" style={{ color: isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.62)", transition: "color 0.3s ease" }}>
-                  {p.desc[lang]}
-                </p>
+                {/* Info section */}
+                <div className="p-8">
+                  <p className="text-[15px] leading-relaxed mb-6 whitespace-pre-line max-w-xl" style={{ color: "rgba(255,255,255,0.8)" }}>
+                    {active.desc[lang]}
+                  </p>
 
-                {/* Badges */}
-                <div className="flex flex-wrap gap-1.5 relative">
-                  {p.badges[lang].slice(0, 3).map((b) => (
-                    <span
-                      key={b}
-                      className="text-[10.5px] font-semibold px-2 py-1 rounded"
-                      style={{
-                        background: isActive ? `${p.color}22` : "rgba(255,255,255,0.06)",
-                        color: isActive ? p.color : "rgba(255,255,255,0.75)",
-                        transition: "background 0.3s ease, color 0.3s ease",
-                      }}
-                    >
-                      #{b}
-                    </span>
-                  ))}
-                </div>
+                  {/* Badges */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {active.badges[lang].map((b) => (
+                      <span
+                        key={b}
+                        className="text-[11px] font-semibold px-2.5 py-1 rounded-full"
+                        style={{
+                          background: `${active.color}18`,
+                          color: active.color,
+                          border: `1px solid ${active.color}30`,
+                        }}
+                      >
+                        #{b}
+                      </span>
+                    ))}
+                  </div>
 
-                {/* Service color accent bar — grows on active */}
-                <div
-                  className="rounded-full mt-5 relative"
-                  style={{
-                    height: isActive ? 3 : 1.5,
-                    background: `linear-gradient(90deg, ${p.color}, ${p.color}55)`,
-                    boxShadow: isActive ? `0 0 18px ${p.color}aa` : "none",
-                    transition: "height 0.35s ease, box-shadow 0.35s ease",
-                  }}
-                />
+                  {/* Feature highlights (2x2 grid) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    {active.features.slice(0, 4).map((f, fi) => (
+                      <div
+                        key={fi}
+                        className="rounded-xl px-4 py-3"
+                        style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+                      >
+                        <div className="flex items-center gap-2 mb-1.5">
+                          {(() => {
+                            const lucide = renderFeatureIcon?.({
+                              serviceId: active.id,
+                              featureIndex: fi,
+                              color: active.color,
+                            });
+                            return lucide ?? <span className="text-[16px]">{f.icon}</span>;
+                          })()}
+                          <span className="text-[13px] font-bold" style={{ color: "#f5f5f7" }}>{f.title[lang]}</span>
+                        </div>
+                        <p className="text-[12px] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                          {f.desc[lang]}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
 
-                {/* "자세히 보기" button */}
-                <Link
-                  href={`/services/${p.id}`}
-                  className="mt-5 inline-flex items-center justify-between w-full rounded-full py-2.5 px-4 text-[12.5px] font-black tracking-wide relative"
-                  style={{
-                    background: isActive ? p.color : "rgba(255,255,255,0.04)",
-                    color: isActive ? "#fff" : "#f5f5f7",
-                    border: `1px solid ${isActive ? p.color : "rgba(255,255,255,0.12)"}`,
-                    transition: "background 0.3s ease, color 0.3s ease, border-color 0.3s ease",
-                  }}
-                >
-                  <span>{lang === "ko" ? "자세히 보기" : "View Details"}</span>
-                  <span
+                  {/* CTA */}
+                  <Link
+                    href={`/services/${active.id}`}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[13px] font-black tracking-wide transition-all duration-300"
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: 22,
-                      height: 22,
-                      borderRadius: 999,
-                      background: isActive ? "rgba(255,255,255,0.22)" : p.color,
+                      background: active.color,
                       color: "#fff",
-                      fontSize: 12,
-                      transform: isActive ? "translateX(4px)" : "translateX(0)",
-                      transition: "transform 0.3s ease, background 0.3s ease",
+                      boxShadow: `0 8px 30px ${active.color}55`,
                     }}
                   >
-                    →
-                  </span>
-                </Link>
-              </motion.article>
-            );
-          })}
+                    <span>{lang === "ko" ? "자세히 보기" : "View Details"}</span>
+                    <span style={{ fontSize: 14 }}>→</span>
+                  </Link>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Bottom: page indicators */}
+        <div className="flex justify-center gap-2 mt-10">
+          {items.map((p, i) => (
+            <button
+              key={p.id}
+              onClick={() => setActiveIdx(i)}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === activeIdx ? 28 : 8,
+                height: 8,
+                background: i === activeIdx ? p.color : "rgba(255,255,255,0.15)",
+                boxShadow: i === activeIdx ? `0 0 10px ${p.color}88` : "none",
+              }}
+              aria-label={p.name}
+            />
+          ))}
         </div>
       </div>
     </section>
