@@ -176,41 +176,89 @@ function LabelBar({ label, color, extra }: { label: string; color: string; extra
   );
 }
 
-/* ── Side-by-side: 두 iframe + 스크롤 동기화 ── */
+/* ── Side-by-side: 두 iframe + 섹션 앵커 기반 스크롤 동기화 ── */
 function SideBySide() {
   const leftRef = useRef<HTMLIFrameElement>(null);
   const rightRef = useRef<HTMLIFrameElement>(null);
-  const syncingRef = useRef(false);
+  /* owner = 현재 사용자가 조작 중인 쪽. 이쪽의 scroll 이벤트만 반대쪽으로 전파 → 핑퐁 차단 */
+  const ownerRef = useRef<"left" | "right" | null>(null);
 
   useEffect(() => {
     const left = leftRef.current;
     const right = rightRef.current;
     if (!left || !right) return;
 
+    type Anchor = { index: number; offsetInSection: number };
+
+    /* 뷰포트 상단(0px)을 기준으로 "지금 몇 번째 섹션의 어느 위치에 있는가"를 구한다 */
+    const getAnchor = (w: Window): Anchor => {
+      const sections = Array.from(w.document.querySelectorAll("section")) as HTMLElement[];
+      if (sections.length === 0) return { index: 0, offsetInSection: w.scrollY };
+      for (let i = 0; i < sections.length; i++) {
+        const r = sections[i].getBoundingClientRect();
+        if (r.top <= 0 && r.bottom > 0) {
+          return { index: i, offsetInSection: -r.top };
+        }
+      }
+      /* 첫 섹션 위, 또는 마지막 섹션 아래 */
+      if (sections[0].getBoundingClientRect().top > 0) {
+        return { index: 0, offsetInSection: -sections[0].getBoundingClientRect().top };
+      }
+      const last = sections[sections.length - 1];
+      return {
+        index: sections.length - 1,
+        offsetInSection: -last.getBoundingClientRect().top,
+      };
+    };
+
+    /* 상대편에 앵커를 적용: 같은 인덱스 섹션의 같은 오프셋으로 스크롤 */
+    const applyAnchor = (w: Window, anchor: Anchor) => {
+      const sections = Array.from(w.document.querySelectorAll("section")) as HTMLElement[];
+      const target = sections[anchor.index];
+      if (!target) {
+        w.scrollTo(0, anchor.offsetInSection);
+        return;
+      }
+      const r = target.getBoundingClientRect();
+      w.scrollTo(0, w.scrollY + r.top + anchor.offsetInSection);
+    };
+
     const sync = (src: HTMLIFrameElement, dst: HTMLIFrameElement) => {
-      if (syncingRef.current) return;
       const sw = src.contentWindow;
       const dw = dst.contentWindow;
       if (!sw || !dw) return;
-      const sDoc = sw.document.documentElement;
-      const dDoc = dw.document.documentElement;
-      const sMax = sDoc.scrollHeight - sw.innerHeight;
-      const dMax = dDoc.scrollHeight - dw.innerHeight;
-      if (sMax <= 0 || dMax <= 0) return;
-      const ratio = sw.scrollY / sMax;
-      syncingRef.current = true;
-      dw.scrollTo(0, ratio * dMax);
-      requestAnimationFrame(() => {
-        syncingRef.current = false;
-      });
+      applyAnchor(dw, getAnchor(sw));
     };
 
-    const attach = (self: HTMLIFrameElement, other: HTMLIFrameElement) => {
-      const onScroll = () => sync(self, other);
-      const w = self.contentWindow;
+    const attach = (
+      iframeEl: HTMLIFrameElement,
+      otherEl: HTMLIFrameElement,
+      side: "left" | "right"
+    ) => {
+      const w = iframeEl.contentWindow;
       if (!w) return () => {};
+      const claim = () => {
+        ownerRef.current = side;
+      };
+      const onScroll = () => {
+        if (ownerRef.current !== side) return;
+        sync(iframeEl, otherEl);
+      };
+      /* 소유권 주장: 마우스/휠/포인터/터치 중 어느 하나라도 발생하면 이쪽이 조작자 */
+      iframeEl.addEventListener("mouseenter", claim);
+      w.addEventListener("wheel", claim, { passive: true });
+      w.addEventListener("pointerdown", claim);
+      w.addEventListener("touchstart", claim, { passive: true });
+      w.addEventListener("keydown", claim);
       w.addEventListener("scroll", onScroll, { passive: true });
-      return () => w.removeEventListener("scroll", onScroll);
+      return () => {
+        iframeEl.removeEventListener("mouseenter", claim);
+        w.removeEventListener("wheel", claim);
+        w.removeEventListener("pointerdown", claim);
+        w.removeEventListener("touchstart", claim);
+        w.removeEventListener("keydown", claim);
+        w.removeEventListener("scroll", onScroll);
+      };
     };
 
     let detachL = () => {};
@@ -218,17 +266,16 @@ function SideBySide() {
 
     const onLeftLoad = () => {
       detachL();
-      detachL = attach(left, right);
+      detachL = attach(left, right, "left");
     };
     const onRightLoad = () => {
       detachR();
-      detachR = attach(right, left);
+      detachR = attach(right, left, "right");
     };
 
     left.addEventListener("load", onLeftLoad);
     right.addEventListener("load", onRightLoad);
 
-    /* 이미 로드된 경우 */
     if (left.contentWindow?.document.readyState === "complete") onLeftLoad();
     if (right.contentWindow?.document.readyState === "complete") onRightLoad();
 
