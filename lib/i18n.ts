@@ -457,7 +457,7 @@ export const content = {
         title: { ko: "LULU INVITATIONAL 개최", en: "LULU INVITATIONAL" },
         desc: { ko: "초청 기반 프리미엄 포커 대회 LULU INVITATIONAL을 성공적으로 개최했습니다.", en: "Successfully hosted LULU INVITATIONAL, our invitation-only premium tournament." },
         date: "2025.12",
-        image: null,
+        image: "/images/news/lulu-invitational.png",
         color: "#8b5cf6",
       },
       {
