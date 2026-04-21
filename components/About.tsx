@@ -38,18 +38,11 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl p-8 md:p-10 mb-20 max-w-3xl mx-auto"
-          style={{ background: "#fff", border: "1px solid #ececec", boxShadow: "0 2px 12px rgba(0,0,0,0.03)" }}
+          className="mb-24 max-w-3xl mx-auto text-center"
         >
-          <div
-            className="text-[11px] font-black tracking-[0.28em] mb-4"
-            style={{ color: "var(--axis-community)" }}
-          >
-            {t.mission.label}
-          </div>
           <p
-            className="whitespace-pre-line font-bold leading-relaxed"
-            style={{ fontSize: "clamp(17px, 1.8vw, 22px)", color: "#222" }}
+            className="whitespace-pre-line font-black tracking-tight"
+            style={{ fontSize: "clamp(20px, 2.4vw, 30px)", color: "#111", lineHeight: 1.4 }}
           >
             {t.mission.text}
           </p>
