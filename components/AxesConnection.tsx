@@ -49,8 +49,12 @@ export default function AxesConnection() {
   // geometry
   const cx = 600;
   const cy = 420;
-  const R = 300; // service orbit radius
-  const axisR = 188; // axis label arc radius
+  const R = 268; // service orbit radius (tightened after removing external labels)
+  const axisR = 158; // axis label arc radius (scaled with R)
+  const nodeR = 58; // service node outer fill radius
+  const nodeRingR = 74; // dashed decorative ring around node
+  const haloR = 116; // halo fade radius
+  const hubR = 95;
   // 60° apart, starting at top
   const angles = [-90, -30, 30, 90, 150, 210];
 
@@ -247,7 +251,7 @@ export default function AxesConnection() {
             <circle
               cx={cx}
               cy={cy}
-              r={R + 70}
+              r={R + 60}
               fill="none"
               stroke="rgba(255,255,255,0.05)"
               strokeWidth="1"
@@ -256,7 +260,7 @@ export default function AxesConnection() {
             <circle
               cx={cx}
               cy={cy}
-              r={R + 30}
+              r={R + 24}
               fill="none"
               stroke="rgba(255,255,255,0.08)"
               strokeWidth="1"
@@ -275,7 +279,7 @@ export default function AxesConnection() {
             <circle
               cx={cx}
               cy={cy}
-              r={axisR - 40}
+              r={axisR - 32}
               fill="none"
               stroke="rgba(255,255,255,0.04)"
               strokeWidth="1"
@@ -375,14 +379,14 @@ export default function AxesConnection() {
             <circle
               cx={cx}
               cy={cy}
-              r="100"
+              r={hubR}
               fill="none"
               stroke="#ff5a6a"
               strokeWidth="1.5"
             >
               <animate
                 attributeName="r"
-                values="95;165;95"
+                values={`${hubR};${hubR + 48};${hubR}`}
                 dur="3.2s"
                 repeatCount="indefinite"
               />
@@ -396,14 +400,14 @@ export default function AxesConnection() {
             <circle
               cx={cx}
               cy={cy}
-              r="100"
+              r={hubR}
               fill="none"
               stroke="#ff5a6a"
               strokeWidth="1.2"
             >
               <animate
                 attributeName="r"
-                values="95;165;95"
+                values={`${hubR};${hubR + 48};${hubR}`}
                 dur="3.2s"
                 begin="1.6s"
                 repeatCount="indefinite"
@@ -418,20 +422,20 @@ export default function AxesConnection() {
             </circle>
 
             {/* Center hub: glow + solid body */}
-            <circle cx={cx} cy={cy} r="160" fill="url(#hubGlow)" />
+            <circle cx={cx} cy={cy} r={hubR + 55} fill="url(#hubGlow)" />
             <circle
               cx={cx}
               cy={cy}
-              r="95"
+              r={hubR}
               fill="#14141f"
               stroke="#ff5a6a"
               strokeWidth="2"
             />
-            <circle cx={cx} cy={cy} r="95" fill="url(#hubGlow)" opacity="0.6" />
+            <circle cx={cx} cy={cy} r={hubR} fill="url(#hubGlow)" opacity="0.6" />
             <circle
               cx={cx}
               cy={cy}
-              r="95"
+              r={hubR}
               fill="none"
               stroke="#ff5a6a"
               strokeWidth="1"
@@ -442,24 +446,24 @@ export default function AxesConnection() {
             {/* Hub text */}
             <text
               x={cx}
-              y={cy - 6}
-              fontSize="22"
+              y={cy - 4}
+              fontSize="24"
               fontWeight="900"
               textAnchor="middle"
               fill="#f5f5f7"
-              letterSpacing="0.22em"
+              letterSpacing="0.24em"
               fontFamily="Pretendard, sans-serif"
             >
               COMMUNITY
             </text>
             <text
               x={cx}
-              y={cy + 18}
+              y={cy + 20}
               fontSize="10"
               fontWeight="800"
               textAnchor="middle"
               fill="#ff8c42"
-              letterSpacing="0.34em"
+              letterSpacing="0.36em"
               fontFamily="Pretendard, sans-serif"
             >
               WOVEN TOGETHER
@@ -501,12 +505,12 @@ export default function AxesConnection() {
                   transition={{ duration: 0.55, delay: 0.45 + i * 0.08 }}
                 >
                   {/* Halo */}
-                  <circle cx={p.x} cy={p.y} r="100" fill={`url(#halo-${s.id})`} />
+                  <circle cx={p.x} cy={p.y} r={haloR} fill={`url(#halo-${s.id})`} />
                   {/* Decorative outer ring */}
                   <circle
                     cx={p.x}
                     cy={p.y}
-                    r="58"
+                    r={nodeRingR}
                     fill="none"
                     stroke={s.color}
                     strokeWidth="1"
@@ -527,7 +531,7 @@ export default function AxesConnection() {
                   <circle
                     cx={p.x}
                     cy={p.y}
-                    r="46"
+                    r={nodeR}
                     fill="#14141f"
                     stroke={s.color}
                     strokeWidth="2"
@@ -535,67 +539,48 @@ export default function AxesConnection() {
                   <circle
                     cx={p.x}
                     cy={p.y}
-                    r="46"
+                    r={nodeR}
                     fill={`${s.color}15`}
                   />
-                  {/* Service name */}
+                  {/* Service name (primary) */}
                   <text
                     x={p.x}
-                    y={p.y - 2}
-                    fontSize="11"
+                    y={p.y - 4}
+                    fontSize="13"
                     fontWeight="900"
                     fill={s.color}
                     textAnchor="middle"
-                    letterSpacing="0.04em"
+                    letterSpacing="0.06em"
                     fontFamily="Pretendard, sans-serif"
                   >
                     {s.name.toUpperCase()}
                   </text>
+                  {/* Service name (Korean) */}
                   <text
                     x={p.x}
-                    y={p.y + 14}
-                    fontSize="8.5"
+                    y={p.y + 12}
+                    fontSize="11"
                     fontWeight="800"
-                    fill="rgba(255,255,255,0.55)"
-                    textAnchor="middle"
-                    letterSpacing="0.2em"
-                    fontFamily="Pretendard, sans-serif"
-                  >
-                    {AXIS_META[axis].en}
-                  </text>
-                </motion.g>
-              );
-            })}
-
-            {/* External Korean labels below each node */}
-            {ordered.map((s, i) => {
-              const labelP = polar(angles[i], R + 88);
-              return (
-                <g key={`label-${s.id}`}>
-                  <text
-                    x={labelP.x}
-                    y={labelP.y}
-                    fontSize="14"
-                    fontWeight="900"
                     fill="#f5f5f7"
                     textAnchor="middle"
                     fontFamily="Pretendard, sans-serif"
                   >
                     {s.name_ko}
                   </text>
+                  {/* Axis tag */}
                   <text
-                    x={labelP.x}
-                    y={labelP.y + 16}
-                    fontSize="9"
-                    fontWeight="700"
-                    fill="rgba(255,255,255,0.38)"
+                    x={p.x}
+                    y={p.y + 28}
+                    fontSize="8"
+                    fontWeight="800"
+                    fill="rgba(255,255,255,0.48)"
                     textAnchor="middle"
-                    letterSpacing="0.24em"
+                    letterSpacing="0.26em"
                     fontFamily="Pretendard, sans-serif"
                   >
-                    {s.tag[lang].toUpperCase().slice(0, 28)}
+                    {AXIS_META[axis].en}
                   </text>
-                </g>
+                </motion.g>
               );
             })}
           </svg>
