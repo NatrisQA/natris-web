@@ -135,7 +135,7 @@ export const content = {
     ko: {
       label: "ABOUT",
       headline: "게임과 커뮤니티로\n세상을 연결합니다",
-      body: "룰루닷에이아이는 게임과 커뮤니티, 기술을 연결하는 플랫폼 기업입니다. 온라인 포커부터 라이브 미니게임, 소모임 운영, AI 솔루션까지, 플레이어 생태계 전반에 걸친 서비스를 설계하고 운영합니다.",
+      body: "룰루닷에이아이는 게임·커뮤니티·기술이 만나는 플랫폼 기업입니다. 온라인 포커, 라이브 미니게임, 소모임 운영, AI 솔루션까지 — 플레이어 생태계 전반을 설계하고 운영합니다.",
       stats: [
         { value: "6+", label: "개발 중 서비스" },
         { value: "2,000+", label: "국내 홀덤펍" },
@@ -143,7 +143,7 @@ export const content = {
       ],
       mission: {
         label: "MISSION",
-        text: "플레이어가 모이고, 커뮤니티가 만들어지고, 새로운 경험이 시작되는 곳.\n우리는 그 연결의 기반을 설계합니다.",
+        text: "플레이어가 모이고, 커뮤니티가 자라고,\n새로운 경험이 시작되는 곳.\n우리는 그 무대를 설계합니다.",
       },
       milestones: [
         { date: "2026.02", text: "법인 설립" },
@@ -155,7 +155,7 @@ export const content = {
     en: {
       label: "ABOUT",
       headline: "Connecting the world\nthrough games & community",
-      body: "lulu.ai is a platform company that connects people through games, community, and technology. From online poker to live mini-games, club management, and AI solutions, we design and operate services across the entire player ecosystem.",
+      body: "lulu.ai is a platform company where games, community, and technology meet. Online poker, live mini-games, club management, AI solutions — we design and operate across the entire player ecosystem.",
       stats: [
         { value: "6+", label: "Services in Pipeline" },
         { value: "2,000+", label: "Holdem Pubs in Korea" },
@@ -163,7 +163,7 @@ export const content = {
       ],
       mission: {
         label: "MISSION",
-        text: "Where players gather, communities form, and new experiences begin.\nWe design the foundation that connects it all.",
+        text: "Where players gather, communities grow,\nand new experiences begin.\nWe design the stage for it all.",
       },
       milestones: [
         { date: "2026.02", text: "Incorporated" },
