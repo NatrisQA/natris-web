@@ -193,8 +193,8 @@ export const content = {
         name: "PokerLulu",
         name_ko: "포커룰루",
         desc: {
-          ko: "친구랑 가볍게 한 판, 실력이 쌓이면 전국 고수와 겨루는 소셜 포커 플랫폼.",
-          en: "A casual hand with friends, then challenge top players nationwide. A social poker platform.",
+          ko: "친구와 가볍게 한 판,\n실력이 쌓이면 전국 고수와 겨루는,\n소셜 포커 플랫폼.",
+          en: "A casual hand with friends,\nthen the top players nationwide —\none social poker platform.",
         },
         badges: { ko: ["소셜 포커", "대회 시스템", "실시간 중계", "On/Off Mix", "스쿼드전"], en: ["Social Poker", "Tournament System", "Live Broadcast", "On/Off Mix", "Squad Battle"] },
         status: { ko: "출시 예정", en: "Launching Soon" },

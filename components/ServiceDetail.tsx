@@ -343,7 +343,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-black leading-[1.15] tracking-tight max-w-[18ch]"
+            className="font-black leading-[1.15] tracking-tight max-w-[36ch] whitespace-pre-line"
             style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: "#111" }}
           >
             {item.desc[lang]}
