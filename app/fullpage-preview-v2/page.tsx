@@ -386,6 +386,10 @@ function PageContent() {
         /* Hero — pt-20/pb-20을 clamp로 전환 (뷰포트 세로 축소 시 padding 먼저 수축) */
         [data-fp-compact] #hero section .pt-20 { padding-top: clamp(1rem, 4vh, 5rem); }
         [data-fp-compact] #hero section .pb-20 { padding-bottom: clamp(1rem, 4vh, 5rem); }
+        /* LULU.AI 태그 배지 제거 */
+        [data-fp-compact] #hero section > div.relative.z-10 > div:first-child { display: none; }
+        /* sub 텍스트 살짝 위로 — 자식 간 gap 축소 */
+        [data-fp-compact] #hero section > div.relative.z-10 { gap: clamp(1rem, 3vh, 1.75rem); }
 
         /* Projects — center 유지 + 내부 py-28 md:py-36 → clamp */
         [data-fp-compact] #products .fp-projects > section > div.relative.z-10 {
