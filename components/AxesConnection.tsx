@@ -32,13 +32,13 @@ export default function AxesConnection() {
   const angles = [-70, -20, 45, 135, 200, -110];
 
   return (
-    <section className="py-28 px-6" style={{ background: "#fff" }}>
+    <section className="py-28 px-6" style={{ background: "#0a0a12" }}>
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <div
             className="text-[11px] font-black tracking-[0.32em] mb-4"
-            style={{ color: "var(--brand-red)" }}
+            style={{ color: "#ff5a6a" }}
           >
             CONNECTED BY COMMUNITY
           </div>
@@ -46,7 +46,7 @@ export default function AxesConnection() {
             className="font-black tracking-tight mb-4"
             style={{
               fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-              color: "#111",
+              color: "#f5f5f7",
               whiteSpace: "pre-line",
               lineHeight: 1.2,
             }}
@@ -55,7 +55,7 @@ export default function AxesConnection() {
               ? "서로 다른 서비스가\n하나의 커뮤니티로 이어집니다"
               : "Different services,\nwoven into one community"}
           </h2>
-          <p className="text-[15px] max-w-2xl mx-auto leading-relaxed" style={{ color: "#666" }}>
+          <p className="text-[15px] max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.62)" }}>
             {lang === "ko"
               ? "여섯 개의 플랫폼은 각자의 역할을 하면서도, 커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다."
               : "Six platforms each play their role, tied together by the thread of community."}
@@ -72,8 +72,8 @@ export default function AxesConnection() {
         >
           <svg viewBox="0 0 800 600" style={{ width: "100%", height: "auto", display: "block" }}>
             {/* Subtle background circles */}
-            <circle cx={cx} cy={cy} r={r + 40} fill="none" stroke="#eee" strokeWidth="1" strokeDasharray="2 4" />
-            <circle cx={cx} cy={cy} r={r - 60} fill="none" stroke="#f3f3f3" strokeWidth="1" />
+            <circle cx={cx} cy={cy} r={r + 40} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="2 4" />
+            <circle cx={cx} cy={cy} r={r - 60} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
 
             {/* Connecting lines — with flowing dash animation */}
             {services.map((s, i) => {
@@ -85,7 +85,7 @@ export default function AxesConnection() {
                   <defs>
                     <linearGradient id={`grad-${s.id}`} x1={x} y1={y} x2={cx} y2={cy} gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stopColor={s.color} stopOpacity="0.9" />
-                      <stop offset="100%" stopColor="#e60012" stopOpacity="0.3" />
+                      <stop offset="100%" stopColor="#ff5a6a" stopOpacity="0.3" />
                     </linearGradient>
                   </defs>
                   <line
@@ -111,13 +111,13 @@ export default function AxesConnection() {
             })}
 
             {/* Center community node */}
-            <circle cx={cx} cy={cy} r="78" fill="#fff" stroke="#e60012" strokeWidth="1.4" strokeDasharray="2 4" opacity="0.35" />
-            <circle cx={cx} cy={cy} r="62" fill="#111" />
+            <circle cx={cx} cy={cy} r="78" fill="none" stroke="#ff5a6a" strokeWidth="1.4" strokeDasharray="2 4" opacity="0.45" />
+            <circle cx={cx} cy={cy} r="62" fill="#14141f" />
             <circle cx={cx} cy={cy} r="62" fill="url(#centerGlow)" />
             <defs>
               <radialGradient id="centerGlow" cx="50%" cy="40%">
-                <stop offset="0%" stopColor="#e60012" stopOpacity="0.35" />
-                <stop offset="70%" stopColor="#e60012" stopOpacity="0" />
+                <stop offset="0%" stopColor="#ff5a6a" stopOpacity="0.55" />
+                <stop offset="70%" stopColor="#ff5a6a" stopOpacity="0" />
               </radialGradient>
             </defs>
             <text
@@ -160,12 +160,12 @@ export default function AxesConnection() {
                   transition={{ duration: 0.5, delay: 0.35 + i * 0.08 }}
                 >
                   {/* Outer ring */}
-                  <circle cx={x} cy={y} r="42" fill="#fff" stroke={s.color} strokeWidth="1.4" opacity="0.3" />
+                  <circle cx={x} cy={y} r="42" fill="none" stroke={s.color} strokeWidth="1.4" opacity="0.4" />
 
                   {logo ? (
                     <>
-                      {/* Logo plate (white bg + colored ring) */}
-                      <circle cx={x} cy={y} r="32" fill="#fff" stroke={s.color} strokeWidth="1.8" />
+                      {/* Logo plate (dark bg + colored ring) */}
+                      <circle cx={x} cy={y} r="32" fill="#14141f" stroke={s.color} strokeWidth="1.8" />
                       <defs>
                         <clipPath id={`logo-clip-${s.id}`}>
                           <circle cx={x} cy={y} r="28" />
@@ -184,7 +184,7 @@ export default function AxesConnection() {
                   ) : (
                     <>
                       {/* Fallback: service name fits inside outer ring */}
-                      <circle cx={x} cy={y} r="32" fill={`${s.color}15`} stroke={s.color} strokeWidth="1.6" />
+                      <circle cx={x} cy={y} r="32" fill={`${s.color}25`} stroke={s.color} strokeWidth="1.6" />
                       <text
                         x={x}
                         y={y + 4}

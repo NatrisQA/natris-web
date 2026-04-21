@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111111;
-  --secondary-bg: #f7f7f7;
-  --muted-bg: #fafafa;
-  --text-primary: #111111;
-  --text-secondary: #666666;
-  --text-tertiary: #999999;
-  --border-soft: #ececec;
-  --border-hard: #dcdcdc;
-  --brand-red: #e60012;
+  --background: #0a0a12;
+  --foreground: #f5f5f7;
+  --secondary-bg: #08080f;
+  --muted-bg: #14141f;
+  --text-primary: #f5f5f7;
+  --text-secondary: rgba(255, 255, 255, 0.62);
+  --text-tertiary: rgba(255, 255, 255, 0.4);
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --border-hard: rgba(255, 255, 255, 0.14);
+  --brand-red: #ff5a6a;
   --axis-game: #e63946;
   --axis-community: #ff8c42;
   --axis-tech: #00a3cc;
@@ -37,8 +37,8 @@ body {
 }
 
 ::selection {
-  background: rgba(230, 0, 18, 0.18);
-  color: #111;
+  background: rgba(255, 90, 106, 0.32);
+  color: #f5f5f7;
 }
 
 ::-webkit-scrollbar {
@@ -61,7 +61,7 @@ body {
   transform: translateX(-50%);
   width: min(80%, 720px);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   pointer-events: none;
 }
 
@@ -105,7 +105,7 @@ body {
 }
 .light-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
   border-color: var(--border-hard);
 }
 

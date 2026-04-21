@@ -51,7 +51,7 @@ export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
     <div className="fixed right-5 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end gap-3">
       <div
         className="absolute right-[7px] top-3 bottom-3 w-px pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.12), transparent)" }}
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.18), transparent)" }}
       />
 
       {SECTIONS.map((s, i) => {
@@ -75,7 +75,7 @@ export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
                   exit={{ opacity: 0, x: 6 }}
                   transition={{ duration: 0.18 }}
                   className="text-[11px] font-bold whitespace-nowrap"
-                  style={{ color: isActive ? "#e60012" : "#666" }}
+                  style={{ color: isActive ? "#ff5a6a" : "rgba(255,255,255,0.72)" }}
                 >
                   {s.label[lang]}
                 </motion.span>
@@ -92,8 +92,8 @@ export default function ScrollDots({ lang = "ko" }: { lang?: "ko" | "en" }) {
               style={{
                 width: 8,
                 height: 8,
-                background: isActive ? "var(--brand-red)" : "#666",
-                boxShadow: isActive ? "0 0 0 4px rgba(230,0,18,0.12)" : "none",
+                background: isActive ? "#ff5a6a" : "rgba(255,255,255,0.5)",
+                boxShadow: isActive ? "0 0 0 4px rgba(255,90,106,0.2)" : "none",
               }}
             />
           </button>

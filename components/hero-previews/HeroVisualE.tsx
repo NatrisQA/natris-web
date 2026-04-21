@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { useLang } from "../LangContext";
 
-/* Option E — Kinetic Typography
- * 레퍼런스: Stripe, Linear, Framer
+/* Option E — Kinetic Typography (Dark)
  * 거대한 LULU.AI 워드마크 + 6개 서비스 색상 그라데이션 플로우 + 서비스명 티커
  * 하단 캡션: 메인 헤드라인 (lang-aware)
  */
@@ -18,10 +17,13 @@ const SERVICES = [
 ];
 
 const VERB_COLORS = {
-  gather: "#e63946",
-  stay: "#ff8c42",
-  grow: "#00a3cc",
+  gather: "#ff6b7a",
+  stay: "#ffa258",
+  grow: "#4dd4e8",
 };
+
+const TEXT = "#f5f5f7";
+const TEXT_MUTED = "rgba(255,255,255,0.62)";
 
 export default function HeroVisualE() {
   const { lang } = useLang();
@@ -34,12 +36,12 @@ export default function HeroVisualE() {
         <>
           <span style={{ display: "block" }}>
             <span style={{ color: VERB_COLORS.gather }}>모이고</span>
-            <span style={{ color: "#111" }}>, </span>
+            <span style={{ color: TEXT }}>, </span>
             <span style={{ color: VERB_COLORS.stay }}>머물고</span>
-            <span style={{ color: "#111" }}>, </span>
+            <span style={{ color: TEXT }}>, </span>
             <span style={{ color: VERB_COLORS.grow }}>성장하는</span>
           </span>
-          <span style={{ display: "block", color: "#111" }}>커뮤니티를 만듭니다</span>
+          <span style={{ display: "block", color: TEXT }}>커뮤니티를 만듭니다</span>
         </>
       );
     }
@@ -47,12 +49,12 @@ export default function HeroVisualE() {
       <>
         <span style={{ display: "block" }}>
           <span style={{ color: VERB_COLORS.gather }}>Gather</span>
-          <span style={{ color: "#111" }}>, </span>
+          <span style={{ color: TEXT }}>, </span>
           <span style={{ color: VERB_COLORS.stay }}>Stay</span>
-          <span style={{ color: "#111" }}>, and </span>
+          <span style={{ color: TEXT }}>, and </span>
           <span style={{ color: VERB_COLORS.grow }}>Grow</span>
         </span>
-        <span style={{ display: "block", color: "#111" }}>We build the community</span>
+        <span style={{ display: "block", color: TEXT }}>We build the community</span>
       </>
     );
   };
@@ -82,22 +84,11 @@ export default function HeroVisualE() {
         }
       `}</style>
 
-      {/* eyebrow */}
-      <motion.div
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-[11px] font-black tracking-[0.42em]"
-        style={{ color: "#999", marginBottom: 20 }}
-      >
-        A BRAND FAMILY OF
-      </motion.div>
-
       {/* massive wordmark */}
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         className="lulu-kinetic font-black leading-none"
         style={{
           fontSize: "clamp(72px, 15vw, 152px)",
@@ -112,7 +103,7 @@ export default function HeroVisualE() {
       <motion.div
         initial={{ opacity: 0, width: 0 }}
         animate={{ opacity: 1, width: 64 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
         style={{
           height: 2,
           background: gradient,
@@ -144,7 +135,7 @@ export default function HeroVisualE() {
             <span
               key={i}
               className="text-[12px] font-black tracking-[0.22em] flex items-center gap-3"
-              style={{ color: "#666" }}
+              style={{ color: TEXT_MUTED }}
             >
               <span
                 style={{
@@ -161,12 +152,12 @@ export default function HeroVisualE() {
         </div>
       </div>
 
-      {/* headline caption — replaces "SIX PLATFORMS · ONE COMMUNITY" */}
+      {/* headline caption */}
       <motion.div
         key={lang}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 1.3 }}
+        transition={{ duration: 0.7, delay: 1.2 }}
         className="font-black tracking-tight text-center mt-10"
         style={{
           fontSize: "clamp(18px, 2.4vw, 26px)",

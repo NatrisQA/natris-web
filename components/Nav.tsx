@@ -48,11 +48,11 @@ export default function Nav() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4"
         style={{
-          background: "rgba(255,255,255,0.85)",
+          background: elevated ? "rgba(10,10,18,0.82)" : "rgba(10,10,18,0.4)",
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
-          borderBottom: elevated ? "1px solid #ececec" : "1px solid transparent",
-          transition: "border-color 0.3s",
+          borderBottom: elevated ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
+          transition: "border-color 0.3s, background 0.3s",
         }}
       >
         {/* Logo */}
@@ -67,11 +67,11 @@ export default function Nav() {
         >
           <div
             className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-black"
-            style={{ background: "var(--brand-red)", color: "#fff" }}
+            style={{ background: "#ff5a6a", color: "#fff" }}
           >
             L
           </div>
-          <span className="font-black tracking-[0.02em] text-[15px]" style={{ color: "#111" }}>
+          <span className="font-black tracking-[0.02em] text-[15px]" style={{ color: "#f5f5f7" }}>
             LULU.AI
           </span>
         </a>
@@ -87,7 +87,7 @@ export default function Nav() {
                 handleNav(item.href);
               }}
               className="text-sm font-semibold transition-colors duration-200 hover:opacity-100"
-              style={{ color: "#444" }}
+              style={{ color: "rgba(255,255,255,0.72)" }}
             >
               {item.label}
             </a>
@@ -99,11 +99,11 @@ export default function Nav() {
           <button
             onClick={toggle}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold transition-all duration-200"
-            style={{ border: "1px solid #dcdcdc", color: "#666" }}
+            style={{ border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.62)" }}
           >
-            <span style={{ color: lang === "ko" ? "#111" : "#bbb" }}>KO</span>
-            <span style={{ color: "#ccc" }}>|</span>
-            <span style={{ color: lang === "en" ? "#111" : "#bbb" }}>EN</span>
+            <span style={{ color: lang === "ko" ? "#f5f5f7" : "rgba(255,255,255,0.4)" }}>KO</span>
+            <span style={{ color: "rgba(255,255,255,0.28)" }}>|</span>
+            <span style={{ color: lang === "en" ? "#f5f5f7" : "rgba(255,255,255,0.4)" }}>EN</span>
           </button>
 
           {/* Hamburger (mobile only) */}
@@ -114,11 +114,11 @@ export default function Nav() {
           >
             <span
               className="block w-5 h-[1.5px] transition-all duration-300 origin-center"
-              style={{ background: "#111", ...(open ? { transform: "translateY(3.25px) rotate(45deg)" } : {}) }}
+              style={{ background: "#f5f5f7", ...(open ? { transform: "translateY(3.25px) rotate(45deg)" } : {}) }}
             />
             <span
               className="block w-5 h-[1.5px] transition-all duration-300 origin-center"
-              style={{ background: "#111", ...(open ? { transform: "translateY(-3.25px) rotate(-45deg)" } : {}) }}
+              style={{ background: "#f5f5f7", ...(open ? { transform: "translateY(-3.25px) rotate(-45deg)" } : {}) }}
             />
           </button>
         </div>
@@ -133,7 +133,7 @@ export default function Nav() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22 }}
             className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 md:hidden"
-            style={{ background: "rgba(255,255,255,0.97)", backdropFilter: "blur(24px)" }}
+            style={{ background: "rgba(10,10,18,0.97)", backdropFilter: "blur(24px)" }}
           >
             {links.map((item, i) => (
               <motion.a
@@ -149,7 +149,7 @@ export default function Nav() {
                   handleNav(item.href);
                 }}
                 className="text-2xl font-black"
-                style={{ color: "#111" }}
+                style={{ color: "#f5f5f7" }}
               >
                 {item.label}
               </motion.a>

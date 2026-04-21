@@ -25,20 +25,20 @@ function PageContent() {
       <div
         id="scroll-container"
         className="relative"
-        style={{ height: "100dvh", overflowY: "auto", background: "#ffffff" }}
+        style={{ height: "100dvh", overflowY: "auto", background: "#0a0a12" }}
       >
         <Nav />
         <Hero />
+        <motion.section id="products" {...sectionReveal}>
+          <Projects />
+        </motion.section>
         <motion.section id="axes" {...sectionReveal}>
           <AxesConnection />
         </motion.section>
-        <motion.section id="products" {...sectionReveal} className="section-divider">
-          <Projects />
-        </motion.section>
-        <motion.section id="about" {...sectionReveal} className="section-divider">
+        <motion.section id="about" {...sectionReveal}>
           <About />
         </motion.section>
-        <motion.section id="news" {...sectionReveal} className="section-divider">
+        <motion.section id="news" {...sectionReveal}>
           <News />
         </motion.section>
         <Footer />

@@ -32,7 +32,7 @@ const HERO_IMAGES: Record<string, string | undefined> = {
 function ServiceVisual({ id, color, imageSrc }: { id: string; color: string; imageSrc?: string }) {
   if (imageSrc) {
     return (
-      <div className="relative w-full" style={{ aspectRatio: "16 / 9", overflow: "hidden", background: "#f5f5f5" }}>
+      <div className="relative w-full" style={{ aspectRatio: "16 / 9", overflow: "hidden", background: "#14141f" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={imageSrc} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
       </div>
@@ -123,7 +123,7 @@ function ServiceVisual({ id, color, imageSrc }: { id: string; color: string; ima
       className="relative w-full"
       style={{
         aspectRatio: "16 / 9",
-        background: `linear-gradient(135deg, ${c}1c 0%, ${c}06 55%, #fafafa 100%)`,
+        background: `linear-gradient(135deg, ${c}35 0%, ${c}10 55%, #14141f 100%)`,
         overflow: "hidden",
       }}
     >
@@ -286,18 +286,18 @@ export default function Projects() {
   };
 
   return (
-    <section className="py-28 px-6" style={{ background: "#fff" }}>
+    <section className="py-28 px-6" style={{ background: "#08080f" }}>
       <div className="max-w-[1280px] mx-auto">
         {/* Header */}
         <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
           <div>
-            <div className="text-[11px] font-black tracking-[0.32em] mb-3" style={{ color: "var(--brand-red)" }}>
+            <div className="text-[11px] font-black tracking-[0.32em] mb-3" style={{ color: "#ff5a6a" }}>
               {label}
             </div>
-            <h2 className="font-black tracking-tight mb-3" style={{ fontSize: "clamp(1.9rem, 4.2vw, 3rem)", color: "#111" }}>
+            <h2 className="font-black tracking-tight mb-3" style={{ fontSize: "clamp(1.9rem, 4.2vw, 3rem)", color: "#f5f5f7" }}>
               {headline}
             </h2>
-            <p className="max-w-2xl leading-relaxed" style={{ fontSize: "15px", color: "#666" }}>
+            <p className="max-w-2xl leading-relaxed" style={{ fontSize: "15px", color: "rgba(255,255,255,0.62)" }}>
               {sub}
             </p>
           </div>
@@ -310,9 +310,9 @@ export default function Projects() {
               aria-label="Previous"
               className="w-11 h-11 rounded-full flex items-center justify-center transition-all"
               style={{
-                background: "#fff",
-                border: "1px solid #dcdcdc",
-                color: "#111",
+                background: "transparent",
+                border: "1px solid rgba(255,255,255,0.18)",
+                color: "#f5f5f7",
                 opacity: atStart ? 0.3 : 1,
                 cursor: atStart ? "default" : "pointer",
               }}
@@ -325,8 +325,8 @@ export default function Projects() {
               aria-label="Next"
               className="w-11 h-11 rounded-full flex items-center justify-center transition-all"
               style={{
-                background: "#111",
-                color: "#fff",
+                background: "#fff",
+                color: "#111",
                 opacity: atEnd ? 0.3 : 1,
                 cursor: atEnd ? "default" : "pointer",
               }}
@@ -361,16 +361,17 @@ export default function Projects() {
                 transition={{ duration: 0.55, delay: i * 0.06 }}
                 className="rounded-2xl flex-shrink-0 snap-start p-7 flex flex-col relative overflow-hidden"
                 style={{
-                  background: "#fff",
-                  border: `1px solid ${isActive ? `${p.color}80` : "#ececec"}`,
+                  background: "#14141f",
+                  border: `1px solid ${isActive ? `${p.color}90` : "rgba(255,255,255,0.08)"}`,
                   width: "min(88vw, 340px)",
-                  minHeight: 540,
+                  minHeight: 620,
                   boxShadow: isActive
-                    ? `0 24px 60px ${p.color}30, 0 10px 28px rgba(0,0,0,0.08)`
-                    : "0 2px 8px rgba(0,0,0,0.03)",
-                  transform: isActive ? "translateY(-6px)" : "translateY(0)",
-                  transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, border-color 0.3s ease",
+                    ? `0 40px 90px ${p.color}45, 0 20px 40px rgba(0,0,0,0.5)`
+                    : "0 2px 10px rgba(0,0,0,0.3)",
+                  transform: isActive ? "translateY(-10px) scale(1.04)" : "translateY(0) scale(1)",
+                  transition: "transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease, border-color 0.3s ease",
                   cursor: "pointer",
+                  zIndex: isActive ? 10 : 1,
                 }}
               >
                 {/* Corner glow (active only) */}
@@ -380,7 +381,7 @@ export default function Projects() {
                   style={{
                     opacity: isActive ? 1 : 0,
                     transition: "opacity 0.4s ease",
-                    background: `radial-gradient(600px circle at 0% 0%, ${p.color}14, transparent 40%), radial-gradient(600px circle at 100% 100%, ${axisColor}10, transparent 40%)`,
+                    background: `radial-gradient(600px circle at 0% 0%, ${p.color}22, transparent 40%), radial-gradient(600px circle at 100% 100%, ${axisColor}18, transparent 40%)`,
                   }}
                 />
 
@@ -394,11 +395,11 @@ export default function Projects() {
                   }}
                 >
                   <ServiceVisual id={p.id} color={p.color} imageSrc={HERO_IMAGES[p.id]} />
-                  {/* Bottom fade for smoother handoff to white card body */}
+                  {/* Bottom fade to card body */}
                   <div
                     aria-hidden
                     className="absolute left-0 right-0 bottom-0 pointer-events-none"
-                    style={{ height: 28, background: "linear-gradient(to bottom, transparent, #fff)" }}
+                    style={{ height: 32, background: "linear-gradient(to bottom, transparent, #14141f)" }}
                   />
                 </div>
 
@@ -407,15 +408,15 @@ export default function Projects() {
                   <span
                     className="text-[10px] font-black tracking-[0.16em] px-2.5 py-1 rounded-full"
                     style={{
-                      background: isActive ? axisColor : `${axisColor}15`,
+                      background: isActive ? axisColor : `${axisColor}22`,
                       color: isActive ? "#fff" : axisColor,
-                      border: `1px solid ${isActive ? axisColor : `${axisColor}40`}`,
+                      border: `1px solid ${isActive ? axisColor : `${axisColor}55`}`,
                       transition: "background 0.3s ease, color 0.3s ease, border-color 0.3s ease",
                     }}
                   >
                     {axisLabel}
                   </span>
-                  <span className="text-[11px] font-bold" style={{ color: isActive ? "#111" : "#999", transition: "color 0.3s ease" }}>
+                  <span className="text-[11px] font-bold" style={{ color: isActive ? "#f5f5f7" : "rgba(255,255,255,0.4)", transition: "color 0.3s ease" }}>
                     {p.status[lang]}
                   </span>
                 </div>
@@ -424,7 +425,7 @@ export default function Projects() {
                 <div className="flex items-center gap-3 mb-4 relative">
                   <div
                     style={{
-                      transform: isActive ? "scale(1.08) rotate(-2deg)" : "scale(1) rotate(0)",
+                      transform: isActive ? "scale(1.12) rotate(-3deg)" : "scale(1) rotate(0)",
                       transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)",
                     }}
                   >
@@ -434,19 +435,19 @@ export default function Projects() {
                     <h3
                       className="text-lg font-black leading-none mb-1"
                       style={{
-                        color: isActive ? p.color : "#111",
+                        color: isActive ? p.color : "#f5f5f7",
                         transition: "color 0.3s ease",
                       }}
                     >
                       {p.name}
                     </h3>
-                    <div className="text-[11px] font-semibold" style={{ color: "#888" }}>
+                    <div className="text-[11px] font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>
                       {p.tag[lang]}
                     </div>
                   </div>
                 </div>
 
-                <p className="text-[14px] leading-relaxed flex-1 mb-5 relative" style={{ color: isActive ? "#333" : "#555", transition: "color 0.3s ease" }}>
+                <p className="text-[14px] leading-relaxed flex-1 mb-5 relative whitespace-pre-line" style={{ color: isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.62)", transition: "color 0.3s ease" }}>
                   {p.desc[lang]}
                 </p>
 
@@ -457,8 +458,8 @@ export default function Projects() {
                       key={b}
                       className="text-[10.5px] font-semibold px-2 py-1 rounded"
                       style={{
-                        background: isActive ? `${p.color}12` : "#f5f5f5",
-                        color: isActive ? p.color : "#555",
+                        background: isActive ? `${p.color}22` : "rgba(255,255,255,0.06)",
+                        color: isActive ? p.color : "rgba(255,255,255,0.75)",
                         transition: "background 0.3s ease, color 0.3s ease",
                       }}
                     >
@@ -473,7 +474,7 @@ export default function Projects() {
                   style={{
                     height: isActive ? 3 : 1.5,
                     background: `linear-gradient(90deg, ${p.color}, ${p.color}55)`,
-                    boxShadow: isActive ? `0 0 14px ${p.color}70` : "none",
+                    boxShadow: isActive ? `0 0 18px ${p.color}aa` : "none",
                     transition: "height 0.35s ease, box-shadow 0.35s ease",
                   }}
                 />
@@ -483,9 +484,9 @@ export default function Projects() {
                   href={`/services/${p.id}`}
                   className="mt-5 inline-flex items-center justify-between w-full rounded-full py-2.5 px-4 text-[12.5px] font-black tracking-wide relative"
                   style={{
-                    background: isActive ? p.color : "#fafafa",
-                    color: isActive ? "#fff" : "#111",
-                    border: `1px solid ${isActive ? p.color : "#e5e5e5"}`,
+                    background: isActive ? p.color : "rgba(255,255,255,0.04)",
+                    color: isActive ? "#fff" : "#f5f5f7",
+                    border: `1px solid ${isActive ? p.color : "rgba(255,255,255,0.12)"}`,
                     transition: "background 0.3s ease, color 0.3s ease, border-color 0.3s ease",
                   }}
                 >
@@ -501,7 +502,7 @@ export default function Projects() {
                       background: isActive ? "rgba(255,255,255,0.22)" : p.color,
                       color: "#fff",
                       fontSize: 12,
-                      transform: isActive ? "translateX(3px)" : "translateX(0)",
+                      transform: isActive ? "translateX(4px)" : "translateX(0)",
                       transition: "transform 0.3s ease, background 0.3s ease",
                     }}
                   >

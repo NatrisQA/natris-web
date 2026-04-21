@@ -11,25 +11,25 @@ export default function News() {
   const items = t.items.slice(0, 3);
 
   return (
-    <section className="py-28 px-6" style={{ background: "#fff" }}>
+    <section className="py-28 px-6" style={{ background: "#08080f" }}>
       <div className="max-w-[1200px] mx-auto">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
-            <div className="text-[11px] font-black tracking-[0.32em] mb-3" style={{ color: "var(--brand-red)" }}>
+            <div className="text-[11px] font-black tracking-[0.32em] mb-3" style={{ color: "#ff5a6a" }}>
               {t.label[lang]}
             </div>
             <h2
               className="font-black tracking-tight mb-3"
-              style={{ fontSize: "clamp(1.9rem, 4.2vw, 3rem)", color: "#111" }}
+              style={{ fontSize: "clamp(1.9rem, 4.2vw, 3rem)", color: "#f5f5f7" }}
             >
               {t.headline[lang]}
             </h2>
-            <p style={{ fontSize: "15px", color: "#666" }}>{t.sub[lang]}</p>
+            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.62)" }}>{t.sub[lang]}</p>
           </div>
           <a
             href="#news"
             className="text-[13px] font-bold self-end"
-            style={{ color: "#111" }}
+            style={{ color: "#f5f5f7" }}
           >
             {lang === "ko" ? "전체보기 →" : "View all →"}
           </a>
@@ -44,7 +44,7 @@ export default function News() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="light-card rounded-2xl overflow-hidden flex flex-col"
-              style={{ background: "#fff", border: "1px solid #ececec" }}
+              style={{ background: "#14141f", border: "1px solid rgba(255,255,255,0.08)" }}
             >
               {/* Visual area */}
               <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
@@ -59,9 +59,9 @@ export default function News() {
                 ) : (
                   <div
                     className="w-full h-full flex items-center justify-center relative"
-                    style={{ background: `${item.color}10` }}
+                    style={{ background: `${item.color}18` }}
                   >
-                    <svg viewBox="0 0 160 90" fill="none" className="w-3/4 h-3/4 opacity-70">
+                    <svg viewBox="0 0 160 90" fill="none" className="w-3/4 h-3/4 opacity-80">
                       <circle cx="50" cy="45" r="22" stroke={item.color} strokeWidth="1" strokeDasharray="4 3" />
                       <circle cx="110" cy="45" r="16" stroke={item.color} strokeWidth="1" />
                       <line x1="72" y1="45" x2="94" y2="45" stroke={item.color} strokeWidth="0.8" strokeDasharray="3 3" />
@@ -70,9 +70,11 @@ export default function News() {
                     <span
                       className="absolute top-3 left-3 text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full"
                       style={{
-                        background: "#fff",
+                        background: "rgba(10,10,18,0.75)",
+                        backdropFilter: "blur(8px)",
+                        WebkitBackdropFilter: "blur(8px)",
                         color: item.color,
-                        border: `1px solid ${item.color}50`,
+                        border: `1px solid ${item.color}60`,
                       }}
                     >
                       {item.category[lang]}
@@ -82,13 +84,13 @@ export default function News() {
               </div>
 
               <div className="p-6 flex flex-col gap-2 flex-1">
-                <span className="text-[11px] font-bold" style={{ color: "#999" }}>
+                <span className="text-[11px] font-bold" style={{ color: "rgba(255,255,255,0.4)" }}>
                   {item.date}
                 </span>
-                <h3 className="text-base font-black leading-snug" style={{ color: "#111" }}>
+                <h3 className="text-base font-black leading-snug" style={{ color: "#f5f5f7" }}>
                   {item.title[lang]}
                 </h3>
-                <p className="text-[13px] leading-relaxed line-clamp-3 whitespace-pre-line" style={{ color: "#666" }}>
+                <p className="text-[13px] leading-relaxed line-clamp-3 whitespace-pre-line" style={{ color: "rgba(255,255,255,0.62)" }}>
                   {item.desc[lang]}
                 </p>
               </div>

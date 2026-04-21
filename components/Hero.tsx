@@ -25,14 +25,15 @@ export default function Hero() {
     <section
       id="hero"
       className="relative flex flex-col items-center justify-center overflow-hidden px-6"
-      style={{ minHeight: "100dvh", background: "#ffffff" }}
+      style={{ minHeight: "100dvh", background: "#0a0a12" }}
     >
-      {/* Subtle background pattern */}
+      {/* Subtle background glow */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(230,0,18,0.03), transparent 60%), radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255,140,66,0.04), transparent 60%)",
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,109,31,0.08), transparent 60%), radial-gradient(ellipse 80% 60% at 50% 100%, rgba(139,92,246,0.1), transparent 60%)",
         }}
       />
 
@@ -44,12 +45,12 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-[0.18em]"
           style={{
-            background: "rgba(230,0,18,0.06)",
-            border: "1px solid rgba(230,0,18,0.2)",
-            color: "var(--brand-red)",
+            background: "rgba(255,90,106,0.12)",
+            border: "1px solid rgba(255,90,106,0.35)",
+            color: "#ff5a6a",
           }}
         >
-          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--brand-red)" }} />
+          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#ff5a6a" }} />
           {t.tag.toUpperCase()}
         </motion.div>
 
@@ -65,7 +66,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.6 }}
           className="whitespace-pre-line leading-relaxed max-w-2xl mx-auto text-center"
-          style={{ color: "#666", fontSize: "clamp(15px, 1.4vw, 17px)" }}
+          style={{ color: "rgba(255,255,255,0.62)", fontSize: "clamp(15px, 1.4vw, 17px)" }}
         >
           {t.sub}
         </motion.p>
@@ -78,10 +79,10 @@ export default function Hero() {
         transition={{ delay: scrolled ? 0 : 1.4, duration: 0.4 }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
       >
-        <span className="text-[10px] font-bold tracking-[0.3em]" style={{ color: "#999" }}>
+        <span className="text-[10px] font-bold tracking-[0.3em]" style={{ color: "rgba(255,255,255,0.4)" }}>
           SCROLL
         </span>
-        <div className="w-px h-8 scroll-hint" style={{ background: "#bbb" }} />
+        <div className="w-px h-8 scroll-hint" style={{ background: "rgba(255,255,255,0.35)" }} />
       </motion.div>
     </section>
   );
