@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
  * 커스텀 LULU 로고마크 중앙 + 6개 서비스 색상 halo 회전
  */
 const SERVICES = [
-  { name: "PokerLulu", color: "#f59e0b" },
+  { name: "PokerLulu", color: "#FF6D1F" },
   { name: "LinkPlay",  color: "#06b6d4" },
   { name: "Moitto",    color: "#10b981" },
   { name: "ShuffleUp", color: "#3b82f6" },

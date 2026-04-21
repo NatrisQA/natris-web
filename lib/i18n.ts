@@ -188,7 +188,7 @@ export const content = {
       {
         id: "pokerlulu",
         axis: "game" as const,
-        color: "#f59e0b",
+        color: "#FF6D1F",
         tag: { ko: "온라인 소셜 포커 플랫폼", en: "Online Social Poker Platform" },
         name: "PokerLulu",
         name_ko: "포커룰루",

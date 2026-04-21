@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
  * 아래 h1/sub가 주인공 역할을 하도록 eyebrow/caption/ticker 제거
  */
 const SERVICES = [
-  { color: "#f59e0b" },
+  { color: "#FF6D1F" },
   { color: "#06b6d4" },
   { color: "#10b981" },
   { color: "#3b82f6" },

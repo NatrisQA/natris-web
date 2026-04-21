@@ -9,7 +9,7 @@ import { useLang } from "../LangContext";
  * 하단 캡션: 메인 헤드라인 (lang-aware)
  */
 const SERVICES = [
-  { name: "PokerLulu", color: "#f59e0b" },
+  { name: "PokerLulu", color: "#FF6D1F" },
   { name: "LinkPlay",  color: "#06b6d4" },
   { name: "Moitto",    color: "#10b981" },
   { name: "ShuffleUp", color: "#3b82f6" },
