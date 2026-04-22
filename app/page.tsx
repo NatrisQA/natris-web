@@ -308,6 +308,8 @@ function ParallaxSlide({
         minHeight,
         display: center ? "flex" : "block",
         alignItems: center ? "center" : undefined,
+        paddingBottom: center ? `${NAV_OFFSET}px` : undefined,
+        boxSizing: center ? "border-box" : undefined,
       }}
     >
       <motion.div
