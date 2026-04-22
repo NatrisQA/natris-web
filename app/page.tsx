@@ -388,6 +388,7 @@ function PageContent() {
           [data-fp-compact] #hero section .pb-20 { padding-bottom: clamp(1rem, 4vh, 5rem); }
           [data-fp-compact] #hero section > div.relative.z-10 > div:first-child { display: none; }
           [data-fp-compact] #hero section > div.relative.z-10 { gap: clamp(1rem, 3vh, 1.75rem); }
+          [data-fp-compact] #hero .mt-10.text-center.tracking-tight { display: none; }
 
           [data-fp-compact] #products .fp-projects > section > div.relative.z-10 {
             padding-top: clamp(1rem, 4vh, 3rem);
