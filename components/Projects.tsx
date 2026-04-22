@@ -133,8 +133,8 @@ export default function Projects() {
       {/* ── Background video (full-bleed, loops for all projects) ── */}
       <div className="absolute inset-0 z-0">
         <video
-          key="service-bg"
-          src="/videos/service-bg.mp4"
+          key={`bg-${active.id}`}
+          src={SERVICE_VIDEO[active.id] ?? "/videos/service-bg.mp4"}
           autoPlay
           loop
           muted
