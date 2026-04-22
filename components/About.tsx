@@ -9,7 +9,20 @@ export default function About() {
   const t = content.about[lang];
 
   return (
-    <section className="py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32" style={{ background: "#0a0a12" }}>
+    <section
+      className="py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32 relative"
+      style={{
+        background: "linear-gradient(180deg, #0e0e18 0%, #0b0b14 100%)",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[320px] h-[1px]"
+        style={{
+          background: "linear-gradient(90deg, transparent 0%, rgba(255,90,106,0.45) 50%, transparent 100%)",
+        }}
+      />
       <div className="max-w-[1680px] mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
