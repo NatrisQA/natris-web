@@ -27,8 +27,9 @@ const AXIS_LABEL: Record<string, string> = {
 type ServiceVideo = { src: string; startTime?: number };
 const SERVICE_VIDEO: Record<string, ServiceVideo> = {
   linkplay: { src: "/videos/linkplay-play.mp4", startTime: 2 },
+  pokerlulu: { src: "/videos/pokerlulu-onoff-event.mp4" },
 };
-const DEFAULT_VIDEO: ServiceVideo = { src: "/videos/service-bg.mp4" };
+const DEFAULT_VIDEO: ServiceVideo = { src: "/videos/pokerlulu-onoff-event.mp4" };
 
 /* ── Service icon (small) ── */
 function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: number }) {
