@@ -476,7 +476,7 @@ export default function AxesConnection() {
               return (
                 <text
                   key={`axis-label-${pair.axis}`}
-                  fontSize="13"
+                  fontSize="15"
                   fontWeight="900"
                   fill={axisColor}
                   letterSpacing="0.36em"
@@ -547,7 +547,7 @@ export default function AxesConnection() {
                   <text
                     x={p.x}
                     y={p.y + 2}
-                    fontSize="14"
+                    fontSize="16"
                     fontWeight="900"
                     fill={s.color}
                     textAnchor="middle"
@@ -560,7 +560,7 @@ export default function AxesConnection() {
                   <text
                     x={p.x}
                     y={p.y + 20}
-                    fontSize="8.5"
+                    fontSize="10.5"
                     fontWeight="800"
                     fill="rgba(255,255,255,0.5)"
                     textAnchor="middle"
@@ -604,7 +604,7 @@ export default function AxesConnection() {
                   key={`tag-${s.id}`}
                   x={lx}
                   y={ly}
-                  fontSize="12.5"
+                  fontSize="14.5"
                   fontWeight="700"
                   fill="rgba(245,245,247,0.78)"
                   textAnchor={anchor}
