@@ -464,8 +464,8 @@ function PageContent() {
         [data-fp-compact] #axes .fp-axes .mb-10 { margin-bottom: clamp(0.4rem, 1vh, 0.75rem); }
         [data-fp-compact] #axes .fp-axes .mb-4 { margin-bottom: clamp(0.25rem, 0.8vh, 0.5rem); }
         [data-fp-compact] #axes .fp-axes h2 + p { font-size: 13px; max-width: 640px; }
-        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 880"] { max-width: 600px; }
-        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 880"] svg {
+        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 760"] { max-width: 540px; }
+        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 760"] svg {
           max-height: calc(100dvh - 300px);
           width: auto !important;
           max-width: 100%;
