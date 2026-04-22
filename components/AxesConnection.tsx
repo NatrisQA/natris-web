@@ -136,7 +136,7 @@ export default function AxesConnection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          style={{ maxWidth: 1050, margin: "0 auto" }}
+          style={{ maxWidth: 880, margin: "0 auto" }}
         >
           <svg
             viewBox="0 0 1200 840"
