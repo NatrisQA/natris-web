@@ -21,7 +21,7 @@ export default function About() {
           </div>
           <h2
             className="font-black tracking-tight mb-6 whitespace-pre-line"
-            style={{ fontSize: "clamp(2rem, 5.2vw, 4.2rem)", color: "#f5f5f7", lineHeight: 1.15 }}
+            style={{ fontSize: "clamp(1.75rem, 4.2vw, 3.2rem)", color: "#f5f5f7", lineHeight: 1.15 }}
           >
             {t.headline}
           </h2>

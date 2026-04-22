@@ -106,7 +106,7 @@ export default function AxesConnection() {
           <h2
             className="font-black tracking-tight mb-4"
             style={{
-              fontSize: "clamp(2rem, 5.2vw, 4.2rem)",
+              fontSize: "clamp(1.75rem, 4.2vw, 3.2rem)",
               color: "#f5f5f7",
               whiteSpace: "pre-line",
               lineHeight: 1.15,
