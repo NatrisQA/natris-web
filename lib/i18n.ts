@@ -143,7 +143,7 @@ export const content = {
       ],
       mission: {
         label: "MISSION",
-        text: "플레이어가 모이고, 커뮤니티가 자라고,\n새로운 경험이 시작되는 곳.\n우리는 그 무대를 설계합니다.",
+        text: "플레이어가 모이고,\n커뮤니티가 자라고,\n새로운 경험이 시작되는 곳.\n\n우리는 그 무대를 설계합니다.",
       },
       milestones: [
         { date: "2026.02", text: "법인 설립" },
@@ -163,7 +163,7 @@ export const content = {
       ],
       mission: {
         label: "MISSION",
-        text: "Where players gather, communities grow,\nand new experiences begin.\nWe design the stage for it all.",
+        text: "Where players gather,\ncommunities grow,\nand new experiences begin.\n\nWe design the stage for it all.",
       },
       milestones: [
         { date: "2026.02", text: "Incorporated" },

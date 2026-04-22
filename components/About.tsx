@@ -47,7 +47,7 @@ export default function About() {
         </div>
 
         {/* 2-col on lg+: Mission (left) | History (right) */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start max-w-5xl mx-auto">
           {/* Mission */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
