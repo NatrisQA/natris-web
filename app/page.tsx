@@ -12,8 +12,6 @@ import Link from "next/link";
 import {
   motion,
   useReducedMotion,
-  useScroll,
-  useTransform,
 } from "framer-motion";
 import {
   Spade, Trophy, Radio, Shuffle,
@@ -24,7 +22,7 @@ import {
   Brain, Library, LayoutGrid, TrendingUp,
   type LucideIcon,
 } from "lucide-react";
-import { createContext, useContext, useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LUCIDE_FEATURES: Record<string, LucideIcon[]> = {
   pokerlulu: [Spade, Trophy, Radio, Shuffle],
@@ -53,8 +51,6 @@ const renderLucideFeature: FeatureIconRenderer = ({ serviceId, featureIndex, col
     </span>
   );
 };
-
-const ScrollContainerCtx = createContext<RefObject<HTMLDivElement | null> | null>(null);
 
 const SECTIONS = [
   { id: "hero", label: "HOME" },
@@ -293,14 +289,6 @@ function ParallaxSlide({
 }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
-  const containerRef = useContext(ScrollContainerCtx);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    container: containerRef ?? undefined,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [40, 0, -40]);
-  const opacity = useTransform(scrollYProgress, [0, 0.28, 0.72, 1], [0.15, 1, 1, 0.15]);
 
   return (
     <section
@@ -315,11 +303,11 @@ function ParallaxSlide({
       }}
     >
       <motion.div
-        style={
-          reduced
-            ? { width: "100%" }
-            : { width: "100%", y, opacity }
-        }
+        initial={reduced ? false : { opacity: 0, y: 40 }}
+        whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        style={{ width: "100%" }}
       >
         {children}
       </motion.div>
@@ -381,8 +369,7 @@ function PageContent() {
   useFullpageFlipV2(setActiveIndex);
 
   return (
-    <ScrollContainerCtx.Provider value={scrollRef}>
-      <div data-fp-compact>
+    <div data-fp-compact>
         <style>{`
           [data-fp-compact] #hero section .pt-20 { padding-top: clamp(1rem, 4vh, 5rem); }
           [data-fp-compact] #hero section .pb-20 { padding-bottom: clamp(1rem, 4vh, 5rem); }
@@ -495,9 +482,8 @@ function PageContent() {
           </section>
         </div>
 
-        <SideDots activeIndex={activeIndex} />
-      </div>
-    </ScrollContainerCtx.Provider>
+      <SideDots activeIndex={activeIndex} />
+    </div>
   );
 }
 
