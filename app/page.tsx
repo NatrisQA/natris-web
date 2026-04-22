@@ -283,11 +283,13 @@ function ParallaxSlide({
   children,
   minHeight = "100dvh",
   center = true,
+  bottomPadding,
 }: {
   id: string;
   children: React.ReactNode;
   minHeight?: string;
   center?: boolean;
+  bottomPadding?: number;
 }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
@@ -308,7 +310,7 @@ function ParallaxSlide({
         minHeight,
         display: center ? "flex" : "block",
         alignItems: center ? "center" : undefined,
-        paddingBottom: center ? `${NAV_OFFSET}px` : undefined,
+        paddingBottom: center ? `${bottomPadding ?? NAV_OFFSET}px` : undefined,
         boxSizing: center ? "border-box" : undefined,
       }}
     >
@@ -466,7 +468,7 @@ function PageContent() {
             </div>
           </ParallaxSlide>
 
-          <ParallaxSlide id="about">
+          <ParallaxSlide id="about" bottomPadding={180}>
             <div className="fp-about w-full">
               <About />
             </div>
@@ -479,6 +481,8 @@ function PageContent() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
+              paddingTop: `${NAV_OFFSET}px`,
+              boxSizing: "border-box",
             }}
           >
             <div className="fp-news flex-1 flex items-center w-full">
