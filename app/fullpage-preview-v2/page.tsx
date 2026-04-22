@@ -471,9 +471,9 @@ function PageContent() {
         [data-fp-compact] #axes .fp-axes .mb-10 { margin-bottom: clamp(0.4rem, 1vh, 0.75rem); }
         [data-fp-compact] #axes .fp-axes .mb-4 { margin-bottom: clamp(0.25rem, 0.8vh, 0.5rem); }
         [data-fp-compact] #axes .fp-axes h2 + p { font-size: 13px; max-width: 640px; }
-        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1200"] { max-width: 840px; }
-        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1200"] svg {
-          max-height: calc(100dvh - 220px);
+        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1050"] { max-width: 720px; }
+        [data-fp-compact] #axes .fp-axes [style*="maxWidth: 1050"] svg {
+          max-height: calc(100dvh - 260px);
           width: auto !important;
           max-width: 100%;
           margin: 0 auto;
