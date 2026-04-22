@@ -121,11 +121,12 @@ export default function AxesConnection() {
             style={{
               fontSize: "clamp(15px, 1.35vw, 19px)",
               color: "rgba(255,255,255,0.62)",
+              whiteSpace: "pre-line",
             }}
           >
             {lang === "ko"
-              ? "여섯 개의 플랫폼은 각자의 역할을 하면서도, 커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다."
-              : "Six platforms each play their role, tied together by the thread of community."}
+              ? "여섯 개의 플랫폼은 각자의 역할을 하면서도,\n커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다."
+              : "Six platforms each play their role,\ntied together by the thread of community."}
           </p>
         </div>
 
