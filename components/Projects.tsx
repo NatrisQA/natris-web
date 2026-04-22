@@ -35,19 +35,12 @@ function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: 
   const c = color;
   const icons: Record<string, React.ReactNode> = {
     pokerlulu: (
-      <div style={{ width: "100%", height: "100%", overflow: "hidden", position: "relative", borderRadius: 8 }}>
+      <div style={{ width: "100%", height: "100%", borderRadius: 8, overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/logo-pokerlulu.png"
+          src="/logos/pokerlulu.svg"
           alt="PokerLulu"
-          style={{
-            position: "absolute",
-            width: "auto",
-            height: "185%",
-            top: "-8%",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
+          style={{ width: "100%", height: "100%", display: "block", objectFit: "contain" }}
         />
       </div>
     ),
