@@ -24,6 +24,9 @@ const AXIS_LABEL: Record<string, string> = {
   community: "COMMUNITY",
   tech: "TECH",
 };
+const SERVICE_VIDEO: Record<string, string> = {
+  linkplay: "/videos/linkplay-play.mp4",
+};
 
 /* ── Service icon (small) ── */
 function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: number }) {
@@ -259,7 +262,8 @@ export default function Projects() {
                 {/* Video section inside card */}
                 <div className="relative" style={{ aspectRatio: "16 / 9", overflow: "hidden" }}>
                   <video
-                    src="/videos/service-bg.mp4"
+                    key={active.id}
+                    src={SERVICE_VIDEO[active.id] ?? "/videos/service-bg.mp4"}
                     autoPlay
                     loop
                     muted
