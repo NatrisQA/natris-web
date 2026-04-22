@@ -136,7 +136,7 @@ export default function AxesConnection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          style={{ maxWidth: 1440, margin: "0 auto" }}
+          style={{ maxWidth: 1200, margin: "0 auto" }}
         >
           <svg
             viewBox="0 0 1200 840"
@@ -573,18 +573,41 @@ export default function AxesConnection() {
               );
             })}
 
-            {/* External one-line intro (per service, outside node) */}
+            {/* External one-line intro (per service, outside node, angle-aware anchor) */}
             {ordered.map((s, i) => {
-              const lp = polar(angles[i], R + 96);
+              const angle = angles[i];
+              const p = polar(angle, R);
+              const cosA = Math.cos((angle * Math.PI) / 180);
+              const sinA = Math.sin((angle * Math.PI) / 180);
+              const pad = 14;
+              const edge = nodeRingR + pad;
+              // vertical band → stack text above/below the node; otherwise sit flush left/right
+              const isVertical = Math.abs(cosA) < 0.35;
+              let lx: number;
+              let ly: number;
+              let anchor: "start" | "middle" | "end";
+              if (isVertical) {
+                lx = p.x;
+                ly = sinA > 0 ? p.y + edge + 6 : p.y - edge;
+                anchor = "middle";
+              } else if (cosA > 0) {
+                lx = p.x + edge;
+                ly = p.y + 4;
+                anchor = "start";
+              } else {
+                lx = p.x - edge;
+                ly = p.y + 4;
+                anchor = "end";
+              }
               return (
                 <text
                   key={`tag-${s.id}`}
-                  x={lp.x}
-                  y={lp.y}
-                  fontSize="13"
+                  x={lx}
+                  y={ly}
+                  fontSize="12.5"
                   fontWeight="700"
                   fill="rgba(245,245,247,0.78)"
-                  textAnchor="middle"
+                  textAnchor={anchor}
                   fontFamily="Pretendard, sans-serif"
                 >
                   {s.tag[lang]}
