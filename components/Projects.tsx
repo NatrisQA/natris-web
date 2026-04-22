@@ -24,9 +24,11 @@ const AXIS_LABEL: Record<string, string> = {
   community: "COMMUNITY",
   tech: "TECH",
 };
-const SERVICE_VIDEO: Record<string, string> = {
-  linkplay: "/videos/linkplay-play.mp4",
+type ServiceVideo = { src: string; startTime?: number };
+const SERVICE_VIDEO: Record<string, ServiceVideo> = {
+  linkplay: { src: "/videos/linkplay-play.mp4", startTime: 2 },
 };
+const DEFAULT_VIDEO: ServiceVideo = { src: "/videos/service-bg.mp4" };
 
 /* ── Service icon (small) ── */
 function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: number }) {
@@ -116,6 +118,15 @@ export default function Projects() {
   const axis = (active as typeof active & { axis: "game" | "community" | "tech" }).axis;
   const axisColor = AXIS_COLOR[axis];
   const axisLabel = AXIS_LABEL[axis];
+  const activeVideo = SERVICE_VIDEO[active.id] ?? DEFAULT_VIDEO;
+  const videoStart = activeVideo.startTime ?? 0;
+  const seekToStart = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const v = e.currentTarget;
+    if (videoStart > 0) {
+      try { v.currentTime = videoStart; } catch { /* noop */ }
+    }
+    v.play().catch(() => {});
+  };
 
   /* Auto-rotate every 6s, pause on hover */
   const hoveringRef = useRef(false);
@@ -134,11 +145,12 @@ export default function Projects() {
       <div className="absolute inset-0 z-0">
         <video
           key={`bg-${active.id}`}
-          src={SERVICE_VIDEO[active.id] ?? "/videos/service-bg.mp4"}
+          src={activeVideo.src}
           autoPlay
-          loop
           muted
           playsInline
+          onLoadedMetadata={seekToStart}
+          onEnded={seekToStart}
           className="absolute inset-0 w-full h-full"
           style={{ objectFit: "cover", opacity: 0.18 }}
         />
@@ -263,11 +275,12 @@ export default function Projects() {
                 <div className="relative" style={{ aspectRatio: "16 / 9", overflow: "hidden" }}>
                   <video
                     key={active.id}
-                    src={SERVICE_VIDEO[active.id] ?? "/videos/service-bg.mp4"}
+                    src={activeVideo.src}
                     autoPlay
-                    loop
                     muted
                     playsInline
+                    onLoadedMetadata={seekToStart}
+                    onEnded={seekToStart}
                     className="absolute inset-0 w-full h-full"
                     style={{ objectFit: "cover" }}
                   />
