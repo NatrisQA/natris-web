@@ -516,7 +516,7 @@ function PageContent() {
         </ParallaxSlide>
 
         {/* ⑥ Axes — 축소해서 100dvh 안에 */}
-        <ParallaxSlide id="axes">
+        <ParallaxSlide id="axes" bottomPadding={140}>
           <div className="fp-axes w-full">
             <AxesConnection />
           </div>
