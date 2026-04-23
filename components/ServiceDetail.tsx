@@ -429,7 +429,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                       {f.desc[lang]}
                     </p>
                   </div>
-                  <FeatureVisual index={i} color={item.color} accent={axisColor} />
+                  <FeatureVisual index={i} color={item.color} accent={axisColor} image={("image" in f ? (f as { image?: string }).image : undefined)} title={f.title[lang]} />
                 </motion.div>
               );
             })}
@@ -580,25 +580,18 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
     return (
       <div className="relative w-full aspect-[16/9] max-w-[560px] mx-auto">
         <div
-          className="relative w-full h-full rounded-[24px] overflow-hidden"
+          className="relative w-full h-full rounded-[24px] overflow-hidden flex items-center justify-center"
           style={{
-            border: `1px solid ${color}30`,
+            background: `linear-gradient(160deg, #140308, #1c0a12 60%, ${color}22)`,
+            border: `1px solid ${color}40`,
             boxShadow: `0 30px 80px ${color}35`,
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/pokerlulu/keyvisual.png"
-            alt="PokerLulu key visual"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: "center top" }}
-          />
-          {/* Subtle corner gradient to mask any watermark */}
-          <div
-            className="absolute bottom-0 right-0 w-24 h-12 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse at bottom right, rgba(20,5,10,0.85) 0%, rgba(20,5,10,0) 70%)",
-            }}
+            src="/images/pokerlulu/main-hero-logo.svg"
+            alt="PokerLulu"
+            style={{ width: "72%", height: "auto", display: "block", filter: `drop-shadow(0 10px 30px ${color}80)` }}
           />
         </div>
       </div>
@@ -769,7 +762,28 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
 }
 
 /* ─── Feature Visual (per index) ─── */
-function FeatureVisual({ index, color, accent }: { index: number; color: string; accent: string }) {
+function FeatureVisual({ index, color, accent, image, title }: { index: number; color: string; accent: string; image?: string; title?: string }) {
+  if (image) {
+    return (
+      <div
+        className="relative rounded-3xl overflow-hidden"
+        style={{
+          background: `linear-gradient(160deg, #fff, ${color}08)`,
+          border: `1px solid ${color}20`,
+          boxShadow: `0 20px 60px ${color}20`,
+          aspectRatio: "4/3",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt={title ?? ""}
+          className="absolute inset-0 w-full h-full"
+          style={{ objectFit: "cover", display: "block" }}
+        />
+      </div>
+    );
+  }
   const shapes = [
     <svg key="0" viewBox="0 0 400 300" className="w-full h-full">
       <rect width="400" height="300" rx="24" fill={`${color}08`} />
