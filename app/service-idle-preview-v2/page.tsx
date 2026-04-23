@@ -8,13 +8,22 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 type Item = (typeof content.products.items)[number];
 
 const items = content.products.items as Item[];
-const LIVE_IDS = new Set(["linkplay", "pokerlulu"]);
+const IN_MOTION_IDS = new Set(["linkplay", "pokerlulu"]);
 
 const TIMELINE: Record<string, string> = {
+  pokerlulu: "대회 운영 중",
+  linkplay: "런칭 임박",
   moitto: "2026 Q3",
   tubelulu: "2026 Q4",
-  shuffleup: "BETA · Q2",
-  gtolulu: "2027 Q1",
+  shuffleup: "2027 Q1",
+  gtolulu: "2027 Q2",
+};
+
+const TEASER: Record<string, string> = {
+  moitto: "어떤 모임이 기다리고 있을까요?",
+  tubelulu: "화면 너머 무엇이 펼쳐질까요?",
+  shuffleup: "어떤 한 판이 준비되고 있을까요?",
+  gtolulu: "다음 한 수는 무엇일까요?",
 };
 
 const AXIS_COLOR: Record<string, string> = {
@@ -33,14 +42,14 @@ const SERVICE_VIDEO: Record<string, { src: string; startTime?: number }> = {
   pokerlulu: { src: "/videos/pokerlulu-onoff-event.mp4" },
 };
 
-const liveItems = items.filter((i) => LIVE_IDS.has(i.id));
-const preItems = items.filter((i) => !LIVE_IDS.has(i.id));
-const ordered = [...liveItems, ...preItems];
+const motionItems = items.filter((i) => IN_MOTION_IDS.has(i.id));
+const conceptItems = items.filter((i) => !IN_MOTION_IDS.has(i.id));
+const ordered = [...motionItems, ...conceptItems];
 
 export default function ServiceIdlePreviewV2() {
   const [activeIdx, setActiveIdx] = useState(0);
   const active = ordered[activeIdx];
-  const isLive = LIVE_IDS.has(active.id);
+  const isLive = IN_MOTION_IDS.has(active.id);
   const axis = (active as Item & { axis: "game" | "community" | "tech" }).axis;
   const axisColor = AXIS_COLOR[axis];
   const axisLabel = AXIS_LABEL[axis];
@@ -57,9 +66,9 @@ export default function ServiceIdlePreviewV2() {
   useEffect(() => {
     const timer = setInterval(() => {
       if (hoveringRef.current) return;
-      if (!LIVE_IDS.has(ordered[activeIdx].id)) return;
+      if (!IN_MOTION_IDS.has(ordered[activeIdx].id)) return;
       const liveIdxs = ordered
-        .map((it, idx) => (LIVE_IDS.has(it.id) ? idx : -1))
+        .map((it, idx) => (IN_MOTION_IDS.has(it.id) ? idx : -1))
         .filter((v) => v >= 0);
       const pos = liveIdxs.indexOf(activeIdx);
       setActiveIdx(liveIdxs[(pos + 1) % liveIdxs.length]);
@@ -101,7 +110,7 @@ export default function ServiceIdlePreviewV2() {
           PREVIEW · SERVICES SECTION V2
         </div>
         <h1 style={{ fontSize: 28, fontWeight: 900, marginBottom: 12, lineHeight: 1.15 }}>
-          10점 시안 — 개발중/준비중 분리 + 5가지 개선 통합
+          10점 시안 — 진행중/구상중 분리 + 구상중 전용 CTA/teaser
         </h1>
         <ul
           style={{
@@ -113,11 +122,11 @@ export default function ServiceIdlePreviewV2() {
             maxWidth: 920,
           }}
         >
-          <li>① 준비중 탭 활성 시 bg 영상 → 정적 gradient (pokerlulu 영상 누수 차단)</li>
-          <li>② CTA 차별화 — 개발중: &quot;자세히 보기&quot; / 준비중: &quot;출시 알림 받기&quot; + &quot;미리보기&quot;</li>
-          <li>③ 준비중 preview에 서비스 고유 아이콘 대형 배치 (4개 구분)</li>
-          <li>④ 탭 뱃지 &quot;출시 예정&quot; → 타임라인 앵커 (2026 Q3 등, 목업값)</li>
-          <li>⑤ 자동 rotate는 개발중 그룹 내에서만 순환</li>
+          <li>① 그룹 라벨 재설계: 진행 중(IN MOTION) / 구상 중(IN CONCEPT) — pokerlulu·linkplay도 기술적으론 개발중인 점 반영</li>
+          <li>② 구분 뱃지: pokerlulu &quot;대회 운영 중&quot;, linkplay &quot;런칭 임박&quot;, 나머지는 분기 타임라인</li>
+          <li>③ 구상중 탭 활성 시 bg 영상 → 정적 gradient (pokerlulu 영상 누수 차단)</li>
+          <li>④ 구상중 CTA 통일: 단일 &quot;가장 먼저 만나보기 →&quot; + 서비스별 궁금증 teaser 한 줄</li>
+          <li>⑤ 자동 rotate는 진행중 그룹 내에서만 순환</li>
         </ul>
       </div>
 
@@ -206,8 +215,8 @@ export default function ServiceIdlePreviewV2() {
           <div style={{ display: "flex", flexDirection: "row", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}>
             <div style={{ width: 340, flexShrink: 0 }}>
               <TabGroup
-                label="IN DEVELOPMENT · 개발중"
-                items={liveItems}
+                label="IN MOTION · 진행 중"
+                items={motionItems}
                 baseIdx={0}
                 activeIdx={activeIdx}
                 onSelect={setActiveIdx}
@@ -216,9 +225,9 @@ export default function ServiceIdlePreviewV2() {
               />
               <div style={{ height: 28 }} />
               <TabGroup
-                label="COMING SOON · 준비중"
-                items={preItems}
-                baseIdx={liveItems.length}
+                label="IN CONCEPT · 구상 중"
+                items={conceptItems}
+                baseIdx={motionItems.length}
                 activeIdx={activeIdx}
                 onSelect={setActiveIdx}
                 badgeColor="rgba(255,255,255,0.45)"
@@ -280,7 +289,7 @@ export default function ServiceIdlePreviewV2() {
                         >
                           {axisLabel}
                         </span>
-                        {!isLive && TIMELINE[active.id] && (
+                        {TIMELINE[active.id] && (
                           <span
                             style={{
                               fontSize: 10,
@@ -367,9 +376,22 @@ export default function ServiceIdlePreviewV2() {
                         자세히 보기 →
                       </Link>
                     ) : (
-                      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
+                        {TEASER[active.id] && (
+                          <div
+                            style={{
+                              fontSize: 13,
+                              fontStyle: "italic",
+                              color: `${active.color}dd`,
+                              fontWeight: 500,
+                              letterSpacing: "-0.01em",
+                            }}
+                          >
+                            &ldquo;{TEASER[active.id]}&rdquo;
+                          </div>
+                        )}
                         <a
-                          href={`mailto:notify@lulu.ai?subject=${encodeURIComponent(`${active.name} 출시 알림 요청`)}`}
+                          href={`mailto:notify@lulu.ai?subject=${encodeURIComponent(`${active.name} 첫 소식 요청`)}`}
                           style={{
                             display: "inline-flex",
                             alignItems: "center",
@@ -384,26 +406,8 @@ export default function ServiceIdlePreviewV2() {
                             boxShadow: `0 8px 30px ${active.color}55`,
                           }}
                         >
-                          <BellIcon /> 출시 알림 받기
+                          <BellIcon /> 가장 먼저 만나보기 →
                         </a>
-                        <Link
-                          href={`/services/${active.id}`}
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: 8,
-                            padding: "12px 24px",
-                            borderRadius: 999,
-                            fontSize: 13,
-                            fontWeight: 900,
-                            letterSpacing: "0.04em",
-                            background: "rgba(255,255,255,0.06)",
-                            color: "#f5f5f7",
-                            border: "1px solid rgba(255,255,255,0.2)",
-                          }}
-                        >
-                          미리보기 →
-                        </Link>
                       </div>
                     )}
                   </div>
