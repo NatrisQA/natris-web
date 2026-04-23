@@ -213,6 +213,21 @@ export default function AxesConnection() {
                   />
                 );
               })}
+
+              {/* Community solo arc (shuffleup only — short arc centered on its angle) */}
+              {(() => {
+                const centerAngle = angles[2];
+                const arcSpan = 22;
+                const p1 = polar(centerAngle - arcSpan, axisR);
+                const p2 = polar(centerAngle + arcSpan, axisR);
+                return (
+                  <path
+                    id="axis-path-community"
+                    d={`M ${p1.x} ${p1.y} A ${axisR} ${axisR} 0 0 1 ${p2.x} ${p2.y}`}
+                    fill="none"
+                  />
+                );
+              })()}
             </defs>
 
             {/* Background glow */}
@@ -490,6 +505,23 @@ export default function AxesConnection() {
                 </text>
               );
             })}
+
+            {/* Community axis label (solo — shuffleup) */}
+            <text
+              fontSize="15"
+              fontWeight="900"
+              fill={AXIS_META.community.color}
+              letterSpacing="0.36em"
+              fontFamily="Pretendard, sans-serif"
+            >
+              <textPath
+                href="#axis-path-community"
+                startOffset="50%"
+                textAnchor="middle"
+              >
+                {AXIS_META.community.en}
+              </textPath>
+            </text>
 
             {/* Service nodes */}
             {ordered.map((s, i) => {

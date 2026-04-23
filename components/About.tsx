@@ -53,7 +53,7 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:sticky lg:top-24 flex flex-col gap-6"
+            className="flex flex-col gap-6"
           >
             <div
               className="text-[11px] font-black tracking-[0.28em]"
