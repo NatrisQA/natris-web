@@ -63,7 +63,7 @@ export default function About() {
             </div>
             <p
               className="whitespace-pre-line font-black tracking-tight"
-              style={{ fontSize: "clamp(22px, 3.2vw, 48px)", color: "#f5f5f7", lineHeight: 1.25 }}
+              style={{ fontSize: "clamp(18px, 2.2vw, 32px)", color: "#f5f5f7", lineHeight: 1.3 }}
             >
               {t.mission.text}
             </p>
