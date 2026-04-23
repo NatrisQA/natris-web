@@ -4,7 +4,7 @@ import { useLang } from "./LangContext";
 import { content } from "@/lib/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 
 export type FeatureIconRenderer = (args: {
   serviceId: string;
@@ -13,6 +13,31 @@ export type FeatureIconRenderer = (args: {
 }) => ReactNode;
 
 export const FeatureIconContext = createContext<FeatureIconRenderer | null>(null);
+
+type Item = (typeof content.products.items)[number];
+type Lang = "ko" | "en";
+
+const IN_MOTION_IDS = new Set(["pokerlulu", "linkplay"]);
+
+const TIMELINE: Record<string, Record<Lang, string>> = {
+  pokerlulu: { ko: "대회 운영 중", en: "Events Running" },
+  linkplay: { ko: "2026 Q2", en: "2026 Q2" },
+};
+
+const TEASER: Record<string, Record<Lang, string>> = {
+  tubelulu: {
+    ko: "화면 너머 무엇이 펼쳐질까요?",
+    en: "What lies beyond the screen?",
+  },
+  shuffleup: {
+    ko: "어떤 한 판이 준비되고 있을까요?",
+    en: "What game is being prepared?",
+  },
+  gtolulu: {
+    ko: "다음 한 수는 무엇일까요?",
+    en: "What's the next move?",
+  },
+};
 
 const AXIS_COLOR: Record<string, string> = {
   game: "#e63946",
@@ -24,17 +49,22 @@ const AXIS_LABEL: Record<string, string> = {
   community: "COMMUNITY",
   tech: "TECH",
 };
+
 type ServiceVideo = { src: string; startTime?: number };
 const SERVICE_VIDEO: Record<string, ServiceVideo> = {
   linkplay: { src: "/videos/linkplay-play.mp4", startTime: 2 },
   pokerlulu: { src: "/videos/pokerlulu-onoff-event.mp4" },
 };
-const DEFAULT_VIDEO: ServiceVideo = { src: "/videos/pokerlulu-onoff-event.mp4" };
+
+const allItems = content.products.items as Item[];
+const motionItems = allItems.filter((i) => IN_MOTION_IDS.has(i.id));
+const conceptItems = allItems.filter((i) => !IN_MOTION_IDS.has(i.id));
+const ordered = [...motionItems, ...conceptItems];
 
 /* ── Service icon (small) ── */
 function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: number }) {
   const c = color;
-  const icons: Record<string, React.ReactNode> = {
+  const icons: Record<string, ReactNode> = {
     pokerlulu: (
       <div style={{ width: "100%", height: "100%", borderRadius: 8, overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -93,61 +123,78 @@ function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: 
 
 export default function Projects() {
   const { lang } = useLang();
-  const items = content.products.items;
-  const headline = content.products.headline[lang];
-  const sub = content.products.sub[lang];
   const label = content.products.label[lang];
   const renderFeatureIcon = useContext(FeatureIconContext);
 
   const [activeIdx, setActiveIdx] = useState(0);
-  const active = items[activeIdx];
-  const axis = (active as typeof active & { axis: "game" | "community" | "tech" }).axis;
+  const active = ordered[activeIdx];
+  const isLive = IN_MOTION_IDS.has(active.id);
+  const axis = (active as Item & { axis: "game" | "community" | "tech" }).axis;
   const axisColor = AXIS_COLOR[axis];
   const axisLabel = AXIS_LABEL[axis];
-  const activeVideo = SERVICE_VIDEO[active.id] ?? DEFAULT_VIDEO;
-  const videoStart = activeVideo.startTime ?? 0;
-  const seekToStart = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+
+  const lastLiveIdxRef = useRef(0);
+  useEffect(() => {
+    if (isLive) lastLiveIdxRef.current = activeIdx;
+  }, [activeIdx, isLive]);
+  const bgItem = isLive ? active : ordered[lastLiveIdxRef.current];
+  const bgVideo = SERVICE_VIDEO[bgItem.id];
+  const activeVideo = SERVICE_VIDEO[active.id];
+
+  const hoveringRef = useRef(false);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (hoveringRef.current) return;
+      if (!IN_MOTION_IDS.has(ordered[activeIdx].id)) return;
+      const liveIdxs = ordered
+        .map((it, idx) => (IN_MOTION_IDS.has(it.id) ? idx : -1))
+        .filter((v) => v >= 0);
+      const pos = liveIdxs.indexOf(activeIdx);
+      setActiveIdx(liveIdxs[(pos + 1) % liveIdxs.length]);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [activeIdx]);
+
+  const seekToStart = (e: React.SyntheticEvent<HTMLVideoElement>, start: number) => {
     const v = e.currentTarget;
-    if (videoStart > 0) {
-      try { v.currentTime = videoStart; } catch { /* noop */ }
+    if (start > 0) {
+      try { v.currentTime = start; } catch { /* noop */ }
     }
     v.play().catch(() => {});
   };
 
-  /* Auto-rotate every 6s, pause on hover */
-  const hoveringRef = useRef(false);
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (!hoveringRef.current) {
-        setActiveIdx((prev) => (prev + 1) % items.length);
-      }
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [items.length]);
+  const timelineLabel = TIMELINE[active.id]?.[lang];
+  const teaserLabel = TEASER[active.id]?.[lang];
 
   return (
     <section className="relative py-0 overflow-hidden" style={{ background: "#08080f" }}>
-      {/* ── Background video (full-bleed, loops for all projects) ── */}
+      {/* ── Background layer: motion shows bg video, concept shows gradient ── */}
       <div className="absolute inset-0 z-0">
-        <video
-          key={`bg-${active.id}`}
-          src={activeVideo.src}
-          autoPlay
-          muted
-          playsInline
-          onLoadedMetadata={seekToStart}
-          onEnded={seekToStart}
-          className="absolute inset-0 w-full h-full"
-          style={{ objectFit: "cover", opacity: 0.18 }}
-        />
-        {/* Color overlay tinted to active service */}
+        {isLive && bgVideo ? (
+          <video
+            key={`bg-${bgItem.id}`}
+            src={bgVideo.src}
+            autoPlay
+            muted
+            playsInline
+            onLoadedMetadata={(e) => seekToStart(e, bgVideo.startTime ?? 0)}
+            onEnded={(e) => seekToStart(e, bgVideo.startTime ?? 0)}
+            className="absolute inset-0 w-full h-full"
+            style={{ objectFit: "cover", opacity: 0.18 }}
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse 80% 60% at 30% 40%, ${active.color}28, transparent 65%), radial-gradient(ellipse 60% 70% at 75% 70%, ${axisColor}18, transparent 65%)`,
+            }}
+          />
+        )}
         <div
           className="absolute inset-0 transition-colors duration-700"
           style={{ background: `linear-gradient(135deg, ${active.color}18 0%, transparent 50%, #08080f 100%)` }}
         />
-        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-40" style={{ background: "linear-gradient(to bottom, transparent, #08080f)" }} />
-        {/* Top fade */}
         <div className="absolute top-0 left-0 right-0 h-24" style={{ background: "linear-gradient(to top, transparent, #08080f)" }} />
       </div>
 
@@ -169,80 +216,35 @@ export default function Projects() {
           </div>
         </motion.div>
 
-        {/* Main content: Tab list (left) + Active detail (right) */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-14 items-start">
+        {/* Main content: Tab list (left, md+) + Active detail (right) */}
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-14 items-start">
 
-          {/* ── Left: Service tab list ── */}
-          <div className="w-full lg:w-[340px] flex-shrink-0">
-            <div className="flex flex-col gap-1">
-              {items.map((p, i) => {
-                const isActive = i === activeIdx;
-                return (
-                  <button
-                    key={p.id}
-                    onClick={() => setActiveIdx(i)}
-                    className="relative w-full text-left rounded-xl px-5 py-4 transition-all duration-300 group"
-                    style={{
-                      background: isActive ? `${p.color}15` : "transparent",
-                      border: `1px solid ${isActive ? `${p.color}40` : "transparent"}`,
-                    }}
-                  >
-                    {/* Active indicator bar */}
-                    <div
-                      className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full transition-all duration-300"
-                      style={{
-                        background: isActive ? p.color : "transparent",
-                        boxShadow: isActive ? `0 0 12px ${p.color}88` : "none",
-                      }}
-                    />
-                    <div className="flex items-center gap-3">
-                      <IconLogo id={p.id} color={p.color} size={32} />
-                      <div className="flex-1 min-w-0">
-                        <div
-                          className="text-[15px] font-black truncate transition-colors duration-300"
-                          style={{ color: isActive ? "#f5f5f7" : "rgba(255,255,255,0.45)" }}
-                        >
-                          {p.name}
-                        </div>
-                        <div
-                          className="text-[11px] truncate transition-colors duration-300"
-                          style={{ color: isActive ? `${p.color}cc` : "rgba(255,255,255,0.25)" }}
-                        >
-                          {p.tag[lang]}
-                        </div>
-                      </div>
-                      {/* Status */}
-                      <span
-                        className="text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 transition-all duration-300"
-                        style={{
-                          background: isActive ? `${p.color}22` : "rgba(255,255,255,0.05)",
-                          color: isActive ? p.color : "rgba(255,255,255,0.3)",
-                        }}
-                      >
-                        {p.status[lang]}
-                      </span>
-                    </div>
-
-                    {/* Progress bar (auto-rotate indicator) */}
-                    {isActive && (
-                      <div className="absolute bottom-0 left-5 right-5 h-[2px] rounded-full overflow-hidden" style={{ background: `${p.color}20` }}>
-                        <motion.div
-                          key={`progress-${i}`}
-                          initial={{ width: "0%" }}
-                          animate={{ width: "100%" }}
-                          transition={{ duration: 6, ease: "linear" }}
-                          style={{ height: "100%", background: p.color, borderRadius: 999 }}
-                        />
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+          {/* ── Left: Service tab groups (hidden below md) ── */}
+          <div className="hidden md:block w-full md:w-[300px] lg:w-[340px] flex-shrink-0">
+            <TabGroup
+              lang={lang}
+              label="IN MOTION"
+              items={motionItems}
+              baseIdx={0}
+              activeIdx={activeIdx}
+              onSelect={setActiveIdx}
+              badgeColor="#3ddc97"
+              pulse
+            />
+            <div className="h-7" />
+            <TabGroup
+              lang={lang}
+              label="IN CONCEPT"
+              items={conceptItems}
+              baseIdx={motionItems.length}
+              activeIdx={activeIdx}
+              onSelect={setActiveIdx}
+              badgeColor="rgba(255,255,255,0.45)"
+            />
           </div>
 
           {/* ── Right: Active project detail ── */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -257,47 +259,59 @@ export default function Projects() {
                   boxShadow: `0 40px 80px ${active.color}15, 0 0 120px ${active.color}08`,
                 }}
               >
-                {/* Video section inside card */}
+                {/* Video / ComingSoon visual */}
                 <div className="relative" style={{ aspectRatio: "21 / 9", overflow: "hidden" }}>
-                  <video
-                    key={active.id}
-                    src={activeVideo.src}
-                    autoPlay
-                    muted
-                    playsInline
-                    onLoadedMetadata={seekToStart}
-                    onEnded={seekToStart}
-                    className="absolute inset-0 w-full h-full"
-                    style={{ objectFit: "cover" }}
-                  />
-                  {/* Service color gradient overlay */}
+                  {isLive && activeVideo ? (
+                    <video
+                      key={active.id}
+                      src={activeVideo.src}
+                      autoPlay
+                      muted
+                      playsInline
+                      onLoadedMetadata={(e) => seekToStart(e, activeVideo.startTime ?? 0)}
+                      onEnded={(e) => seekToStart(e, activeVideo.startTime ?? 0)}
+                      className="absolute inset-0 w-full h-full"
+                      style={{ objectFit: "cover" }}
+                    />
+                  ) : (
+                    <ComingSoonVisual item={active} />
+                  )}
                   <div
-                    className="absolute inset-0"
+                    className="absolute inset-0 pointer-events-none"
                     style={{
                       background: `linear-gradient(to top, #14141f 0%, ${active.color}18 30%, transparent 60%)`,
                     }}
                   />
-                  {/* Service logo overlay on video */}
-                  <div className="absolute bottom-6 left-8 right-8 flex items-end justify-between">
-                    <div>
+                  <div className="absolute bottom-6 left-8 right-8">
+                    <div className="inline-flex gap-2 mb-3">
                       <span
-                        className="text-[10px] font-black tracking-[0.16em] px-2.5 py-1 rounded-full inline-block mb-3"
-                        style={{
-                          background: axisColor,
-                          color: "#fff",
-                        }}
+                        className="text-[10px] font-black tracking-[0.16em] px-2.5 py-1 rounded-full"
+                        style={{ background: axisColor, color: "#fff" }}
                       >
                         {axisLabel}
                       </span>
-                      <h3
-                        className="font-black"
-                        style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#fff", lineHeight: 1.1, textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
-                      >
-                        {active.name}
-                      </h3>
-                      <div className="text-[13px] font-semibold mt-1" style={{ color: `${active.color}dd` }}>
-                        {active.tag[lang]}
-                      </div>
+                      {timelineLabel && (
+                        <span
+                          className="text-[10px] font-black tracking-[0.16em] px-2.5 py-1 rounded-full"
+                          style={{
+                            background: "rgba(255,255,255,0.12)",
+                            color: "#f5f5f7",
+                            border: "1px solid rgba(255,255,255,0.22)",
+                            backdropFilter: "blur(8px)",
+                          }}
+                        >
+                          {timelineLabel}
+                        </span>
+                      )}
+                    </div>
+                    <h3
+                      className="font-black"
+                      style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "#fff", lineHeight: 1.1, textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
+                    >
+                      {active.name}
+                    </h3>
+                    <div className="text-[13px] font-semibold mt-1" style={{ color: `${active.color}dd` }}>
+                      {active.tag[lang]}
                     </div>
                   </div>
                 </div>
@@ -325,54 +339,82 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  {/* Feature highlights (2x2 grid) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                    {active.features.slice(0, 4).map((f, fi) => (
-                      <div
-                        key={fi}
-                        className="rounded-xl px-4 py-3"
-                        style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
-                      >
-                        <div className="flex items-center gap-2 mb-1.5">
-                          {(() => {
-                            const lucide = renderFeatureIcon?.({
-                              serviceId: active.id,
-                              featureIndex: fi,
-                              color: active.color,
-                            });
-                            return lucide ?? <span className="text-[16px]">{f.icon}</span>;
-                          })()}
-                          <span className="text-[13px] font-bold" style={{ color: "#f5f5f7" }}>{f.title[lang]}</span>
+                  {/* Feature highlights — only for IN MOTION services */}
+                  {isLive && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                      {active.features.slice(0, 4).map((f, fi) => (
+                        <div
+                          key={fi}
+                          className="rounded-xl px-4 py-3"
+                          style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+                        >
+                          <div className="flex items-center gap-2 mb-1.5">
+                            {(() => {
+                              const lucide = renderFeatureIcon?.({
+                                serviceId: active.id,
+                                featureIndex: fi,
+                                color: active.color,
+                              });
+                              return lucide ?? <span className="text-[16px]">{f.icon}</span>;
+                            })()}
+                            <span className="text-[13px] font-bold" style={{ color: "#f5f5f7" }}>{f.title[lang]}</span>
+                          </div>
+                          <p className="text-[12px] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                            {f.desc[lang]}
+                          </p>
                         </div>
-                        <p className="text-[12px] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                          {f.desc[lang]}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
 
-                  {/* CTA */}
-                  <Link
-                    href={`/services/${active.id}`}
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[13px] font-black tracking-wide transition-all duration-300"
-                    style={{
-                      background: active.color,
-                      color: "#fff",
-                      boxShadow: `0 8px 30px ${active.color}55`,
-                    }}
-                  >
-                    <span>{lang === "ko" ? "자세히 보기" : "View Details"}</span>
-                    <span style={{ fontSize: 14 }}>→</span>
-                  </Link>
+                  {/* CTA: motion → 자세히 보기 Link, concept → teaser + mailto */}
+                  {isLive ? (
+                    <Link
+                      href={`/services/${active.id}`}
+                      className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[13px] font-black tracking-wide transition-all duration-300"
+                      style={{
+                        background: active.color,
+                        color: "#fff",
+                        boxShadow: `0 8px 30px ${active.color}55`,
+                      }}
+                    >
+                      <span>{lang === "ko" ? "자세히 보기" : "View Details"}</span>
+                      <span style={{ fontSize: 14 }}>→</span>
+                    </Link>
+                  ) : (
+                    <div className="flex flex-col gap-3 items-start">
+                      {teaserLabel && (
+                        <div
+                          className="text-[13px] italic font-medium"
+                          style={{ color: `${active.color}dd`, letterSpacing: "-0.01em" }}
+                        >
+                          &ldquo;{teaserLabel}&rdquo;
+                        </div>
+                      )}
+                      <a
+                        href={`mailto:notify@lulu.ai?subject=${encodeURIComponent(`${active.name} ${lang === "ko" ? "첫 소식 요청" : "notify me"}`)}`}
+                        className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[13px] font-black tracking-wide transition-all duration-300"
+                        style={{
+                          background: active.color,
+                          color: "#fff",
+                          boxShadow: `0 8px 30px ${active.color}55`,
+                        }}
+                      >
+                        <BellIcon />
+                        <span>{lang === "ko" ? "가장 먼저 만나보기" : "Get notified first"}</span>
+                        <span style={{ fontSize: 14 }}>→</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
 
-        {/* Bottom: page indicators */}
+        {/* Bottom: page indicators (all services — works as mobile nav too) */}
         <div className="flex justify-center gap-2 mt-5">
-          {items.map((p, i) => (
+          {ordered.map((p, i) => (
             <button
               key={p.id}
               onClick={() => setActiveIdx(i)}
@@ -389,5 +431,168 @@ export default function Projects() {
         </div>
       </div>
     </section>
+  );
+}
+
+function TabGroup({
+  lang,
+  label,
+  items,
+  baseIdx,
+  activeIdx,
+  onSelect,
+  badgeColor,
+  pulse,
+}: {
+  lang: Lang;
+  label: string;
+  items: Item[];
+  baseIdx: number;
+  activeIdx: number;
+  onSelect: (idx: number) => void;
+  badgeColor: string;
+  pulse?: boolean;
+}) {
+  return (
+    <div>
+      <div
+        className="flex items-center gap-2 text-[10px] font-black tracking-[0.28em] px-2 pb-3"
+        style={{ color: badgeColor }}
+      >
+        <motion.span
+          className="inline-block"
+          style={{
+            width: 6,
+            height: 6,
+            borderRadius: 999,
+            background: badgeColor,
+            boxShadow: pulse ? `0 0 8px ${badgeColor}` : "none",
+          }}
+          animate={pulse ? { opacity: [1, 0.4, 1] } : {}}
+          transition={pulse ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : {}}
+        />
+        {label}
+      </div>
+      <div className="flex flex-col gap-1">
+        {items.map((p, i) => {
+          const globalIdx = baseIdx + i;
+          const isActive = globalIdx === activeIdx;
+          const statusLabel = TIMELINE[p.id]?.[lang];
+          const inMotion = IN_MOTION_IDS.has(p.id);
+          return (
+            <button
+              key={p.id}
+              onClick={() => onSelect(globalIdx)}
+              className="relative w-full text-left rounded-xl px-5 py-4 transition-all duration-300"
+              style={{
+                background: isActive ? `${p.color}15` : "transparent",
+                border: `1px solid ${isActive ? `${p.color}40` : "transparent"}`,
+                cursor: "pointer",
+              }}
+            >
+              <div
+                className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full transition-all duration-300"
+                style={{
+                  background: isActive ? p.color : "transparent",
+                  boxShadow: isActive ? `0 0 12px ${p.color}88` : "none",
+                }}
+              />
+              <div className="flex items-center gap-3">
+                <IconLogo id={p.id} color={p.color} size={32} />
+                <div className="flex-1 min-w-0">
+                  <div
+                    className="text-[15px] font-black truncate transition-colors duration-300"
+                    style={{ color: isActive ? "#f5f5f7" : "rgba(255,255,255,0.45)" }}
+                  >
+                    {p.name}
+                  </div>
+                  <div
+                    className="text-[11px] truncate transition-colors duration-300"
+                    style={{ color: isActive ? `${p.color}cc` : "rgba(255,255,255,0.25)" }}
+                  >
+                    {p.tag[lang]}
+                  </div>
+                </div>
+                {statusLabel && (
+                  <span
+                    className="text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 transition-all duration-300"
+                    style={{
+                      background: isActive ? `${p.color}22` : "rgba(255,255,255,0.05)",
+                      color: isActive ? p.color : "rgba(255,255,255,0.35)",
+                      letterSpacing: "0.04em",
+                    }}
+                  >
+                    {statusLabel}
+                  </span>
+                )}
+              </div>
+
+              {/* Progress bar (rotate indicator — motion only) */}
+              {isActive && inMotion && (
+                <div className="absolute bottom-0 left-5 right-5 h-[2px] rounded-full overflow-hidden" style={{ background: `${p.color}20` }}>
+                  <motion.div
+                    key={`progress-${globalIdx}`}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 6, ease: "linear" }}
+                    style={{ height: "100%", background: p.color, borderRadius: 999 }}
+                  />
+                </div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ComingSoonVisual({ item }: { item: Item }) {
+  const color = item.color;
+  return (
+    <div
+      className="absolute inset-0 flex items-center justify-center overflow-hidden"
+      style={{ background: "#08080f" }}
+    >
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          background: `radial-gradient(ellipse 55% 70% at 50% 45%, ${color}40, transparent 70%)`,
+        }}
+        animate={{ opacity: [0.55, 1, 0.55], scale: [1, 1.08, 1] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          opacity: 0.08,
+          backgroundImage: `radial-gradient(${color} 1px, transparent 1px)`,
+          backgroundSize: "28px 28px",
+        }}
+      />
+      <motion.div
+        className="relative"
+        style={{
+          width: 140,
+          height: 140,
+          zIndex: 1,
+          marginTop: -40,
+          filter: `drop-shadow(0 12px 32px ${color}80)`,
+        }}
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <IconLogo id={item.id} color={color} size={140} />
+      </motion.div>
+    </div>
+  );
+}
+
+function BellIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+    </svg>
   );
 }
