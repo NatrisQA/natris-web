@@ -13,9 +13,6 @@ const IN_MOTION_IDS = new Set(["linkplay", "pokerlulu"]);
 const TIMELINE: Record<string, string> = {
   pokerlulu: "대회 운영 중",
   linkplay: "2026 Q2",
-  tubelulu: "2026 Q4",
-  shuffleup: "2027 Q1",
-  gtolulu: "2027 Q2",
 };
 
 const TEASER: Record<string, string> = {
@@ -120,8 +117,8 @@ export default function ServiceIdlePreviewV2() {
             maxWidth: 920,
           }}
         >
-          <li>① 그룹 라벨 재설계: 진행 중(IN MOTION) / 구상 중(IN CONCEPT) — pokerlulu·linkplay도 기술적으론 개발중인 점 반영</li>
-          <li>② 구분 뱃지: pokerlulu &quot;대회 운영 중&quot;, linkplay &quot;2026 Q2&quot;, 나머지는 분기 타임라인</li>
+          <li>① 그룹 라벨 재설계: IN MOTION / IN CONCEPT — pokerlulu·linkplay도 기술적으론 개발중인 점 반영</li>
+          <li>② 구분 뱃지: pokerlulu &quot;대회 운영 중&quot;, linkplay &quot;2026 Q2&quot;. 구상중 서비스는 출시 시기 노출 생략</li>
           <li>③ 구상중 탭 활성 시 bg 영상 → 정적 gradient (pokerlulu 영상 누수 차단)</li>
           <li>④ 구상중 CTA 통일: 단일 &quot;가장 먼저 만나보기 →&quot; + 서비스별 궁금증 teaser 한 줄</li>
           <li>⑤ 자동 rotate는 진행중 그룹 내에서만 순환</li>
@@ -213,7 +210,7 @@ export default function ServiceIdlePreviewV2() {
           <div style={{ display: "flex", flexDirection: "row", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}>
             <div style={{ width: 340, flexShrink: 0 }}>
               <TabGroup
-                label="IN MOTION · 진행 중"
+                label="IN MOTION"
                 items={motionItems}
                 baseIdx={0}
                 activeIdx={activeIdx}
@@ -223,7 +220,7 @@ export default function ServiceIdlePreviewV2() {
               />
               <div style={{ height: 28 }} />
               <TabGroup
-                label="IN CONCEPT · 구상 중"
+                label="IN CONCEPT"
                 items={conceptItems}
                 baseIdx={motionItems.length}
                 activeIdx={activeIdx}
