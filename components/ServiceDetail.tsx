@@ -578,7 +578,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
 function KeyVisual({ id, color }: { id: string; color: string }) {
   if (id === "pokerlulu") {
     return (
-      <div className="relative w-full aspect-[16/9] max-w-[560px] mx-auto">
+      <div className="relative w-full aspect-[4/3] max-w-[560px] mx-auto">
         <div
           className="relative w-full h-full rounded-[24px] overflow-hidden"
           style={{
