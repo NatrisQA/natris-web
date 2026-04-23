@@ -481,10 +481,8 @@ function PageContent() {
               boxSizing: "border-box",
             }}
           >
-            <div className="fp-news flex-1 flex items-start w-full">
-              <div className="w-full">
-                <News />
-              </div>
+            <div className="fp-news flex-1 w-full">
+              <News />
             </div>
             <SlimFooter />
           </section>
