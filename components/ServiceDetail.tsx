@@ -343,8 +343,8 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-black leading-[1.15] tracking-tight max-w-[36ch] whitespace-pre-line"
-            style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: "#f5f5f7" }}
+            className="font-black leading-[1.25] tracking-tight max-w-[36ch] whitespace-pre-line"
+            style={{ fontSize: "clamp(1.4rem, 3.2vw, 2.4rem)", color: "#f5f5f7" }}
           >
             {("aboutCopy" in item ? (item as { aboutCopy?: { ko: string; en: string } }).aboutCopy?.[lang] : undefined) ?? item.desc[lang]}
           </motion.h2>
