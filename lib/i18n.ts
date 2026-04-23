@@ -135,15 +135,15 @@ export const content = {
     ko: {
       label: "ABOUT",
       headline: "게임과 커뮤니티로\n세상을 연결합니다",
-      body: "룰루닷에이아이는 게임·커뮤니티·기술이 만나는 플랫폼 기업입니다. 온라인 포커, 라이브 미니게임, 소모임 운영, AI 솔루션까지 — 플레이어 생태계 전반을 설계하고 운영합니다.",
+      body: "다섯 개의 서비스, 하나의 생태계. 룰루닷에이아이는 온라인 포커부터 라이브 미니게임, 커뮤니티 솔루션, AI 툴까지 플레이어가 머무는 공간을 직접 만들고 운영합니다.",
       stats: [
         { value: "6+", label: "개발 중 서비스" },
         { value: "2,000+", label: "국내 홀덤펍" },
         { value: "2030", label: "시장 규모 $372B" },
       ],
       mission: {
-        label: "MISSION",
-        text: "플레이어가 모이고,\n커뮤니티가 자라고,\n새로운 경험이 시작되는 곳.\n\n우리는 그 무대를 설계합니다.",
+        label: "VISION",
+        text: "플레이어가 모이고,\n커뮤니티가 자라고,\n새로운 경험이 시작되는 곳.\n\n우리는 그 순간을 기다립니다.",
       },
       milestones: [
         { date: "2026.02", text: "법인 설립" },
@@ -155,15 +155,15 @@ export const content = {
     en: {
       label: "ABOUT",
       headline: "Connecting the world\nthrough games & community",
-      body: "lulu.ai is a platform company where games, community, and technology meet. Online poker, live mini-games, club management, AI solutions — we design and operate across the entire player ecosystem.",
+      body: "Five services, one ecosystem. lulu.ai builds and operates the spaces where players stay — from online poker and live mini-games to community solutions and AI tools.",
       stats: [
         { value: "6+", label: "Services in Pipeline" },
         { value: "2,000+", label: "Holdem Pubs in Korea" },
         { value: "2030", label: "Market Size $372B" },
       ],
       mission: {
-        label: "MISSION",
-        text: "Where players gather,\ncommunities grow,\nand new experiences begin.\n\nWe design the stage for it all.",
+        label: "VISION",
+        text: "Where players gather,\ncommunities grow,\nand new experiences begin.\n\nWe live for that moment.",
       },
       milestones: [
         { date: "2026.02", text: "Incorporated" },

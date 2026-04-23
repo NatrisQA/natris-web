@@ -59,7 +59,7 @@ export default function About() {
               className="text-[11px] font-black tracking-[0.28em]"
               style={{ color: "rgba(255,255,255,0.4)" }}
             >
-              MISSION
+              {t.mission.label}
             </div>
             <p
               className="whitespace-pre-line font-black tracking-tight"
