@@ -266,7 +266,7 @@ export default function Projects() {
                 }}
               >
                 {/* Video section inside card */}
-                <div className="relative" style={{ aspectRatio: "16 / 9", overflow: "hidden" }}>
+                <div className="relative" style={{ aspectRatio: "21 / 9", overflow: "hidden" }}>
                   <video
                     key={active.id}
                     src={activeVideo.src}
@@ -311,13 +311,13 @@ export default function Projects() {
                 </div>
 
                 {/* Info section */}
-                <div className="p-8">
-                  <p className="text-[15px] leading-relaxed mb-6 whitespace-pre-line max-w-xl" style={{ color: "rgba(255,255,255,0.8)" }}>
+                <div className="p-6">
+                  <p className="text-[15px] leading-relaxed mb-4 whitespace-pre-line max-w-xl" style={{ color: "rgba(255,255,255,0.8)" }}>
                     {active.desc[lang]}
                   </p>
 
                   {/* Badges */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {active.badges[lang].map((b) => (
                       <span
                         key={b}
@@ -334,7 +334,7 @@ export default function Projects() {
                   </div>
 
                   {/* Feature highlights (2x2 grid) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                     {active.features.slice(0, 4).map((f, fi) => (
                       <div
                         key={fi}
@@ -379,7 +379,7 @@ export default function Projects() {
         </div>
 
         {/* Bottom: page indicators */}
-        <div className="flex justify-center gap-2 mt-10">
+        <div className="flex justify-center gap-2 mt-5">
           {items.map((p, i) => (
             <button
               key={p.id}
