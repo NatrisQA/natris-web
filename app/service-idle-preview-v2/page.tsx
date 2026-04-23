@@ -12,7 +12,7 @@ const IN_MOTION_IDS = new Set(["linkplay", "pokerlulu"]);
 
 const TIMELINE: Record<string, string> = {
   pokerlulu: "대회 운영 중",
-  linkplay: "런칭 임박",
+  linkplay: "2026 Q2 런칭",
   moitto: "2026 Q3",
   tubelulu: "2026 Q4",
   shuffleup: "2027 Q1",
@@ -123,7 +123,7 @@ export default function ServiceIdlePreviewV2() {
           }}
         >
           <li>① 그룹 라벨 재설계: 진행 중(IN MOTION) / 구상 중(IN CONCEPT) — pokerlulu·linkplay도 기술적으론 개발중인 점 반영</li>
-          <li>② 구분 뱃지: pokerlulu &quot;대회 운영 중&quot;, linkplay &quot;런칭 임박&quot;, 나머지는 분기 타임라인</li>
+          <li>② 구분 뱃지: pokerlulu &quot;대회 운영 중&quot;, linkplay &quot;2026 Q2 런칭&quot;, 나머지는 분기 타임라인</li>
           <li>③ 구상중 탭 활성 시 bg 영상 → 정적 gradient (pokerlulu 영상 누수 차단)</li>
           <li>④ 구상중 CTA 통일: 단일 &quot;가장 먼저 만나보기 →&quot; + 서비스별 궁금증 teaser 한 줄</li>
           <li>⑤ 자동 rotate는 진행중 그룹 내에서만 순환</li>

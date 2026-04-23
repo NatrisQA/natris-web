@@ -18,7 +18,7 @@ import { useEffect } from "react";
 
 const SECTION_IDS: string[] = ["hero", "products", "axes", "about", "news-fused"];
 const NAV_OFFSET = 72;
-const WHEEL_THRESHOLD = 60;
+const WHEEL_THRESHOLD = 150;
 const ANIM_LOCK_MS = 780;
 const EDGE_TOLERANCE = 4;
 
