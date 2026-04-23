@@ -346,7 +346,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             className="font-black leading-[1.15] tracking-tight max-w-[36ch] whitespace-pre-line"
             style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: "#f5f5f7" }}
           >
-            {item.desc[lang]}
+            {("aboutCopy" in item ? (item as { aboutCopy?: { ko: string; en: string } }).aboutCopy?.[lang] : undefined) ?? item.desc[lang]}
           </motion.h2>
 
           <motion.div

@@ -196,6 +196,10 @@ export const content = {
           ko: "친구와 가벼운 한 판부터\n전국 고수와의 진검승부까지\n한 곳에서 즐기는 소셜 포커 플랫폼",
           en: "From casual hands with friends\nto top-player showdowns,\nall in one social poker platform",
         },
+        aboutCopy: {
+          ko: "단순한 게임을 넘어,\n포커를 문화로 만드는 일.\n온·오프라인을 잇고\n선수·관객·운영자가\n함께 성장하는 생태계를 짓습니다.",
+          en: "More than just a game —\nturning poker into a culture.\nBridging online and offline,\nwe build an ecosystem where\nplayers, audience, and operators grow together.",
+        },
         badges: { ko: ["소셜 포커", "대회 시스템", "실시간 중계", "On/Off Mix", "스쿼드전"], en: ["Social Poker", "Tournament System", "Live Broadcast", "On/Off Mix", "Squad Battle"] },
         status: { ko: "출시 예정", en: "Launching Soon" },
         url: null as string | null,
