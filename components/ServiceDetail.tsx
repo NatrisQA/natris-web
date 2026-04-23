@@ -8,6 +8,14 @@ import type { content } from "@/lib/i18n";
 
 type ServiceItem = (typeof content.products.items)[number];
 
+const GALLERY_IMAGES: Record<string, string[]> = {
+  pokerlulu: [
+    "/images/pokerlulu/gallery-lobby.png",
+    "/images/pokerlulu/gallery-features.png",
+    "/images/pokerlulu/gallery-stats.png",
+  ],
+};
+
 const AXIS_COLOR: Record<string, string> = {
   game: "#e63946",
   community: "#ff8c42",
@@ -457,30 +465,44 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-4 md:gap-5">
-            {[0, 1, 2].map((i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, delay: i * 0.1 }}
-                className="rounded-2xl overflow-hidden relative group"
-                style={{
-                  aspectRatio: i === 0 ? "4 / 5" : "4 / 5",
-                  background: `linear-gradient(160deg, ${item.color}18, ${axisColor}10 60%, #14141f)`,
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
-                <GalleryVisual id={item.id} color={item.color} variant={i} />
-                <div
-                  className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-black tracking-[0.16em]"
-                  style={{ color: "rgba(255,255,255,0.5)" }}
+            {[0, 1, 2].map((i) => {
+              const galleryImages = GALLERY_IMAGES[item.id];
+              const image = galleryImages?.[i];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55, delay: i * 0.1 }}
+                  className="rounded-2xl overflow-hidden relative group"
+                  style={{
+                    aspectRatio: "4 / 5",
+                    background: `linear-gradient(160deg, ${item.color}18, ${axisColor}10 60%, #14141f)`,
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
                 >
-                  <span>{lang === "ko" ? "시안" : "MOCKUP"} {String(i + 1).padStart(2, "0")}</span>
-                  <span>{item.name}</span>
-                </div>
-              </motion.div>
-            ))}
+                  {image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={image}
+                      alt={`${item.name} ${i + 1}`}
+                      className="absolute inset-0 w-full h-full"
+                      style={{ objectFit: "cover", display: "block" }}
+                    />
+                  ) : (
+                    <GalleryVisual id={item.id} color={item.color} variant={i} />
+                  )}
+                  <div
+                    className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-black tracking-[0.16em]"
+                    style={{ color: "rgba(255,255,255,0.75)", textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}
+                  >
+                    <span>{lang === "ko" ? "시안" : "MOCKUP"} {String(i + 1).padStart(2, "0")}</span>
+                    <span>{item.name}</span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
