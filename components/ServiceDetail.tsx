@@ -67,18 +67,18 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
   };
 
   return (
-    <div style={{ background: "#fff", color: "#111" }}>
+    <div style={{ background: "#0a0a12", color: "#f5f5f7" }}>
       {/* ── Top Nav ── */}
       <header
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4"
         style={{
-          background: "rgba(255,255,255,0.88)",
+          background: "rgba(10,10,18,0.78)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
-          borderBottom: "1px solid #ececec",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
         }}
       >
-        <Link href="/" className="flex items-center gap-2 text-sm font-semibold" style={{ color: "#333" }}>
+        <Link href="/" className="flex items-center gap-2 text-sm font-semibold" style={{ color: "rgba(255,255,255,0.75)" }}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M10 4L6 8L10 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -88,9 +88,9 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
           <span
             className="text-[10px] font-black tracking-[0.16em] px-2.5 py-1 rounded-full"
             style={{
-              background: `${axisColor}15`,
+              background: `${axisColor}20`,
               color: axisColor,
-              border: `1px solid ${axisColor}40`,
+              border: `1px solid ${axisColor}55`,
             }}
           >
             {axisLabel}
@@ -101,11 +101,11 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
           <button
             onClick={toggle}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold"
-            style={{ border: "1px solid #dcdcdc", color: "#666" }}
+            style={{ border: "1px solid rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.6)" }}
           >
-            <span style={{ color: lang === "ko" ? "#111" : "#bbb" }}>KO</span>
-            <span style={{ color: "#ccc" }}>|</span>
-            <span style={{ color: lang === "en" ? "#111" : "#bbb" }}>EN</span>
+            <span style={{ color: lang === "ko" ? "#f5f5f7" : "rgba(255,255,255,0.35)" }}>KO</span>
+            <span style={{ color: "rgba(255,255,255,0.25)" }}>|</span>
+            <span style={{ color: lang === "en" ? "#f5f5f7" : "rgba(255,255,255,0.35)" }}>EN</span>
           </button>
         </div>
       </header>
@@ -122,7 +122,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             >
               <span
                 className="text-[11px] font-bold tracking-[0.12em] opacity-0 group-hover:opacity-100 transition-opacity"
-                style={{ color: isActive ? item.color : "#666" }}
+                style={{ color: isActive ? item.color : "rgba(255,255,255,0.6)" }}
               >
                 {s.label[lang]}
               </span>
@@ -131,7 +131,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                 style={{
                   width: isActive ? 28 : 14,
                   height: 2,
-                  background: isActive ? item.color : "#d4d4d4",
+                  background: isActive ? item.color : "rgba(255,255,255,0.25)",
                 }}
               />
             </button>
@@ -186,7 +186,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
           />
           <div
             className="absolute inset-x-0 bottom-0 h-48"
-            style={{ background: "linear-gradient(to top, #fff, transparent)" }}
+            style={{ background: "linear-gradient(to top, #0a0a12, transparent)" }}
           />
         </motion.div>
 
@@ -213,7 +213,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
               </span>
               <span
                 className="text-[11px] font-black tracking-[0.18em]"
-                style={{ color: "#999" }}
+                style={{ color: "rgba(255,255,255,0.45)" }}
               >
                 {item.status[lang].toUpperCase()}
               </span>
@@ -237,7 +237,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
               className="font-bold mb-4"
-              style={{ fontSize: "clamp(16px, 1.5vw, 20px)", color: "#222" }}
+              style={{ fontSize: "clamp(16px, 1.5vw, 20px)", color: "rgba(255,255,255,0.88)" }}
             >
               {item.tag[lang]}
             </motion.p>
@@ -247,7 +247,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="leading-relaxed max-w-xl mb-8"
-              style={{ fontSize: "clamp(14px, 1.1vw, 16px)", color: "#555" }}
+              style={{ fontSize: "clamp(14px, 1.1vw, 16px)", color: "rgba(255,255,255,0.62)" }}
             >
               {item.desc[lang]}
             </motion.p>
@@ -289,7 +289,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
               <button
                 onClick={() => scrollTo("cta")}
                 className="px-6 py-3 rounded-full text-sm font-black"
-                style={{ background: "#fff", color: "#111", border: "1px solid #dcdcdc" }}
+                style={{ background: "rgba(255,255,255,0.06)", color: "#f5f5f7", border: "1px solid rgba(255,255,255,0.18)" }}
               >
                 {lang === "ko" ? "제휴 문의" : "Partner With Us"}
               </button>
@@ -314,10 +314,10 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
           transition={{ delay: 1.5, duration: 0.5 }}
           className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-[10px] font-black tracking-[0.3em]" style={{ color: "#aaa" }}>
+          <span className="text-[10px] font-black tracking-[0.3em]" style={{ color: "rgba(255,255,255,0.5)" }}>
             SCROLL
           </span>
-          <div className="w-px h-8 scroll-hint" style={{ background: "#bbb" }} />
+          <div className="w-px h-8 scroll-hint" style={{ background: "rgba(255,255,255,0.35)" }} />
         </motion.div>
       </section>
 
@@ -325,7 +325,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
       <section
         id="about"
         className="relative py-32 md:py-44 px-6 md:px-12"
-        style={{ background: "#fff" }}
+        style={{ background: "#0a0a12" }}
       >
         <div className="max-w-[1200px] mx-auto">
           <motion.div
@@ -344,7 +344,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="font-black leading-[1.15] tracking-tight max-w-[36ch] whitespace-pre-line"
-            style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: "#111" }}
+            style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: "#f5f5f7" }}
           >
             {item.desc[lang]}
           </motion.h2>
@@ -361,11 +361,11 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
               { k: lang === "ko" ? "브랜드 축" : "Axis", v: axisLabel },
               { k: lang === "ko" ? "상태" : "Status", v: item.status[lang] },
             ].map((r) => (
-              <div key={r.k} className="border-t pt-5" style={{ borderColor: "#e5e5e5" }}>
-                <div className="text-[11px] font-black tracking-[0.2em] mb-2" style={{ color: "#999" }}>
+              <div key={r.k} className="border-t pt-5" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+                <div className="text-[11px] font-black tracking-[0.2em] mb-2" style={{ color: "rgba(255,255,255,0.45)" }}>
                   {r.k}
                 </div>
-                <div className="text-[16px] font-bold" style={{ color: "#111" }}>
+                <div className="text-[16px] font-bold" style={{ color: "#f5f5f7" }}>
                   {r.v}
                 </div>
               </div>
@@ -378,7 +378,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
       <section
         id="features"
         className="relative py-28 md:py-40 px-6 md:px-12"
-        style={{ background: "#fafafa" }}
+        style={{ background: "#14141f" }}
       >
         <div className="max-w-[1280px] mx-auto">
           <div className="mb-16 md:mb-24 text-center">
@@ -387,7 +387,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             </div>
             <h2
               className="font-black tracking-tight"
-              style={{ fontSize: "clamp(1.8rem, 4.2vw, 3rem)", color: "#111" }}
+              style={{ fontSize: "clamp(1.8rem, 4.2vw, 3rem)", color: "#f5f5f7" }}
             >
               {lang === "ko" ? "플레이어의 경험을 만드는 기능들" : "Features That Shape the Experience"}
             </h2>
@@ -421,11 +421,11 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                     </div>
                     <h3
                       className="font-black leading-tight mb-4 tracking-tight"
-                      style={{ fontSize: "clamp(1.6rem, 3vw, 2.3rem)", color: "#111" }}
+                      style={{ fontSize: "clamp(1.6rem, 3vw, 2.3rem)", color: "#f5f5f7" }}
                     >
                       {f.title[lang]}
                     </h3>
-                    <p className="leading-relaxed" style={{ fontSize: "clamp(14px, 1.1vw, 16px)", color: "#555" }}>
+                    <p className="leading-relaxed" style={{ fontSize: "clamp(14px, 1.1vw, 16px)", color: "rgba(255,255,255,0.62)" }}>
                       {f.desc[lang]}
                     </p>
                   </div>
@@ -441,7 +441,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
       <section
         id="gallery"
         className="relative py-28 md:py-36 px-6 md:px-12"
-        style={{ background: "#fff" }}
+        style={{ background: "#0a0a12" }}
       >
         <div className="max-w-[1280px] mx-auto">
           <div className="mb-12">
@@ -450,7 +450,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             </div>
             <h2
               className="font-black tracking-tight"
-              style={{ fontSize: "clamp(1.8rem, 4.2vw, 3rem)", color: "#111" }}
+              style={{ fontSize: "clamp(1.8rem, 4.2vw, 3rem)", color: "#f5f5f7" }}
             >
               {lang === "ko" ? "서비스 미리보기" : "Preview"}
             </h2>
@@ -467,14 +467,14 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                 className="rounded-2xl overflow-hidden relative group"
                 style={{
                   aspectRatio: i === 0 ? "4 / 5" : "4 / 5",
-                  background: `linear-gradient(160deg, ${item.color}10, ${axisColor}08 60%, #f2f2f2)`,
-                  border: "1px solid #ececec",
+                  background: `linear-gradient(160deg, ${item.color}18, ${axisColor}10 60%, #14141f)`,
+                  border: "1px solid rgba(255,255,255,0.08)",
                 }}
               >
                 <GalleryVisual id={item.id} color={item.color} variant={i} />
                 <div
                   className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-black tracking-[0.16em]"
-                  style={{ color: "#666" }}
+                  style={{ color: "rgba(255,255,255,0.5)" }}
                 >
                   <span>{lang === "ko" ? "시안" : "MOCKUP"} {String(i + 1).padStart(2, "0")}</span>
                   <span>{item.name}</span>
@@ -489,7 +489,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
       <section
         id="cta"
         className="relative py-28 md:py-40 px-6 md:px-12 overflow-hidden"
-        style={{ background: "#111" }}
+        style={{ background: "#08080f" }}
       >
         <div
           aria-hidden
@@ -560,12 +560,12 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
       {/* ── Bottom strip ── */}
       <div
         className="py-8 px-6 md:px-12 text-center"
-        style={{ background: "#fff", borderTop: "1px solid #ececec" }}
+        style={{ background: "#0a0a12", borderTop: "1px solid rgba(255,255,255,0.08)" }}
       >
         <Link
           href="/"
           className="text-[12px] font-bold tracking-[0.12em]"
-          style={{ color: "#666" }}
+          style={{ color: "rgba(255,255,255,0.55)" }}
         >
           ← LULU.AI
         </Link>
@@ -604,24 +604,24 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
         <div
           className="absolute inset-0 rounded-[28px]"
           style={{
-            background: `linear-gradient(160deg, ${color}18, #fff)`,
-            border: `1px solid ${color}30`,
-            boxShadow: `0 30px 80px ${color}25`,
+            background: `linear-gradient(160deg, ${color}28, #14141f 70%)`,
+            border: `1px solid ${color}45`,
+            boxShadow: `0 30px 80px ${color}35`,
           }}
         />
         {/* Brand logo badge */}
         <div
           className="absolute left-[10%] -top-4 flex items-center gap-2 px-3 py-2 rounded-full"
           style={{
-            background: "#fff",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-            border: "1px solid #eee",
+            background: "#1a1a26",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+            border: "1px solid rgba(255,255,255,0.12)",
             zIndex: 2,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logos/linkplay.svg" alt="LinkPlay" style={{ width: 22, height: 22, display: "block" }} />
-          <span className="text-[12px] font-black tracking-wide" style={{ color: "#111" }}>LinkPlay</span>
+          <span className="text-[12px] font-black tracking-wide" style={{ color: "#f5f5f7" }}>LinkPlay</span>
         </div>
         {/* Video window */}
         <div
@@ -651,10 +651,10 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
             style={{
               left: `${8 + i * 20}%`,
               bottom: `${14 + i * 9}%`,
-              background: "#fff",
-              color: "#333",
-              border: `1px solid ${color}30`,
-              boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
+              background: "#1a1a26",
+              color: "#f5f5f7",
+              border: `1px solid ${color}55`,
+              boxShadow: "0 6px 16px rgba(0,0,0,0.35)",
             }}
           >
             {["🎮 PLAY!", "GG!", "✨ 대박"][i]}
@@ -670,24 +670,24 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
         <div
           className="absolute inset-0 rounded-[28px]"
           style={{
-            background: `linear-gradient(160deg, ${color}18, #fff)`,
-            border: `1px solid ${color}30`,
-            boxShadow: `0 30px 80px ${color}25`,
+            background: `linear-gradient(160deg, ${color}28, #14141f 70%)`,
+            border: `1px solid ${color}45`,
+            boxShadow: `0 30px 80px ${color}35`,
           }}
         />
         {/* Logo badge */}
         <div
           className="absolute left-[10%] -top-4 flex items-center gap-2 px-3 py-2 rounded-full"
           style={{
-            background: "#fff",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-            border: "1px solid #eee",
+            background: "#1a1a26",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+            border: "1px solid rgba(255,255,255,0.12)",
             zIndex: 2,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logos/moitto.png" alt="Moitto" style={{ width: 22, height: 22, display: "block", objectFit: "contain" }} />
-          <span className="text-[12px] font-black tracking-wide" style={{ color: "#111" }}>Moitto</span>
+          <span className="text-[12px] font-black tracking-wide" style={{ color: "#f5f5f7" }}>Moitto</span>
         </div>
         {/* People circles connected around the logo */}
         <svg viewBox="0 0 300 360" className="absolute inset-0 w-full h-full p-6">
@@ -714,8 +714,8 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
             width: "28%",
             aspectRatio: "1 / 1",
             borderRadius: "50%",
-            background: "#fff",
-            boxShadow: `0 12px 40px ${color}40`,
+            background: "#f5f5f7",
+            boxShadow: `0 12px 40px ${color}60`,
             border: `2px solid ${color}`,
             display: "flex",
             alignItems: "center",
@@ -740,9 +740,9 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
       <div
         className="absolute inset-0 rounded-[28px]"
         style={{
-          background: `linear-gradient(160deg, ${color}22, #fff 70%)`,
-          border: `1px solid ${color}30`,
-          boxShadow: `0 30px 80px ${color}25`,
+          background: `linear-gradient(160deg, ${color}28, #14141f 70%)`,
+          border: `1px solid ${color}45`,
+          boxShadow: `0 30px 80px ${color}35`,
         }}
       />
       <div className="absolute inset-0 flex items-center justify-center">
@@ -768,9 +768,9 @@ function FeatureVisual({ index, color, accent, image, title }: { index: number; 
       <div
         className="relative rounded-3xl overflow-hidden"
         style={{
-          background: `linear-gradient(160deg, #fff, ${color}08)`,
-          border: `1px solid ${color}20`,
-          boxShadow: `0 20px 60px ${color}20`,
+          background: `linear-gradient(160deg, #14141f, ${color}12)`,
+          border: `1px solid ${color}30`,
+          boxShadow: `0 20px 60px ${color}25`,
           aspectRatio: "4/3",
         }}
       >
@@ -836,8 +836,8 @@ function FeatureVisual({ index, color, accent, image, title }: { index: number; 
     <div
       className="relative rounded-3xl overflow-hidden"
       style={{
-        background: `linear-gradient(160deg, #fff, ${color}06)`,
-        border: "1px solid #ececec",
+        background: `linear-gradient(160deg, #14141f, ${color}10)`,
+        border: "1px solid rgba(255,255,255,0.08)",
         aspectRatio: "4/3",
       }}
     >
