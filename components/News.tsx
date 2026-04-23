@@ -26,13 +26,6 @@ export default function News() {
             </h2>
             <p style={{ fontSize: "clamp(15px, 1.35vw, 19px)", color: "rgba(255,255,255,0.62)" }}>{t.sub[lang]}</p>
           </div>
-          <a
-            href="#news"
-            className="text-[13px] font-bold self-end"
-            style={{ color: "#f5f5f7" }}
-          >
-            {lang === "ko" ? "전체보기 →" : "View all →"}
-          </a>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">

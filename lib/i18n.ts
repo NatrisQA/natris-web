@@ -11,7 +11,7 @@ export const content = {
       tag: "lulu.ai",
       headline1: "모이고, 머물고, 성장하는",
       headline2: "커뮤니티를 만듭니다",
-      sub: "소셜 포커 · 방송 인터랙티브 미니게임 · 소모임·대회 운영 · 지식 플랫폼 · AI 솔루션",
+      sub: "소셜 포커 · 방송 인터랙티브 미니게임 · 클럽·대회 운영 · 지식 플랫폼 · AI 솔루션",
       cta: "서비스 보기",
       cta2: "제휴 문의",
       axisHighlights: { game: "게임", community: "커뮤니티", tech: "기술" },
@@ -137,7 +137,7 @@ export const content = {
       headline: "게임과 커뮤니티로\n세상을 연결합니다",
       body: "다섯 개의 서비스, 하나의 생태계. 룰루닷에이아이는 온라인 포커부터 라이브 미니게임, 커뮤니티 솔루션, AI 툴까지 플레이어가 머무는 공간을 직접 만들고 운영합니다.",
       stats: [
-        { value: "6+", label: "개발 중 서비스" },
+        { value: "5+", label: "개발 중 서비스" },
         { value: "2,000+", label: "국내 홀덤펍" },
         { value: "2030", label: "시장 규모 $372B" },
       ],
@@ -157,7 +157,7 @@ export const content = {
       headline: "Connecting the world\nthrough games & community",
       body: "Five services, one ecosystem. lulu.ai builds and operates the spaces where players stay — from online poker and live mini-games to community solutions and AI tools.",
       stats: [
-        { value: "6+", label: "Services in Pipeline" },
+        { value: "5+", label: "Services in Pipeline" },
         { value: "2,000+", label: "Holdem Pubs in Korea" },
         { value: "2030", label: "Market Size $372B" },
       ],
