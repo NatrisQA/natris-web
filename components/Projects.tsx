@@ -56,12 +56,14 @@ function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: 
       </div>
     ),
     moitto: (
-      <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="14" r="6" fill={`${c}55`} stroke={c} strokeWidth="1.2" />
-        <circle cx="10" cy="16" r="5" fill={`${c}35`} />
-        <circle cx="30" cy="16" r="5" fill={`${c}35`} />
-        <path d="M12 32 Q20 22 28 32" fill={`${c}55`} />
-      </svg>
+      <div style={{ width: "100%", height: "100%", borderRadius: 8, overflow: "hidden" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/moitto.png"
+          alt="Moitto"
+          style={{ width: "100%", height: "100%", display: "block", objectFit: "contain" }}
+        />
+      </div>
     ),
     tubelulu: (
       <svg viewBox="0 0 40 40" fill="none">

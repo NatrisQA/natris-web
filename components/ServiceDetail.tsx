@@ -682,7 +682,21 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
             boxShadow: `0 30px 80px ${color}25`,
           }}
         />
-        {/* People circles connected */}
+        {/* Logo badge */}
+        <div
+          className="absolute left-[10%] -top-4 flex items-center gap-2 px-3 py-2 rounded-full"
+          style={{
+            background: "#fff",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+            border: "1px solid #eee",
+            zIndex: 2,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logos/moitto.png" alt="Moitto" style={{ width: 22, height: 22, display: "block", objectFit: "contain" }} />
+          <span className="text-[12px] font-black tracking-wide" style={{ color: "#111" }}>Moitto</span>
+        </div>
+        {/* People circles connected around the logo */}
         <svg viewBox="0 0 300 360" className="absolute inset-0 w-full h-full p-6">
           <line x1="80" y1="120" x2="220" y2="120" stroke={`${color}50`} strokeWidth="2" strokeDasharray="4 4" />
           <line x1="150" y1="60" x2="80" y2="120" stroke={`${color}50`} strokeWidth="2" strokeDasharray="4 4" />
@@ -696,9 +710,33 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
           <circle cx="80" cy="112" r="8" fill={color} />
           <circle cx="220" cy="120" r="26" fill={`${color}20`} stroke={color} strokeWidth="2" />
           <circle cx="220" cy="112" r="8" fill={color} />
-          <circle cx="150" cy="260" r="40" fill={color} stroke={color} strokeWidth="2" />
-          <text x="150" y="268" fontSize="28" textAnchor="middle" fill="#fff" fontWeight="900">★</text>
         </svg>
+        {/* Center logo mark */}
+        <div
+          className="absolute"
+          style={{
+            left: "50%",
+            top: "72%",
+            transform: "translate(-50%, -50%)",
+            width: "28%",
+            aspectRatio: "1 / 1",
+            borderRadius: "50%",
+            background: "#fff",
+            boxShadow: `0 12px 40px ${color}40`,
+            border: `2px solid ${color}`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "10%",
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logos/moitto.png"
+            alt="Moitto"
+            style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+          />
+        </div>
       </div>
     );
   }
