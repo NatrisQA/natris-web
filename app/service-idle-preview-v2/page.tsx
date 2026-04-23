@@ -208,7 +208,7 @@ export default function ServiceIdlePreviewV2() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "row", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}>
-            <div style={{ width: 340, flexShrink: 0 }}>
+            <div className="hidden md:block" style={{ width: 340, flexShrink: 0 }}>
               <TabGroup
                 label="IN MOTION"
                 items={motionItems}
