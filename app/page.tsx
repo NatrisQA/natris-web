@@ -477,6 +477,7 @@ function PageContent() {
               display: "flex",
               flexDirection: "column",
               paddingTop: `${NAV_OFFSET}px`,
+              paddingBottom: `${NAV_OFFSET}px`,
               boxSizing: "border-box",
             }}
           >
