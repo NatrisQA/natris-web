@@ -580,18 +580,18 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
     return (
       <div className="relative w-full aspect-[16/9] max-w-[560px] mx-auto">
         <div
-          className="relative w-full h-full rounded-[24px] overflow-hidden flex items-center justify-center"
+          className="relative w-full h-full rounded-[24px] overflow-hidden"
           style={{
-            background: `linear-gradient(160deg, #140308, #1c0a12 60%, ${color}22)`,
             border: `1px solid ${color}40`,
             boxShadow: `0 30px 80px ${color}35`,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/pokerlulu/main-hero-logo.svg"
+            src="/images/pokerlulu/main-hero.png"
             alt="PokerLulu"
-            style={{ width: "72%", height: "auto", display: "block", filter: `drop-shadow(0 10px 30px ${color}80)` }}
+            className="absolute inset-0 w-full h-full"
+            style={{ objectFit: "cover", display: "block" }}
           />
         </div>
       </div>
