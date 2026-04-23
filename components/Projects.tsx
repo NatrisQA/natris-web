@@ -103,7 +103,7 @@ function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: 
 
 export default function Projects() {
   const { lang } = useLang();
-  const items = content.products.items;
+  const items = content.products.items.filter((i) => i.id !== "moitto");
   const headline = content.products.headline[lang];
   const sub = content.products.sub[lang];
   const label = content.products.label[lang];
