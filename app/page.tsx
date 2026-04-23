@@ -476,15 +476,16 @@ function PageContent() {
               minHeight: "100dvh",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "space-between",
               paddingTop: `${NAV_OFFSET}px`,
               boxSizing: "border-box",
             }}
           >
-            <div className="fp-news flex-1 w-full">
+            <div className="fp-news w-full">
               <News />
             </div>
-            <SlimFooter />
+            <div style={{ marginTop: "auto" }}>
+              <SlimFooter />
+            </div>
           </section>
         </div>
 
