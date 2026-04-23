@@ -465,7 +465,7 @@ function TabGroup({
         {items.map((p, i) => {
           const globalIdx = baseIdx + i;
           const isActive = globalIdx === activeIdx;
-          const statusLabel = TIMELINE[p.id] ?? p.status.ko;
+          const statusLabel = TIMELINE[p.id];
           return (
             <button
               key={p.id}
@@ -521,20 +521,22 @@ function TabGroup({
                     {p.tag.ko}
                   </div>
                 </div>
-                <span
-                  style={{
-                    fontSize: 10,
-                    fontWeight: 700,
-                    padding: "2px 8px",
-                    borderRadius: 999,
-                    background: isActive ? `${p.color}22` : "rgba(255,255,255,0.05)",
-                    color: isActive ? p.color : "rgba(255,255,255,0.35)",
-                    flexShrink: 0,
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  {statusLabel}
-                </span>
+                {statusLabel && (
+                  <span
+                    style={{
+                      fontSize: 10,
+                      fontWeight: 700,
+                      padding: "2px 8px",
+                      borderRadius: 999,
+                      background: isActive ? `${p.color}22` : "rgba(255,255,255,0.05)",
+                      color: isActive ? p.color : "rgba(255,255,255,0.35)",
+                      flexShrink: 0,
+                      letterSpacing: "0.04em",
+                    }}
+                  >
+                    {statusLabel}
+                  </span>
+                )}
               </div>
             </button>
           );
