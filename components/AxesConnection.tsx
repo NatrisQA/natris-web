@@ -24,12 +24,11 @@ const AXIS_META: Record<
   tech: { ko: "테크", en: "TECH", color: "#4dd4e8" },
 };
 
-// clockwise order — pair by axis so same-axis services are adjacent
+// clockwise order — pair same-axis services adjacent where possible
 const ORDER: string[] = [
   "pokerlulu", // game
   "linkplay", // game
-  "moitto", // community
-  "shuffleup", // community
+  "shuffleup", // community (solo)
   "tubelulu", // tech
   "gtolulu", // tech
 ];
@@ -55,8 +54,8 @@ export default function AxesConnection() {
   const nodeRingR = 74; // dashed decorative ring around node
   const haloR = 116; // halo fade radius
   const hubR = 95;
-  // 60° apart, starting at top
-  const angles = [-90, -30, 30, 90, 150, 210];
+  // 72° apart (pentagon), starting at top
+  const angles = [-90, -18, 54, 126, 198];
 
   const polar = (deg: number, r: number) => {
     const a = (deg * Math.PI) / 180;
@@ -65,8 +64,7 @@ export default function AxesConnection() {
 
   const axisPairs: { a: number; b: number; axis: "game" | "community" | "tech" }[] = [
     { a: 0, b: 1, axis: "game" },
-    { a: 2, b: 3, axis: "community" },
-    { a: 4, b: 5, axis: "tech" },
+    { a: 3, b: 4, axis: "tech" },
   ];
 
   // scattered twinkling star positions (deterministic via seeded sequence)
@@ -125,8 +123,8 @@ export default function AxesConnection() {
             }}
           >
             {lang === "ko"
-              ? "여섯 개의 플랫폼은 각자의 역할을 하면서도,\n커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다."
-              : "Six platforms each play their role,\ntied together by the thread of community."}
+              ? "다섯 개의 플랫폼은 각자의 역할을 하면서도,\n커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다."
+              : "Five platforms each play their role,\ntied together by the thread of community."}
           </p>
         </div>
 

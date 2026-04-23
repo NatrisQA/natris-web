@@ -9,7 +9,7 @@ function ServicePageContent() {
   const params = useParams();
   const { lang } = useLang();
   const id = params.id as string;
-  const item = id === "moitto" ? undefined : content.products.items.find((p) => p.id === id);
+  const item = content.products.items.find((p) => p.id === id);
 
   if (!item) {
     return (

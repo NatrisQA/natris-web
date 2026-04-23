@@ -29,10 +29,6 @@ const SERVICE_MEDIA: Record<
     gradient:
       "radial-gradient(ellipse 80% 60% at 30% 40%, rgba(6,182,212,0.35), transparent 70%), radial-gradient(ellipse 60% 50% at 80% 70%, rgba(6,182,212,0.18), transparent 70%), #0a0a12",
   },
-  moitto: {
-    gradient:
-      "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(16,185,129,0.32), transparent 70%), #0a0a12",
-  },
   shuffleup: {
     gradient:
       "radial-gradient(ellipse 80% 60% at 70% 40%, rgba(59,130,246,0.32), transparent 70%), #0a0a12",

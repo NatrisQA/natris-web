@@ -940,18 +940,6 @@ function DarkServiceVisual({ id, color: c }: { id: string; color: string }) {
         <circle cx="258" cy="85" r="5" fill={c} />
       </svg>
     ),
-    moitto: (
-      <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-        <circle cx="80" cy="65" r="18" fill={`${c}70`} />
-        <circle cx="60" cy="100" r="16" fill={`${c}55`} />
-        <circle cx="100" cy="100" r="16" fill={`${c}5c`} />
-        <path d="M38 148 Q80 110, 122 148 Z" fill={`${c}42`} />
-        <circle cx="180" cy="55" r="14" fill={`${c}58`} />
-        <circle cx="220" cy="75" r="20" fill={`${c}48`} />
-        <circle cx="250" cy="50" r="12" fill={`${c}70`} />
-        <path d="M160 148 Q220 105, 280 148 Z" fill={`${c}38`} />
-      </svg>
-    ),
     shuffleup: (
       <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
         <path d="M30 40 L70 40 L70 70 L120 70" stroke={`${c}dd`} strokeWidth="2" fill="none" />
@@ -1037,16 +1025,6 @@ function DarkIconLogo({ id, color: c, size = 44 }: { id: string; color: string; 
           style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
         />
       </div>
-    ),
-    moitto: (
-      <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="14" r="6" fill={`${c}55`} stroke={c} strokeWidth="1.2" />
-        <circle cx="10" cy="16" r="5" fill={`${c}35`} />
-        <circle cx="30" cy="16" r="5" fill={`${c}35`} />
-        <path d="M12 32 Q20 22 28 32" fill={`${c}55`} />
-        <path d="M4 32 Q10 26 16 32" fill={`${c}30`} />
-        <path d="M24 32 Q30 26 36 32" fill={`${c}30`} />
-      </svg>
     ),
     tubelulu: (
       <svg viewBox="0 0 40 40" fill="none">

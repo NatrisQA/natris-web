@@ -31,7 +31,7 @@ export const content = {
     ko: {
       label: "CONNECTED BY COMMUNITY",
       headline: "서로 다른 서비스가\n하나의 커뮤니티로 이어집니다",
-      sub: "여섯 개의 플랫폼은 각자의 역할을 하면서도, 커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다.",
+      sub: "다섯 개의 플랫폼은 각자의 역할을 하면서도, 커뮤니티라는 결을 따라 자연스럽게 서로를 엮어갑니다.",
       items: [
         {
           key: "game",
@@ -46,8 +46,8 @@ export const content = {
           color: "#ff8c42",
           name: "BELONG",
           title: "머무는 자리",
-          desc: "소모임과 대회로 이어지는 흐름 속에서 플레이어는 자신의 자리를 찾고 관계를 쌓습니다.",
-          services: ["Moitto", "ShuffleUp"],
+          desc: "대회와 클럽으로 이어지는 흐름 속에서 플레이어는 자신의 자리를 찾고 관계를 쌓습니다.",
+          services: ["ShuffleUp"],
         },
         {
           key: "tech",
@@ -62,7 +62,7 @@ export const content = {
     en: {
       label: "CONNECTED BY COMMUNITY",
       headline: "Different services,\nwoven into one community",
-      sub: "Six platforms each play their role, tied together by the thread of community.",
+      sub: "Five platforms each play their role, tied together by the thread of community.",
       items: [
         {
           key: "game",
@@ -77,8 +77,8 @@ export const content = {
           color: "#ff8c42",
           name: "BELONG",
           title: "Where players belong",
-          desc: "Clubs and tournaments give players a place of their own and relationships that last.",
-          services: ["Moitto", "ShuffleUp"],
+          desc: "Tournaments and clubs give players a place of their own and relationships that last.",
+          services: ["ShuffleUp"],
         },
         {
           key: "tech",
@@ -269,46 +269,6 @@ export const content = {
             icon: "🎮",
             title: { ko: "다양한 미니게임", en: "Various Mini-games" },
             desc: { ko: "포커, 퀴즈, 배틀 등 방송에 최적화된 인터랙티브 게임 라이브러리.", en: "Interactive game library optimized for broadcasts: poker, quiz, battles, and more." },
-          },
-        ],
-        gallery: [null, null, null] as (string | null)[],
-      },
-      {
-        id: "moitto",
-        axis: "community" as const,
-        color: "#10b981",
-        tag: { ko: "클럽·소모임 플랫폼", en: "Club & Community Platform" },
-        name: "Moitto",
-        name_ko: "Moitto",
-        desc: {
-          ko: "홀덤펍·동호회·스터디까지 오프라인 모임을 온라인에서,\n모집부터 정산까지 호스트에게 필요한 모든 것",
-          en: "Run holdem pubs, clubs, and study groups online with ease,\nfrom recruitment to settlement — everything a host needs",
-        },
-        badges: { ko: ["소모임 운영", "멤버 관리", "포인트·랭킹", "자동 정산", "멤버십"], en: ["Club Management", "Member Mgmt", "Points & Ranking", "Auto Settlement", "Membership"] },
-        status: { ko: "개발 중", en: "In Development" },
-        url: null as string | null,
-        image: null as string | null,
-        highlight: false,
-        features: [
-          {
-            icon: "🏠",
-            title: { ko: "소모임 운영", en: "Club Management" },
-            desc: { ko: "홀덤펍, 동호회, 스터디 모임을 온라인에서 손쉽게 개설하고 관리하세요.", en: "Easily create and manage holdem pubs, clubs, and study groups online." },
-          },
-          {
-            icon: "👤",
-            title: { ko: "멤버 관리", en: "Member Management" },
-            desc: { ko: "가입 승인, 역할 설정, 활동 이력까지. 멤버 관리의 모든 것.", en: "Approval, role assignment, activity history. Everything for member management." },
-          },
-          {
-            icon: "📊",
-            title: { ko: "포인트·랭킹", en: "Points & Ranking" },
-            desc: { ko: "참여 기반 포인트 적립과 랭킹 시스템으로 활발한 커뮤니티를 유지하세요.", en: "Maintain an active community with participation-based points and ranking systems." },
-          },
-          {
-            icon: "💰",
-            title: { ko: "자동 정산", en: "Auto Settlement" },
-            desc: { ko: "회비 수납부터 정산까지 자동화. 호스트의 운영 부담을 줄여드립니다.", en: "Automated from fee collection to settlement. Reducing the operational burden on hosts." },
           },
         ],
         gallery: [null, null, null] as (string | null)[],

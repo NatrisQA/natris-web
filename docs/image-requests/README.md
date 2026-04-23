@@ -8,7 +8,6 @@ natris-web(lulu.ai 브랜드 페이지) 서비스 상세 페이지 이미지 자
 |------|--------|--------|------|
 | [pokerlulu.md](./pokerlulu.md) | PokerLulu (소셜 포커) | | ☐ |
 | [linkplay.md](./linkplay.md) | LinkPlay (방송 인터랙티브) | | ☐ |
-| [moitto.md](./moitto.md) | 모이또 (소모임) | | ☐ |
 | [shuffleup.md](./shuffleup.md) | ShuffleUp (대회 운영) | | ☐ |
 | [tubelulu.md](./tubelulu.md) | TubeLuLu (지식·팬덤) | | ☐ |
 | [gtolulu.md](./gtolulu.md) | GTOlulu (AI GTO 솔버) | | ☐ |
@@ -45,4 +44,4 @@ natris-web(lulu.ai 브랜드 페이지) 서비스 상세 페이지 이미지 자
 {서비스ID}-logo.svg        (선택)
 ```
 
-서비스ID: `pokerlulu` / `linkplay` / `moitto` / `shuffleup` / `tubelulu` / `gtolulu`
+서비스ID: `pokerlulu` / `linkplay` / `shuffleup` / `tubelulu` / `gtolulu`

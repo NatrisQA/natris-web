@@ -16,7 +16,6 @@ import {
 import {
   Spade, Trophy, Radio, Shuffle,
   Zap, Mic, Users, Gamepad2,
-  Home as HomeIcon, UserCog, BarChart3, Wallet,
   Star, BookOpen, HelpCircle, MessageSquare,
   ClipboardList, Timer, Target, CreditCard,
   Brain, Library, LayoutGrid, TrendingUp,
@@ -27,7 +26,6 @@ import { useEffect, useRef, useState } from "react";
 const LUCIDE_FEATURES: Record<string, LucideIcon[]> = {
   pokerlulu: [Spade, Trophy, Radio, Shuffle],
   linkplay: [Zap, Mic, Users, Gamepad2],
-  moitto: [HomeIcon, UserCog, BarChart3, Wallet],
   tubelulu: [Star, BookOpen, HelpCircle, MessageSquare],
   shuffleup: [ClipboardList, Timer, Target, CreditCard],
   gtolulu: [Brain, Library, LayoutGrid, TrendingUp],

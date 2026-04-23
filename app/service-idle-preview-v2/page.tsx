@@ -7,7 +7,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type Item = (typeof content.products.items)[number];
 
-const items = (content.products.items as Item[]).filter((i) => i.id !== "moitto");
+const items = content.products.items as Item[];
 const IN_MOTION_IDS = new Set(["linkplay", "pokerlulu"]);
 
 const TIMELINE: Record<string, string> = {

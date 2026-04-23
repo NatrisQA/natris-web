@@ -55,16 +55,6 @@ function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: 
         />
       </div>
     ),
-    moitto: (
-      <div style={{ width: "100%", height: "100%", borderRadius: 8, overflow: "hidden" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/logos/moitto.png"
-          alt="Moitto"
-          style={{ width: "100%", height: "100%", display: "block", objectFit: "contain" }}
-        />
-      </div>
-    ),
     tubelulu: (
       <svg viewBox="0 0 40 40" fill="none">
         <rect x="6" y="10" width="28" height="20" rx="4" fill={`${c}22`} stroke={c} strokeWidth="1.4" />
@@ -103,7 +93,7 @@ function IconLogo({ id, color, size = 36 }: { id: string; color: string; size?: 
 
 export default function Projects() {
   const { lang } = useLang();
-  const items = content.products.items.filter((i) => i.id !== "moitto");
+  const items = content.products.items;
   const headline = content.products.headline[lang];
   const sub = content.products.sub[lang];
   const label = content.products.label[lang];
