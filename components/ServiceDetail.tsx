@@ -456,6 +456,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             {[0, 1, 2].map((i) => {
               const galleryImages = GALLERY_IMAGES[item.id];
               const image = galleryImages?.[i];
+              const galleryAspect = item.id === "linkplay" ? "4 / 3" : "4 / 5";
               return (
                 <motion.div
                   key={i}
@@ -465,7 +466,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                   transition={{ duration: 0.55, delay: i * 0.1 }}
                   className="rounded-2xl overflow-hidden relative group"
                   style={{
-                    aspectRatio: "4 / 5",
+                    aspectRatio: galleryAspect,
                     background: `linear-gradient(160deg, ${item.color}18, ${axisColor}10 60%, #14141f)`,
                     border: "1px solid rgba(255,255,255,0.08)",
                   }}
@@ -476,18 +477,11 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                       src={image}
                       alt={`${item.name} ${i + 1}`}
                       className="absolute inset-0 w-full h-full"
-                      style={{ objectFit: "cover", display: "block" }}
+                      style={{ objectFit: "contain", display: "block", padding: "8px" }}
                     />
                   ) : (
                     <GalleryVisual id={item.id} color={item.color} variant={i} />
                   )}
-                  <div
-                    className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-black tracking-[0.16em]"
-                    style={{ color: "rgba(255,255,255,0.75)", textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}
-                  >
-                    <span>{lang === "ko" ? "시안" : "MOCKUP"} {String(i + 1).padStart(2, "0")}</span>
-                    <span>{item.name}</span>
-                  </div>
                 </motion.div>
               );
             })}
