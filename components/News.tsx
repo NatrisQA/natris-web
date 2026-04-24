@@ -51,7 +51,7 @@ export default function News() {
                     fill
                     className="object-contain"
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    style={item.date === "2026.05" ? { transform: "scale(1.18)" } : undefined}
+                    style={item.date === "2026.05" ? { transform: "scale(1.3)" } : undefined}
                   />
                 ) : (
                   <div
