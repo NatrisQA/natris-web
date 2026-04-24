@@ -11,7 +11,6 @@ export default function Partnership() {
   const { lang } = useLang();
   const t = content.partnership[lang];
   const v = content.vision[lang];
-  const services = content.products.items;
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
@@ -142,78 +141,6 @@ export default function Partnership() {
               </div>
             </motion.div>
           ))}
-        </div>
-      </motion.div>
-
-      {/* ─── Section 3: Our Ecosystem (서비스 요약) ─── */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="relative py-24 md:py-32 section-divider"
-      >
-        <div className="px-8 md:px-16 max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-[#ff5a6a]/70 mb-4 uppercase"
-          >
-            OUR ECOSYSTEM
-          </motion.div>
-          <motion.h3
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.08 }}
-            className="font-black text-white leading-tight mb-4"
-            style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}
-          >
-            {lang === "ko" ? "파트너와 함께 성장하는 서비스" : "Services That Grow With Partners"}
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.14 }}
-            className="text-white/30 text-sm md:text-base mb-12 max-w-xl"
-          >
-            {lang === "ko"
-              ? "우리의 서비스 생태계 전반에 걸쳐 파트너십 기회가 열려 있습니다."
-              : "Partnership opportunities span across our entire service ecosystem."}
-          </motion.p>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {services.map((svc, i) => (
-              <motion.div
-                key={svc.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="rounded-2xl p-5 md:p-6 relative overflow-hidden group"
-                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}
-              >
-                <div
-                  className="absolute top-0 left-0 right-0 h-px"
-                  style={{ background: `linear-gradient(90deg, transparent, ${svc.color}40, transparent)` }}
-                />
-                <div
-                  className="w-2 h-2 rounded-full mb-4"
-                  style={{ background: svc.color, boxShadow: `0 0 8px ${svc.color}60` }}
-                />
-                <div className="text-sm md:text-base font-bold text-white mb-1">{svc.name}</div>
-                <div className="text-xs text-white/30">{svc.tag[lang]}</div>
-                <div
-                  className="mt-2 inline-block text-[10px] font-medium tracking-wider uppercase px-2 py-0.5 rounded-full"
-                  style={{ background: `${svc.color}15`, color: svc.color, border: `1px solid ${svc.color}25` }}
-                >
-                  {svc.status[lang]}
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </motion.div>
 
