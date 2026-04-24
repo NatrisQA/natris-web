@@ -294,13 +294,6 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
               >
                 {lang === "ko" ? "기능 살펴보기" : "Explore Features"} →
               </button>
-              <button
-                onClick={() => scrollTo("cta")}
-                className="px-6 py-3 rounded-full text-sm font-black"
-                style={{ background: "rgba(255,255,255,0.06)", color: "#f5f5f7", border: "1px solid rgba(255,255,255,0.18)" }}
-              >
-                {lang === "ko" ? "제휴 문의" : "Partner With Us"}
-              </button>
             </motion.div>
           </div>
 
