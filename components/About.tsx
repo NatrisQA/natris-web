@@ -39,7 +39,7 @@ export default function About() {
             {t.headline}
           </h2>
           <p
-            className="max-w-4xl mx-auto leading-relaxed"
+            className="max-w-4xl mx-auto leading-relaxed whitespace-pre-line break-keep"
             style={{ fontSize: "clamp(15px, 1.35vw, 19px)", color: "rgba(255,255,255,0.62)" }}
           >
             {t.body}

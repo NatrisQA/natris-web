@@ -135,7 +135,7 @@ export const content = {
     ko: {
       label: "ABOUT",
       headline: "게임과 커뮤니티로\n세상을 연결합니다",
-      body: "다섯 개의 서비스, 하나의 생태계. 룰루닷에이아이는 온라인 포커부터 라이브 미니게임, 커뮤니티 솔루션, AI 툴까지 플레이어가 머무는 공간을 직접 만들고 운영합니다.",
+      body: "다섯 개의 서비스, 하나의 생태계.\n룰루닷에이아이는 온라인 포커부터 라이브 미니게임, 커뮤니티 솔루션, AI 툴까지\n플레이어가 머무는 공간을 직접 만들고 운영합니다.",
       stats: [
         { value: "5+", label: "개발 중 서비스" },
         { value: "2,000+", label: "국내 홀덤펍" },
@@ -155,7 +155,7 @@ export const content = {
     en: {
       label: "ABOUT",
       headline: "Connecting the world\nthrough games & community",
-      body: "Five services, one ecosystem. lulu.ai builds and operates the spaces where players stay — from online poker and live mini-games to community solutions and AI tools.",
+      body: "Five services, one ecosystem.\nlulu.ai builds and operates the spaces where players stay —\nfrom online poker and live mini-games to community solutions and AI tools.",
       stats: [
         { value: "5+", label: "Services in Pipeline" },
         { value: "2,000+", label: "Holdem Pubs in Korea" },
