@@ -20,10 +20,10 @@ export default function Partnership() {
       className="relative overflow-hidden"
       style={{ minHeight: "100dvh" }}
     >
-      {/* Orbs */}
-      <div className="absolute bottom-0 left-1/3 w-[600px] h-[400px] blur-[170px] opacity-[0.08] pointer-events-none" style={{ background: "radial-gradient(ellipse, #ec4899, transparent)" }} />
-      <div className="absolute top-0 right-1/3 w-[400px] h-[300px] blur-[150px] opacity-[0.06] pointer-events-none" style={{ background: "radial-gradient(ellipse, #8b5cf6, transparent)" }} />
-      <div className="absolute top-[60%] left-0 w-[500px] h-[500px] blur-[200px] opacity-[0.05] pointer-events-none" style={{ background: "radial-gradient(ellipse, #6366f1, transparent)" }} />
+      {/* Orbs — warm red/orange palette matching main page */}
+      <div className="absolute bottom-0 left-1/3 w-[600px] h-[400px] blur-[170px] opacity-[0.09] pointer-events-none" style={{ background: "radial-gradient(ellipse, #ff5a6a, transparent)" }} />
+      <div className="absolute top-0 right-1/3 w-[400px] h-[300px] blur-[150px] opacity-[0.07] pointer-events-none" style={{ background: "radial-gradient(ellipse, #ff8c42, transparent)" }} />
+      <div className="absolute top-[60%] left-0 w-[500px] h-[500px] blur-[200px] opacity-[0.05] pointer-events-none" style={{ background: "radial-gradient(ellipse, #ff6d1f, transparent)" }} />
       {/* Grid */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "70px 70px" }} />
 
@@ -33,7 +33,7 @@ export default function Partnership() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-16 py-5"
-        style={{ background: "rgba(5,5,8,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+        style={{ background: "rgba(10,10,18,0.82)", backdropFilter: "blur(14px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
       >
         <Link href="/" className="flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -49,7 +49,7 @@ export default function Partnership() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-pink-400 mb-6 uppercase"
+            className="text-xs font-semibold tracking-[0.25em] text-[#ff5a6a] mb-6 uppercase"
           >
             {t.label}
           </motion.div>
@@ -62,7 +62,7 @@ export default function Partnership() {
             className="font-black text-white leading-[1.1] whitespace-pre-line mb-8"
             style={{
               fontSize: "clamp(2.5rem, 6vw, 5rem)",
-              background: "linear-gradient(135deg, #ffffff 0%, #c7d2fe 60%, #a5b4fc 100%)",
+              background: "linear-gradient(135deg, #ffffff 0%, #ffd5d8 55%, #ffb48a 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -116,7 +116,7 @@ export default function Partnership() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-pink-400/60 mb-12 md:mb-16 uppercase"
+            className="text-xs font-semibold tracking-[0.25em] text-[#ff5a6a]/70 mb-12 md:mb-16 uppercase"
           >
             {lang === "ko" ? "WHO WE WORK WITH" : "WHO WE WORK WITH"}
           </motion.div>
@@ -135,7 +135,7 @@ export default function Partnership() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
-                <h4 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-pink-200 transition-colors duration-300">
+                <h4 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-[#ffb4bc] transition-colors duration-300">
                   {item.title}
                 </h4>
                 <p className="text-sm md:text-base text-white/35 leading-relaxed max-w-lg">{item.desc}</p>
@@ -158,7 +158,7 @@ export default function Partnership() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-pink-400/60 mb-4 uppercase"
+            className="text-xs font-semibold tracking-[0.25em] text-[#ff5a6a]/70 mb-4 uppercase"
           >
             OUR ECOSYSTEM
           </motion.div>
@@ -230,7 +230,7 @@ export default function Partnership() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-pink-400/60 mb-12 uppercase"
+            className="text-xs font-semibold tracking-[0.25em] text-[#ff5a6a]/70 mb-12 uppercase"
           >
             {v.label}
           </motion.div>
@@ -244,7 +244,7 @@ export default function Partnership() {
               className="font-black leading-[1.15] whitespace-pre-line"
               style={{
                 fontSize: "clamp(1.8rem, 4vw, 3rem)",
-                background: "linear-gradient(135deg, #ffffff 0%, #c7d2fe 60%, #a5b4fc 100%)",
+                background: "linear-gradient(135deg, #ffffff 0%, #ffd5d8 55%, #ffb48a 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -305,8 +305,8 @@ export default function Partnership() {
             <motion.button
               onClick={() => setContactOpen(true)}
               className="btn-shimmer inline-flex items-center gap-2.5 px-10 py-4 rounded-full text-sm font-semibold text-white"
-              style={{ background: "linear-gradient(135deg, #ec4899, #8b5cf6)", boxShadow: "0 0 30px rgba(236,72,153,0.35), inset 0 1px 0 rgba(255,255,255,0.12)" }}
-              whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(236,72,153,0.55), inset 0 1px 0 rgba(255,255,255,0.12)" }}
+              style={{ background: "linear-gradient(135deg, #ff5a6a, #ff8c42)", boxShadow: "0 0 30px rgba(255,90,106,0.35), inset 0 1px 0 rgba(255,255,255,0.12)" }}
+              whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(255,90,106,0.55), inset 0 1px 0 rgba(255,255,255,0.12)" }}
               whileTap={{ scale: 0.97 }}
             >
               {t.cta}
@@ -321,8 +321,8 @@ export default function Partnership() {
       <div className="relative px-8 md:px-16 py-6" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-md flex items-center justify-center text-[9px] font-black text-white" style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}>L</div>
-            <span className="text-white/40 text-xs font-semibold">lulu.ai</span>
+            <div className="w-5 h-5 rounded-md flex items-center justify-center text-[9px] font-black text-white" style={{ background: "#ff5a6a" }}>L</div>
+            <span className="text-white/40 text-xs font-semibold">LULU.AI</span>
           </Link>
           <span className="text-[11px] text-white/20">© {new Date().getFullYear()} lulu.ai</span>
         </div>
