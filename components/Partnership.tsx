@@ -58,7 +58,7 @@ export default function Partnership() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-black text-white leading-[1.1] whitespace-pre-line mb-8"
+            className="font-black text-white leading-[1.1] whitespace-pre-line break-keep mb-8"
             style={{
               fontSize: "clamp(2.5rem, 6vw, 5rem)",
               background: "linear-gradient(135deg, #ffffff 0%, #ffd5d8 55%, #ffb48a 100%)",
@@ -75,7 +75,7 @@ export default function Partnership() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
-            className="text-lg md:text-xl text-white/35 leading-relaxed max-w-2xl"
+            className="text-lg md:text-xl text-white/35 leading-relaxed max-w-2xl break-keep"
           >
             {t.sub}
           </motion.p>
@@ -134,10 +134,10 @@ export default function Partnership() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
-                <h4 className="text-lg md:text-xl font-bold text-white mb-1.5 tracking-tight group-hover:text-[#ffb4bc] transition-colors duration-300">
+                <h4 className="text-lg md:text-xl font-bold text-white mb-1.5 tracking-tight break-keep group-hover:text-[#ffb4bc] transition-colors duration-300">
                   {item.title}
                 </h4>
-                <p className="text-sm md:text-base text-white/35 leading-relaxed max-w-lg whitespace-pre-line">{item.desc}</p>
+                <p className="text-sm md:text-base text-white/35 leading-relaxed max-w-lg whitespace-pre-line break-keep">{item.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -168,7 +168,7 @@ export default function Partnership() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="font-black leading-[1.15] whitespace-pre-line"
+              className="font-black leading-[1.15] whitespace-pre-line break-keep"
               style={{
                 fontSize: "clamp(1.675rem, 3.75vw, 2.875rem)",
                 background: "linear-gradient(135deg, #ffffff 0%, #ffd5d8 55%, #ffb48a 100%)",
@@ -184,7 +184,7 @@ export default function Partnership() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15, duration: 0.7 }}
-              className="text-sm md:text-base text-white/35 leading-relaxed whitespace-pre-line"
+              className="text-sm md:text-base text-white/35 leading-relaxed whitespace-pre-line break-keep"
             >
               {v.body}
             </motion.p>
@@ -205,7 +205,7 @@ export default function Partnership() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-black text-white leading-tight mb-4"
+            className="font-black text-white leading-tight mb-4 break-keep"
             style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}
           >
             {lang === "ko" ? "함께할 준비가 되셨나요?" : "Ready to Partner?"}
@@ -215,7 +215,7 @@ export default function Partnership() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-white/30 text-sm md:text-base mb-10 max-w-md mx-auto"
+            className="text-white/30 text-sm md:text-base mb-10 max-w-md mx-auto break-keep"
           >
             {lang === "ko"
               ? "아래 버튼을 눌러 문의를 보내주시면, 담당자가 빠르게 회신드리겠습니다."
