@@ -241,8 +241,8 @@ export const content = {
         name: "LinkPlay",
         name_ko: "링플",
         desc: {
-          ko: "방송 중 시청자와 함께 즐기는 라이브 게임 콘텐츠,\n크리에이터와 시청자의 경계를 허뭅니다",
-          en: "Live game content where viewers play along during broadcasts,\nblurring the line between creator and audience",
+          ko: "같이 노는 가장 빠른 방법",
+          en: "The fastest way to play together",
         },
         badges: { ko: ["실시간 매칭", "크리에이터 연동", "시청자 참여형", "라이브 인터랙션", "미니게임"], en: ["Real-time Matching", "Creator Integration", "Viewer Participation", "Live Interaction", "Mini-games"] },
         status: { ko: "개발 중", en: "In Development" },
