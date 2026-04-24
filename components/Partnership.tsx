@@ -170,7 +170,7 @@ export default function Partnership() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="font-black leading-[1.15] whitespace-pre-line"
               style={{
-                fontSize: "clamp(1.8rem, 4vw, 3rem)",
+                fontSize: "clamp(1.675rem, 3.75vw, 2.875rem)",
                 background: "linear-gradient(135deg, #ffffff 0%, #ffd5d8 55%, #ffb48a 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
