@@ -544,13 +544,13 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             transition={{ delay: 0.3 }}
             className="flex flex-wrap gap-3 justify-center"
           >
-            <a
-              href={`mailto:contact@lulu.ai?subject=${encodeURIComponent(`Partnership: ${item.name}`)}`}
+            <Link
+              href="/partnership"
               className="px-7 py-3.5 rounded-full text-sm font-black"
               style={{ background: item.color, color: "#fff" }}
             >
               {lang === "ko" ? "제휴 문의하기" : "Contact for Partnership"} →
-            </a>
+            </Link>
             <Link
               href="/"
               className="px-7 py-3.5 rounded-full text-sm font-black"
