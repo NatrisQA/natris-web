@@ -509,13 +509,13 @@ export const content = {
   vision: {
     ko: {
       label: "VISION",
-      headline: "아시아를 넘어,\n글로벌 플레이어 네트워크",
-      body: "룰루닷에이아이는 한국에서 시작해 일본·대만 등 아시아 전역으로, 그리고 글로벌 플레이어 네트워크로 확장합니다. 우리의 목표는 하나의 서비스가 아니라, 게임과 커뮤니티 생태계 전체를 아우르는 플랫폼이 되는 것입니다.",
+      headline: "아시아에서 세계로,\n플레이어를 잇는 커뮤니티",
+      body: "한국에서 시작해\n일본·대만 등 아시아 전역, 그리고 글로벌 시장으로 확장합니다.\n하나의 서비스가 아니라,\n게임과 커뮤니티·온오프라인을 잇는 생태계를 만들어갑니다.",
     },
     en: {
       label: "VISION",
-      headline: "Beyond Asia,\na Global Player Network",
-      body: "lulu.ai starts in Korea, expands across Asia including Japan, Taiwan and beyond, and grows into a global player network. Our goal is not a single service, but to become the platform that encompasses the entire gaming and community ecosystem.",
+      headline: "From Asia to the World,\na Community That Connects Players",
+      body: "Starting in Korea, we expand across Asia\nincluding Japan and Taiwan, and onward to global markets.\nNot a single service,\nbut an ecosystem that connects games, community, and online-offline worlds.",
     },
   },
 
