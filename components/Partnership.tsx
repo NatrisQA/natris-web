@@ -109,14 +109,14 @@ export default function Partnership() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="relative py-24 md:py-32 section-divider"
+        className="relative py-14 md:py-20 section-divider"
       >
         <div className="px-8 md:px-16 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.25em] text-[#ff5a6a]/70 mb-12 md:mb-16 uppercase"
+            className="text-xs font-semibold tracking-[0.25em] text-[#ff5a6a]/70 mb-8 md:mb-10 uppercase"
           >
             {lang === "ko" ? "WHO WE WORK WITH" : "WHO WE WORK WITH"}
           </motion.div>
@@ -128,17 +128,17 @@ export default function Partnership() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="group grid md:grid-cols-[80px_1fr] gap-3 md:gap-8 items-baseline py-8 md:py-10"
+              className="group grid md:grid-cols-[72px_1fr] gap-3 md:gap-7 items-baseline py-5 md:py-6"
               style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
             >
-              <span className="text-[48px] md:text-[64px] font-black leading-none text-white/[0.04] group-hover:text-white/[0.08] transition-colors duration-500">
+              <span className="text-[40px] md:text-[52px] font-black leading-none text-white/[0.04] group-hover:text-white/[0.08] transition-colors duration-500">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
-                <h4 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-[#ffb4bc] transition-colors duration-300">
+                <h4 className="text-lg md:text-xl font-bold text-white mb-1.5 tracking-tight group-hover:text-[#ffb4bc] transition-colors duration-300">
                   {item.title}
                 </h4>
-                <p className="text-sm md:text-base text-white/35 leading-relaxed max-w-lg">{item.desc}</p>
+                <p className="text-sm md:text-base text-white/35 leading-relaxed max-w-lg whitespace-pre-line">{item.desc}</p>
               </div>
             </motion.div>
           ))}

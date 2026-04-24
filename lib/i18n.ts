@@ -456,22 +456,22 @@ export const content = {
         {
           icon: "🏢",
           title: "홀덤펍·공간 사업자",
-          desc: "대회 운영 시스템, 회원 관리 솔루션 등 오프라인 공간에 필요한 디지털 인프라를 함께 구축합니다.",
+          desc: "대회 운영 시스템, 회원 관리 솔루션 등\n오프라인 공간에 필요한 디지털 인프라를 함께 구축합니다.",
         },
         {
           icon: "🎙",
           title: "인플루언서·크리에이터",
-          desc: "라이브 방송, 게임 콘텐츠, 커뮤니티 운영 등 크리에이터의 영향력을 플랫폼과 연결합니다.",
+          desc: "라이브 방송, 게임 콘텐츠, 커뮤니티 운영 등\n크리에이터의 영향력을 플랫폼과 연결합니다.",
         },
         {
           icon: "🤝",
           title: "기업·브랜드 제휴",
-          desc: "이벤트, 팀빌딩, 브랜드 콜라보 등 게임과 커뮤니티를 활용한 기업 파트너십을 제안합니다.",
+          desc: "이벤트, 팀빌딩, 브랜드 콜라보 등\n게임과 커뮤니티를 활용한 기업 파트너십을 제안합니다.",
         },
         {
           icon: "🌏",
           title: "해외·투자 파트너",
-          desc: "아시아 게임·커뮤니티 시장 진출을 함께 추진할 해외 파트너와 투자자를 환영합니다.",
+          desc: "아시아 게임·커뮤니티 시장 진출을 함께 추진할\n해외 파트너와 투자자를 환영합니다.",
         },
       ],
       cta: "제휴 문의하기",
@@ -484,22 +484,22 @@ export const content = {
         {
           icon: "🏢",
           title: "Holdem Pubs & Venues",
-          desc: "We build digital infrastructure for offline venues: tournament systems, member management, and more.",
+          desc: "We build digital infrastructure for offline venues:\ntournament systems, member management, and more.",
         },
         {
           icon: "🎙",
           title: "Influencers & Creators",
-          desc: "Connect your influence with our platforms: live broadcasts, game content, and community tools.",
+          desc: "Connect your influence with our platforms:\nlive broadcasts, game content, and community tools.",
         },
         {
           icon: "🤝",
           title: "Corporate & Brand",
-          desc: "Corporate partnerships through gaming and community: events, team building, and brand collaborations.",
+          desc: "Corporate partnerships through gaming and community:\nevents, team building, and brand collaborations.",
         },
         {
           icon: "🌏",
           title: "Global & Investment",
-          desc: "We welcome overseas partners and investors to expand the Asian gaming and community market together.",
+          desc: "We welcome overseas partners and investors\nto expand the Asian gaming and community market together.",
         },
       ],
       cta: "Contact for Partnership",
