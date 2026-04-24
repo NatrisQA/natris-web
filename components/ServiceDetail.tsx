@@ -14,6 +14,11 @@ const GALLERY_IMAGES: Record<string, string[]> = {
     "/images/pokerlulu/gallery-features.png",
     "/images/pokerlulu/gallery-stats.png",
   ],
+  linkplay: [
+    "/images/linkplay/gallery-1.png",
+    "/images/linkplay/gallery-2.png",
+    "/images/linkplay/gallery-3.png",
+  ],
 };
 
 const AXIS_COLOR: Record<string, string> = {
@@ -605,66 +610,22 @@ function KeyVisual({ id, color }: { id: string; color: string }) {
 
   if (id === "linkplay") {
     return (
-      <div className="relative w-full aspect-[5/6] max-w-[480px] mx-auto">
+      <div className="relative w-full aspect-[16/9] max-w-[620px] mx-auto">
         <div
-          className="absolute inset-0 rounded-[28px]"
+          className="relative w-full h-full rounded-[24px] overflow-hidden"
           style={{
-            background: `linear-gradient(160deg, ${color}28, #14141f 70%)`,
-            border: `1px solid ${color}45`,
+            border: `1px solid ${color}40`,
             boxShadow: `0 30px 80px ${color}35`,
-          }}
-        />
-        {/* Brand logo badge */}
-        <div
-          className="absolute left-[10%] -top-4 flex items-center gap-2 px-3 py-2 rounded-full"
-          style={{
-            background: "#1a1a26",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            zIndex: 2,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logos/linkplay.svg" alt="LinkPlay" style={{ width: 22, height: 22, display: "block" }} />
-          <span className="text-[12px] font-black tracking-wide" style={{ color: "#f5f5f7" }}>LinkPlay</span>
+          <img
+            src="/images/linkplay/main-hero.png"
+            alt="LinkPlay"
+            className="absolute inset-0 w-full h-full"
+            style={{ objectFit: "cover", display: "block" }}
+          />
         </div>
-        {/* Video window */}
-        <div
-          className="absolute left-[10%] top-[12%] right-[10%] rounded-2xl aspect-video"
-          style={{ background: "#111", overflow: "hidden" }}
-        >
-          <div className="absolute inset-0 flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logos/linkplay.svg"
-              alt=""
-              style={{ width: "38%", height: "auto", filter: "drop-shadow(0 6px 18px rgba(47,128,237,0.55))" }}
-            />
-          </div>
-          <div
-            className="absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] font-black"
-            style={{ background: color, color: "#fff" }}
-          >
-            LIVE
-          </div>
-        </div>
-        {/* Chat bubbles */}
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="absolute rounded-full text-[11px] font-bold px-3 py-2"
-            style={{
-              left: `${8 + i * 20}%`,
-              bottom: `${14 + i * 9}%`,
-              background: "#1a1a26",
-              color: "#f5f5f7",
-              border: `1px solid ${color}55`,
-              boxShadow: "0 6px 16px rgba(0,0,0,0.35)",
-            }}
-          >
-            {["🎮 PLAY!", "GG!", "✨ 대박"][i]}
-          </div>
-        ))}
       </div>
     );
   }
