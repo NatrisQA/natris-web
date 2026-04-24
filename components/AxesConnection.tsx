@@ -130,6 +130,7 @@ export default function AxesConnection() {
 
         {/* Diagram */}
         <motion.div
+          data-axes-diagram
           initial={{ opacity: 0, scale: 0.94 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
