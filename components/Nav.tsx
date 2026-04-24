@@ -69,10 +69,11 @@ export default function Nav() {
           <Image
             src="/lulu-ai-logo.png"
             alt="Lulu AI"
-            width={160}
-            height={48}
+            width={240}
+            height={80}
             priority
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-14 md:h-16 w-48 md:w-56 object-cover"
+            style={{ objectPosition: "center 52%" }}
           />
         </a>
 
