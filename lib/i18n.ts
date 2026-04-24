@@ -510,12 +510,12 @@ export const content = {
     ko: {
       label: "VISION",
       headline: "아시아에서 세계로,\n플레이어를 잇는 커뮤니티",
-      body: "한국에서 시작해\n일본·대만 등 아시아 전역, 그리고 글로벌 시장으로 확장합니다.\n하나의 서비스가 아니라,\n게임과 커뮤니티·온오프라인을 잇는 생태계를 만들어갑니다.",
+      body: "한국에서 시작해 일본·대만 등 아시아 전역,\n그리고 글로벌 시장으로 확장합니다.\n하나의 서비스가 아니라\n게임과 커뮤니티·온오프라인을 잇는 생태계를 만들어갑니다.",
     },
     en: {
       label: "VISION",
       headline: "From Asia to the World,\na Community That Connects Players",
-      body: "Starting in Korea, we expand across Asia\nincluding Japan and Taiwan, and onward to global markets.\nNot a single service,\nbut an ecosystem that connects games, community, and online-offline worlds.",
+      body: "Starting in Korea, we expand across Asia including Japan and Taiwan,\nand onward to global markets.\nNot a single service\nbut an ecosystem that connects games, community, and online-offline worlds.",
     },
   },
 
