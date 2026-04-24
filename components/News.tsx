@@ -40,13 +40,16 @@ export default function News() {
               style={{ background: "#14141f", border: "1px solid rgba(255,255,255,0.08)" }}
             >
               {/* Visual area */}
-              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
+              <div
+                className="relative w-full overflow-hidden"
+                style={{ aspectRatio: "16 / 9", background: "#0a0a12" }}
+              >
                 {item.image ? (
                   <Image
                     src={item.image}
                     alt={item.title[lang]}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 ) : (
