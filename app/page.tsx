@@ -349,9 +349,6 @@ function SlimFooter() {
           </div>
         </div>
         <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-          <a href={`mailto:${tf.contact}`} className="text-[11.5px] font-bold" style={{ color: "#f5f5f7" }}>
-            {tf.contact}
-          </a>
           <span className="text-[10.5px]" style={{ color: "rgba(255,255,255,0.35)" }}>
             {tf.rights.replace("2026", String(new Date().getFullYear()))}
           </span>
