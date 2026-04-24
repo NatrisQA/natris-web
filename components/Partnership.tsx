@@ -215,11 +215,11 @@ export default function Partnership() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-white/30 text-sm md:text-base mb-10 max-w-md mx-auto break-keep"
+            className="text-white/30 text-sm md:text-base mb-10 max-w-md mx-auto break-keep whitespace-pre-line"
           >
             {lang === "ko"
-              ? "아래 버튼을 눌러 문의를 보내주시면, 담당자가 빠르게 회신드리겠습니다."
-              : "Send us an inquiry below and our team will get back to you shortly."}
+              ? "아래 버튼을 눌러 문의를 보내주시면,\n담당자가 빠르게 회신드리겠습니다."
+              : "Send us an inquiry below,\nand our team will get back to you shortly."}
           </motion.p>
 
           <motion.div
