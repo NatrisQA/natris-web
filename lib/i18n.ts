@@ -441,7 +441,7 @@ export const content = {
         title: { ko: "LULU x Nightshift Pub 대회 개최", en: "LULU x Nightshift Pub Tournament" },
         desc: { ko: "Nightshift Pub과 협업한 오프라인 홀덤 대회를 개최했습니다.", en: "Hosted an offline Hold'em tournament in collaboration with Nightshift Pub." },
         date: "2025.06",
-        image: null,
+        image: "/images/news/lulu-nightshift-pub.png",
         color: "#06b6d4",
       },
     ],
