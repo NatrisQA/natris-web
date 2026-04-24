@@ -414,7 +414,7 @@ function PageContent() {
           [data-fp-compact] #axes .fp-axes h2 + p { font-size: 13px; max-width: 640px; }
           [data-fp-compact] #axes .fp-axes [style*="maxWidth: 760"] { max-width: 540px; }
           [data-fp-compact] #axes .fp-axes [style*="maxWidth: 760"] svg {
-            max-height: calc(100dvh - 300px);
+            max-height: calc(100dvh - 360px);
             width: auto !important;
             max-width: 100%;
             margin: 0 auto;
@@ -458,7 +458,7 @@ function PageContent() {
             </div>
           </ParallaxSlide>
 
-          <ParallaxSlide id="axes" bottomPadding={140}>
+          <ParallaxSlide id="axes" bottomPadding={40}>
             <div className="fp-axes w-full">
               <AxesConnection />
             </div>
