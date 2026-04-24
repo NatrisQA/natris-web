@@ -47,7 +47,7 @@ export default function Nav() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32 py-4"
+        className="fixed top-0 left-0 right-0 z-50 flex md:grid md:grid-cols-3 items-center justify-between px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32 py-4"
         style={{
           background: elevated ? "rgba(10,10,18,0.82)" : "rgba(10,10,18,0.4)",
           backdropFilter: "blur(14px)",
@@ -64,7 +64,7 @@ export default function Nav() {
             const c = document.getElementById("scroll-container");
             if (c) c.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="flex items-center group"
+          className="flex items-center group md:justify-self-start"
         >
           <Image
             src="/lulu-ai-logo.png"
@@ -78,7 +78,7 @@ export default function Nav() {
         </a>
 
         {/* Desktop nav links */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8 md:justify-self-center">
           {links.map((item) => (
             <a
               key={item.href}
@@ -96,7 +96,7 @@ export default function Nav() {
         </nav>
 
         {/* Right: lang toggle + mobile hamburger */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 md:justify-self-end">
           <button
             onClick={toggle}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold transition-all duration-200"
