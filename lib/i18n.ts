@@ -417,7 +417,7 @@ export const content = {
         title: { ko: "APL x LULU POKER FESTIVAL 개최", en: "APL x LULU POKER FESTIVAL" },
         desc: { ko: "Asia Poker League와 공동 주최하는 대형 포커 페스티벌을 개최합니다.", en: "Co-hosting a large poker festival with the Asia Poker League." },
         date: "2026.05",
-        image: null,
+        image: "/images/news/apl-lulu-festival.png",
         color: "#e60012",
       },
       {
