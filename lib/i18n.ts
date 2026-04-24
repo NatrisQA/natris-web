@@ -526,7 +526,7 @@ export const content = {
       tagline: "커뮤니티로 잇는 새로운 세상.",
       contact_label: "사업 문의",
       contact: "contact@lulu.ai",
-      rights: "© 2026 lulu.ai. All rights reserved.",
+      rights: "© 2025 lulu.ai. All rights reserved.",
       links: [
         { label: "서비스", href: "#products" },
         { label: "제휴 문의", href: "/partnership" },
@@ -539,7 +539,7 @@ export const content = {
       tagline: "A New World Connected by Community.",
       contact_label: "Business Inquiry",
       contact: "contact@lulu.ai",
-      rights: "© 2026 lulu.ai. All rights reserved.",
+      rights: "© 2025 lulu.ai. All rights reserved.",
       links: [
         { label: "Services", href: "#products" },
         { label: "Partnership", href: "/partnership" },
