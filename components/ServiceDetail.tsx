@@ -477,7 +477,11 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                       src={image}
                       alt={`${item.name} ${i + 1}`}
                       className="absolute inset-0 w-full h-full"
-                      style={{ objectFit: imageFit, objectPosition: "center", display: "block" }}
+                      style={{
+                        objectFit: "cover",
+                        objectPosition: item.id === "linkplay" ? "left center" : "center",
+                        display: "block",
+                      }}
                     />
                   ) : (
                     <GalleryVisual id={item.id} color={item.color} variant={i} />
