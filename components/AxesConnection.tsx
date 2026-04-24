@@ -67,6 +67,10 @@ export default function AxesConnection() {
     { a: 3, b: 4, axis: "tech" },
   ];
 
+  // ambient background dims — spans full section width, not diagram
+  const bgVBW = 2400;
+  const bgVBH = 1000;
+
   // scattered twinkling star positions (deterministic via seeded sequence)
   const stars = useMemo(() => {
     const arr: { x: number; y: number; r: number; delay: number; dur: number }[] = [];
@@ -75,11 +79,11 @@ export default function AxesConnection() {
       seed = (seed * 1103515245 + 12345) & 0x7fffffff;
       return seed / 0x7fffffff;
     };
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < 180; i++) {
       arr.push({
-        x: rand() * 1200,
-        y: rand() * 840,
-        r: rand() * 1.5 + 0.3,
+        x: rand() * bgVBW,
+        y: rand() * bgVBH,
+        r: rand() * 1.6 + 0.3,
         delay: rand() * 5,
         dur: 2.5 + rand() * 4,
       });
@@ -89,10 +93,45 @@ export default function AxesConnection() {
 
   return (
     <section
-      className="py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32"
+      className="relative overflow-hidden py-28 px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32"
       style={{ background: "#0a0a12" }}
     >
-      <div className="max-w-[1680px] mx-auto">
+      {/* Ambient background — radial glow + twinkling starfield spanning full section width */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute inset-0 w-full h-full"
+        viewBox={`0 0 ${bgVBW} ${bgVBH}`}
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <radialGradient id="sectionBgGlow" cx="50%" cy="50%">
+            <stop offset="0%" stopColor="#ff5a6a" stopOpacity="0.12" />
+            <stop offset="45%" stopColor="#ff5a6a" stopOpacity="0.035" />
+            <stop offset="100%" stopColor="#ff5a6a" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width={bgVBW} height={bgVBH} fill="url(#sectionBgGlow)" />
+        {stars.map((s, i) => (
+          <circle
+            key={`bg-star-${i}`}
+            cx={s.x}
+            cy={s.y}
+            r={s.r}
+            fill="#ffffff"
+            opacity="0.35"
+          >
+            <animate
+              attributeName="opacity"
+              values="0.08;0.55;0.08"
+              dur={`${s.dur}s`}
+              begin={`${s.delay}s`}
+              repeatCount="indefinite"
+            />
+          </circle>
+        ))}
+      </svg>
+
+      <div className="relative max-w-[1680px] mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
           <div
@@ -142,13 +181,6 @@ export default function AxesConnection() {
             style={{ width: "100%", height: "auto", display: "block" }}
           >
             <defs>
-              {/* Background radial glow */}
-              <radialGradient id="bgGlow" cx="50%" cy="50%">
-                <stop offset="0%" stopColor="#ff5a6a" stopOpacity="0.14" />
-                <stop offset="40%" stopColor="#ff5a6a" stopOpacity="0.04" />
-                <stop offset="100%" stopColor="#ff5a6a" stopOpacity="0" />
-              </radialGradient>
-
               {/* Hub inner glow */}
               <radialGradient id="hubGlow" cx="50%" cy="45%">
                 <stop offset="0%" stopColor="#ff5a6a" stopOpacity="0.55" />
@@ -230,37 +262,6 @@ export default function AxesConnection() {
                 );
               })()}
             </defs>
-
-            {/* Background glow */}
-            <rect
-              x="0"
-              y="0"
-              width="1200"
-              height="840"
-              fill="url(#bgGlow)"
-            />
-
-            {/* Twinkling stars */}
-            <g>
-              {stars.map((s, i) => (
-                <circle
-                  key={`star-${i}`}
-                  cx={s.x}
-                  cy={s.y}
-                  r={s.r}
-                  fill="#ffffff"
-                  opacity="0.35"
-                >
-                  <animate
-                    attributeName="opacity"
-                    values="0.08;0.55;0.08"
-                    dur={`${s.dur}s`}
-                    begin={`${s.delay}s`}
-                    repeatCount="indefinite"
-                  />
-                </circle>
-              ))}
-            </g>
 
             {/* Outer decorative rings */}
             <circle
