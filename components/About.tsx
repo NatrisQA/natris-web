@@ -83,7 +83,7 @@ export default function About() {
               style={{ background: "rgba(255,255,255,0.12)" }}
             />
             {t.milestones.map((ms, i) => {
-              const isLast = i === t.milestones.length - 1;
+              const isHighlight = ms.date === "2026.Q2";
               return (
                 <motion.div
                   key={i}
@@ -96,14 +96,14 @@ export default function About() {
                   <div
                     className="absolute left-0 top-1 w-[15px] h-[15px] rounded-full"
                     style={{
-                      background: isLast ? "#ff5a6a" : "#14141f",
-                      border: `2px solid ${isLast ? "#ff5a6a" : "rgba(255,255,255,0.22)"}`,
-                      boxShadow: isLast ? "0 0 0 4px rgba(255,90,106,0.18)" : "none",
+                      background: isHighlight ? "#ff5a6a" : "#14141f",
+                      border: `2px solid ${isHighlight ? "#ff5a6a" : "rgba(255,255,255,0.22)"}`,
+                      boxShadow: isHighlight ? "0 0 0 4px rgba(255,90,106,0.18)" : "none",
                     }}
                   />
                   <div
                     className="text-[11px] font-black tracking-[0.12em] mb-1"
-                    style={{ color: isLast ? "#ff5a6a" : "rgba(255,255,255,0.4)" }}
+                    style={{ color: isHighlight ? "#ff5a6a" : "rgba(255,255,255,0.4)" }}
                   >
                     {ms.date}
                   </div>
