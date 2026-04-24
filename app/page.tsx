@@ -328,9 +328,10 @@ function SlimFooter() {
             <Image
               src="/lulu-ai-logo.png"
               alt={tf.company}
-              width={120}
-              height={32}
-              className="h-8 w-auto object-contain"
+              width={160}
+              height={48}
+              className="h-7 md:h-8 w-28 md:w-32 object-cover"
+              style={{ objectPosition: "center 52%" }}
             />
           </div>
           <div className="flex items-center flex-wrap gap-4">
