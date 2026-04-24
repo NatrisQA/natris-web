@@ -9,6 +9,7 @@ import About from "@/components/About";
 import News from "@/components/News";
 import { content } from "@/lib/i18n";
 import Link from "next/link";
+import Image from "next/image";
 import {
   motion,
   useReducedMotion,
@@ -323,16 +324,14 @@ function SlimFooter() {
     >
       <div className="max-w-[1680px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
-          <div className="flex items-center gap-2">
-            <div
-              className="w-6 h-6 rounded-md flex items-center justify-center text-[10px] font-black"
-              style={{ background: "#ff5a6a", color: "#fff" }}
-            >
-              L
-            </div>
-            <span className="text-[12.5px] font-black" style={{ color: "#f5f5f7" }}>
-              {tf.company}
-            </span>
+          <div className="flex items-center">
+            <Image
+              src="/lulu-ai-logo.png"
+              alt={tf.company}
+              width={120}
+              height={32}
+              className="h-8 w-auto object-contain"
+            />
           </div>
           <div className="flex items-center flex-wrap gap-4">
             {tf.links.slice(0, 4).map((l) =>

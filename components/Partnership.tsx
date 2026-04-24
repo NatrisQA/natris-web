@@ -5,6 +5,7 @@ import { content } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ContactModal from "./ContactModal";
 
 export default function Partnership() {
@@ -247,9 +248,14 @@ export default function Partnership() {
       {/* Footer strip */}
       <div className="relative px-8 md:px-16 py-6" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-md flex items-center justify-center text-[9px] font-black text-white" style={{ background: "#ff5a6a" }}>L</div>
-            <span className="text-white/40 text-xs font-semibold">LULU.AI</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/lulu-ai-logo.png"
+              alt="Lulu AI"
+              width={96}
+              height={28}
+              className="h-7 w-auto object-contain opacity-60 hover:opacity-90 transition-opacity"
+            />
           </Link>
           <span className="text-[11px] text-white/20">© {new Date().getFullYear()} lulu.ai</span>
         </div>

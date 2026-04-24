@@ -5,6 +5,7 @@ import { content } from "@/lib/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Nav() {
   const { lang, toggle } = useLang();
@@ -63,17 +64,16 @@ export default function Nav() {
             const c = document.getElementById("scroll-container");
             if (c) c.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="flex items-center gap-2 group"
+          className="flex items-center group"
         >
-          <div
-            className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-black"
-            style={{ background: "#ff5a6a", color: "#fff" }}
-          >
-            L
-          </div>
-          <span className="font-black tracking-[0.02em] text-[15px]" style={{ color: "#f5f5f7" }}>
-            LULU.AI
-          </span>
+          <Image
+            src="/lulu-ai-logo.png"
+            alt="Lulu AI"
+            width={160}
+            height={48}
+            priority
+            className="h-10 md:h-12 w-auto object-contain"
+          />
         </a>
 
         {/* Desktop nav links */}
