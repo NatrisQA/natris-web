@@ -706,7 +706,7 @@ function FeatureVisual({ index, color, accent, image, title }: { index: number; 
           background: `linear-gradient(160deg, #14141f, ${color}12)`,
           border: `1px solid ${color}30`,
           boxShadow: `0 20px 60px ${color}25`,
-          aspectRatio: "4/3",
+          aspectRatio: "3/2",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -714,7 +714,7 @@ function FeatureVisual({ index, color, accent, image, title }: { index: number; 
           src={image}
           alt={title ?? ""}
           className="absolute inset-0 w-full h-full"
-          style={{ objectFit: "cover", display: "block" }}
+          style={{ objectFit: "contain", display: "block", padding: "12px" }}
         />
       </div>
     );
