@@ -414,16 +414,6 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                   className={`grid md:grid-cols-2 gap-10 md:gap-20 items-center ${reverse ? "md:[direction:rtl]" : ""}`}
                 >
                   <div style={{ direction: "ltr" }}>
-                    <div
-                      className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-5 text-xl"
-                      style={{
-                        background: `${item.color}15`,
-                        border: `1px solid ${item.color}40`,
-                        color: item.color,
-                      }}
-                    >
-                      {f.icon}
-                    </div>
                     <div className="text-[11px] font-black tracking-[0.22em] mb-3" style={{ color: item.color }}>
                       {String(i + 1).padStart(2, "0")} / {String(item.features.length).padStart(2, "0")}
                     </div>
