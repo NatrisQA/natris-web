@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 const SERVICES = [
   { color: "#FF6D1F" },
   { color: "#06b6d4" },
-  { color: "#10b981" },
   { color: "#3b82f6" },
   { color: "#ec4899" },
   { color: "#8b5cf6" },

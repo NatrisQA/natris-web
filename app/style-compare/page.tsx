@@ -342,7 +342,6 @@ function DarkHeroVisual() {
   const SERVICES = [
     { name: "PokerLulu", color: "#FF6D1F" },
     { name: "LinkPlay", color: "#06b6d4" },
-    { name: "Moitto", color: "#10b981" },
     { name: "ShuffleUp", color: "#3b82f6" },
     { name: "TubeLulu", color: "#ec4899" },
     { name: "GTOlulu", color: "#8b5cf6" },

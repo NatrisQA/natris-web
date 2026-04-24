@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 const SERVICES = [
   { name: "PokerLulu", color: "#FF6D1F" },
   { name: "LinkPlay",  color: "#06b6d4" },
-  { name: "Moitto",    color: "#10b981" },
   { name: "ShuffleUp", color: "#3b82f6" },
   { name: "TubeLulu",  color: "#ec4899" },
   { name: "GTOlulu",   color: "#8b5cf6" },
@@ -22,7 +21,6 @@ export default function HeroVisualF() {
     ${SERVICES[2].color},
     ${SERVICES[3].color},
     ${SERVICES[4].color},
-    ${SERVICES[5].color},
     ${SERVICES[0].color})`;
 
   return (
@@ -58,7 +56,7 @@ export default function HeroVisualF() {
           }}
         />
         {SERVICES.map((s, i) => {
-          const angle = (i * 60 - 90) * (Math.PI / 180);
+          const angle = (i * 72 - 90) * (Math.PI / 180);
           const radius = 46; /* % from center */
           const x = 50 + radius * Math.cos(angle);
           const y = 50 + radius * Math.sin(angle);
