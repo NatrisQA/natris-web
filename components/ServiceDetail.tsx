@@ -456,7 +456,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
             {[0, 1, 2].map((i) => {
               const galleryImages = GALLERY_IMAGES[item.id];
               const image = galleryImages?.[i];
-              const galleryAspect = item.id === "linkplay" ? "4 / 3" : "4 / 5";
+              const imageFit = item.id === "linkplay" ? "contain" : "cover";
               return (
                 <motion.div
                   key={i}
@@ -466,7 +466,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                   transition={{ duration: 0.55, delay: i * 0.1 }}
                   className="rounded-2xl overflow-hidden relative group"
                   style={{
-                    aspectRatio: galleryAspect,
+                    aspectRatio: "4 / 5",
                     background: `linear-gradient(160deg, ${item.color}18, ${axisColor}10 60%, #14141f)`,
                     border: "1px solid rgba(255,255,255,0.08)",
                   }}
@@ -477,7 +477,7 @@ export default function ServiceDetail({ item }: { item: ServiceItem }) {
                       src={image}
                       alt={`${item.name} ${i + 1}`}
                       className="absolute inset-0 w-full h-full"
-                      style={{ objectFit: "cover", display: "block" }}
+                      style={{ objectFit: imageFit, objectPosition: "center", display: "block" }}
                     />
                   ) : (
                     <GalleryVisual id={item.id} color={item.color} variant={i} />
