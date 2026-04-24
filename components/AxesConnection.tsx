@@ -50,9 +50,9 @@ export default function AxesConnection() {
   const cy = 420;
   const R = 268; // service orbit radius (tightened after removing external labels)
   const axisR = 158; // axis label arc radius (scaled with R)
-  const nodeR = 62; // service node outer fill radius (grown with +2 text)
-  const nodeRingR = 78; // dashed decorative ring around node
-  const haloR = 122; // halo fade radius
+  const nodeR = 66; // service node outer fill radius (grown with +4 text)
+  const nodeRingR = 82; // dashed decorative ring around node
+  const haloR = 128; // halo fade radius
   const hubR = 95;
   // 72° apart (pentagon), starting at top
   const angles = [-90, -18, 54, 126, 198];
@@ -96,7 +96,7 @@ export default function AxesConnection() {
         {/* Header */}
         <div className="text-center mb-10">
           <div
-            className="text-[13px] font-black tracking-[0.32em] mb-4"
+            className="text-[15px] font-black tracking-[0.32em] mb-4"
             style={{ color: "#ff5a6a" }}
           >
             CONNECTED BY COMMUNITY
@@ -104,7 +104,7 @@ export default function AxesConnection() {
           <h2
             className="font-black tracking-tight mb-4"
             style={{
-              fontSize: "clamp(1.875rem, 4.2vw, 3.325rem)",
+              fontSize: "clamp(2rem, 4.2vw, 3.45rem)",
               color: "#f5f5f7",
               whiteSpace: "pre-line",
               lineHeight: 1.15,
@@ -117,7 +117,7 @@ export default function AxesConnection() {
           <p
             className="max-w-3xl mx-auto leading-relaxed"
             style={{
-              fontSize: "clamp(17px, 1.55vw, 21px)",
+              fontSize: "clamp(19px, 1.75vw, 23px)",
               color: "rgba(255,255,255,0.62)",
               whiteSpace: "pre-line",
             }}
@@ -462,7 +462,7 @@ export default function AxesConnection() {
             <text
               x={cx}
               y={cy - 2}
-              fontSize="21"
+              fontSize="23"
               fontWeight="900"
               textAnchor="middle"
               fill="#f5f5f7"
@@ -473,8 +473,8 @@ export default function AxesConnection() {
             </text>
             <text
               x={cx}
-              y={cy + 22}
-              fontSize="11"
+              y={cy + 24}
+              fontSize="13"
               fontWeight="800"
               textAnchor="middle"
               fill="#ff8c42"
@@ -490,7 +490,7 @@ export default function AxesConnection() {
               return (
                 <text
                   key={`axis-label-${pair.axis}`}
-                  fontSize="17"
+                  fontSize="19"
                   fontWeight="900"
                   fill={axisColor}
                   letterSpacing="0.36em"
@@ -509,7 +509,7 @@ export default function AxesConnection() {
 
             {/* Community axis label (solo — shuffleup) */}
             <text
-              fontSize="17"
+              fontSize="19"
               fontWeight="900"
               fill={AXIS_META.community.color}
               letterSpacing="0.36em"
@@ -578,7 +578,7 @@ export default function AxesConnection() {
                   <text
                     x={p.x}
                     y={p.y + 2}
-                    fontSize="18"
+                    fontSize="20"
                     fontWeight="900"
                     fill={s.color}
                     textAnchor="middle"
@@ -590,8 +590,8 @@ export default function AxesConnection() {
                   {/* Axis tag */}
                   <text
                     x={p.x}
-                    y={p.y + 22}
-                    fontSize="12.5"
+                    y={p.y + 24}
+                    fontSize="14.5"
                     fontWeight="800"
                     fill="rgba(255,255,255,0.5)"
                     textAnchor="middle"
@@ -635,7 +635,7 @@ export default function AxesConnection() {
                   key={`tag-${s.id}`}
                   x={lx}
                   y={ly}
-                  fontSize="16.5"
+                  fontSize="18.5"
                   fontWeight="700"
                   fill="rgba(245,245,247,0.78)"
                   textAnchor={anchor}
